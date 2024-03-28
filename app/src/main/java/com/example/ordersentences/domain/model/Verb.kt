@@ -12,3 +12,21 @@ data class Verb(
     val mistakeCount: Int = 0,
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
 )
+
+fun Verb.getInfinitiveForSubject(subject: String): String {
+    when(subject.lowercase()) {
+        "i" -> return baseForm
+        "you" -> return baseForm
+        "we" -> return baseForm
+        "they" -> return baseForm
+    }
+    return getInfinitiveThirdPerson()
+}
+
+private fun Verb.getInfinitiveThirdPerson(): String {
+    val isSpecialCase =
+        "go" == baseForm
+                || "do" == baseForm
+                || baseForm.endsWith("s", true)
+    return if (isSpecialCase) "${baseForm}es" else "${baseForm}s"
+}
