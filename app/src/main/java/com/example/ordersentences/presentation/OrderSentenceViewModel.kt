@@ -61,12 +61,6 @@ class OrderSentenceViewModel(
             ?.removeNonWordSymbols()
     }
 
-    fun onTextEntered(text: String) {
-        _state.value = state.value.copy(
-            enteredSentence = text
-        )
-    }
-
     fun onEvent(event: OrderSentenceEvent) {
         when(event) {
             is OrderSentenceEvent.StartGame -> {
@@ -86,6 +80,11 @@ class OrderSentenceViewModel(
                         }
                     }
                 }
+            }
+            is OrderSentenceEvent.EnterText -> {
+                _state.value = state.value.copy(
+                    enteredSentence = event.answerText
+                )
             }
         }
     }

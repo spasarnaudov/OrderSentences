@@ -131,7 +131,7 @@ class OrderSentenceActivity : ComponentActivity() {
                 value = answerText,
                 onValueChange = {
                     answerText = it
-                    viewModel.onTextEntered(answerText)
+                    viewModel.onEvent(OrderSentenceEvent.EnterText(answerText))
                 },
                 label = { Text("Enter your sentence") },
             )
