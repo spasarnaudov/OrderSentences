@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.ordersentences.data.VerbDao
 import com.example.ordersentences.domain.OrderSentenceEvent
+import com.example.ordersentences.domain.Verbs
 import com.example.ordersentences.domain.model.GameState
 import com.example.ordersentences.domain.model.SentenceType
 import com.example.ordersentences.domain.model.Verb
@@ -17,6 +18,7 @@ import com.example.ordersentences.domain.use_case.LoadSubjectUseCase
 import com.example.ordersentences.domain.use_case.LoadVerbUseCase
 import com.example.ordersentences.domain.use_case.UploadVerbsToDBUseCase
 import com.example.ordersentences.domain.use_case.IncrementVerbMistakeCountUseCase
+import com.example.ordersentences.domain.use_case.IsNotVerbsInDatabaseUseCase
 import com.example.ordersentences.domain.use_case.LoadAllVerbsUseCase
 import com.example.ordersentences.presentation.utils.scratchWords
 import com.example.ordersentences.presentation.utils.shuffleSentence
@@ -32,8 +34,8 @@ class OrderSentenceViewModel(
 
     init {
         viewModelScope.launch {
-            if (dao.countRows() == 0) {
-                UploadVerbsToDBUseCase(dao).invoke()
+            if (IsNotVerbsInDatabaseUseCase(dao).invoke()) {
+                UploadVerbsToDBUseCase(dao).invoke(Verbs.levelOneVerbs)
             }
         }
     }

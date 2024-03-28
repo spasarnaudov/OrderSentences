@@ -7,17 +7,7 @@ class UploadVerbsToDBUseCase(
     private val dao: VerbDao
 ) {
 
-    suspend operator fun invoke() {
-        val verbs: List<Verb> = listOf(
-            Verb("cook", "cooked", "cooked"),
-            Verb("buy", "bought", "bought"),
-            Verb("sell", "sold", "sold"),
-            Verb("take", "took", "taken"),
-            Verb("throw", "threw", "thrown"),
-            Verb("write", "wrote", "written"),
-            Verb("ride", "rode", "ridden"),
-            Verb("read", "read", "read")
-        )
+    suspend operator fun invoke(verbs: List<Verb>) {
         dao.insertVerbAll(*verbs.toTypedArray())
     }
 

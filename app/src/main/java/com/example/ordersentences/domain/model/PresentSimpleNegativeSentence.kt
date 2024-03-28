@@ -1,5 +1,7 @@
 package com.example.ordersentences.domain.model
 
+import com.example.ordersentences.domain.Verbs
+
 class PresentSimpleNegativeSentence(
     private val subject: String,
     private val verb: Verb,
@@ -7,6 +9,6 @@ class PresentSimpleNegativeSentence(
     private val prepositionalPhrase: String = "",
 ): Sentence {
     override fun buildSentence(): String {
-        return "$subject ${Verbs.verbDo.getInfinitiveForSubject(subject)} not ${verb.baseForm} $objectVal."
+        return "$subject ${Verbs.doVerb.getInfinitiveForSubject(subject)} not ${verb.baseForm} $objectVal."
     }
 }

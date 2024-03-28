@@ -1,5 +1,7 @@
 package com.example.ordersentences.domain.model
 
+import com.example.ordersentences.domain.Verbs
+
 class PresentContinuousQuestionSentence(
     private val subject: String,
     private val verb: Verb,
@@ -7,6 +9,6 @@ class PresentContinuousQuestionSentence(
     private val prepositionalPhrase: String = "",
 ): Sentence {
     override fun buildSentence(): String {
-        return "${Verbs.verbDo.getInfinitiveForSubject(subject)} $subject ${verb.baseForm}ing $objectVal?"
+        return "${Verbs.doVerb.getInfinitiveForSubject(subject)} $subject ${verb.baseForm}ing $objectVal?"
     }
 }
