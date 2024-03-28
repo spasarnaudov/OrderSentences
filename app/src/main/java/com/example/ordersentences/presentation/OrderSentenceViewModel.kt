@@ -10,16 +10,16 @@ import com.example.ordersentences.domain.OrderSentenceEvent
 import com.example.ordersentences.domain.model.GameState
 import com.example.ordersentences.domain.model.SentenceType
 import com.example.ordersentences.domain.model.Verb
-import com.example.ordersentences.domain.removeNonWordSymbols
+import com.example.ordersentences.presentation.utils.removeNonWordSymbols
 import com.example.ordersentences.domain.use_case.GenerateSentenceUseCase
 import com.example.ordersentences.domain.use_case.LoadObjectUseCase
 import com.example.ordersentences.domain.use_case.LoadSubjectUseCase
 import com.example.ordersentences.domain.use_case.LoadVerbUseCase
-import com.example.ordersentences.domain.use_case.ScratchWordsUseCase
-import com.example.ordersentences.domain.use_case.ShuffleSentenceUseCase
 import com.example.ordersentences.domain.use_case.UploadVerbsToDBUseCase
 import com.example.ordersentences.domain.use_case.IncrementVerbMistakeCountUseCase
 import com.example.ordersentences.domain.use_case.LoadAllVerbsUseCase
+import com.example.ordersentences.presentation.utils.scratchWords
+import com.example.ordersentences.presentation.utils.shuffleSentence
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlin.random.Random
@@ -50,7 +50,10 @@ class OrderSentenceViewModel(
     }
 
     fun getShuffledText(): AnnotatedString {
-        return ScratchWordsUseCase().invoke(state.value.enteredSentence, state.value.shuffledSentence)
+        return scratchWords(
+            textToScratch = state.value.enteredSentence,
+            shuffledSentence = state.value.shuffledSentence
+        )
     }
 
     fun isCorrectAnswer(): Boolean {
@@ -99,7 +102,10 @@ class OrderSentenceViewModel(
                 verb,
                 objectVal
             )
-            val shuffledSentence = ShuffleSentenceUseCase(" / ").invoke(sentence.buildSentence().removeNonWordSymbols())
+            val shuffledSentence = shuffleSentence(
+                " / ",
+                sentence.buildSentence().removeNonWordSymbols()
+            )
             _state.value = state.value.copy(
                 sentence = sentence,
                 shuffledSentence = shuffledSentence,
