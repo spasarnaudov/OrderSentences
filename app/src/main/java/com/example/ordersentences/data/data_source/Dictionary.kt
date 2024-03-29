@@ -32,4 +32,19 @@ object Dictionary {
         "read" to listOf("book", "text", "message"),
     )
 
+    val subjectsNames: List<String> = listOf(
+        "John",
+        "Emily",
+    )
+    val subjects: List<String> = listOf(
+        "I",
+        "you",
+        "he",
+        "she",
+        "it",
+        "we",
+        "you",
+        "they",
+    )
+
 }

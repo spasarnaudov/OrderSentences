@@ -6,21 +6,8 @@ class GetSubjectUseCase(
     private val repository: VerbRepository
 ) {
 
-    operator fun invoke(): String {
-        val subjectsNames: List<String> = listOf(
-            "John",
-        )
-        var subjects: List<String> = listOf(
-            "I",
-            "you",
-            "he",
-            "she",
-            "it",
-            "we",
-            "you",
-            "they",
-        )
-        return subjects.plus(subjectsNames).random()
+    suspend operator fun invoke(): String {
+        return repository.getSubjects().random()
     }
 
 }

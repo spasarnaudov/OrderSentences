@@ -28,6 +28,10 @@ class VerbRepositoryImpl(
         return Dictionary.objects[verb]
     }
 
+    override suspend fun getSubjects(): List<String> {
+        return Dictionary.subjects.plus(Dictionary.subjectsNames)
+    }
+
     override suspend fun isNoVerbs(): Boolean {
         return dao.countRows() == 0
     }
