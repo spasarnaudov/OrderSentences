@@ -34,6 +34,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -148,7 +149,11 @@ class OrderSentenceActivity : ComponentActivity() {
                         .padding(16.dp),
                     onClick = { showDialog.value = true },
                 ) {
-                    Image(imageVector = Icons.Outlined.Info, contentDescription = "Info")
+                    Image(
+                        imageVector = Icons.Outlined.Info,
+                        contentDescription = "Info",
+                        colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.background)
+                    )
                     Text("Info")
                 }
 
