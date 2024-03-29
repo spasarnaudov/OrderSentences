@@ -6,7 +6,7 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.ordersentences.domain.OrderSentenceEvent
-import com.example.ordersentences.domain.Verbs
+import com.example.ordersentences.data.data_source.Dictionary
 import com.example.ordersentences.domain.model.GameState
 import com.example.ordersentences.domain.model.SentenceType
 import com.example.ordersentences.domain.model.Verb
@@ -29,7 +29,7 @@ class OrderSentenceViewModel(
     init {
         viewModelScope.launch {
             if (orderSentenceUseCases.isNotVerbsInDatabaseUseCase.invoke()) {
-                orderSentenceUseCases.uploadVerbsToDBUseCase.invoke(Verbs.levelOneVerbs)
+                orderSentenceUseCases.uploadVerbsToDBUseCase.invoke(Dictionary.levelOneVerbs)
             }
         }
     }
