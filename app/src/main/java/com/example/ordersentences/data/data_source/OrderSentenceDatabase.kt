@@ -1,4 +1,4 @@
-package com.example.ordersentences.data
+package com.example.ordersentences.data.data_source
 
 import android.content.Context
 import androidx.room.Database

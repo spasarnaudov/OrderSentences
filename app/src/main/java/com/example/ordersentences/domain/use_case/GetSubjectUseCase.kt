@@ -1,6 +1,10 @@
 package com.example.ordersentences.domain.use_case
 
-class LoadSubjectUseCase {
+import com.example.ordersentences.domain.repository.VerbRepository
+
+class GetSubjectUseCase(
+    private val repository: VerbRepository
+) {
 
     operator fun invoke(): String {
         val subjectsNames: List<String> = listOf(

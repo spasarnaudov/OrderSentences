@@ -16,7 +16,7 @@ import com.example.ordersentences.domain.model.Sentence
 import com.example.ordersentences.domain.model.SentenceType
 import com.example.ordersentences.domain.model.Verb
 
-class GenerateSentenceUseCase {
+class GenerateSentence {
 
     operator fun invoke(
         sentenceType: SentenceType,

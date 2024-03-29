@@ -1,14 +1,14 @@
 package com.example.ordersentences.domain.use_case
 
-import com.example.ordersentences.data.VerbDao
 import com.example.ordersentences.domain.model.Verb
+import com.example.ordersentences.domain.repository.VerbRepository
 
 class UploadVerbsToDBUseCase(
-    private val dao: VerbDao
+    private val repository: VerbRepository
 ) {
 
     suspend operator fun invoke(verbs: List<Verb>) {
-        dao.insertVerbAll(*verbs.toTypedArray())
+        repository.insertVerbs(verbs)
     }
 
 }
