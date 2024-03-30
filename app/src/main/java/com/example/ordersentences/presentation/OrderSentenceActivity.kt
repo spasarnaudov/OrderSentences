@@ -155,38 +155,23 @@ class OrderSentenceActivity : ComponentActivity() {
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             if (viewModel.state.value.enteredSentence.isNotBlank()) {
-                val isCorrectAnswer = viewModel.isCorrectAnswer()
-                Button(
+                Text(
                     modifier = Modifier
                         .wrapContentSize()
-                        .padding(16.dp),
-                    onClick = { showDialog.value = true },
-                ) {
-                    Image(
-                        imageVector = Icons.Outlined.Info,
-                        contentDescription = "Info",
-                        colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.background)
-                    )
-                    Text("Info")
-                }
-
+                        .padding(start = 16.dp, top = 16.dp, end = 16.dp),
+                    text = viewModel.state.value.sentence?.buildSentence() ?: "",
+                    fontWeight = FontWeight.Bold,
+                )
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier
-                        .wrapContentSize()
+                        .fillMaxWidth()
                         .border(
                             width = 2.dp,
-                            color = if (isCorrectAnswer) Color.Green else Color.Red,
+                            color = if (viewModel.isCorrectAnswer()) Color.Green else Color.Red,
                             shape = RoundedCornerShape(8.dp)
                         ),
                 ) {
-                    Text(
-                        modifier = Modifier
-                            .wrapContentSize()
-                            .padding(start = 16.dp, top = 16.dp, end = 16.dp),
-                        text = viewModel.state.value.sentence?.buildSentence() ?: "",
-                        fontWeight = FontWeight.Bold,
-                    )
                     Text(
                         modifier = Modifier
                             .wrapContentSize()

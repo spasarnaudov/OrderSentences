@@ -15,11 +15,10 @@ fun String.removeNonWordSymbols(): String {
     return replace(Regex("\\W+"), " ").trim()
 }
 
-fun shuffleSentence(
-    separator: String = " ",
-    sentence: String
+fun String.shuffleSentence(
+    separator: String = " "
 ): String {
-    val words = separateMarks(sentence).split(" ")
+    val words = separateMarks().split(" ")
     return words.sattoloShuffle().joinToString(separator = separator)
 }
 
@@ -34,18 +33,18 @@ private fun <T> Iterable<T>.sattoloShuffle(): List<T> {
     return list.toList() // Convert back to an immutable list
 }
 
-fun separateMarks(input: String): String {
+fun String.separateMarks(): String {
     // This regex looks for a question mark that follows a word character (letter or digit)
     // and replaces it with a space followed by the question mark.
-    return input.replace(Regex("(\\w)([?,.])"), "$1 $2")
+    return replace(Regex("(\\w)([?,.])"), "$1 $2")
 }
 
 fun scratchWords(
     textToScratch: String,
     shuffledSentence: String
 ): AnnotatedString {
-    val wordsToScratch = textToScratch.split(" ")
-    val allWords = shuffledSentence.split(" ")
+    val wordsToScratch = textToScratch.separateMarks().split(" ")
+    val allWords = shuffledSentence.separateMarks().split(" ")
 
     return buildAnnotatedString {
 

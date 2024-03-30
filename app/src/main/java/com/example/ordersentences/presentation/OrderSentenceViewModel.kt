@@ -10,7 +10,6 @@ import com.example.ordersentences.data.data_source.Dictionary
 import com.example.ordersentences.domain.model.GameState
 import com.example.ordersentences.domain.model.SentenceType
 import com.example.ordersentences.domain.model.Verb
-import com.example.ordersentences.presentation.utils.removeNonWordSymbols
 import com.example.ordersentences.domain.use_case.GenerateSentence
 import com.example.ordersentences.domain.use_case.OrderSentenceUseCases
 import com.example.ordersentences.presentation.utils.scratchWords
@@ -89,10 +88,7 @@ class OrderSentenceViewModel(
                 verb,
                 objectVal
             )
-            val shuffledSentence = shuffleSentence(
-                " / ",
-                sentence.buildSentence()
-            )
+            val shuffledSentence = sentence.buildSentence().shuffleSentence(" / ")
             _state.value = state.value.copy(
                 sentence = sentence,
                 shuffledSentence = shuffledSentence,
