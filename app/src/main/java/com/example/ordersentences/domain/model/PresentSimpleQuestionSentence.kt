@@ -9,6 +9,6 @@ class PresentSimpleQuestionSentence(
     private val prepositionalPhrase: String = "",
 ): Sentence {
     override fun buildSentence(): String {
-        return "${Dictionary.doVerb.getInfinitiveForSubject(subject)} $subject ${verb.baseForm} $objectVal?"
+        return "${Dictionary.doVerb.toInfinitive(subject)} $subject ${verb.baseForm} $objectVal?"
     }
 }

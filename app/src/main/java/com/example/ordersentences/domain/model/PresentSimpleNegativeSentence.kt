@@ -9,6 +9,6 @@ class PresentSimpleNegativeSentence(
     private val prepositionalPhrase: String = "",
 ): Sentence {
     override fun buildSentence(): String {
-        return "$subject ${Dictionary.doVerb.getInfinitiveForSubject(subject)} not ${verb.baseForm} $objectVal."
+        return "$subject ${Dictionary.doVerb.toInfinitive(subject)} not ${verb.baseForm} $objectVal."
     }
 }

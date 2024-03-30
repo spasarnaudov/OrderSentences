@@ -9,6 +9,6 @@ class PresentContinuousQuestionSentence(
     private val prepositionalPhrase: String = "",
 ): Sentence {
     override fun buildSentence(): String {
-        return "${Dictionary.doVerb.getInfinitiveForSubject(subject)} $subject ${verb.baseForm}ing $objectVal?"
+        return "${Dictionary.doVerb.toInfinitive(subject)} $subject ${verb.toPresentContinuous()} $objectVal?"
     }
 }

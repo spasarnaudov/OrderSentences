@@ -7,6 +7,6 @@ class PresentContinuousPositiveSentence(
     private val prepositionalPhrase: String = "",
 ): Sentence {
     override fun buildSentence(): String {
-        return "$subject ${verb.baseForm}ing $objectVal."
+        return "$subject ${verb.toPresentContinuous()} $objectVal."
     }
 }
