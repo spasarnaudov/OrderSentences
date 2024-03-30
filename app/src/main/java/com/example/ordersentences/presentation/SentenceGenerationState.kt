@@ -9,7 +9,6 @@ data class SentenceGenerationState(
     val sentence: Sentence? = null,
     val shuffledSentence: String = "",
     val enteredSentence: String = "",
-    val sentenceType: SentenceType? = null,
     val verb: Verb? = null,
     val gameState: GameState = GameState.FINISHED,
 )

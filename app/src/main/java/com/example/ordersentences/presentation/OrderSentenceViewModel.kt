@@ -66,13 +66,6 @@ class OrderSentenceViewModel(
         return state.value.gameState
     }
 
-    fun getSentenceType(): String {
-        return if (state.value.sentenceType != null)
-            state.value.sentenceType.toString()
-        else
-            ""
-    }
-
     fun getShuffledText(): AnnotatedString {
         return scratchWords(
             textToScratch = state.value.enteredSentence,
@@ -105,7 +98,6 @@ class OrderSentenceViewModel(
                 sentence = sentence,
                 shuffledSentence = shuffledSentence,
                 enteredSentence = "",
-                sentenceType = sentenceType,
                 gameState = GameState.STARTED,
                 verb = verb
             )

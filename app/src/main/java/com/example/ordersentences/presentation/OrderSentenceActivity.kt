@@ -109,20 +109,15 @@ class OrderSentenceActivity : ComponentActivity() {
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text(
-                modifier = Modifier.fillMaxWidth(),
-                text = viewModel.getSentenceType(),
-                fontWeight = FontWeight.Bold,
-                fontSize = 20.sp,
-            )
-            Text(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 8.dp),
+                    .wrapContentSize(),
+                fontWeight = FontWeight.Bold,
                 text = viewModel.getShuffledText(),
             )
             OutlinedTextField(
                 modifier = Modifier
                     .fillMaxWidth()
+                    .padding(vertical = 8.dp)
                     .focusRequester(focusRequester),
                 value = answerText,
                 onValueChange = {
@@ -133,8 +128,7 @@ class OrderSentenceActivity : ComponentActivity() {
             )
             Button(
                 modifier = Modifier
-                    .wrapContentSize()
-                    .padding(8.dp),
+                    .wrapContentSize(),
                 enabled = answerText.isNotBlank(),
                 onClick = {
                     viewModel.onEvent(OrderSentenceEvent.EndGame(answerText))
