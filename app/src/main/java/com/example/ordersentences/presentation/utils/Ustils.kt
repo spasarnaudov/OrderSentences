@@ -19,7 +19,7 @@ fun shuffleSentence(
     separator: String = " ",
     sentence: String
 ): String {
-    val words = sentence.split(" ")
+    val words = separateMarks(sentence).split(" ")
     return words.sattoloShuffle().joinToString(separator = separator)
 }
 
@@ -32,6 +32,12 @@ private fun <T> Iterable<T>.sattoloShuffle(): List<T> {
         list[j] = temp
     }
     return list.toList() // Convert back to an immutable list
+}
+
+fun separateMarks(input: String): String {
+    // This regex looks for a question mark that follows a word character (letter or digit)
+    // and replaces it with a space followed by the question mark.
+    return input.replace(Regex("(\\w)([?,.])"), "$1 $2")
 }
 
 fun scratchWords(

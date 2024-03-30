@@ -74,8 +74,7 @@ class OrderSentenceViewModel(
     }
 
     fun isCorrectAnswer(): Boolean {
-        return state.value.enteredSentence.removeNonWordSymbols() == state.value.sentence?.buildSentence()
-            ?.removeNonWordSymbols()
+        return state.value.enteredSentence == state.value.sentence?.buildSentence()
     }
 
     private fun startGame(sentenceType: SentenceType) {
@@ -92,7 +91,7 @@ class OrderSentenceViewModel(
             )
             val shuffledSentence = shuffleSentence(
                 " / ",
-                sentence.buildSentence().removeNonWordSymbols()
+                sentence.buildSentence()
             )
             _state.value = state.value.copy(
                 sentence = sentence,
