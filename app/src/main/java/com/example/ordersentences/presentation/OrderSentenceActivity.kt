@@ -53,6 +53,8 @@ import com.example.ordersentences.domain.use_case.IsNotVerbsInDatabaseUseCase
 import com.example.ordersentences.domain.use_case.OrderSentenceUseCases
 import com.example.ordersentences.domain.use_case.UploadVerbsToDBUseCase
 import com.example.ordersentences.presentation.theme.OrderSentencesTheme
+import com.example.ordersentences.presentation.ui.components.InputScreen
+import com.example.ordersentences.presentation.ui.components.ResultScreen
 
 class OrderSentenceActivity : ComponentActivity() {
 
@@ -86,10 +88,10 @@ class OrderSentenceActivity : ComponentActivity() {
                 ) {
                     when (viewModel.getGameState()) {
                         GameState.FINISHED -> {
-                            StartGame()
+                            ResultScreen(viewModel)
                         }
                         GameState.STARTED -> {
-                            UserInput()
+                            InputScreen(viewModel)
                         }
                     }
                 }
@@ -97,111 +99,4 @@ class OrderSentenceActivity : ComponentActivity() {
         }
     }
 
-    @Composable
-    fun UserInput() {
-        var answerText by remember { mutableStateOf("") }
-        val focusRequester = remember { FocusRequester() }
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            Text(
-                modifier = Modifier
-                    .wrapContentSize(),
-                fontWeight = FontWeight.Bold,
-                text = viewModel.getShuffledText(),
-            )
-            OutlinedTextField(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 16.dp)
-                    .focusRequester(focusRequester),
-                value = answerText,
-                onValueChange = {
-                    answerText = it
-                    viewModel.onEvent(OrderSentenceEvent.EnterText(answerText))
-                },
-                label = { Text("Enter your sentence") },
-            )
-            Button(
-                modifier = Modifier
-                    .wrapContentSize(),
-                enabled = answerText.isNotBlank(),
-                onClick = {
-                    viewModel.onEvent(OrderSentenceEvent.EndGame(answerText))
-                },
-            ) {
-                Text(text = "Finish game")
-            }
-
-            LaunchedEffect(Unit) {
-                focusRequester.requestFocus()
-            }
-        }
-    }
-
-    @Composable
-    fun StartGame() {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            if (viewModel.state.value.enteredSentence.isNotBlank()) {
-                Text(
-                    modifier = Modifier
-                        .wrapContentSize(),
-                    text = viewModel.state.value.sentence?.buildSentence() ?: "",
-                    fontWeight = FontWeight.Bold,
-                )
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 16.dp)
-                        .border(
-                            width = 2.dp,
-                            color = if (viewModel.isCorrectAnswer()) Color.Green else Color.Red,
-                            shape = RoundedCornerShape(4.dp)
-                        ),
-                ) {
-                    Text(
-                        modifier = Modifier
-                            .wrapContentSize()
-                            .padding(16.dp),
-                        text = viewModel.state.value.enteredSentence,
-                    )
-                }
-                Button(
-                    modifier = Modifier
-                        .wrapContentSize(),
-                    onClick = {
-                        viewModel.onEvent(OrderSentenceEvent.StartGame)
-                    },
-                ) {
-                    Text(text = "Start game")
-                }
-            } else {
-                Button(
-                    modifier = Modifier.size(160.dp),
-                    shape = CircleShape,
-                    contentPadding = PaddingValues(16.dp),
-                    onClick = {
-                        viewModel.onEvent(OrderSentenceEvent.StartGame)
-                    },
-                ) {
-                    Text(
-                        text = "Start game",
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 24.sp
-                    )
-                }
-            }
-        }
-    }
 }
