@@ -117,7 +117,7 @@ class OrderSentenceActivity : ComponentActivity() {
             OutlinedTextField(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = 8.dp)
+                    .padding(vertical = 16.dp)
                     .focusRequester(focusRequester),
                 value = answerText,
                 onValueChange = {
@@ -145,8 +145,6 @@ class OrderSentenceActivity : ComponentActivity() {
 
     @Composable
     fun StartGame() {
-        val showDialog = remember { mutableStateOf(false) }
-        InfoDialog(verbs = viewModel.getVerbs(), showDialog = showDialog)
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -157,8 +155,7 @@ class OrderSentenceActivity : ComponentActivity() {
             if (viewModel.state.value.enteredSentence.isNotBlank()) {
                 Text(
                     modifier = Modifier
-                        .wrapContentSize()
-                        .padding(start = 16.dp, top = 16.dp, end = 16.dp),
+                        .wrapContentSize(),
                     text = viewModel.state.value.sentence?.buildSentence() ?: "",
                     fontWeight = FontWeight.Bold,
                 )
@@ -166,10 +163,11 @@ class OrderSentenceActivity : ComponentActivity() {
                     horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier
                         .fillMaxWidth()
+                        .padding(vertical = 16.dp)
                         .border(
                             width = 2.dp,
                             color = if (viewModel.isCorrectAnswer()) Color.Green else Color.Red,
-                            shape = RoundedCornerShape(8.dp)
+                            shape = RoundedCornerShape(4.dp)
                         ),
                 ) {
                     Text(
@@ -181,8 +179,7 @@ class OrderSentenceActivity : ComponentActivity() {
                 }
                 Button(
                     modifier = Modifier
-                        .wrapContentSize()
-                        .padding(16.dp),
+                        .wrapContentSize(),
                     onClick = {
                         viewModel.onEvent(OrderSentenceEvent.StartGame)
                     },
