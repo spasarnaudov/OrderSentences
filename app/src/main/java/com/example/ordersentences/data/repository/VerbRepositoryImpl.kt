@@ -24,8 +24,8 @@ class VerbRepositoryImpl(
         return dao.getVerbAndIncrementUsageCount()
     }
 
-    override suspend fun getObjects(verb: String): List<String>? {
-        return Dictionary.objects[verb]
+    override suspend fun getObjects(verb: String): List<String> {
+        return Dictionary.objectsFood
     }
 
     override suspend fun getSubjects(): List<String> {

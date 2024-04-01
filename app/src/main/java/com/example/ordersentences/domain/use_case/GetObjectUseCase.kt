@@ -7,7 +7,7 @@ class GetObjectUseCase(
 ) {
 
     suspend operator fun invoke(verb: String): String {
-        return repository.getObjects(verb)?.random() ?: ""
+        return repository.getObjects(verb).random()
     }
 
 }

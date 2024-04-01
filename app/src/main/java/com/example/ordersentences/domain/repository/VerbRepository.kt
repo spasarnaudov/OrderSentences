@@ -7,7 +7,7 @@ interface VerbRepository {
     suspend fun insertVerbs(verbs: List<Verb>)
     suspend fun getVerbs(): List<Verb>
     suspend fun getVerbAndIncrementUsageCount(): Verb
-    suspend fun getObjects(verb: String): List<String>?
+    suspend fun getObjects(verb: String): List<String>
     suspend fun getSubjects(): List<String>
     suspend fun isNoVerbs(): Boolean
 }

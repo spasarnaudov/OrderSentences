@@ -19,23 +19,19 @@ object Dictionary {
         Verb("read", "read", "read")
     )
 
-    val objects: Map<String, List<String>> = mapOf(
-        "cook" to listOf("fish", "meat", "vegetables"),
-        "sell" to listOf("books", "house", "computers"),
-        "take" to listOf("rest", "meat", "vegetables"),
-        "buy" to listOf("phone", "car", "speakers"),
-        "sell" to listOf("books", "house", "computers"),
-        "take" to listOf("rest", "meat", "vegetables"),
-        "throw" to listOf("stone", "ball", "shoes"),
-        "write" to listOf("book", "note", "text"),
-        "ride" to listOf("bike", "horse", "motorcycle"),
-        "read" to listOf("book", "text", "message"),
+    val objectsFood: List<String> = listOf(
+        "fish", "meat", "vegetables"
+    )
+
+    val objectsThinks: List<String> = listOf(
+        "book", "house", "computer", "phone", "car", "speakers"
     )
 
     val subjectsNames: List<String> = listOf(
         "John",
         "Emily",
     )
+
     val subjects: List<String> = listOf(
         "I",
         "you",

@@ -8,9 +8,10 @@ import androidx.lifecycle.viewModelScope
 import com.example.ordersentences.domain.OrderSentenceEvent
 import com.example.ordersentences.data.data_source.Dictionary
 import com.example.ordersentences.domain.model.GameState
-import com.example.ordersentences.domain.model.SentenceType
+import com.example.ordersentences.domain.SentenceType
+import com.example.ordersentences.domain.Tens
 import com.example.ordersentences.domain.model.Verb
-import com.example.ordersentences.domain.use_case.GenerateSentence
+import com.example.ordersentences.domain.use_case.GenerateSentenceUseCase
 import com.example.ordersentences.domain.use_case.OrderSentenceUseCases
 import com.example.ordersentences.presentation.utils.scratchWords
 import com.example.ordersentences.presentation.utils.shuffleSentence
@@ -36,8 +37,7 @@ class OrderSentenceViewModel(
     fun onEvent(event: OrderSentenceEvent) {
         when(event) {
             is OrderSentenceEvent.StartGame -> {
-                val sentenceType: SentenceType = SentenceType.entries[Random.nextInt(SentenceType.entries.size)]
-                startGame(sentenceType)
+                startGame()
             }
             is OrderSentenceEvent.EndGame -> {
                 _state.value = state.value.copy(
@@ -76,14 +76,15 @@ class OrderSentenceViewModel(
         return state.value.enteredSentence == state.value.sentence?.buildSentence()
     }
 
-    private fun startGame(sentenceType: SentenceType) {
+    private fun startGame() {
         viewModelScope.launch {
             val subject = orderSentenceUseCases.getSubjectUseCase.invoke()
             val verb = orderSentenceUseCases.getVerbUseCase.invoke()
             val objectVal = orderSentenceUseCases.getObjectUseCase.invoke(verb.baseForm)
 
-            val sentence = GenerateSentence().invoke(
-                sentenceType,
+            val sentence = GenerateSentenceUseCase().invoke(
+                SentenceType.entries.random(),
+                Tens.entries.random(),
                 subject,
                 verb,
                 objectVal
