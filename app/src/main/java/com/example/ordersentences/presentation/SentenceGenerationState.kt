@@ -5,7 +5,7 @@ import com.example.ordersentences.domain.model.Sentence
 import com.example.ordersentences.domain.model.Verb
 
 data class SentenceGenerationState(
-    val sentence: Sentence? = null,
+    val sentence: String = "",
     val shuffledSentence: String = "",
     val enteredSentence: String = "",
     val verb: Verb? = null,

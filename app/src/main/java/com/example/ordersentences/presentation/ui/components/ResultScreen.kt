@@ -38,7 +38,7 @@ fun ResultScreen(
             Text(
                 modifier = Modifier
                     .wrapContentSize(),
-                text = viewModel.state.value.sentence?.buildSentence() ?: "",
+                text = viewModel.state.value.sentence,
                 fontWeight = FontWeight.Bold,
             )
             Column(

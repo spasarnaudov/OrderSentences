@@ -13,7 +13,7 @@ data class Verb(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
 )
 
-fun Verb.toInfinitive(subject: String): String {
+fun Verb.getSingularPresentTenseForm(subject: String): String {
     when(subject.lowercase()) {
         "i" -> return baseForm
         "you" -> return baseForm
@@ -27,7 +27,7 @@ fun Verb.toInfinitive(subject: String): String {
     return if (isSpecialCase) "${baseForm}es" else "${baseForm}s"
 }
 
-fun Verb.toPresentContinuous(): String {
+fun Verb.toContinuous(): String {
     //When the verb ends in -e, we take off the -e and add -ing.
     if (baseForm.endsWith("e")) {
         return "${baseForm.substring(0, baseForm.length-1)}ing"
@@ -46,6 +46,25 @@ fun Verb.toPresentContinuous(): String {
 //        return "${baseForm}${baseForm.last()}ing"
 //    }
     return "${baseForm}ing"
+}
+
+fun toBe(subject: String): String {
+    when(subject.lowercase()) {
+        "i" -> return "am"
+        "you" -> return "are"
+        "we" -> return "are"
+        "they" -> return "are"
+    }
+    return "is"
+}
+
+fun toBePast(subject: String): String {
+    when(subject.lowercase()) {
+        "you" -> return "were"
+        "we" -> return "were"
+        "they" -> return "were"
+    }
+    return "was"
 }
 
 private val vowels = listOf<String>("a", "e", "i", "o", "u", "y")

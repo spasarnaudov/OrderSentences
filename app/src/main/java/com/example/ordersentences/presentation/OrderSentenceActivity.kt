@@ -45,6 +45,7 @@ import com.example.ordersentences.data.repository.VerbRepositoryImpl
 import com.example.ordersentences.domain.OrderSentenceEvent
 import com.example.ordersentences.domain.model.GameState
 import com.example.ordersentences.domain.use_case.GetAllVerbsUseCase
+import com.example.ordersentences.domain.use_case.GetLessenUseCase
 import com.example.ordersentences.domain.use_case.GetObjectUseCase
 import com.example.ordersentences.domain.use_case.GetSubjectUseCase
 import com.example.ordersentences.domain.use_case.GetVerbUseCase
@@ -65,6 +66,7 @@ class OrderSentenceActivity : ComponentActivity() {
                     val repository = VerbRepositoryImpl(OrderSentenceDatabase.getDatabase(applicationContext).dao)
                     val useCases = OrderSentenceUseCases(
                         GetAllVerbsUseCase(repository = repository),
+                        GetLessenUseCase(repository = repository),
                         GetObjectUseCase(repository = repository),
                         GetSubjectUseCase(repository = repository),
                         GetVerbUseCase(repository = repository),

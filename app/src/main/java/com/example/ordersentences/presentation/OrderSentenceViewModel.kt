@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.ordersentences.domain.OrderSentenceEvent
 import com.example.ordersentences.data.data_source.Dictionary
+import com.example.ordersentences.data.data_source.StudentBook
 import com.example.ordersentences.domain.model.GameState
 import com.example.ordersentences.domain.SentenceType
 import com.example.ordersentences.domain.Tens
@@ -17,7 +18,6 @@ import com.example.ordersentences.presentation.utils.scratchWords
 import com.example.ordersentences.presentation.utils.shuffleSentence
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import kotlin.random.Random
 
 class OrderSentenceViewModel(
     private val orderSentenceUseCases: OrderSentenceUseCases,
@@ -73,23 +73,26 @@ class OrderSentenceViewModel(
     }
 
     fun isCorrectAnswer(): Boolean {
-        return state.value.enteredSentence == state.value.sentence?.buildSentence()
+        return state.value.enteredSentence == state.value.sentence
     }
 
     private fun startGame() {
         viewModelScope.launch {
-            val subject = orderSentenceUseCases.getSubjectUseCase.invoke()
-            val verb = orderSentenceUseCases.getVerbUseCase.invoke()
-            val objectVal = orderSentenceUseCases.getObjectUseCase.invoke(verb.baseForm)
+            val lessen = orderSentenceUseCases.getLessenUseCase.invoke()
+            val sentenceType = lessen.sentenceType//SentenceType.entries.random()
+            val tens = lessen.tens//Tens.entries.random()
+            val subject = lessen.subjects.random()//orderSentenceUseCases.getSubjectUseCase.invoke()
+            val verb = lessen.verbs.random()//orderSentenceUseCases.getVerbUseCase.invoke()
+            val objectVal = lessen.objectVals.random()//orderSentenceUseCases.getObjectUseCase.invoke(verb.baseForm)
 
             val sentence = GenerateSentenceUseCase().invoke(
-                SentenceType.entries.random(),
-                Tens.entries.random(),
+                sentenceType,
+                tens,
                 subject,
                 verb,
                 objectVal
             )
-            val shuffledSentence = sentence.buildSentence().shuffleSentence(" / ")
+            val shuffledSentence = sentence.shuffleSentence(" / ")
             _state.value = state.value.copy(
                 sentence = sentence,
                 shuffledSentence = shuffledSentence,

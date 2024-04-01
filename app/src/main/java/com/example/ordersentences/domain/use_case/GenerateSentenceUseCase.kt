@@ -1,20 +1,19 @@
 package com.example.ordersentences.domain.use_case
 
-import com.example.ordersentences.domain.model.FutureSimpleNegativeSentence
-import com.example.ordersentences.domain.model.FutureSimplePositiveSentence
-import com.example.ordersentences.domain.model.FutureSimpleQuestionSentence
-import com.example.ordersentences.domain.model.PastSimpleNegativeSentence
-import com.example.ordersentences.domain.model.PastSimplePositiveSentence
-import com.example.ordersentences.domain.model.PastSimpleQuestionSentence
-import com.example.ordersentences.domain.model.PresentContinuousNegativeSentence
-import com.example.ordersentences.domain.model.PresentContinuousPositiveSentence
-import com.example.ordersentences.domain.model.PresentContinuousQuestionSentence
-import com.example.ordersentences.domain.model.PresentSimpleNegativeSentence
-import com.example.ordersentences.domain.model.PresentSimplePositiveSentence
-import com.example.ordersentences.domain.model.PresentSimpleQuestionSentence
-import com.example.ordersentences.domain.model.Sentence
+import com.example.ordersentences.domain.model.FutureSimpleSentence
+import com.example.ordersentences.domain.model.PastSimpleSentence
+import com.example.ordersentences.domain.model.PresentContinuousSentence
+import com.example.ordersentences.domain.model.PresentSimpleSentence
 import com.example.ordersentences.domain.SentenceType
 import com.example.ordersentences.domain.Tens
+import com.example.ordersentences.domain.model.FutureContinuousSentence
+import com.example.ordersentences.domain.model.FuturePerfectContinuousSentence
+import com.example.ordersentences.domain.model.FuturePerfectSentence
+import com.example.ordersentences.domain.model.PastContinuousSentence
+import com.example.ordersentences.domain.model.PastPerfectContinuousSentence
+import com.example.ordersentences.domain.model.PastPerfectSentence
+import com.example.ordersentences.domain.model.PresentPerfectContinuousSentence
+import com.example.ordersentences.domain.model.PresentPerfectSentence
 import com.example.ordersentences.domain.model.Verb
 
 class GenerateSentenceUseCase {
@@ -25,32 +24,33 @@ class GenerateSentenceUseCase {
         subject: String,
         verb: Verb,
         objectVal: String,
-    ): Sentence {
+    ): String {
+        val sentence = when(tens) {
+            Tens.PAST_SIMPLE -> PastSimpleSentence(subject, verb, objectVal)
+            Tens.PAST_CONTINUOUS -> PastContinuousSentence(subject, verb, objectVal)
+            Tens.PAST_PERFECT -> PastPerfectSentence(subject, verb, objectVal)
+            Tens.PAST_PERFECT_CONTINUOUS -> PastPerfectContinuousSentence(subject, verb, objectVal)
+
+            Tens.PRESENT_SIMPLE -> PresentSimpleSentence(subject, verb, objectVal)
+            Tens.PRESENT_CONTINUOUS -> PresentContinuousSentence(subject, verb, objectVal)
+            Tens.PRESENT_PERFECT -> PresentPerfectSentence(subject, verb, objectVal)
+            Tens.PRESENT_PERFECT_CONTINUOUS -> PresentPerfectContinuousSentence(subject, verb, objectVal)
+
+            Tens.FUTURE_SIMPLE -> FutureSimpleSentence(subject, verb, objectVal)
+            Tens.FUTURE_CONTINUOUS -> FutureContinuousSentence(subject, verb, objectVal)
+            Tens.FUTURE_PERFECT -> FuturePerfectSentence(subject, verb, objectVal)
+            Tens.FUTURE_PERFECT_CONTINUOUS -> FuturePerfectContinuousSentence(subject, verb, objectVal)
+        }
+
         return when(sentenceType) {
             SentenceType.POSITIVE -> {
-                when(tens) {
-                    Tens.PASS -> PastSimplePositiveSentence(subject, verb, objectVal)
-                    Tens.PRESENT -> PresentSimplePositiveSentence(subject, verb, objectVal)
-                    Tens.PRESENT_CONTINUOUS -> PresentContinuousPositiveSentence(subject, verb, objectVal)
-                    Tens.FUTURE -> FutureSimplePositiveSentence(subject, verb, objectVal)
-                }
+                sentence.positive()
             }
             SentenceType.NEGATIVE -> {
-                when(tens) {
-                    Tens.PASS -> PastSimpleNegativeSentence(subject, verb, objectVal)
-                    Tens.PRESENT -> PresentSimpleNegativeSentence(subject, verb, objectVal)
-                    Tens.PRESENT_CONTINUOUS -> PresentContinuousNegativeSentence(subject, verb, objectVal)
-                    Tens.FUTURE -> FutureSimpleNegativeSentence(subject, verb, objectVal)
-                }
+                sentence.negative()
             }
             SentenceType.QUESTION -> {
-                when(tens) {
-                    Tens.PASS -> PastSimpleQuestionSentence(subject, verb, objectVal)
-                    Tens.PRESENT -> PresentSimpleQuestionSentence(subject, verb, objectVal)
-                    Tens.PRESENT_CONTINUOUS -> PresentContinuousQuestionSentence(subject, verb, objectVal)
-                    Tens.FUTURE -> FutureSimpleQuestionSentence(subject, verb, objectVal)
-                }
-
+                sentence.question()
             }
         }
     }

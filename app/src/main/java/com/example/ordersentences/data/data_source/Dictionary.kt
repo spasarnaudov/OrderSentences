@@ -3,6 +3,7 @@ package com.example.ordersentences.data.data_source
 import com.example.ordersentences.domain.model.Verb
 
 object Dictionary {
+    val toBeVerb = Verb("to be", "", "")
     val doVerb = Verb("do", "did", "done")
 
     val levelOneVerbs: List<Verb> = listOf(

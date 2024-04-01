@@ -1,5 +1,7 @@
 package com.example.ordersentences.domain.model
 
 interface Sentence {
-    fun buildSentence(): String
+    fun positive(): String
+    fun negative(): String
+    fun question(): String
 }

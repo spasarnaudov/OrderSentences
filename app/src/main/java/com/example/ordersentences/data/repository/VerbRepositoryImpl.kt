@@ -1,7 +1,9 @@
 package com.example.ordersentences.data.repository
 
 import com.example.ordersentences.data.data_source.Dictionary
+import com.example.ordersentences.data.data_source.StudentBook
 import com.example.ordersentences.data.data_source.VerbDao
+import com.example.ordersentences.domain.model.Lessen
 import com.example.ordersentences.domain.model.Verb
 import com.example.ordersentences.domain.repository.VerbRepository
 
@@ -22,6 +24,10 @@ class VerbRepositoryImpl(
 
     override suspend fun getVerbAndIncrementUsageCount(): Verb {
         return dao.getVerbAndIncrementUsageCount()
+    }
+
+    override suspend fun getLessen(index: Int): Lessen {
+        return StudentBook.lessens[index]
     }
 
     override suspend fun getObjects(verb: String): List<String> {
