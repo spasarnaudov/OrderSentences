@@ -1,4 +1,4 @@
-package com.example.ordersentences.domain.model
+package com.example.ordersentences.domain
 
 enum class GameState {
     STARTED,

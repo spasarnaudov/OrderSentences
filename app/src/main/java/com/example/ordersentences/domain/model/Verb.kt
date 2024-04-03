@@ -67,4 +67,9 @@ fun toBePast(subject: String): String {
     return "was"
 }
 
-private val vowels = listOf<String>("a", "e", "i", "o", "u", "y")
+fun toHave(subject: String): String {
+    return when(subject.lowercase()) {
+        "i", "you", "we", "they" -> "have"
+        else -> "has"
+    }
+}
