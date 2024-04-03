@@ -8,6 +8,25 @@ import com.example.ordersentences.domain.model.Lessen
 object StudentBook {
     val presentSimpleLessens = listOf(
         Lessen(
+            name = "Where are you from?",
+            level = Level.BEGINNER,
+            sentenceTypes = SentenceType.entries,
+            tenses = listOf(Tens.PRESENT_SIMPLE),
+            subjects = Subjects.pronouns.plus(Subjects.names),
+            verbs = listOf(Verbs.toBe),
+            prepositions = Prepositions.originOrSourceOfMovement.plus(Prepositions.enclosedSpaces),
+            objectVals = Objects.countries.plus(Objects.cities),
+        ),
+        Lessen(
+            name = "She is American",
+            level = Level.BEGINNER,
+            sentenceTypes = SentenceType.entries,
+            tenses = listOf(Tens.PRESENT_SIMPLE),
+            subjects = Subjects.pronouns.plus(Subjects.names),
+            verbs = listOf(Verbs.toBe),
+            objectVals = Objects.nationals,
+        ),
+        Lessen(
             name = "Where are you live?",
             level = Level.BEGINNER,
             sentenceTypes = SentenceType.entries,

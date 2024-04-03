@@ -24,6 +24,9 @@ class PresentSimpleSentence(
      *     "She walks around."
      */
     override fun positive(): String {
+        if (verb == Verbs.toBe) {
+            return "$subject ${toBe(subject)} $objectVal."
+        }
         return "$subject ${verb.getSingularPresentTenseForm(subject)} $objectVal."
     }
 
@@ -32,6 +35,9 @@ class PresentSimpleSentence(
      * "She does not walk around."
      */
     override fun negative(): String {
+        if (verb == Verbs.toBe) {
+            return "$subject ${toBe(subject)} not $objectVal."
+        }
         return "$subject ${Verbs.`do`.getSingularPresentTenseForm(subject)} not ${verb.baseForm} $objectVal."
     }
 
@@ -40,6 +46,9 @@ class PresentSimpleSentence(
      * "Does she walk around?"
      */
     override fun question(): String {
+        if (verb == Verbs.toBe) {
+            return "${toBe(subject)} $subject $objectVal?"
+        }
         return "${Verbs.`do`.getSingularPresentTenseForm(subject)} $subject ${verb.baseForm} $objectVal?"
     }
 }

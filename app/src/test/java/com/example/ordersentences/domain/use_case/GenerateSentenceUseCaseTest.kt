@@ -1,5 +1,6 @@
 package com.example.ordersentences.domain.use_case
 
+import com.example.ordersentences.data.data_source.Objects
 import com.example.ordersentences.data.data_source.Verbs
 import com.example.ordersentences.data.data_source.Prepositions
 import com.example.ordersentences.data.data_source.Subjects
@@ -63,8 +64,21 @@ class GenerateSentenceUseCaseTest {
         }
     }
 
+    private fun whereAreYouLiveLessen(tens: Tens) : Lessen {
+        return Lessen(
+            name = "Where are you from?",
+            level = Level.BEGINNER,
+            sentenceTypes = SentenceType.entries,
+            tenses = listOf(tens),
+            subjects = Subjects.pronouns.plus(Subjects.names),
+            verbs = Verbs.countriesAndCities,
+            prepositions = Prepositions.enclosedSpaces,
+            objectVals = listOf("Australia"),
+        )
+    }
+
     @Test
-    fun whereAreYouFromPresentSimple() {
+    fun whereAreYouLivePresentSimple() {
         val sentences = listOf(
             "I live in Australia.",
             "you live in Australia.",
@@ -97,23 +111,107 @@ class GenerateSentenceUseCaseTest {
             "does John live in Australia?",
             "does Emily live in Australia?",
         )
+        val lessen = whereAreYouLiveLessen(Tens.PRESENT_SIMPLE)
+        assert(check(sentences, lessen))
+    }
 
+    @Test
+    fun whereAreYouFromPresentSimple() {
+        val sentences = listOf(
+            "I am from Australia.",
+            "you are from Australia.",
+            "he is from Australia.",
+            "she is from Australia.",
+            "it is from Australia.",
+            "we are from Australia.",
+            "you are from Australia.",
+            "they are from Australia.",
+            "John is from Australia.",
+            "Emily is from Australia.",
+            "I am not from Australia.",
+            "you are not from Australia.",
+            "he is not from Australia.",
+            "she is not from Australia.",
+            "it is not from Australia.",
+            "we are not from Australia.",
+            "you are not from Australia.",
+            "they are not from Australia.",
+            "John is not from Australia.",
+            "Emily is not from Australia.",
+            "am I from Australia?",
+            "are you from Australia?",
+            "is he from Australia?",
+            "is she from Australia?",
+            "is it from Australia?",
+            "are we from Australia?",
+            "are you from Australia?",
+            "are they from Australia?",
+            "is John from Australia?",
+            "is Emily from Australia?",
+        )
         val lessen = Lessen(
             name = "Where are you from?",
             level = Level.BEGINNER,
             sentenceTypes = SentenceType.entries,
             tenses = listOf(Tens.PRESENT_SIMPLE),
             subjects = Subjects.pronouns.plus(Subjects.names),
-            verbs = Verbs.countriesAndCities,
-            prepositions = Prepositions.enclosedSpaces,
-            objectVals = listOf("Australia"),
+            verbs = listOf(Verbs.toBe),
+            prepositions = Prepositions.originOrSourceOfMovement,
+            objectVals = Objects.countries,
         )
-
         assert(check(sentences, lessen))
     }
 
     @Test
-    fun whereAreYouFromPresentContinues() {
+    fun sheIsAmericanPresentSimple() {
+        val sentences = listOf(
+            "I am Australian.",
+            "you are Australian.",
+            "he is Australian.",
+            "she is Australian.",
+            "it is Australian.",
+            "we are Australian.",
+            "you are Australian.",
+            "they are Australian.",
+            "John is Australian.",
+            "Emily is Australian.",
+            "I am not Australian.",
+            "you are not Australian.",
+            "he is not Australian.",
+            "she is not Australian.",
+            "it is not Australian.",
+            "we are not Australian.",
+            "you are not Australian.",
+            "they are not Australian.",
+            "John is not Australian.",
+            "Emily is not Australian.",
+            "am I Australian?",
+            "are you Australian?",
+            "is he Australian?",
+            "is she Australian?",
+            "is it Australian?",
+            "are we Australian?",
+            "are you Australian?",
+            "are they Australian?",
+            "is John Australian?",
+            "is Emily Australian?",
+        )
+        val lessen = Lessen(
+            name = "She is American",
+            level = Level.BEGINNER,
+            sentenceTypes = SentenceType.entries,
+            tenses = listOf(Tens.PRESENT_SIMPLE),
+            subjects = Subjects.pronouns.plus(Subjects.names),
+            verbs = listOf(Verbs.toBe),
+            prepositions = listOf(),
+            objectVals = Objects.nationals,
+        )
+        print(lessen)
+        assert(check(sentences, lessen))
+    }
+
+    @Test
+    fun whereAreYouLivePresentContinues() {
         val sentences = listOf(
             "I am living in Australia.",
             "you are living in Australia.",
@@ -146,23 +244,12 @@ class GenerateSentenceUseCaseTest {
             "is John living in Australia?",
             "is Emily living in Australia?",
         )
-
-        val lessen = Lessen(
-            name = "Where are you from?",
-            level = Level.BEGINNER,
-            sentenceTypes = SentenceType.entries,
-            tenses = listOf(Tens.PRESENT_CONTINUOUS),
-            subjects = Subjects.pronouns.plus(Subjects.names),
-            verbs = Verbs.countriesAndCities,
-            prepositions = Prepositions.enclosedSpaces,
-            objectVals = listOf("Australia"),
-        )
-
+        val lessen = whereAreYouLiveLessen(Tens.PRESENT_CONTINUOUS)
         assert(check(sentences, lessen))
     }
 
     @Test
-    fun whereAreYouFromPresentPerfect() {
+    fun whereAreYouLivePresentPerfect() {
         val sentences = listOf(
             "I have lived in Australia.",
             "you have lived in Australia.",
@@ -195,23 +282,12 @@ class GenerateSentenceUseCaseTest {
             "has John lived in Australia?",
             "has Emily lived in Australia?",
         )
-
-        val lessen = Lessen(
-            name = "Where are you from?",
-            level = Level.BEGINNER,
-            sentenceTypes = SentenceType.entries,
-            tenses = listOf(Tens.PRESENT_PERFECT),
-            subjects = Subjects.pronouns.plus(Subjects.names),
-            verbs = Verbs.countriesAndCities,
-            prepositions = Prepositions.enclosedSpaces,
-            objectVals = listOf("Australia"),
-        )
-
+        val lessen = whereAreYouLiveLessen(Tens.PRESENT_PERFECT)
         assert(check(sentences, lessen))
     }
 
     @Test
-    fun whereAreYouFromPresentPerfectContinuous() {
+    fun whereAreYouLivePresentPerfectContinuous() {
         val sentences = listOf(
             "I have been living in Australia.",
             "you have been living in Australia.",
@@ -244,23 +320,12 @@ class GenerateSentenceUseCaseTest {
             "has John been living in Australia?",
             "has Emily been living in Australia?",
         )
-
-        val lessen = Lessen(
-            name = "Where are you from?",
-            level = Level.BEGINNER,
-            sentenceTypes = SentenceType.entries,
-            tenses = listOf(Tens.PRESENT_PERFECT_CONTINUOUS),
-            subjects = Subjects.pronouns.plus(Subjects.names),
-            verbs = Verbs.countriesAndCities,
-            prepositions = Prepositions.enclosedSpaces,
-            objectVals = listOf("Australia"),
-        )
-
+        val lessen = whereAreYouLiveLessen(Tens.PRESENT_PERFECT_CONTINUOUS)
         assert(check(sentences, lessen))
     }
 
     @Test
-    fun whereAreYouFromPastSimple() {
+    fun whereAreYouLivePastSimple() {
         val sentences = listOf(
             "I lived in Australia.",
             "you lived in Australia.",
@@ -293,23 +358,12 @@ class GenerateSentenceUseCaseTest {
             "did John live in Australia?",
             "did Emily live in Australia?",
         )
-
-        val lessen = Lessen(
-            name = "Where are you from?",
-            level = Level.BEGINNER,
-            sentenceTypes = SentenceType.entries,
-            tenses = listOf(Tens.PAST_SIMPLE),
-            subjects = Subjects.pronouns.plus(Subjects.names),
-            verbs = Verbs.countriesAndCities,
-            prepositions = Prepositions.enclosedSpaces,
-            objectVals = listOf("Australia"),
-        )
-
+        val lessen = whereAreYouLiveLessen(Tens.PAST_SIMPLE)
         assert(check(sentences, lessen))
     }
 
     @Test
-    fun whereAreYouFromPastContinues() {
+    fun whereAreYouLivePastContinues() {
         val sentences = listOf(
             "I was living in Australia.",
             "you were living in Australia.",
@@ -342,23 +396,12 @@ class GenerateSentenceUseCaseTest {
             "was John living in Australia?",
             "was Emily living in Australia?",
         )
-
-        val lessen = Lessen(
-            name = "Where are you from?",
-            level = Level.BEGINNER,
-            sentenceTypes = SentenceType.entries,
-            tenses = listOf(Tens.PAST_CONTINUOUS),
-            subjects = Subjects.pronouns.plus(Subjects.names),
-            verbs = Verbs.countriesAndCities,
-            prepositions = Prepositions.enclosedSpaces,
-            objectVals = listOf("Australia"),
-        )
-
+        val lessen = whereAreYouLiveLessen(Tens.PAST_CONTINUOUS)
         assert(check(sentences, lessen))
     }
 
     @Test
-    fun whereAreYouFromPastPerfect() {
+    fun whereAreYouLivePastPerfect() {
         val sentences = listOf(
             "I had lived in Australia.",
             "you had lived in Australia.",
@@ -391,23 +434,12 @@ class GenerateSentenceUseCaseTest {
             "had John lived in Australia?",
             "had Emily lived in Australia?",
         )
-
-        val lessen = Lessen(
-            name = "Where are you from?",
-            level = Level.BEGINNER,
-            sentenceTypes = SentenceType.entries,
-            tenses = listOf(Tens.PAST_PERFECT),
-            subjects = Subjects.pronouns.plus(Subjects.names),
-            verbs = Verbs.countriesAndCities,
-            prepositions = Prepositions.enclosedSpaces,
-            objectVals = listOf("Australia"),
-        )
-
+        val lessen = whereAreYouLiveLessen(Tens.PAST_PERFECT)
         assert(check(sentences, lessen))
     }
 
     @Test
-    fun whereAreYouFromPastPerfectContinuous() {
+    fun whereAreYouLivePastPerfectContinuous() {
         val sentences = listOf(
             "I had been living in Australia.",
             "you had been living in Australia.",
@@ -440,23 +472,12 @@ class GenerateSentenceUseCaseTest {
             "had John been living in Australia?",
             "had Emily been living in Australia?",
         )
-
-        val lessen = Lessen(
-            name = "Where are you from?",
-            level = Level.BEGINNER,
-            sentenceTypes = SentenceType.entries,
-            tenses = listOf(Tens.PAST_PERFECT_CONTINUOUS),
-            subjects = Subjects.pronouns.plus(Subjects.names),
-            verbs = Verbs.countriesAndCities,
-            prepositions = Prepositions.enclosedSpaces,
-            objectVals = listOf("Australia"),
-        )
-
+        val lessen = whereAreYouLiveLessen(Tens.PAST_PERFECT_CONTINUOUS)
         assert(check(sentences, lessen))
     }
 
     @Test
-    fun whereAreYouFromFutureSimple() {
+    fun whereAreYouLiveFutureSimple() {
         val sentences = listOf(
             "I will live in Australia.",
             "you will live in Australia.",
@@ -489,23 +510,12 @@ class GenerateSentenceUseCaseTest {
             "will John live in Australia?",
             "will Emily live in Australia?",
         )
-
-        val lessen = Lessen(
-            name = "Where are you from?",
-            level = Level.BEGINNER,
-            sentenceTypes = SentenceType.entries,
-            tenses = listOf(Tens.FUTURE_SIMPLE),
-            subjects = Subjects.pronouns.plus(Subjects.names),
-            verbs = Verbs.countriesAndCities,
-            prepositions = Prepositions.enclosedSpaces,
-            objectVals = listOf("Australia"),
-        )
-
+        val lessen = whereAreYouLiveLessen(Tens.FUTURE_SIMPLE)
         assert(check(sentences, lessen))
     }
 
     @Test
-    fun whereAreYouFromFutureContinuous() {
+    fun whereAreYouLiveFutureContinuous() {
         val sentences = listOf(
             "I will be living in Australia.",
             "you will be living in Australia.",
@@ -538,23 +548,12 @@ class GenerateSentenceUseCaseTest {
             "will John be living in Australia?",
             "will Emily be living in Australia?",
         )
-
-        val lessen = Lessen(
-            name = "Where are you from?",
-            level = Level.BEGINNER,
-            sentenceTypes = SentenceType.entries,
-            tenses = listOf(Tens.FUTURE_CONTINUOUS),
-            subjects = Subjects.pronouns.plus(Subjects.names),
-            verbs = Verbs.countriesAndCities,
-            prepositions = Prepositions.enclosedSpaces,
-            objectVals = listOf("Australia"),
-        )
-
+        val lessen = whereAreYouLiveLessen(Tens.FUTURE_CONTINUOUS)
         assert(check(sentences, lessen))
     }
 
     @Test
-    fun whereAreYouFromFuturePerfect() {
+    fun whereAreYouLiveFuturePerfect() {
         val sentences = listOf(
             "I will have lived in Australia.",
             "you will have lived in Australia.",
@@ -587,23 +586,12 @@ class GenerateSentenceUseCaseTest {
             "will John have lived in Australia?",
             "will Emily have lived in Australia?",
         )
-
-        val lessen = Lessen(
-            name = "Where are you from?",
-            level = Level.BEGINNER,
-            sentenceTypes = SentenceType.entries,
-            tenses = listOf(Tens.FUTURE_PERFECT),
-            subjects = Subjects.pronouns.plus(Subjects.names),
-            verbs = Verbs.countriesAndCities,
-            prepositions = Prepositions.enclosedSpaces,
-            objectVals = listOf("Australia"),
-        )
-
+        val lessen = whereAreYouLiveLessen(Tens.FUTURE_PERFECT)
         assert(check(sentences, lessen))
     }
 
     @Test
-    fun whereAreYouFromFuturePerfectContinuous() {
+    fun whereAreYouLiveFuturePerfectContinuous() {
         val sentences = listOf(
             "I will have been living in Australia.",
             "you will have been living in Australia.",
@@ -636,18 +624,7 @@ class GenerateSentenceUseCaseTest {
             "will John have been living in Australia?",
             "will Emily have been living in Australia?",
         )
-
-        val lessen = Lessen(
-            name = "Where are you from?",
-            level = Level.BEGINNER,
-            sentenceTypes = SentenceType.entries,
-            tenses = listOf(Tens.FUTURE_PERFECT_CONTINUOUS),
-            subjects = Subjects.pronouns.plus(Subjects.names),
-            verbs = Verbs.countriesAndCities,
-            prepositions = Prepositions.enclosedSpaces,
-            objectVals = listOf("Australia"),
-        )
-
+        val lessen = whereAreYouLiveLessen(Tens.FUTURE_PERFECT_CONTINUOUS)
         assert(check(sentences, lessen))
     }
 

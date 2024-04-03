@@ -11,6 +11,6 @@ data class Lessen(
     val tenses: List<Tens>,
     val subjects: List<String>,
     val verbs: List<Verb>,
-    val prepositions: List<String>,
+    val prepositions: List<String> = listOf(),
     val objectVals: List<String>
 )
