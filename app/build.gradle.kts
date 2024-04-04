@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.ordersentences"
+    namespace = "com.sacoding.feature_order_sentence"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.ordersentences"
+        applicationId = "com.sacoding.feature_order_sentence"
         minSdk = 26
         targetSdk = 34
         versionCode = 1
