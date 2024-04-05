@@ -7,23 +7,28 @@ object Pronouns {
         "Emily",
     )
 
-    val subjectPronouns = listOf(
+    val subjectSingularPronouns = listOf(
         "I",
         "you",
         "he",
         "she",
         "it",
+    )
+
+    val subjectPluralPronouns = listOf(
         "we",
         "you",
         "they",
     )
 
-    val objectPronouns = listOf(
+    val objectSingularPronouns = listOf(
         "me",
         "you",
         "him",
         "her",
         "it",
+    )
+    val objectPluralPronouns = listOf(
         "us",
         "you",
         "them",
