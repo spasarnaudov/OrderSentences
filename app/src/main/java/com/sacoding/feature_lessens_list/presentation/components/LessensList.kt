@@ -12,15 +12,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.NavController
 import com.sacoding.core.constants.FontSize
 import com.sacoding.core.constants.Padding
-import com.sacoding.feature_exam.domain.OrderSentenceEvent
-import com.sacoding.feature_exam.presentation.OrderSentenceViewModel
+import com.sacoding.feature_exam.R
+import com.sacoding.feature_exam.domain.ExamEvent
+import com.sacoding.feature_exam.presentation.ExamViewModel
 import com.sacoding.feature_exam.presentation.Screen
-import com.sacoding.feature_order_sentence.R
 
 @Composable
 fun LessensList(
     navController: NavController,
-    viewModel: OrderSentenceViewModel,
+    viewModel: ExamViewModel,
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally
@@ -36,11 +36,11 @@ fun LessensList(
                 item {
                     LessenElement(
                         onClickItem = {
-                            viewModel.onEvent(OrderSentenceEvent.SelectLesson(lessen))
+                            viewModel.onEvent(ExamEvent.SelectLesson(lessen))
                             navController.navigate(Screen.Exam.route)
                         },
                         onClickInfo = {
-                            viewModel.onEvent(OrderSentenceEvent.SelectLesson(lessen))
+                            viewModel.onEvent(ExamEvent.SelectLesson(lessen))
                             navController.navigate(Screen.LessenDetail.route)
                         },
                         lessenName = lessen.name

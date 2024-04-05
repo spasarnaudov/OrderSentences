@@ -13,6 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "OrderSentences"
+rootProject.name = "EnglishStructure"
 include(":app")
  

@@ -5,7 +5,7 @@ import com.sacoding.feature_exam.domain.GameState
 import com.sacoding.feature_exam.domain.model.Lessen
 import com.sacoding.feature_exam.domain.model.Verb
 
-data class SentenceGenerationState(
+data class ExamState(
     val sentence: String = "",
     val shuffledSentence: String = "",
     val enteredSentence: String = "",

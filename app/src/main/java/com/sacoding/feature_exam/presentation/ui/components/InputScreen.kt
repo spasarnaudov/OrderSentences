@@ -22,13 +22,13 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.sacoding.feature_exam.domain.OrderSentenceEvent
-import com.sacoding.feature_exam.presentation.OrderSentenceViewModel
-import com.sacoding.feature_order_sentence.R
+import com.sacoding.feature_exam.R
+import com.sacoding.feature_exam.domain.ExamEvent
+import com.sacoding.feature_exam.presentation.ExamViewModel
 
 @Composable
 fun InputScreen(
-    viewModel: OrderSentenceViewModel
+    viewModel: ExamViewModel
 ) {
     var answerText by remember { mutableStateOf("") }
     val focusRequester = remember { FocusRequester() }
@@ -53,7 +53,7 @@ fun InputScreen(
             value = answerText,
             onValueChange = {
                 answerText = it
-                viewModel.onEvent(OrderSentenceEvent.EnterText(answerText))
+                viewModel.onEvent(ExamEvent.EnterText(answerText))
             },
             label = { Text(stringResource(R.string.enter_your_sentence)) },
         )
@@ -62,7 +62,7 @@ fun InputScreen(
                 .wrapContentSize(),
             enabled = answerText.isNotBlank(),
             onClick = {
-                viewModel.onEvent(OrderSentenceEvent.EndGame(answerText))
+                viewModel.onEvent(ExamEvent.EndGame(answerText))
             },
         ) {
             Text(text = stringResource(R.string.finish_game))

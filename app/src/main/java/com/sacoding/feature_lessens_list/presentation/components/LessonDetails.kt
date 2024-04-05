@@ -13,13 +13,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import com.sacoding.core.constants.FontSize
 import com.sacoding.core.constants.Padding
+import com.sacoding.feature_exam.R
 import com.sacoding.feature_exam.domain.model.info
-import com.sacoding.feature_exam.presentation.OrderSentenceViewModel
-import com.sacoding.feature_order_sentence.R
+import com.sacoding.feature_exam.presentation.ExamViewModel
 
 @Composable
 fun LessonDetails(
-    viewModel: OrderSentenceViewModel
+    viewModel: ExamViewModel
 ) {
     Column(
         modifier = Modifier

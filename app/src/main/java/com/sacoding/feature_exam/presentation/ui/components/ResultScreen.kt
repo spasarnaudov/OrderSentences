@@ -22,13 +22,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.sacoding.core.constants.FontSize
 import com.sacoding.core.constants.Padding
-import com.sacoding.feature_exam.domain.OrderSentenceEvent
-import com.sacoding.feature_exam.presentation.OrderSentenceViewModel
-import com.sacoding.feature_order_sentence.R
+import com.sacoding.feature_exam.R
+import com.sacoding.feature_exam.domain.ExamEvent
+import com.sacoding.feature_exam.presentation.ExamViewModel
 
 @Composable
 fun ResultScreen(
-    viewModel: OrderSentenceViewModel
+    viewModel: ExamViewModel
 ) {
     Column(
         modifier = Modifier
@@ -66,7 +66,7 @@ fun ResultScreen(
                 modifier = Modifier
                     .wrapContentSize(),
                 onClick = {
-                    viewModel.onEvent(OrderSentenceEvent.StartGame)
+                    viewModel.onEvent(ExamEvent.StartGame)
                 },
             ) {
                 Text(text = stringResource(R.string.start_game))
@@ -77,7 +77,7 @@ fun ResultScreen(
                 shape = CircleShape,
                 contentPadding = PaddingValues(Padding.MEDIUM),
                 onClick = {
-                    viewModel.onEvent(OrderSentenceEvent.StartGame)
+                    viewModel.onEvent(ExamEvent.StartGame)
                 },
             ) {
                 Text(

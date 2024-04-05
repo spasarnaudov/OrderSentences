@@ -1,5 +1,5 @@
 <resources>
-	<string name="app_name">OrderSentences</string>
+	<string name="app_name">English Structure</string>
 
 	<!--	feature_exam	-->
 	<string name="enter_your_sentence">Enter your sentence</string>

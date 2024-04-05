@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.sacoding.feature_order_sentence"
+    namespace = "com.sacoding.feature_exam"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.sacoding.feature_order_sentence"
+        applicationId = "com.sacoding.feature_exam"
         minSdk = 26
         targetSdk = 34
         versionCode = 1

@@ -10,13 +10,12 @@
 		android:label="@string/app_name"
 		android:roundIcon="@mipmap/ic_launcher_round"
 		android:supportsRtl="true"
-		android:theme="@style/Theme.OrderSentences"
+		android:theme="@style/Theme.EnglishStructure"
 		tools:targetApi="31">
 		<activity
-			android:name="com.sacoding.feature_exam.presentation.OrderSentenceActivity"
+			android:name="com.sacoding.feature_exam.presentation.ExamActivity"
 			android:exported="true"
-			android:label="@string/app_name"
-			android:theme="@style/Theme.OrderSentences">
+			android:theme="@style/Theme.EnglishStructure">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 

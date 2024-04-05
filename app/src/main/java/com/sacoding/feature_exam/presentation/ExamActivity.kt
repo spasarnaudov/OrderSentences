@@ -15,25 +15,25 @@ import com.sacoding.feature_exam.data.repository.VerbRepositoryImpl
 import com.sacoding.feature_exam.domain.use_case.GetLessenUseCase
 import com.sacoding.feature_exam.domain.use_case.IncrementVerbMistakeCountUseCase
 import com.sacoding.feature_exam.domain.use_case.IsNotVerbsInDatabaseUseCase
-import com.sacoding.feature_exam.domain.use_case.OrderSentenceUseCases
+import com.sacoding.feature_exam.domain.use_case.ExamUseCases
 import com.sacoding.feature_exam.domain.use_case.UploadVerbsToDBUseCase
 import com.sacoding.feature_exam.presentation.theme.OrderSentencesTheme
 import com.sacoding.feature_lessens_list.presentation.components.Navigation
 
-class OrderSentenceActivity : ComponentActivity() {
+class ExamActivity : ComponentActivity() {
 
-    private val viewModel by viewModels<OrderSentenceViewModel>(
+    private val viewModel by viewModels<ExamViewModel>(
         factoryProducer = {
             object : ViewModelProvider.Factory {
                 override fun <T : ViewModel> create(modelClass: Class<T>): T {
                     val repository = VerbRepositoryImpl(OrderSentenceDatabase.getDatabase(applicationContext).dao)
-                    val useCases = OrderSentenceUseCases(
+                    val useCases = ExamUseCases(
                         GetLessenUseCase(repository = repository),
                         IncrementVerbMistakeCountUseCase(repository = repository),
                         IsNotVerbsInDatabaseUseCase(repository = repository),
                         UploadVerbsToDBUseCase(repository = repository),
                     )
-                    return OrderSentenceViewModel(useCases) as T
+                    return ExamViewModel(useCases) as T
                 }
             }
         }

@@ -6,39 +6,39 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sacoding.feature_exam.data.data_source.StudentBook
-import com.sacoding.feature_exam.domain.OrderSentenceEvent
+import com.sacoding.feature_exam.domain.ExamEvent
 import com.sacoding.feature_exam.data.data_source.Verbs
 import com.sacoding.feature_exam.data.data_source.addPreposition
 import com.sacoding.feature_exam.domain.GameState
 import com.sacoding.feature_exam.domain.model.Lessen
 import com.sacoding.feature_exam.domain.use_case.GenerateSentenceUseCase
-import com.sacoding.feature_exam.domain.use_case.OrderSentenceUseCases
+import com.sacoding.feature_exam.domain.use_case.ExamUseCases
 import com.sacoding.feature_exam.presentation.utils.scratchWords
 import com.sacoding.feature_exam.presentation.utils.shuffleSentence
 import kotlinx.coroutines.launch
 
-class OrderSentenceViewModel(
-    private val orderSentenceUseCases: OrderSentenceUseCases,
+class ExamViewModel(
+    private val examUseCases: ExamUseCases,
 ) : ViewModel() {
 
-    private val _state = mutableStateOf(SentenceGenerationState())
-    val state: State<SentenceGenerationState> = _state
+    private val _state = mutableStateOf(ExamState())
+    val state: State<ExamState> = _state
 
     init {
         viewModelScope.launch {
-            if (orderSentenceUseCases.isNotVerbsInDatabaseUseCase.invoke()) {
-                orderSentenceUseCases.uploadVerbsToDBUseCase.invoke(Verbs.levelOneVerbs)
+            if (examUseCases.isNotVerbsInDatabaseUseCase.invoke()) {
+                examUseCases.uploadVerbsToDBUseCase.invoke(Verbs.levelOneVerbs)
             }
         }
     }
 
-    fun onEvent(event: OrderSentenceEvent) {
+    fun onEvent(event: ExamEvent) {
         when (event) {
-            is OrderSentenceEvent.StartGame -> {
+            is ExamEvent.StartGame -> {
                 startGame()
             }
 
-            is OrderSentenceEvent.EndGame -> {
+            is ExamEvent.EndGame -> {
                 _state.value = state.value.copy(
                     enteredSentence = event.answerText,
                     gameState = GameState.FINISHED
@@ -47,19 +47,19 @@ class OrderSentenceViewModel(
                 if (!isCorrectAnswer) {
                     state.value.verb?.let {
                         viewModelScope.launch {
-                            orderSentenceUseCases.incrementVerbMistakeCountUseCase.invoke(it)
+                            examUseCases.incrementVerbMistakeCountUseCase.invoke(it)
                         }
                     }
                 }
             }
 
-            is OrderSentenceEvent.EnterText -> {
+            is ExamEvent.EnterText -> {
                 _state.value = state.value.copy(
                     enteredSentence = event.answerText
                 )
             }
 
-            is OrderSentenceEvent.SelectLesson -> {
+            is ExamEvent.SelectLesson -> {
                 _state.value = state.value.copy(
                     lessen = event.lessen
                 )
