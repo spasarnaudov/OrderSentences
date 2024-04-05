@@ -15,6 +15,7 @@ import com.sacoding.feature_exam.domain.model.PastPerfectSentence
 import com.sacoding.feature_exam.domain.model.PresentPerfectContinuousSentence
 import com.sacoding.feature_exam.domain.model.PresentPerfectSentence
 import com.sacoding.feature_exam.domain.model.Verb
+import com.sacoding.feature_exam.presentation.utils.upperFirstLetter
 
 class GenerateSentenceUseCase {
 
@@ -44,13 +45,13 @@ class GenerateSentenceUseCase {
 
         return when(sentenceType) {
             SentenceType.POSITIVE -> {
-                sentence.positive()
+                sentence.positive().upperFirstLetter()
             }
             SentenceType.NEGATIVE -> {
-                sentence.negative()
+                sentence.negative().upperFirstLetter()
             }
             SentenceType.QUESTION -> {
-                sentence.question()
+                sentence.question().upperFirstLetter()
             }
         }
     }
