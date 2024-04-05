@@ -9,7 +9,7 @@ import com.sacoding.feature_exam.domain.use_case.GenerateSentenceUseCase
 data class Lessen(
     val name: String,
     val level: Level,
-    val sentenceTypes: List<SentenceType>,
+    val sentenceTypes: List<SentenceType> = SentenceType.entries,
     val tenses: List<Tens>,
     val subjects: List<String>,
     val verbs: List<Verb>,

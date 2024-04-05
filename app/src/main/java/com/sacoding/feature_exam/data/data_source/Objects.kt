@@ -1,7 +1,7 @@
 package com.sacoding.feature_exam.data.data_source
 
 object Objects {
-    val countries: List<String> = listOf(
+    val countries = listOf(
         "Australia",
         "Brazil",
         "Canada",
@@ -25,7 +25,7 @@ object Objects {
         "The United States"
     )
 
-    val nationals: List<String> = listOf(
+    val nationals = listOf(
         "Australian",
         "Brazilian",
         "Canadian",
@@ -78,9 +78,28 @@ object Objects {
 //        "Zurich"
     )
 
-    val food: List<String> = listOf(
+    val food = listOf(
         "fish",
         "meat",
         "vegetables"
+    )
+
+    val jobs = listOf(
+        "doctor",
+        "nurse",
+        "dentist",
+        "software developer",
+        "designer",
+        "teacher",
+        "professor",
+        "mechanic",
+        "electrician",
+        "accountant",
+        "financial",
+        "musician",
+        "actor",
+        "chef",
+        "lawyer",
+        "biologist",
     )
 }

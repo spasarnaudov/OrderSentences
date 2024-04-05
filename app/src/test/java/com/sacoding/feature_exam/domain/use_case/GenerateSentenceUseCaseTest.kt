@@ -3,7 +3,7 @@ package com.sacoding.feature_exam.domain.use_case
 import com.sacoding.feature_exam.data.data_source.Objects
 import com.sacoding.feature_exam.data.data_source.Verbs
 import com.sacoding.feature_exam.data.data_source.Prepositions
-import com.sacoding.feature_exam.data.data_source.Subjects
+import com.sacoding.feature_exam.data.data_source.Pronouns
 import com.sacoding.feature_exam.data.data_source.addPreposition
 import com.sacoding.feature_exam.domain.Level
 import com.sacoding.feature_exam.domain.SentenceType
@@ -70,7 +70,7 @@ class GenerateSentenceUseCaseTest {
             level = Level.BEGINNER,
             sentenceTypes = SentenceType.entries,
             tenses = listOf(tens),
-            subjects = Subjects.pronouns.plus(Subjects.names),
+            subjects = Pronouns.subjectPronouns.plus(Pronouns.subjectNames),
             verbs = Verbs.countriesAndCities,
             prepositions = Prepositions.enclosedSpaces,
             objectVals = listOf("Australia"),
@@ -154,7 +154,7 @@ class GenerateSentenceUseCaseTest {
             level = Level.BEGINNER,
             sentenceTypes = SentenceType.entries,
             tenses = listOf(Tens.PRESENT_SIMPLE),
-            subjects = Subjects.pronouns.plus(Subjects.names),
+            subjects = Pronouns.subjectPronouns.plus(Pronouns.subjectNames),
             verbs = listOf(Verbs.toBe),
             prepositions = Prepositions.originOrSourceOfMovement,
             objectVals = Objects.countries,
@@ -201,7 +201,7 @@ class GenerateSentenceUseCaseTest {
             level = Level.BEGINNER,
             sentenceTypes = SentenceType.entries,
             tenses = listOf(Tens.PRESENT_SIMPLE),
-            subjects = Subjects.pronouns.plus(Subjects.names),
+            subjects = Pronouns.subjectPronouns.plus(Pronouns.subjectNames),
             verbs = listOf(Verbs.toBe),
             prepositions = listOf(),
             objectVals = Objects.nationals,

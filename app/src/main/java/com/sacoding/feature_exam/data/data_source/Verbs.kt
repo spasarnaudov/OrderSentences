@@ -11,6 +11,10 @@ object Verbs {
         Verb("live", "lived", "lived"),
     )
 
+    val feelings: List<Verb> = listOf(
+        Verb("love", "loved", "loved"),
+    )
+
     val levelOneVerbs: List<Verb> = listOf(
         Verb("cook", "cooked", "cooked"),
     )
