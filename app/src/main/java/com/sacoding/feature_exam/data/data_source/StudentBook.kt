@@ -1,9 +1,9 @@
 package com.sacoding.feature_exam.data.data_source
 
 import com.sacoding.feature_exam.domain.Level
-import com.sacoding.feature_exam.domain.SentenceType
 import com.sacoding.feature_exam.domain.Tens
 import com.sacoding.feature_exam.domain.model.Lessen
+import com.sacoding.feature_exam.domain.model.addArticle
 
 object StudentBook {
     val presentSimpleLessens = listOf(
@@ -47,8 +47,7 @@ object StudentBook {
             tenses = listOf(Tens.PRESENT_SIMPLE),
             subjects = Pronouns.subjectPronouns.plus(Pronouns.subjectNames),
             verbs = listOf(Verbs.toBe),
-            prepositions = Prepositions.enclosedSpaces,
-            objectVals = Objects.jobs,
+            objectVals = Objects.jobs.addArticle(),
         ),
     )
 }
