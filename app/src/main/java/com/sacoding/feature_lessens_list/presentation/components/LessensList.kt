@@ -1,6 +1,7 @@
 package com.sacoding.feature_lessens_list.presentation.components
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Text
@@ -31,7 +32,9 @@ fun LessensList(
             fontWeight = FontWeight.Bold,
             fontSize = FontSize.LARGE
         )
-        LazyColumn {
+        LazyColumn(
+            modifier = Modifier.fillMaxSize()
+        ) {
             viewModel.getLessens().forEach() { lessen ->
                 item {
                     LessenElement(
@@ -43,7 +46,8 @@ fun LessensList(
                             viewModel.onEvent(ExamEvent.SelectLesson(lessen))
                             navController.navigate(Screen.LessenDetail.route)
                         },
-                        lessenName = lessen.name
+                        lessenName = lessen.name,
+                        levelName = lessen.level.text,
                     )
                 }
             }

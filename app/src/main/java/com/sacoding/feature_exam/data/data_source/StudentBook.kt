@@ -17,7 +17,7 @@ object StudentBook {
             objectVals = Objects.countries,
         ),
         Lessen(
-            name = "She is American",
+            name = "She is American.",
             level = Level.BEGINNER,
             tenses = listOf(Tens.PRESENT_SIMPLE),
             subjects = Pronouns.Subject.singular.plus(Pronouns.Subject.plural).plus(Pronouns.Subject.names),
