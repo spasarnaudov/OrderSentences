@@ -13,14 +13,14 @@ fun Navigation(
     viewModel: ExamViewModel
 ) {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = Screen.LessensList.route) {
-        composable(route = Screen.LessensList.route) {
-            LessensList(navController, viewModel)
+    NavHost(navController = navController, startDestination = Screen.ExamList.route) {
+        composable(route = Screen.ExamList.route) {
+            ExamsList(navController, viewModel)
         }
-        composable(route = Screen.LessenDetail.route) {
-            LessonDetails(viewModel)
+        composable(route = Screen.ExamDetail.route) {
+            ExamDetails(viewModel)
         }
-        composable(route = Screen.Exam.route) {
+        composable(route = Screen.ExamScreen.route) {
             ExamScreen(viewModel)
         }
     }

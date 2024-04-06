@@ -19,7 +19,7 @@ import com.sacoding.feature_exam.presentation.ExamViewModel
 import com.sacoding.feature_exam.presentation.Screen
 
 @Composable
-fun LessensList(
+fun ExamsList(
     navController: NavController,
     viewModel: ExamViewModel,
 ) {
@@ -28,7 +28,7 @@ fun LessensList(
     ) {
         Text(
             modifier = Modifier.padding(vertical = Padding.MEDIUM),
-            text = stringResource(id = R.string.lessens),
+            text = stringResource(id = R.string.exams),
             fontWeight = FontWeight.Bold,
             fontSize = FontSize.LARGE
         )
@@ -37,16 +37,16 @@ fun LessensList(
         ) {
             viewModel.getLessens().forEach() { lessen ->
                 item {
-                    LessenElement(
+                    ExamElement(
                         onClickItem = {
-                            viewModel.onEvent(ExamEvent.SelectLesson(lessen))
-                            navController.navigate(Screen.Exam.route)
+                            viewModel.onEvent(ExamEvent.SelectExam(lessen))
+                            navController.navigate(Screen.ExamScreen.route)
                         },
                         onClickInfo = {
-                            viewModel.onEvent(ExamEvent.SelectLesson(lessen))
-                            navController.navigate(Screen.LessenDetail.route)
+                            viewModel.onEvent(ExamEvent.SelectExam(lessen))
+                            navController.navigate(Screen.ExamDetail.route)
                         },
-                        lessenName = lessen.name,
+                        examName = lessen.name,
                         levelName = lessen.level.text,
                     )
                 }

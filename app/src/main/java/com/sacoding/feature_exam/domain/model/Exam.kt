@@ -6,7 +6,7 @@ import com.sacoding.feature_exam.domain.SentenceType
 import com.sacoding.feature_exam.domain.Tens
 import com.sacoding.feature_exam.domain.use_case.GenerateSentenceUseCase
 
-data class Lessen(
+data class Exam(
     val name: String,
     val level: Level,
     val sentenceTypes: List<SentenceType> = SentenceType.entries,
@@ -17,7 +17,7 @@ data class Lessen(
     val objectVals: List<String>
 )
 
-fun Lessen.info() : List<String> {
+fun Exam.info() : List<String> {
     val list = mutableListOf<String>()
 
     for (sentenceType in sentenceTypes) {

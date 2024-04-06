@@ -18,7 +18,7 @@ import com.sacoding.feature_exam.domain.model.info
 import com.sacoding.feature_exam.presentation.ExamViewModel
 
 @Composable
-fun LessonDetails(
+fun ExamDetails(
     viewModel: ExamViewModel
 ) {
     Column(

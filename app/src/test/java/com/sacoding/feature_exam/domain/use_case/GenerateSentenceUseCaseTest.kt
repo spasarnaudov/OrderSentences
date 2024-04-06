@@ -8,12 +8,12 @@ import com.sacoding.feature_exam.data.data_source.addPreposition
 import com.sacoding.feature_exam.domain.Level
 import com.sacoding.feature_exam.domain.SentenceType
 import com.sacoding.feature_exam.domain.Tens
-import com.sacoding.feature_exam.domain.model.Lessen
+import com.sacoding.feature_exam.domain.model.Exam
 import org.junit.Test
 
 class GenerateSentenceUseCaseTest {
 
-    private fun check(sentences: List<String>, lessen: Lessen): Boolean {
+    private fun check(sentences: List<String>, lessen: Exam): Boolean {
         var counter = 0
         for (sentenceType in lessen.sentenceTypes) {
             for (tens in lessen.tenses) {
@@ -41,7 +41,7 @@ class GenerateSentenceUseCaseTest {
         return counter == sentences.size
     }
 
-    private fun print(lessen: Lessen) {
+    private fun print(lessen: Exam) {
         for (sentenceType in lessen.sentenceTypes) {
             for (tens in lessen.tenses) {
                 for (subject in lessen.subjects) {
@@ -64,8 +64,8 @@ class GenerateSentenceUseCaseTest {
         }
     }
 
-    private fun whereAreYouLiveLessen(tens: Tens) : Lessen {
-        return Lessen(
+    private fun whereAreYouLiveLessen(tens: Tens) : Exam {
+        return Exam(
             name = "Where are you from?",
             level = Level.BEGINNER,
             sentenceTypes = SentenceType.entries,
@@ -149,7 +149,7 @@ class GenerateSentenceUseCaseTest {
             "is John from Australia?",
             "is Emily from Australia?",
         )
-        val lessen = Lessen(
+        val lessen = Exam(
             name = "Where are you from?",
             level = Level.BEGINNER,
             sentenceTypes = SentenceType.entries,
@@ -196,7 +196,7 @@ class GenerateSentenceUseCaseTest {
             "is John Australian?",
             "is Emily Australian?",
         )
-        val lessen = Lessen(
+        val lessen = Exam(
             name = "She is American",
             level = Level.BEGINNER,
             sentenceTypes = SentenceType.entries,

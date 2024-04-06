@@ -2,7 +2,7 @@ package com.sacoding.feature_exam.data.repository
 
 import com.sacoding.feature_exam.data.data_source.StudentBook
 import com.sacoding.feature_exam.data.data_source.VerbDao
-import com.sacoding.feature_exam.domain.model.Lessen
+import com.sacoding.feature_exam.domain.model.Exam
 import com.sacoding.feature_exam.domain.model.Verb
 import com.sacoding.feature_exam.domain.repository.VerbRepository
 
@@ -21,8 +21,8 @@ class VerbRepositoryImpl(
         return dao.getVerbAndIncrementUsageCount()
     }
 
-    override suspend fun getLessen(index: Int): Lessen {
-        return StudentBook.presentSimpleLessens[index]
+    override suspend fun getLessen(index: Int): Exam {
+        return StudentBook.Exam.presentSimple[index]
     }
 
     override suspend fun isNoVerbs(): Boolean {

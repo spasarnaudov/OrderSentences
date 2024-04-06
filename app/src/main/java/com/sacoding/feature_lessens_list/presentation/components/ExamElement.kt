@@ -19,10 +19,10 @@ import androidx.compose.ui.text.font.FontWeight
 import com.sacoding.core.constants.Padding
 
 @Composable
-fun LessenElement(
+fun ExamElement(
     onClickItem: () -> Unit,
     onClickInfo: () -> Unit,
-    lessenName: String,
+    examName: String,
     levelName: String,
 ) {
     Row(
@@ -40,7 +40,7 @@ fun LessenElement(
                 )
         ) {
             Text(
-                text = lessenName,
+                text = examName,
                 fontWeight = FontWeight.Bold
             )
             Text(text = levelName)

@@ -10,7 +10,7 @@ import com.sacoding.feature_exam.domain.ExamEvent
 import com.sacoding.feature_exam.data.data_source.Verbs
 import com.sacoding.feature_exam.data.data_source.addPreposition
 import com.sacoding.feature_exam.domain.GameState
-import com.sacoding.feature_exam.domain.model.Lessen
+import com.sacoding.feature_exam.domain.model.Exam
 import com.sacoding.feature_exam.domain.use_case.GenerateSentenceUseCase
 import com.sacoding.feature_exam.domain.use_case.ExamUseCases
 import com.sacoding.feature_exam.presentation.utils.scratchWords
@@ -59,7 +59,7 @@ class ExamViewModel(
                 )
             }
 
-            is ExamEvent.SelectLesson -> {
+            is ExamEvent.SelectExam -> {
                 _state.value = state.value.copy(
                     lessen = event.lessen
                 )
@@ -82,8 +82,8 @@ class ExamViewModel(
         return state.value.enteredSentence == state.value.sentence
     }
 
-    fun getLessens(): List<Lessen> {
-        return StudentBook.presentSimpleLessens
+    fun getLessens(): List<Exam> {
+        return StudentBook.Exam.presentSimple
     }
 
     private fun startGame() {
