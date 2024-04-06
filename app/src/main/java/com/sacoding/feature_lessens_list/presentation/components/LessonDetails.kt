@@ -29,11 +29,17 @@ fun LessonDetails(
     ) {
         Text(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = Padding.MEDIUM),
+                .fillMaxWidth(),
             text = viewModel.state.value.lessen.name,
             fontWeight = FontWeight.Bold,
             fontSize = FontSize.LARGE
+        )
+        Text(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = Padding.MEDIUM),
+            text = viewModel.state.value.lessen.level.text,
+            fontWeight = FontWeight.Bold,
         )
         LazyColumn(
             modifier = Modifier.fillMaxWidth()
