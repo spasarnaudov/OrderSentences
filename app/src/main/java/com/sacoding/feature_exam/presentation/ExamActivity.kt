@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.sacoding.feature_exam.data.data_source.OrderSentenceDatabase
 import com.sacoding.feature_exam.data.repository.VerbRepositoryImpl
-import com.sacoding.feature_exam.domain.use_case.GetLessenUseCase
+import com.sacoding.feature_exam.domain.use_case.GetExamUseCase
 import com.sacoding.feature_exam.domain.use_case.IncrementVerbMistakeCountUseCase
 import com.sacoding.feature_exam.domain.use_case.IsNotVerbsInDatabaseUseCase
 import com.sacoding.feature_exam.domain.use_case.ExamUseCases
@@ -28,7 +28,7 @@ class ExamActivity : ComponentActivity() {
                 override fun <T : ViewModel> create(modelClass: Class<T>): T {
                     val repository = VerbRepositoryImpl(OrderSentenceDatabase.getDatabase(applicationContext).dao)
                     val useCases = ExamUseCases(
-                        GetLessenUseCase(repository = repository),
+                        GetExamUseCase(repository = repository),
                         IncrementVerbMistakeCountUseCase(repository = repository),
                         IsNotVerbsInDatabaseUseCase(repository = repository),
                         UploadVerbsToDBUseCase(repository = repository),

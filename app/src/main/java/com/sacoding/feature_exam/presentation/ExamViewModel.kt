@@ -61,7 +61,13 @@ class ExamViewModel(
 
             is ExamEvent.SelectExam -> {
                 _state.value = state.value.copy(
-                    lessen = event.lessen
+                    exam = event.exam
+                )
+            }
+
+            is ExamEvent.SelectLevel -> {
+                _state.value = state.value.copy(
+                    level = event.level
                 )
             }
         }
@@ -82,13 +88,13 @@ class ExamViewModel(
         return state.value.enteredSentence == state.value.sentence
     }
 
-    fun getLessens(): List<Exam> {
-        return StudentBook.Exam.presentSimple
+    suspend fun getExams(): List<Exam> {
+        return examUseCases.getExamUseCase.invoke(state.value.level)
     }
 
     private fun startGame() {
         viewModelScope.launch {
-            val lessen = state.value.lessen
+            val lessen = state.value.exam
             val sentenceType = lessen.sentenceTypes.random()
             val tens = lessen.tenses.random()
             val subject = lessen.subjects.random()

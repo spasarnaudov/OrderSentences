@@ -8,6 +8,5 @@
 
 	<!--	feature_lessens_list	-->
 	<string name="lessen_row_info_pattern">%1$s. %2$s</string>
-	<string name="exams">Exams</string>
 
 </resources>

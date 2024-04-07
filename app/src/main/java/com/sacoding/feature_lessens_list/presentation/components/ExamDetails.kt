@@ -30,7 +30,7 @@ fun ExamDetails(
         Text(
             modifier = Modifier
                 .fillMaxWidth(),
-            text = viewModel.state.value.lessen.name,
+            text = viewModel.state.value.exam.name,
             fontWeight = FontWeight.Bold,
             fontSize = FontSize.LARGE
         )
@@ -38,13 +38,13 @@ fun ExamDetails(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(bottom = Padding.MEDIUM),
-            text = viewModel.state.value.lessen.level.text,
+            text = viewModel.state.value.exam.level.text,
             fontWeight = FontWeight.Bold,
         )
         LazyColumn(
             modifier = Modifier.fillMaxWidth()
         ) {
-            viewModel.state.value.lessen.info().forEachIndexed() { index, lessen ->
+            viewModel.state.value.exam.info().forEachIndexed() { index, lessen ->
                 item {
                     Text(
                         modifier = Modifier.fillMaxWidth(),
