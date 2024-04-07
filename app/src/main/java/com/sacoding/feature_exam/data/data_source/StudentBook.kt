@@ -56,13 +56,20 @@ object StudentBook {
         object Elementary {
             val presentSimple = listOf(
                 Exam(
-                    name = "Where are you from?",
+                    name = "Distances",
                     level = Level.ELEMENTARY,
-                    tenses = listOf(Tens.PRESENT_SIMPLE),
-                    subjects = Pronouns.Subject.singular.plus(Pronouns.Subject.plural).plus(Pronouns.Subject.names),
+                    tenses = listOf(Tens.PRESENT_SIMPLE, Tens.PAST_SIMPLE),
+                    subjects = listOf(
+                        "Birmingham"
+                    ),
                     verbs = listOf(Verbs.toBe),
-                    prepositions = Prepositions.originOrSourceOfMovement,
-                    objectVals = Objects.countries,
+                    prepositions = listOf(
+                        "250 kilometres from",
+                        "250 kilometres away from",
+                    ),
+                    objectVals = listOf(
+                        "London"
+                    ),
                 ),
             )
         }

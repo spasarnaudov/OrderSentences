@@ -29,7 +29,7 @@ fun ExamsList(
     ) {
         val levels = listOf(
             SegmentedButtonItem(Level.BEGINNER.code, Level.BEGINNER),
-//            SegmentedButtonItem(Level.ELEMENTARY.code, Level.ELEMENTARY),
+            SegmentedButtonItem(Level.ELEMENTARY.code, Level.ELEMENTARY),
 //            SegmentedButtonItem(Level.PRE_ELEMENTARY.code, Level.PRE_ELEMENTARY),
             SegmentedButtonItem(Level.INTERMEDIATE.code, Level.INTERMEDIATE),
 //            SegmentedButtonItem(Level.UPPER_INTERMEDIATE.code, Level.UPPER_INTERMEDIATE),
