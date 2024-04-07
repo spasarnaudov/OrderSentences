@@ -12,6 +12,6 @@ data class ExamState(
     val enteredSentence: String = "",
     val verb: Verb? = null,
     val gameState: GameState = GameState.FINISHED,
-    val exam: Exam = StudentBook.Exam.Beginner.presentSimple[0],
+    val exam: Exam = StudentBook.Beginner.exams[0],
     val level: Level = Level.BEGINNER
 )
