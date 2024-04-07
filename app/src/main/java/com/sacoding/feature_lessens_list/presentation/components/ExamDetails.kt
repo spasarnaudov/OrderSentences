@@ -44,11 +44,11 @@ fun ExamDetails(
         LazyColumn(
             modifier = Modifier.fillMaxWidth()
         ) {
-            viewModel.state.value.exam.info().forEachIndexed() { index, lessen ->
+            viewModel.state.value.exam.info().forEachIndexed() { index, exam ->
                 item {
                     Text(
                         modifier = Modifier.fillMaxWidth(),
-                        text = stringResource(R.string.lessen_row_info_pattern, index + 1, lessen)
+                        text = stringResource(R.string.lessen_row_info_pattern, index + 1, exam)
                     )
                 }
             }

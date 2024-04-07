@@ -37,55 +37,38 @@ fun ResultScreen(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        if (viewModel.state.value.enteredSentence.isNotBlank()) {
+        Text(
+            modifier = Modifier
+                .wrapContentSize(),
+            text = viewModel.state.value.sentence,
+            fontWeight = FontWeight.Bold,
+        )
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = Padding.MEDIUM)
+                .border(
+                    width = 2.dp,
+                    color = if (viewModel.isCorrectAnswer()) Color.Green else Color.Red,
+                    shape = RoundedCornerShape(4.dp)
+                ),
+        ) {
             Text(
                 modifier = Modifier
-                    .wrapContentSize(),
-                text = viewModel.state.value.sentence,
-                fontWeight = FontWeight.Bold,
+                    .wrapContentSize()
+                    .padding(Padding.MEDIUM),
+                text = viewModel.state.value.enteredSentence,
             )
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = Padding.MEDIUM)
-                    .border(
-                        width = 2.dp,
-                        color = if (viewModel.isCorrectAnswer()) Color.Green else Color.Red,
-                        shape = RoundedCornerShape(4.dp)
-                    ),
-            ) {
-                Text(
-                    modifier = Modifier
-                        .wrapContentSize()
-                        .padding(Padding.MEDIUM),
-                    text = viewModel.state.value.enteredSentence,
-                )
-            }
-            Button(
-                modifier = Modifier
-                    .wrapContentSize(),
-                onClick = {
-                    viewModel.onEvent(ExamEvent.StartGame)
-                },
-            ) {
-                Text(text = stringResource(R.string.start_game))
-            }
-        } else {
-            Button(
-                modifier = Modifier.size(160.dp),
-                shape = CircleShape,
-                contentPadding = PaddingValues(Padding.MEDIUM),
-                onClick = {
-                    viewModel.onEvent(ExamEvent.StartGame)
-                },
-            ) {
-                Text(
-                    text = stringResource(R.string.start_game),
-                    fontWeight = FontWeight.Bold,
-                    fontSize = FontSize.LARGE
-                )
-            }
+        }
+        Button(
+            modifier = Modifier
+                .wrapContentSize(),
+            onClick = {
+                viewModel.onEvent(ExamEvent.SelectExam(viewModel.state.value.exam))
+            },
+        ) {
+            Text(text = stringResource(R.string.start_game))
         }
     }
 }

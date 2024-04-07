@@ -5,7 +5,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.text.AnnotatedString
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.sacoding.feature_exam.data.data_source.StudentBook
 import com.sacoding.feature_exam.domain.ExamEvent
 import com.sacoding.feature_exam.data.data_source.Verbs
 import com.sacoding.feature_exam.data.data_source.addPreposition
@@ -34,8 +33,50 @@ class ExamViewModel(
 
     fun onEvent(event: ExamEvent) {
         when (event) {
-            is ExamEvent.StartGame -> {
-                startGame()
+            is ExamEvent.SelectLevel -> {
+                _state.value = state.value.copy(
+                    level = event.level
+                )
+            }
+
+            is ExamEvent.SelectExam -> {
+                viewModelScope.launch {
+                    val exam = event.exam
+                    val sentenceType = exam.sentenceTypes.random()
+                    val tens = exam.tenses.random()
+                    val subject = exam.subjects.random()
+                    val verb = exam.verbs.random()
+                    val objectVal = exam.objectVals.random()
+
+                    val sentence = GenerateSentenceUseCase().invoke(
+                        sentenceType,
+                        tens,
+                        subject,
+                        verb,
+                        if (exam.prepositions.isEmpty()) objectVal else objectVal.addPreposition(exam.prepositions.random())
+                    )
+                    val shuffledSentence = sentence.shuffleSentence(" / ")
+                    _state.value = state.value.copy(
+                        sentence = sentence,
+                        shuffledSentence = shuffledSentence,
+                        enteredSentence = "",
+                        gameState = GameState.STARTED,
+                        verb = verb,
+                        exam = event.exam
+                    )
+                }
+            }
+
+            is ExamEvent.SelectExamInfo -> {
+                _state.value = state.value.copy(
+                    exam = event.exam
+                )
+            }
+
+            is ExamEvent.EnterText -> {
+                _state.value = state.value.copy(
+                    enteredSentence = event.answerText
+                )
             }
 
             is ExamEvent.EndGame -> {
@@ -52,29 +93,7 @@ class ExamViewModel(
                     }
                 }
             }
-
-            is ExamEvent.EnterText -> {
-                _state.value = state.value.copy(
-                    enteredSentence = event.answerText
-                )
-            }
-
-            is ExamEvent.SelectExam -> {
-                _state.value = state.value.copy(
-                    exam = event.exam
-                )
-            }
-
-            is ExamEvent.SelectLevel -> {
-                _state.value = state.value.copy(
-                    level = event.level
-                )
-            }
         }
-    }
-
-    fun getGameState(): GameState {
-        return state.value.gameState
     }
 
     fun getShuffledText(): AnnotatedString {
@@ -90,32 +109,5 @@ class ExamViewModel(
 
     suspend fun getExams(): List<Exam> {
         return examUseCases.getExamUseCase.invoke(state.value.level)
-    }
-
-    private fun startGame() {
-        viewModelScope.launch {
-            val lessen = state.value.exam
-            val sentenceType = lessen.sentenceTypes.random()
-            val tens = lessen.tenses.random()
-            val subject = lessen.subjects.random()
-            val verb = lessen.verbs.random()
-            val objectVal = lessen.objectVals.random()
-
-            val sentence = GenerateSentenceUseCase().invoke(
-                sentenceType,
-                tens,
-                subject,
-                verb,
-                if (lessen.prepositions.isEmpty()) objectVal else objectVal.addPreposition(lessen.prepositions.random())
-            )
-            val shuffledSentence = sentence.shuffleSentence(" / ")
-            _state.value = state.value.copy(
-                sentence = sentence,
-                shuffledSentence = shuffledSentence,
-                enteredSentence = "",
-                gameState = GameState.STARTED,
-                verb = verb
-            )
-        }
     }
 }

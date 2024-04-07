@@ -8,7 +8,7 @@ import com.sacoding.feature_exam.presentation.ExamViewModel
 fun ExamScreen(
     viewModel: ExamViewModel
 ) {
-    when (viewModel.getGameState()) {
+    when (viewModel.state.value.gameState) {
         GameState.FINISHED -> {
             ResultScreen(viewModel)
         }
