@@ -1,27 +1,11 @@
 package com.sacoding.feature_exam.data.repository
 
 import com.sacoding.feature_exam.data.data_source.StudentBook
-import com.sacoding.feature_exam.data.data_source.VerbDao
 import com.sacoding.feature_exam.domain.Level
 import com.sacoding.feature_exam.domain.model.Exam
-import com.sacoding.feature_exam.domain.model.Verb
 import com.sacoding.feature_exam.domain.repository.VerbRepository
 
-class VerbRepositoryImpl(
-    private val dao: VerbDao
-): VerbRepository {
-    override suspend fun upsertVerb(verb: Verb) {
-        return dao.upsertVerb(verb)
-    }
-
-    override suspend fun insertVerbs(verbs: List<Verb>) {
-        return dao.insertVerbs(*verbs.toTypedArray())
-    }
-
-    override suspend fun getVerbAndIncrementUsageCount(): Verb {
-        return dao.getVerbAndIncrementUsageCount()
-    }
-
+class VerbRepositoryImpl: VerbRepository {
     override suspend fun getExam(level: Level, index: Int): List<Exam> {
         return when (level) {
             Level.BEGINNER -> StudentBook.Exam.Beginner.presentSimple
@@ -33,9 +17,4 @@ class VerbRepositoryImpl(
             Level.PROFICIENT -> StudentBook.Exam.Proficient.presentSimple
         }
     }
-
-    override suspend fun isNoVerbs(): Boolean {
-        return dao.countRows() == 0
-    }
-
 }

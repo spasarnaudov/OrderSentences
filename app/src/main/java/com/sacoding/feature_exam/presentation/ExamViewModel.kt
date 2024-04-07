@@ -6,7 +6,6 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sacoding.feature_exam.domain.ExamEvent
-import com.sacoding.feature_exam.data.data_source.Verbs
 import com.sacoding.feature_exam.data.data_source.addPreposition
 import com.sacoding.feature_exam.domain.GameState
 import com.sacoding.feature_exam.domain.model.Exam
@@ -22,14 +21,6 @@ class ExamViewModel(
 
     private val _state = mutableStateOf(ExamState())
     val state: State<ExamState> = _state
-
-    init {
-        viewModelScope.launch {
-            if (examUseCases.isNotVerbsInDatabaseUseCase.invoke()) {
-                examUseCases.uploadVerbsToDBUseCase.invoke(Verbs.levelOneVerbs)
-            }
-        }
-    }
 
     fun onEvent(event: ExamEvent) {
         when (event) {
@@ -84,14 +75,6 @@ class ExamViewModel(
                     enteredSentence = event.answerText,
                     gameState = GameState.FINISHED
                 )
-                val isCorrectAnswer = isCorrectAnswer()
-                if (!isCorrectAnswer) {
-                    state.value.verb?.let {
-                        viewModelScope.launch {
-                            examUseCases.incrementVerbMistakeCountUseCase.invoke(it)
-                        }
-                    }
-                }
             }
         }
     }
