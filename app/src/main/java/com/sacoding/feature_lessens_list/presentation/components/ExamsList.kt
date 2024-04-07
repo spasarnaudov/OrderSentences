@@ -29,12 +29,12 @@ fun ExamsList(
     ) {
         val levels = listOf(
             SegmentedButtonItem(Level.BEGINNER.code, Level.BEGINNER),
-            SegmentedButtonItem(Level.ELEMENTARY.code, Level.ELEMENTARY),
-            SegmentedButtonItem(Level.PRE_ELEMENTARY.code, Level.PRE_ELEMENTARY),
+//            SegmentedButtonItem(Level.ELEMENTARY.code, Level.ELEMENTARY),
+//            SegmentedButtonItem(Level.PRE_ELEMENTARY.code, Level.PRE_ELEMENTARY),
             SegmentedButtonItem(Level.INTERMEDIATE.code, Level.INTERMEDIATE),
-            SegmentedButtonItem(Level.UPPER_INTERMEDIATE.code, Level.UPPER_INTERMEDIATE),
-            SegmentedButtonItem(Level.ADVANCED.code, Level.ADVANCED),
-            SegmentedButtonItem(Level.PROFICIENT.code, Level.PROFICIENT),
+//            SegmentedButtonItem(Level.UPPER_INTERMEDIATE.code, Level.UPPER_INTERMEDIATE),
+//            SegmentedButtonItem(Level.ADVANCED.code, Level.ADVANCED),
+//            SegmentedButtonItem(Level.PROFICIENT.code, Level.PROFICIENT),
         )
         SingleChoiceSegmentedButton(
             modifier = Modifier.padding(

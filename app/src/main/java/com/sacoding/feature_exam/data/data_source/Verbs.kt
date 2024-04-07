@@ -19,6 +19,21 @@ object Verbs {
         Verb("trust", "trusted", "trusted"),
     )
 
+    val mutualOrReciprocalActions = listOf(
+        Verb("help", "helped", "helped"),
+        Verb("understand", "understood", "understood"),
+        Verb("respect", "respected", "respected"),
+        Verb("trust", "trusted", "trusted"),
+        Verb("greet", "greeted", "greeted"),
+        Verb("learn", "learned", "learned"),
+        Verb("listen", "listened", "listened"),
+        Verb("support", "supported", "supported"),
+//        Verb("teach", "taught", "taught"),
+//        Verb("forgive", "forgave", "forgiven"),
+//        Verb("meet", "met", "met"),
+//        Verb("know", "knew", "known"),
+    )
+
     val levelOneVerbs: List<Verb> = listOf(
         Verb("cook", "cooked", "cooked"),
     )

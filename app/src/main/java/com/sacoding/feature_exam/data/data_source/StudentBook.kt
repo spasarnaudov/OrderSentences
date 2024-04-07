@@ -82,13 +82,12 @@ object StudentBook {
         object Intermediate {
             val presentSimple = listOf(
                 Exam(
-                    name = "Where are you from?",
+                    name = "They help each other",
                     level = Level.INTERMEDIATE,
-                    tenses = listOf(Tens.PRESENT_SIMPLE),
-                    subjects = Pronouns.Subject.singular.plus(Pronouns.Subject.plural).plus(Pronouns.Subject.names),
-                    verbs = listOf(Verbs.toBe),
-                    prepositions = Prepositions.originOrSourceOfMovement,
-                    objectVals = Objects.countries,
+                    tenses = listOf(Tens.PRESENT_SIMPLE, Tens.PAST_SIMPLE),
+                    subjects = Pronouns.Subject.plural,
+                    verbs = Verbs.mutualOrReciprocalActions,
+                    objectVals = Pronouns.reciprocal,
                 ),
             )
         }

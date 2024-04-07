@@ -46,6 +46,11 @@ object Pronouns {
         "those",    //plural pronoun to talk about things that are not near us
     )
 
+    val reciprocal = listOf(
+        "each other",
+        "one another",
+    )
+
     /**
      * We use indefinite pronouns to refer to people or things without saying exactly who or what they are.
      * We use pronouns ending in -body or -one for people, and pronouns ending in -thing for things.
