@@ -10,7 +10,6 @@ class VerbRepositoryImpl: VerbRepository {
         return when (level) {
             Level.BEGINNER -> StudentBook.Beginner.exams
             Level.ELEMENTARY -> StudentBook.Elementary.exams
-            Level.PRE_ELEMENTARY -> StudentBook.PreElementary.exams
             Level.INTERMEDIATE -> StudentBook.Intermediate.exams
             Level.UPPER_INTERMEDIATE -> StudentBook.UpperIntermediate.exams
             Level.ADVANCED -> StudentBook.Advanced.exams

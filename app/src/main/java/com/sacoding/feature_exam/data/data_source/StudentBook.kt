@@ -70,13 +70,9 @@ object StudentBook {
                     "London"
                 ),
             ),
-        )
-    }
-    object PreElementary {
-        val exams = listOf(
             Exam(
                 name = "Where are you from?",
-                level = Level.PRE_ELEMENTARY,
+                level = Level.ELEMENTARY,
                 tenses = listOf(Tens.PRESENT_SIMPLE),
                 subjects = Pronouns.Subject.singular.plus(Pronouns.Subject.plural).plus(Pronouns.Subject.names),
                 verbs = listOf(Verbs.toBe),
