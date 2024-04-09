@@ -75,7 +75,7 @@ object StudentBook {
                 tenses = listOf(Tens.PRESENT_SIMPLE),
                 subjects = Pronouns.Demonstratives.singular,
                 verbs = listOf(Verbs.toBe),
-                objectVals = Objects.thinks.addPossessiveAdjective(Pronouns.PossessiveAdjective.all),
+                objectVals = Objects.thinks.addPossessiveAdjective(Pronouns.PossessiveAdjective.all.plus(Pronouns.PossessiveAdjective.name)),
             ),
             Exam(
                 name = R.string.are_these_yours,
@@ -83,7 +83,7 @@ object StudentBook {
                 tenses = listOf(Tens.PRESENT_SIMPLE),
                 subjects = Pronouns.Demonstratives.plural,
                 verbs = listOf(Verbs.toBe),
-                objectVals = Objects.thinks.toPlural().addPossessiveAdjective(Pronouns.PossessiveAdjective.all),
+                objectVals = Objects.thinks.toPlural().addPossessiveAdjective(Pronouns.PossessiveAdjective.all.plus(Pronouns.PossessiveAdjective.name)),
             ),
         )
     }

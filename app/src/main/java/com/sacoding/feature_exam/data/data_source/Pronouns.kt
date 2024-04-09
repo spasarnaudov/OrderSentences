@@ -58,6 +58,11 @@ object Pronouns {
             "their",
         )
 
+        val name = listOf(
+            "John's",
+            "Emily's",
+        )
+
         val all = singular.plus(plural)
     }
 

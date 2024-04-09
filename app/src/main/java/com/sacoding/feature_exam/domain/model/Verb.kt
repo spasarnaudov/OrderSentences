@@ -54,6 +54,8 @@ fun toBe(subject: String): String {
         "you" -> return "are"
         "we" -> return "are"
         "they" -> return "are"
+        "these" -> return "are"
+        "those" -> return "are"
     }
     return "is"
 }
