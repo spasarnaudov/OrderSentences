@@ -81,6 +81,11 @@ object Pronouns {
             "theirs",
         )
 
+        val name = listOf(
+            "John's",
+            "Emily's",
+        )
+
         val all = singular.plus(plural)
     }
 
@@ -94,6 +99,13 @@ object Pronouns {
             "these",    //plural pronoun to talk about people or things near us
             "those",    //plural pronoun to talk about things that are not near us
         )
+
+        val name = listOf(
+            "John's",
+            "Emily's",
+        )
+
+        val all = singular.plus(plural)
     }
 
     val reciprocal = listOf(

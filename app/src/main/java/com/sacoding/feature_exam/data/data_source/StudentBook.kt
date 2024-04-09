@@ -85,6 +85,14 @@ object StudentBook {
                 verbs = listOf(Verbs.toBe),
                 objectVals = Objects.thinks.toPlural().addPossessiveAdjective(Pronouns.PossessiveAdjective.all.plus(Pronouns.PossessiveAdjective.name)),
             ),
+            Exam(
+                name = R.string.this_is_main,
+                level = Level.BEGINNER,
+                tenses = listOf(Tens.PRESENT_SIMPLE),
+                subjects = Pronouns.Demonstratives.all.plus(Pronouns.Demonstratives.name),
+                verbs = listOf(Verbs.toBe),
+                objectVals = Pronouns.PossessivePronoun.all.plus(Pronouns.PossessivePronoun.name),
+            ),
         )
     }
     object Elementary {
