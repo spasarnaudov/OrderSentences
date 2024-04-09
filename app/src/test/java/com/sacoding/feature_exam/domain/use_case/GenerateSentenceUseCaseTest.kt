@@ -1,5 +1,6 @@
 package com.sacoding.feature_exam.domain.use_case
 
+import com.sacoding.feature_exam.R
 import com.sacoding.feature_exam.data.data_source.Objects
 import com.sacoding.feature_exam.data.data_source.Verbs
 import com.sacoding.feature_exam.data.data_source.Prepositions
@@ -66,7 +67,7 @@ class GenerateSentenceUseCaseTest {
 
     private fun whereAreYouLiveLessen(tens: Tens) : Exam {
         return Exam(
-            name = "Where are you from?",
+            name = R.string.where_are_you_from,
             level = Level.BEGINNER,
             sentenceTypes = SentenceType.entries,
             tenses = listOf(tens),
@@ -150,7 +151,7 @@ class GenerateSentenceUseCaseTest {
             "is Emily from Australia?",
         )
         val lessen = Exam(
-            name = "Where are you from?",
+            name = R.string.where_are_you_from,
             level = Level.BEGINNER,
             sentenceTypes = SentenceType.entries,
             tenses = listOf(Tens.PRESENT_SIMPLE),
@@ -197,7 +198,7 @@ class GenerateSentenceUseCaseTest {
             "is Emily Australian?",
         )
         val lessen = Exam(
-            name = "She is American",
+            name = R.string.she_is_american,
             level = Level.BEGINNER,
             sentenceTypes = SentenceType.entries,
             tenses = listOf(Tens.PRESENT_SIMPLE),

@@ -8,5 +8,12 @@
 
 	<!--	feature_lessens_list	-->
 	<string name="lessen_row_info_pattern">%1$s. %2$s</string>
+	<string name="where_are_you_from">Where are you from?</string>
+	<string name="she_is_american">She is American.</string>
+	<string name="where_do_you_live">Where do you live?</string>
+	<string name="she_love_john">She love John?</string>
+	<string name="what_is_your_job">What is your job?</string>
+	<string name="distances">Distances</string>
+	<string name="they_help_each_other">They help each other</string>
 
 </resources>

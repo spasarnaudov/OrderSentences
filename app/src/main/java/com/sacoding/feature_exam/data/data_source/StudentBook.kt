@@ -1,5 +1,6 @@
 package com.sacoding.feature_exam.data.data_source
 
+import com.sacoding.feature_exam.R
 import com.sacoding.feature_exam.domain.Level
 import com.sacoding.feature_exam.domain.Tens
 import com.sacoding.feature_exam.domain.model.Exam
@@ -9,7 +10,7 @@ object StudentBook {
     object Beginner {
         val exams = listOf(
             Exam(
-                name = "Where are you from?",
+                name = R.string.where_are_you_from,
                 level = Level.BEGINNER,
                 tenses = listOf(Tens.PRESENT_SIMPLE),
                 subjects = Pronouns.Subject.singular.plus(Pronouns.Subject.plural).plus(Pronouns.Subject.names),
@@ -18,7 +19,7 @@ object StudentBook {
                 objectVals = Objects.countries,
             ),
             Exam(
-                name = "She is American.",
+                name = R.string.she_is_american,
                 level = Level.BEGINNER,
                 tenses = listOf(Tens.PRESENT_SIMPLE),
                 subjects = Pronouns.Subject.singular.plus(Pronouns.Subject.plural).plus(Pronouns.Subject.names),
@@ -26,7 +27,7 @@ object StudentBook {
                 objectVals = Objects.nationals,
             ),
             Exam(
-                name = "Where do you live?",
+                name = R.string.where_do_you_live,
                 level = Level.BEGINNER,
                 tenses = listOf(Tens.PRESENT_SIMPLE),
                 subjects = Pronouns.Subject.singular.plus(Pronouns.Subject.plural).plus(Pronouns.Subject.names),
@@ -35,7 +36,7 @@ object StudentBook {
                 objectVals = Objects.cities,
             ),
             Exam(
-                name = "She love John?",
+                name = R.string.she_love_john,
                 level = Level.BEGINNER,
                 tenses = listOf(Tens.PRESENT_SIMPLE),
                 subjects = Pronouns.Subject.singular.plus(Pronouns.Subject.plural),
@@ -43,7 +44,7 @@ object StudentBook {
                 objectVals = Pronouns.Subject.names,
             ),
             Exam(
-                name = "What is your job?",
+                name = R.string.what_is_your_job,
                 level = Level.BEGINNER,
                 tenses = listOf(Tens.PRESENT_SIMPLE),
                 subjects = Pronouns.Subject.singular.plus(Pronouns.Subject.names),
@@ -55,7 +56,7 @@ object StudentBook {
     object Elementary {
         val exams = listOf(
             Exam(
-                name = "Distances",
+                name = R.string.distances,
                 level = Level.ELEMENTARY,
                 tenses = listOf(Tens.PRESENT_SIMPLE, Tens.PAST_SIMPLE),
                 subjects = listOf(
@@ -71,7 +72,7 @@ object StudentBook {
                 ),
             ),
             Exam(
-                name = "Where are you from?",
+                name = R.string.where_are_you_from,
                 level = Level.ELEMENTARY,
                 tenses = listOf(Tens.PRESENT_SIMPLE),
                 subjects = Pronouns.Subject.singular.plus(Pronouns.Subject.plural).plus(Pronouns.Subject.names),
@@ -84,7 +85,7 @@ object StudentBook {
     object Intermediate {
         val exams = listOf(
             Exam(
-                name = "They help each other",
+                name = R.string.they_help_each_other,
                 level = Level.INTERMEDIATE,
                 tenses = listOf(Tens.PRESENT_SIMPLE, Tens.PAST_SIMPLE),
                 subjects = Pronouns.Subject.plural,
@@ -96,7 +97,7 @@ object StudentBook {
     object UpperIntermediate {
         val exams = listOf(
             Exam(
-                name = "Where are you from?",
+                name = R.string.where_are_you_from,
                 level = Level.UPPER_INTERMEDIATE,
                 tenses = listOf(Tens.PRESENT_SIMPLE),
                 subjects = Pronouns.Subject.singular.plus(Pronouns.Subject.plural).plus(Pronouns.Subject.names),
@@ -109,7 +110,7 @@ object StudentBook {
     object Advanced {
         val exams = listOf(
             Exam(
-                name = "Where are you from?",
+                name = R.string.where_are_you_from,
                 level = Level.ADVANCED,
                 tenses = listOf(Tens.PRESENT_SIMPLE),
                 subjects = Pronouns.Subject.singular.plus(Pronouns.Subject.plural).plus(Pronouns.Subject.names),
@@ -122,7 +123,7 @@ object StudentBook {
     object Proficient {
             val exams = listOf(
                 Exam(
-                    name = "Where are you from?",
+                    name = R.string.where_are_you_from,
                     level = Level.PROFICIENT,
                     tenses = listOf(Tens.PRESENT_SIMPLE),
                     subjects = Pronouns.Subject.singular.plus(Pronouns.Subject.plural).plus(Pronouns.Subject.names),

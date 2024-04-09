@@ -30,7 +30,7 @@ fun ExamDetails(
         Text(
             modifier = Modifier
                 .fillMaxWidth(),
-            text = viewModel.state.value.exam.name,
+            text = stringResource(id = viewModel.state.value.exam.name),
             fontWeight = FontWeight.Bold,
             fontSize = FontSize.LARGE
         )

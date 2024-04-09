@@ -78,12 +78,6 @@ object Objects {
         "Zurich"
     )
 
-    val food = listOf(
-        "fish",
-        "meat",
-        "vegetables"
-    )
-
     val jobs = listOf(
         "doctor",
         "nurse",
@@ -95,11 +89,16 @@ object Objects {
         "mechanic",
         "electrician",
         "accountant",
-        "financial",
         "musician",
         "actor",
         "chef",
         "lawyer",
         "biologist",
+    )
+
+    val food = listOf(
+        "fish",
+        "meat",
+        "vegetables"
     )
 }

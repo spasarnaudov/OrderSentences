@@ -1,5 +1,6 @@
 package com.sacoding.feature_exam.domain.model
 
+import androidx.annotation.StringRes
 import com.sacoding.feature_exam.data.data_source.addPreposition
 import com.sacoding.feature_exam.domain.Level
 import com.sacoding.feature_exam.domain.SentenceType
@@ -7,7 +8,7 @@ import com.sacoding.feature_exam.domain.Tens
 import com.sacoding.feature_exam.domain.use_case.GenerateSentenceUseCase
 
 data class Exam(
-    val name: String,
+    @StringRes val name: Int,
     val level: Level,
     val sentenceTypes: List<SentenceType> = SentenceType.entries,
     val tenses: List<Tens>,

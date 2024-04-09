@@ -7,6 +7,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import com.sacoding.core.constants.Padding
@@ -61,7 +62,7 @@ fun ExamsList(
                                 viewModel.onEvent(ExamEvent.SelectExam(exam))
                                 navController.navigate(Screen.ExamDetail.route)
                             },
-                            examName = exam.name,
+                            examName = stringResource(id = exam.name),
                             levelName = exam.level.text,
                         )
                     }
