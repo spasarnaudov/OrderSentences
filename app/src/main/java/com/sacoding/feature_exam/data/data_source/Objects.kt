@@ -96,6 +96,24 @@ object Objects {
         "biologist",
     )
 
+    val phoneNumbers = listOf(
+        "05468756",
+        "08786558",
+        "95862433",
+        "55587456",
+    )
+
+    val thinks = listOf(
+        "book",
+        "laptop",
+        "phone",
+        "car",
+        "house",
+        "key",
+        "desk",
+        "pen",
+    )
+
     val food = listOf(
         "fish",
         "meat",

@@ -5,6 +5,8 @@ import com.sacoding.feature_exam.domain.Level
 import com.sacoding.feature_exam.domain.Tens
 import com.sacoding.feature_exam.domain.model.Exam
 import com.sacoding.feature_exam.domain.model.addArticle
+import com.sacoding.feature_exam.domain.model.addPossessiveAdjective
+import com.sacoding.feature_exam.domain.model.toPlural
 
 object StudentBook {
     object Beginner {
@@ -50,6 +52,38 @@ object StudentBook {
                 subjects = Pronouns.Subject.singular.plus(Pronouns.Subject.names),
                 verbs = listOf(Verbs.toBe),
                 objectVals = Objects.jobs.addArticle(),
+            ),
+            Exam(
+                name = R.string.what_is_your_phone_number,
+                level = Level.BEGINNER,
+                tenses = listOf(Tens.PRESENT_SIMPLE),
+                subjects = listOf("phone number").addPossessiveAdjective(Pronouns.PossessiveAdjective.all),
+                verbs = listOf(Verbs.toBe),
+                objectVals = Objects.phoneNumbers,
+            ),
+            Exam(
+                name = R.string.what_is_your_phone_number,
+                level = Level.BEGINNER,
+                tenses = listOf(Tens.PRESENT_SIMPLE),
+                subjects = listOf("phone number").addPossessiveAdjective(Pronouns.PossessiveAdjective.all),
+                verbs = listOf(Verbs.toBe),
+                objectVals = Objects.phoneNumbers,
+            ),
+            Exam(
+                name = R.string.is_this_your,
+                level = Level.BEGINNER,
+                tenses = listOf(Tens.PRESENT_SIMPLE),
+                subjects = Pronouns.Demonstratives.singular,
+                verbs = listOf(Verbs.toBe),
+                objectVals = Objects.thinks.addPossessiveAdjective(Pronouns.PossessiveAdjective.all),
+            ),
+            Exam(
+                name = R.string.are_these_yours,
+                level = Level.BEGINNER,
+                tenses = listOf(Tens.PRESENT_SIMPLE),
+                subjects = Pronouns.Demonstratives.plural,
+                verbs = listOf(Verbs.toBe),
+                objectVals = Objects.thinks.toPlural().addPossessiveAdjective(Pronouns.PossessiveAdjective.all),
             ),
         )
     }

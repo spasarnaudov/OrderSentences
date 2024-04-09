@@ -21,6 +21,8 @@ object Pronouns {
             "you",
             "they",
         )
+
+        val all = singular.plus(plural)
     }
 
     object Objects {
@@ -37,14 +39,57 @@ object Pronouns {
             "you",
             "them",
         )
+
+        val all = singular.plus(plural)
     }
 
-    val demonstratives = listOf(
-        "this",     //singular pronoun to talk about people or things near us
-        "these",    //plural pronoun to talk about people or things near us
-        "that",     //singular pronoun to talk about things that are not near us
-        "those",    //plural pronoun to talk about things that are not near us
-    )
+    object PossessiveAdjective {
+        val singular = listOf(
+            "my",
+            "your",
+            "his",
+            "her",
+            "its",
+        )
+
+        val plural = listOf(
+            "our",
+            "your",
+            "their",
+        )
+
+        val all = singular.plus(plural)
+    }
+
+    object PossessivePronoun {
+        val singular = listOf(
+            "mine",
+            "yours",
+            "his",
+            "hers",
+//            "-",
+        )
+
+        val plural = listOf(
+            "ours",
+            "yours",
+            "theirs",
+        )
+
+        val all = singular.plus(plural)
+    }
+
+    object Demonstratives {
+        val singular = listOf(
+            "this",     //singular pronoun to talk about people or things near us
+            "that",     //singular pronoun to talk about things that are not near us
+        )
+
+        val plural = listOf(
+            "these",    //plural pronoun to talk about people or things near us
+            "those",    //plural pronoun to talk about things that are not near us
+        )
+    }
 
     val reciprocal = listOf(
         "each other",
