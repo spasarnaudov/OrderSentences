@@ -1,39 +1,14 @@
 package com.sacoding.feature_exam.domain.model
 
-data class Noun(
-    val singular: String,
-    val plural: String = singular.plural(),
-)
-
-fun Noun.addArticle(definiteArticle: Boolean = false): Noun {
-    return if (definiteArticle) {
-        copy(
-            singular = "the $singular",
-            plural = "the $plural"
-        )
-    } else if (listVowels.contains(singular.lowercase()[0].toString())) {
-        copy(singular = "an $singular")
-    } else {
-        copy(singular = "a $singular")
-    }
-}
-
-fun String.plural(): String {
-    val lastLetter = lowercase()[length-1]
-    val penultimate = lowercase()[length-2]
-    if (lastLetter == 'y' && !listVowels.contains(penultimate.toString())) {
-        return replaceAfterLast("y", "ies")
-    }
-    return "${this}s"
+abstract class Noun(
+    val value: String,
+) {
+    abstract fun getArticle(definiteArticle: Boolean = false): String
 }
 
 val listVowels = listOf(
     "a", "e", "i", "o", "u", "y"
 )
-
-
-
-
 
 fun List<String>.plural(): List<String> {
     val list = mutableListOf<String>()
