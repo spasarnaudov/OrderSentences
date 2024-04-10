@@ -6,7 +6,7 @@ import com.sacoding.feature_exam.domain.Tens
 import com.sacoding.feature_exam.domain.model.Exam
 import com.sacoding.feature_exam.domain.model.addArticle
 import com.sacoding.feature_exam.domain.model.addPossessiveAdjective
-import com.sacoding.feature_exam.domain.model.toPlural
+import com.sacoding.feature_exam.domain.model.plural
 
 object StudentBook {
     object Beginner {
@@ -83,7 +83,7 @@ object StudentBook {
                 tenses = listOf(Tens.PRESENT_SIMPLE),
                 subjects = Pronouns.Demonstratives.plural,
                 verbs = listOf(Verbs.toBe),
-                objectVals = Objects.thinks.toPlural().addPossessiveAdjective(Pronouns.PossessiveAdjective.all.plus(Pronouns.PossessiveAdjective.name)),
+                objectVals = Objects.thinks.plural().addPossessiveAdjective(Pronouns.PossessiveAdjective.all.plus(Pronouns.PossessiveAdjective.name)),
             ),
             Exam(
                 name = R.string.this_is_main,

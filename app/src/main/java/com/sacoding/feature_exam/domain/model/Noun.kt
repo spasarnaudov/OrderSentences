@@ -2,18 +2,23 @@ package com.sacoding.feature_exam.domain.model
 
 data class Noun(
     val singular: String,
-    val plural: String = singular.toPlural(),
+    val plural: String = singular.plural(),
 )
 
-fun Noun.addArticle(): Noun {
-    return if (listVowels.contains(singular.lowercase()[0].toString())) {
+fun Noun.addArticle(definiteArticle: Boolean = false): Noun {
+    return if (definiteArticle) {
+        copy(
+            singular = "the $singular",
+            plural = "the $plural"
+        )
+    } else if (listVowels.contains(singular.lowercase()[0].toString())) {
         copy(singular = "an $singular")
     } else {
         copy(singular = "a $singular")
     }
 }
 
-fun String.toPlural(): String {
+fun String.plural(): String {
     val lastLetter = lowercase()[length-1]
     val penultimate = lowercase()[length-2]
     if (lastLetter == 'y' && !listVowels.contains(penultimate.toString())) {
@@ -30,10 +35,10 @@ val listVowels = listOf(
 
 
 
-fun List<String>.toPlural(): List<String> {
+fun List<String>.plural(): List<String> {
     val list = mutableListOf<String>()
     for (item in this) {
-        list.add(item.toPlural())
+        list.add(item.plural())
     }
     return list
 }

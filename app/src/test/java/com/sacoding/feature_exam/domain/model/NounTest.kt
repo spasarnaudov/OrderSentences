@@ -17,6 +17,18 @@ class NounTest {
         println(apple.plural)
         assert(apple.singular == "an apple")
         assert(apple.plural == "apples")
+
+        val table = Noun("table").addArticle(true)
+        println(table.singular)
+        println(table.plural)
+        assert(table.singular == "the table")
+        assert(table.plural == "the tables")
+
+        val man = Noun("man", "men").addArticle(true)
+        println(man.singular)
+        println(man.plural)
+        assert(man.singular == "the man")
+        assert(man.plural == "the men")
     }
 
     @Test
