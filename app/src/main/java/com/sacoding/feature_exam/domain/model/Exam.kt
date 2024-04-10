@@ -13,6 +13,7 @@ data class Exam(
     val sentenceTypes: List<SentenceType> = SentenceType.entries,
     val tenses: List<Tens>,
     val subjects: List<String>,
+    val questionWord: String = "",
     val verbs: List<Verb>,
     val prepositions: List<String> = listOf(),
     val objectVals: List<String>
@@ -31,6 +32,7 @@ fun Exam.info() : List<String> {
                                 sentenceType,
                                 tens,
                                 subject,
+                                questionWord,
                                 verb,
                                 objectVal
                             )
@@ -41,6 +43,7 @@ fun Exam.info() : List<String> {
                                     sentenceType,
                                     tens,
                                     subject,
+                                    questionWord,
                                     verb,
                                     objectVal.addPreposition(preposition)
                                 )

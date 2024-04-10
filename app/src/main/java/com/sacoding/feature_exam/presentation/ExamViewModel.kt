@@ -43,6 +43,7 @@ class ExamViewModel(
                         sentenceType,
                         tens,
                         subject,
+                        exam.questionWord,
                         verb,
                         if (exam.prepositions.isEmpty()) objectVal else objectVal.addPreposition(exam.prepositions.random())
                     )

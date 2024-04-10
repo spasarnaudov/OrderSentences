@@ -14,20 +14,21 @@ import org.junit.Test
 
 class GenerateSentenceUseCaseTest {
 
-    private fun check(sentences: List<String>, lessen: Exam): Boolean {
+    private fun check(sentences: List<String>, exam: Exam): Boolean {
         var counter = 0
-        for (sentenceType in lessen.sentenceTypes) {
-            for (tens in lessen.tenses) {
-                for (subject in lessen.subjects) {
-                    for (verb in lessen.verbs) {
-                        for (objectVal in lessen.objectVals) {
+        for (sentenceType in exam.sentenceTypes) {
+            for (tens in exam.tenses) {
+                for (subject in exam.subjects) {
+                    for (verb in exam.verbs) {
+                        for (objectVal in exam.objectVals) {
                             val sentence = GenerateSentenceUseCase().invoke(
                                 sentenceType,
                                 tens,
                                 subject,
+                                exam.questionWord,
                                 verb,
-                                if (lessen.prepositions.isEmpty()) objectVal else objectVal.addPreposition(
-                                    lessen.prepositions.random()
+                                if (exam.prepositions.isEmpty()) objectVal else objectVal.addPreposition(
+                                    exam.prepositions.random()
                                 )
                             )
                             counter++
@@ -42,19 +43,20 @@ class GenerateSentenceUseCaseTest {
         return counter == sentences.size
     }
 
-    private fun print(lessen: Exam) {
-        for (sentenceType in lessen.sentenceTypes) {
-            for (tens in lessen.tenses) {
-                for (subject in lessen.subjects) {
-                    for (verb in lessen.verbs) {
-                        for (objectVal in lessen.objectVals) {
+    private fun print(exam: Exam) {
+        for (sentenceType in exam.sentenceTypes) {
+            for (tens in exam.tenses) {
+                for (subject in exam.subjects) {
+                    for (verb in exam.verbs) {
+                        for (objectVal in exam.objectVals) {
                             val sentence = GenerateSentenceUseCase().invoke(
                                 sentenceType,
                                 tens,
                                 subject,
+                                exam.questionWord,
                                 verb,
-                                if (lessen.prepositions.isEmpty()) objectVal else objectVal.addPreposition(
-                                    lessen.prepositions.random()
+                                if (exam.prepositions.isEmpty()) objectVal else objectVal.addPreposition(
+                                    exam.prepositions.random()
                                 )
                             )
                             println("\"$sentence\",")
@@ -67,7 +69,7 @@ class GenerateSentenceUseCaseTest {
 
     private fun whereAreYouLiveLessen(tens: Tens) : Exam {
         return Exam(
-            name = R.string.where_are_you_from,
+            name = R.string.i_am_from_bulgaria,
             level = Level.BEGINNER,
             sentenceTypes = SentenceType.entries,
             tenses = listOf(tens),
@@ -151,7 +153,7 @@ class GenerateSentenceUseCaseTest {
             "is Emily from Australia?",
         )
         val lessen = Exam(
-            name = R.string.where_are_you_from,
+            name = R.string.i_am_from_bulgaria,
             level = Level.BEGINNER,
             sentenceTypes = SentenceType.entries,
             tenses = listOf(Tens.PRESENT_SIMPLE),
@@ -198,7 +200,7 @@ class GenerateSentenceUseCaseTest {
             "is Emily Australian?",
         )
         val lessen = Exam(
-            name = R.string.she_is_american,
+            name = R.string.i_am_bulgarian,
             level = Level.BEGINNER,
             sentenceTypes = SentenceType.entries,
             tenses = listOf(Tens.PRESENT_SIMPLE),

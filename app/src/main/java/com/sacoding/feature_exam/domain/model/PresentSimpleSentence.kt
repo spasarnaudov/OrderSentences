@@ -14,6 +14,7 @@ import com.sacoding.feature_exam.data.data_source.Verbs
 
 class PresentSimpleSentence(
     private val subject: String,
+    private val questionWord: String,
     private val verb: Verb,
     private val objectVal: String,
     private val prepositionalPhrase: String = "",
@@ -47,8 +48,20 @@ class PresentSimpleSentence(
      */
     override fun question(): String {
         if (verb == Verbs.toBe) {
-            return "${toBe(subject)} $subject $objectVal?"
+            return buildString {
+                if (questionWord.isNotBlank()) {
+                    append(questionWord).append(" ")
+                }
+                append(toBe(subject)).append(" ")
+                append(subject).append(" ")
+                append(objectVal).append("?")
+            }
         }
-        return "${Verbs.`do`.getSingularPresentTenseForm(subject)} $subject ${verb.baseForm} $objectVal?"
+        return buildString {
+            append(Verbs.`do`.getSingularPresentTenseForm(subject)).append(" ")
+            append(subject).append(" ")
+            append(verb.baseForm).append(" ")
+            append(objectVal).append("?")
+        }
     }
 }
