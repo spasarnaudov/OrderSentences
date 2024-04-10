@@ -4,6 +4,7 @@ import com.sacoding.feature_exam.R
 import com.sacoding.feature_exam.domain.Level
 import com.sacoding.feature_exam.domain.Tens
 import com.sacoding.feature_exam.domain.model.Exam
+import com.sacoding.feature_exam.domain.model.Verb
 import com.sacoding.feature_exam.domain.model.addArticle
 import com.sacoding.feature_exam.domain.model.addPossessiveAdjective
 import com.sacoding.feature_exam.domain.model.plural
@@ -92,6 +93,15 @@ object StudentBook {
                 subjects = Pronouns.Demonstratives.all.plus(Pronouns.Demonstratives.name),
                 verbs = listOf(Verbs.toBe),
                 objectVals = Pronouns.PossessivePronoun.all.plus(Pronouns.PossessivePronoun.name),
+            ),
+            Exam(
+                name = R.string.birds,
+                level = Level.BEGINNER,
+                tenses = listOf(Tens.PRESENT_SIMPLE),
+                subjects = Subjects.birds,
+                verbs = listOf(Verb("fly", "flew", "flown")),
+                prepositions = Prepositions.directionTowardsASpecificDestination,
+                objectVals = Objects.countries,
             ),
         )
     }
