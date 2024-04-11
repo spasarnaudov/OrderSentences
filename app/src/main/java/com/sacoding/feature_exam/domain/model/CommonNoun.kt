@@ -37,18 +37,14 @@ fun List<String>.plural(): List<String> {
     return list
 }
 
-fun String.addArticle(): String {
-    return if (listVowels.contains(this.lowercase()[0].toString())) {
-        "an $this"
-    } else {
-        "a $this"
-    }
-}
-
-fun List<String>.addArticle(): List<String> {
-    val list = mutableListOf<String>()
+fun List<CommonNoun>.addArticle(article: Article): List<CommonNoun> {
+    val list = mutableListOf<CommonNoun>()
     for (item in this) {
-        list.add(item.addArticle())
+        if (item is SingularNoun) {
+            list.add(item.copy(article = article))
+        } else if (item is PluralNoun) {
+            list.add(item.copy(article = article))
+        }
     }
     return list
 }

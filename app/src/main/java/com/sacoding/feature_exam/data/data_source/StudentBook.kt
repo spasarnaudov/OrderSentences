@@ -1,6 +1,7 @@
 package com.sacoding.feature_exam.data.data_source
 
 import com.sacoding.feature_exam.R
+import com.sacoding.feature_exam.domain.Article
 import com.sacoding.feature_exam.domain.Level
 import com.sacoding.feature_exam.domain.SentenceType
 import com.sacoding.feature_exam.domain.Tens
@@ -8,6 +9,7 @@ import com.sacoding.feature_exam.domain.model.Exam
 import com.sacoding.feature_exam.domain.model.SingularPronoun
 import com.sacoding.feature_exam.domain.model.NounAdapter
 import com.sacoding.feature_exam.domain.model.addArticle
+//import com.sacoding.feature_exam.domain.model.addArticle
 import com.sacoding.feature_exam.domain.model.addPossessiveAdjective
 import com.sacoding.feature_exam.domain.model.plural
 
@@ -35,7 +37,7 @@ object StudentBook {
                         .plus(Pronouns.names)
                 ).build(),
                 verbs = listOf(Verbs.toBe),
-                objectVals = Objects.jobs.addArticle(),
+                objectVals = NounAdapter(Nouns.jobs.addArticle(Article.INDEFINITE)).build(),
             ),
             Exam(
                 name = R.string.i_am_from_bulgaria,
@@ -90,20 +92,20 @@ object StudentBook {
                 verbs = listOf(Verbs.toBe),
                 objectVals = listOf("arriving"),
             ),
-            Exam(
-                name = R.string.why_am_i_a_teacher,
-                level = Level.BEGINNER,
-                sentenceTypes = listOf(SentenceType.QUESTION),
-                tenses = listOf(Tens.PRESENT_SIMPLE),
-                subjects = NounAdapter(
-                    Pronouns.singular
-                        .plus(Pronouns.plural)
-                        .plus(Pronouns.names)
-                ).build(),
-                questionWord = "Why",
-                verbs = listOf(Verbs.toBe),
-                objectVals = Objects.jobs.addArticle(),
-            ),
+//            Exam(
+//                name = R.string.why_am_i_a_teacher,
+//                level = Level.BEGINNER,
+//                sentenceTypes = listOf(SentenceType.QUESTION),
+//                tenses = listOf(Tens.PRESENT_SIMPLE),
+//                subjects = NounAdapter(
+//                    Pronouns.singular
+//                        .plus(Pronouns.plural)
+//                        .plus(Pronouns.names)
+//                ).build(),
+//                questionWord = "Why",
+//                verbs = listOf(Verbs.toBe),
+//                objectVals = Objects.jobs.addArticle(),
+//            ),
             Exam(
                 name = R.string.it_is_mine,
                 level = Level.BEGINNER,
@@ -192,32 +194,32 @@ object StudentBook {
     }
 
     object Elementary {
-        val exams = listOf(
-            Exam(
-                name = R.string.the_room_is_small,
-                level = Level.ELEMENTARY,
-                tenses = listOf(Tens.PRESENT_SIMPLE, Tens.PAST_SIMPLE),
-                subjects = Objects.home.addArticle(),
-                verbs = listOf(Verbs.toBe),
-                objectVals = Adjectives.size,
-            ),
-            Exam(
-                name = R.string.the_soup_was_delicious,
-                level = Level.ELEMENTARY,
-                tenses = listOf(Tens.PRESENT_SIMPLE, Tens.PAST_SIMPLE),
-                subjects = Objects.food.addArticle(),
-                verbs = listOf(Verbs.toBe),
-                objectVals = Adjectives.taste,
-            ),
-            Exam(
-                name = R.string.this_hat_is_beautiful,
-                level = Level.ELEMENTARY,
-                tenses = listOf(Tens.PRESENT_SIMPLE, Tens.PAST_SIMPLE),
-                subjects = Objects.food.addArticle(),
-                verbs = listOf(Verbs.toBe),
-                objectVals = Adjectives.taste,
-            ),
-        )
+//        val exams = listOf(
+//            Exam(
+//                name = R.string.the_room_is_small,
+//                level = Level.ELEMENTARY,
+//                tenses = listOf(Tens.PRESENT_SIMPLE, Tens.PAST_SIMPLE),
+//                subjects = Objects.home.addArticle(),
+//                verbs = listOf(Verbs.toBe),
+//                objectVals = Adjectives.size,
+//            ),
+//            Exam(
+//                name = R.string.the_soup_was_delicious,
+//                level = Level.ELEMENTARY,
+//                tenses = listOf(Tens.PRESENT_SIMPLE, Tens.PAST_SIMPLE),
+//                subjects = Objects.food.addArticle(),
+//                verbs = listOf(Verbs.toBe),
+//                objectVals = Adjectives.taste,
+//            ),
+//            Exam(
+//                name = R.string.this_hat_is_beautiful,
+//                level = Level.ELEMENTARY,
+//                tenses = listOf(Tens.PRESENT_SIMPLE, Tens.PAST_SIMPLE),
+//                subjects = Objects.food.addArticle(),
+//                verbs = listOf(Verbs.toBe),
+//                objectVals = Adjectives.taste,
+//            ),
+//        )
     }
 
     object Intermediate {

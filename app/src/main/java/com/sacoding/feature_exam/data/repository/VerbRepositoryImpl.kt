@@ -9,7 +9,7 @@ class VerbRepositoryImpl: VerbRepository {
     override suspend fun getExam(level: Level, index: Int): List<Exam> {
         return when (level) {
             Level.BEGINNER -> StudentBook.Beginner.exams
-            Level.ELEMENTARY -> StudentBook.Elementary.exams
+            Level.ELEMENTARY -> StudentBook.Beginner.exams
             Level.INTERMEDIATE -> StudentBook.Intermediate.exams
             Level.UPPER_INTERMEDIATE -> StudentBook.UpperIntermediate.exams
             Level.ADVANCED -> StudentBook.Advanced.exams

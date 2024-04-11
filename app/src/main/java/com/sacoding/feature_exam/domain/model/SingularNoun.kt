@@ -2,7 +2,7 @@ package com.sacoding.feature_exam.domain.model
 
 import com.sacoding.feature_exam.domain.Article
 
-class SingularNoun(
+data class SingularNoun(
     private val article: Article = Article.NONE,
     private val adjective: Adjective = BLANK_ADJECTIVE,
     private val value: String

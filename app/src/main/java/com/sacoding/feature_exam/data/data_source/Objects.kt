@@ -78,24 +78,6 @@ object Objects {
         "Zurich"
     )
 
-    val jobs = listOf(
-        "doctor",
-        "nurse",
-        "dentist",
-        "software developer",
-        "designer",
-        "teacher",
-        "professor",
-        "mechanic",
-        "electrician",
-        "accountant",
-        "musician",
-        "actor",
-        "chef",
-        "lawyer",
-        "biologist",
-    )
-
     val phoneNumbers = listOf(
         "05468756",
         "08786558",
