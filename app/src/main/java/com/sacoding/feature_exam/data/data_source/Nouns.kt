@@ -32,4 +32,15 @@ object Nouns {
         SingularNoun(value = "biologist"),
     )
 
+    val thinks = listOf(
+        SingularNoun(value = "book"),
+        SingularNoun(value = "laptop"),
+        SingularNoun(value = "phone"),
+        SingularNoun(value = "car"),
+        SingularNoun(value = "house"),
+        SingularNoun(value = "key"),
+        SingularNoun(value = "desk"),
+        SingularNoun(value = "pen"),
+    )
+
 }

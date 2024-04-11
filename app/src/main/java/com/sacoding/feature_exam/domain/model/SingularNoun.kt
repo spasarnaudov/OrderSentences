@@ -22,4 +22,16 @@ data class SingularNoun(
             "a"
         }
     }
+
+    fun toPlural(): PluralNoun {
+        return PluralNoun(article, adjective, value)
+    }
+}
+
+fun List<SingularNoun>.plural(): List<PluralNoun> {
+    val list = mutableListOf<PluralNoun>()
+    for (item in this) {
+        list.add(item.toPlural())
+    }
+    return list
 }

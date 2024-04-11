@@ -23,8 +23,6 @@ object Adjectives {
             Adjective(possessiveDeterminer = "John's"),
             Adjective(possessiveDeterminer = "Emily's"),
         )
-
-        val all = singular.plus(plural)
     }
 
     val size = listOf(

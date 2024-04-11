@@ -9,7 +9,6 @@ import com.sacoding.feature_exam.domain.model.Exam
 import com.sacoding.feature_exam.domain.model.SingularPronoun
 import com.sacoding.feature_exam.domain.model.NounAdapter
 import com.sacoding.feature_exam.domain.model.addArticle
-//import com.sacoding.feature_exam.domain.model.addArticle
 import com.sacoding.feature_exam.domain.model.addPossessiveAdjective
 import com.sacoding.feature_exam.domain.model.plural
 
@@ -125,11 +124,13 @@ object StudentBook {
                 tenses = listOf(Tens.PRESENT_SIMPLE),
                 subjects = NounAdapter(Pronouns.Demonstratives.singular).build(),
                 verbs = listOf(Verbs.toBe),
-                objectVals = Objects.thinks.addPossessiveAdjective(
-                    Adjectives.Possessive.all.plus(
-                        Adjectives.Possessive.name
-                    )
-                ),
+                objectVals = NounAdapter(
+                    Nouns.thinks
+                        .addPossessiveAdjective(
+                        Adjectives.Possessive.singular
+                            .plus(Adjectives.Possessive.plural)
+                            .plus(Adjectives.Possessive.name))
+                ).build(),
             ),
             Exam(
                 name = R.string.these_are_my_keys,
@@ -137,8 +138,14 @@ object StudentBook {
                 tenses = listOf(Tens.PRESENT_SIMPLE),
                 subjects = NounAdapter(Pronouns.Demonstratives.plural).build(),
                 verbs = listOf(Verbs.toBe),
-                objectVals = Objects.thinks.plural()
-                    .addPossessiveAdjective(Adjectives.Possessive.all.plus(Adjectives.Possessive.name)),
+                objectVals = NounAdapter(
+                    Nouns.thinks
+                        .plural()
+                        .addPossessiveAdjective(
+                        Adjectives.Possessive.singular
+                            .plus(Adjectives.Possessive.plural)
+                            .plus(Adjectives.Possessive.name))
+                ).build(),
             ),
 //            Exam(
 //                name = R.string.where_do_you_live,
