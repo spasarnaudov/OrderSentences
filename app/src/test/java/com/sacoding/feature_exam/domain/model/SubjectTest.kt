@@ -1,5 +1,6 @@
 package com.sacoding.feature_exam.domain.model
 
+import com.sacoding.feature_exam.domain.Article
 import org.junit.Test
 
 class SubjectTest {
@@ -7,74 +8,68 @@ class SubjectTest {
     @Test
     fun testAYoungBoy() {
         val boy = SingularNoun("boy")
-        val aYoungBoy = Subject(
-            article = boy.getArticle(),
-            adjective = Adjective(age = "young").build(),
-            noun = boy.value,
-        )
-        println(aYoungBoy.build())
+        val youngBoy = createYoungBoy(noun = boy)
+        assert(youngBoy.build() == "young boy")
+
+        val aYoungBoy = createYoungBoy(article = Article.INDEFINITE, noun = boy)
         assert(aYoungBoy.build() == "a young boy")
 
-        val youngBoy = Subject(
-            article = boy.getArticle(true),
-            adjective = Adjective(age = "young").build(),
-            noun = boy.value,
-        )
-        println(youngBoy.build())
-        assert(youngBoy.build() == "the young boy")
+        val theYoungBoy = createYoungBoy(article = Article.DEFINITE, noun = boy)
+        assert(theYoungBoy.build() == "the young boy")
 
         val boys = PluralNoun("boy")
-        val aYoungBoys = Subject(
-            article = boys.getArticle(),
-            adjective = Adjective(age = "young").build(),
-            noun = boys.value,
-        )
-        println(aYoungBoys.build())
+        val youngBoys = createYoungBoy(noun = boys)
+        assert(youngBoys.build() == "young boys")
+
+        val aYoungBoys = createYoungBoy(article = Article.INDEFINITE, noun = boys)
         assert(aYoungBoys.build() == "young boys")
 
-        val youngBoys = Subject(
-            article = boys.getArticle(true),
-            adjective = Adjective(age = "young").build(),
-            noun = boys.value,
+        val theYoungBoys = createYoungBoy(article = Article.DEFINITE, noun = boys)
+        assert(theYoungBoys.build() == "the young boys")
+    }
+
+    private fun createYoungBoy(article: Article = Article.NONE, noun: Noun): Subject {
+        val youngBoy = Subject(
+            article = article,
+            adjective = Adjective(age = "young"),
+            noun = noun,
         )
-        println(youngBoys.build())
-        assert(youngBoys.build() == "the young boys")
+        println(youngBoy.build())
+        return youngBoy
     }
 
     @Test
     fun testUnTastyApple() {
         val apple = SingularNoun("apple")
-        val aYoungBoy = Subject(
-            article = apple.getArticle(),
-            adjective = Adjective(age = "tasty").build(),
-            noun = apple.value,
-        )
-        println(aYoungBoy.build())
-        assert(aYoungBoy.build() == "an tasty apple")
 
-        val youngBoy = Subject(
-            article = apple.getArticle(true),
-            adjective = Adjective(age = "tasty").build(),
-            noun = apple.value,
-        )
-        println(youngBoy.build())
-        assert(youngBoy.build() == "the tasty apple")
+        val tastyApple = createTastyApple(noun = apple)
+        assert(tastyApple.build() == "tasty apple")
+
+        val anTastyApple = createTastyApple(article = Article.INDEFINITE, noun = apple)
+        assert(anTastyApple.build() == "an tasty apple")
+
+        val theTastyApple = createTastyApple(article = Article.DEFINITE, noun = apple)
+        assert(theTastyApple.build() == "the tasty apple")
 
         val apples = PluralNoun("apple")
-        val aYoungBoys = Subject(
-            article = apples.getArticle(),
-            adjective = Adjective(age = "tasty").build(),
-            noun = apples.value,
-        )
-        println(aYoungBoys.build())
-        assert(aYoungBoys.build() == "tasty apples")
 
-        val youngBoys = Subject(
-            article = apples.getArticle(true),
-            adjective = Adjective(age = "tasty").build(),
-            noun = apples.value,
+        val tastyApples = createTastyApple(noun = apples)
+        assert(tastyApples.build() == "tasty apples")
+
+        val anTastyApples = createTastyApple(article = Article.INDEFINITE, noun = apples)
+        assert(anTastyApples.build() == "tasty apples")
+
+        val theTastyApples = createTastyApple(article = Article.DEFINITE, noun = apples)
+        assert(theTastyApples.build() == "the tasty apples")
+    }
+
+    private fun createTastyApple(article: Article = Article.NONE, noun: Noun): Subject {
+        val tastyApple = Subject(
+            article = article,
+            adjective = Adjective(age = "tasty"),
+            noun = noun,
         )
-        println(youngBoys.build())
-        assert(youngBoys.build() == "the tasty apples")
+        println(tastyApple.build())
+        return tastyApple
     }
 }

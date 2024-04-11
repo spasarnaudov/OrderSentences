@@ -1,19 +1,24 @@
 package com.sacoding.feature_exam.domain.model
 
+import com.sacoding.feature_exam.domain.Article
+
 data class Subject(
-    private val article: String = "",
-    private val adjective: String = "",
-    private val noun: String,
+    private val article: Article = Article.NONE,
+    private val adjective: Adjective = BLANK_ADJECTIVE,
+    private val noun: Noun,
 ) {
     fun build(): String {
         return buildString {
-            if (article.isNotBlank()) {
-                append(article).append(" ")
+            if (article != Article.NONE) {
+                val articleVal = noun.getArticle(article)
+                if (articleVal.isNotBlank()) {
+                    append(articleVal).append(" ")
+                }
             }
             if (adjective.isNotBlank()) {
-                append(adjective).append(" ")
+                append(adjective.build()).append(" ")
             }
-            append(noun)
+            append(noun.value)
         }
     }
 }

@@ -1,9 +1,11 @@
 package com.sacoding.feature_exam.domain.model
 
+import com.sacoding.feature_exam.domain.Article
+
 abstract class Noun(
     val value: String,
 ) {
-    abstract fun getArticle(definiteArticle: Boolean = false): String
+    abstract fun getArticle(article: Article = Article.NONE): String
 }
 
 val listVowels = listOf(
