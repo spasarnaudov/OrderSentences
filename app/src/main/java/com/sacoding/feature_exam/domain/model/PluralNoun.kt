@@ -3,9 +3,13 @@ package com.sacoding.feature_exam.domain.model
 import com.sacoding.feature_exam.domain.Article
 
 class PluralNoun(
-    singular: String
+    private val article: Article = Article.NONE,
+    private val adjective: Adjective = BLANK_ADJECTIVE,
+    private val value: String
 ): CommonNoun(
-    value = singular.plural()
+    article = article,
+    adjective = adjective,
+    value = value.plural()
 ) {
     override fun getArticle(article: Article): String {
         return if (article == Article.DEFINITE) {

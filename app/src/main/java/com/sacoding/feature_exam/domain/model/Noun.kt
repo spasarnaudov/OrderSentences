@@ -1,3 +1,5 @@
 package com.sacoding.feature_exam.domain.model
 
-open class Noun
+abstract class Noun {
+    abstract fun build(): String
+}

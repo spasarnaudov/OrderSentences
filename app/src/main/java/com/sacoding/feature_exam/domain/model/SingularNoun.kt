@@ -3,8 +3,12 @@ package com.sacoding.feature_exam.domain.model
 import com.sacoding.feature_exam.domain.Article
 
 class SingularNoun(
-    value: String
+    private val article: Article = Article.NONE,
+    private val adjective: Adjective = BLANK_ADJECTIVE,
+    private val value: String
 ): CommonNoun(
+    article = article,
+    adjective = adjective,
     value = value
 ) {
     override fun getArticle(article: Article): String {

@@ -3,9 +3,26 @@ package com.sacoding.feature_exam.domain.model
 import com.sacoding.feature_exam.domain.Article
 
 abstract class CommonNoun(
-    val value: String,
+    private val article: Article = Article.NONE,
+    private val adjective: Adjective = BLANK_ADJECTIVE,
+    private val value: String,
 ): Noun() {
     abstract fun getArticle(article: Article = Article.NONE): String
+
+    override fun build(): String {
+        return buildString {
+            if (article != Article.NONE) {
+                val articleVal = getArticle(article)
+                if (articleVal.isNotBlank()) {
+                    append(articleVal).append(" ")
+                }
+            }
+            if (adjective.isNotBlank()) {
+                append(adjective.build()).append(" ")
+            }
+            append(value)
+        }
+    }
 }
 
 val listVowels = listOf(
