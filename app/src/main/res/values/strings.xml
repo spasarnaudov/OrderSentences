@@ -23,6 +23,14 @@
 	<string name="this_is_my_book">This is my book.</string>
 	<string name="these_are_my_keys">These are my keys.</string>
 
+	<!--	Beginner exam titles	-->
+	<string name="the_room_is_small">The room is small.</string>
+	<string name="the_soup_was_delicious">The soup was delicious.</string>
+	<string name="this_hat_is_beautiful">This hat is beautiful.</string>
+
+
+
+
 	<string name="where_do_you_live">Where do you live?</string>
 	<string name="she_love_john">She love John?</string>
 	<string name="what_is_your_phone_number">What is your phone number?</string>

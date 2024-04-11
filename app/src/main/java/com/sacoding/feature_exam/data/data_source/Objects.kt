@@ -117,6 +117,15 @@ object Objects {
     val food = listOf(
         "fish",
         "meat",
-        "vegetables"
+        "soup",
+    )
+
+    val home = listOf(
+        "kitchen",
+        "bedroom",
+        "dining room",
+        "house",
+        "apartment",
+        "terrace",
     )
 }

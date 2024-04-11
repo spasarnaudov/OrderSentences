@@ -157,29 +157,28 @@ object StudentBook {
     object Elementary {
         val exams = listOf(
             Exam(
-                name = R.string.distances,
+                name = R.string.the_room_is_small,
                 level = Level.ELEMENTARY,
                 tenses = listOf(Tens.PRESENT_SIMPLE, Tens.PAST_SIMPLE),
-                subjects = listOf(
-                    "Birmingham"
-                ),
+                subjects = Objects.home.addArticle(),
                 verbs = listOf(Verbs.toBe),
-                prepositions = listOf(
-                    "250 kilometres from",
-                    "250 kilometres away from",
-                ),
-                objectVals = listOf(
-                    "London"
-                ),
+                objectVals = Adjectives.size,
             ),
             Exam(
-                name = R.string.i_am_from_bulgaria,
+                name = R.string.the_soup_was_delicious,
                 level = Level.ELEMENTARY,
-                tenses = listOf(Tens.PRESENT_SIMPLE),
-                subjects = Pronouns.Subject.singular.plus(Pronouns.Subject.plural).plus(Pronouns.Subject.names),
+                tenses = listOf(Tens.PRESENT_SIMPLE, Tens.PAST_SIMPLE),
+                subjects = Objects.food.addArticle(),
                 verbs = listOf(Verbs.toBe),
-                prepositions = Prepositions.originOrSourceOfMovement,
-                objectVals = Objects.countries,
+                objectVals = Adjectives.taste,
+            ),
+            Exam(
+                name = R.string.this_hat_is_beautiful,
+                level = Level.ELEMENTARY,
+                tenses = listOf(Tens.PRESENT_SIMPLE, Tens.PAST_SIMPLE),
+                subjects = Objects.food.addArticle(),
+                verbs = listOf(Verbs.toBe),
+                objectVals = Adjectives.taste,
             ),
         )
     }
