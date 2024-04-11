@@ -4,7 +4,7 @@ import com.sacoding.feature_exam.domain.Article
 
 class PluralNoun(
     singular: String
-): Noun(
+): CommonNoun(
     value = singular.plural()
 ) {
     override fun getArticle(article: Article): String {

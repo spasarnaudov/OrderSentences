@@ -7,7 +7,7 @@ class PluralNounTest {
 
     @Test
     fun test() {
-        val boys = PluralNoun("boy")
+        val boys = PluralNoun(singular = "boy")
         println(boys.getArticle(Article.INDEFINITE))
         assert(boys.getArticle(Article.INDEFINITE) == "")
         println(boys.value)

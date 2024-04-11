@@ -9,16 +9,20 @@ data class Subject(
 ) {
     fun build(): String {
         return buildString {
-            if (article != Article.NONE) {
-                val articleVal = noun.getArticle(article)
-                if (articleVal.isNotBlank()) {
-                    append(articleVal).append(" ")
+            if (noun is CommonNoun) {
+                if (article != Article.NONE) {
+                    val articleVal = noun.getArticle(article)
+                    if (articleVal.isNotBlank()) {
+                        append(articleVal).append(" ")
+                    }
                 }
+                if (adjective.isNotBlank()) {
+                    append(adjective.build()).append(" ")
+                }
+                append(noun.value)
+            } else if (noun is Pronoun) {
+                append(noun.value)
             }
-            if (adjective.isNotBlank()) {
-                append(adjective.build()).append(" ")
-            }
-            append(noun.value)
         }
     }
 }

@@ -28,7 +28,7 @@ class SubjectTest {
         assert(theYoungBoys.build() == "the young boys")
     }
 
-    private fun createYoungBoy(article: Article = Article.NONE, noun: Noun): Subject {
+    private fun createYoungBoy(article: Article = Article.NONE, noun: CommonNoun): Subject {
         val youngBoy = Subject(
             article = article,
             adjective = Adjective(age = "young"),
@@ -63,7 +63,7 @@ class SubjectTest {
         assert(theTastyApples.build() == "the tasty apples")
     }
 
-    private fun createTastyApple(article: Article = Article.NONE, noun: Noun): Subject {
+    private fun createTastyApple(article: Article = Article.NONE, noun: CommonNoun): Subject {
         val tastyApple = Subject(
             article = article,
             adjective = Adjective(age = "tasty"),
