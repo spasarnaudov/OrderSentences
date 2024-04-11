@@ -1,30 +1,69 @@
 package com.sacoding.feature_exam.data.data_source
 
+import com.sacoding.feature_exam.domain.model.PluralPronoun
+import com.sacoding.feature_exam.domain.model.SingularPronoun
+import com.sacoding.feature_exam.domain.model.SubjectPronoun
+
 object Pronouns {
 
-    object Subject {
-        val names = listOf(
-            "John",
-            "Emily",
-        )
+    val singular = listOf(
+        SingularPronoun(SingularPronoun.Values.I),
+        SingularPronoun(SingularPronoun.Values.YOU),
+        SingularPronoun(SingularPronoun.Values.HE),
+        SingularPronoun(SingularPronoun.Values.SHE),
+        SingularPronoun(SingularPronoun.Values.IT),
+    )
 
+    val plural = listOf(
+        PluralPronoun(PluralPronoun.Values.WE),
+        PluralPronoun(PluralPronoun.Values.YOU),
+        PluralPronoun(PluralPronoun.Values.THEY),
+    )
+
+    val names = listOf(
+        SubjectPronoun("John"),
+        SubjectPronoun("Emily")
+    )
+
+    object Demonstratives {
         val singular = listOf(
-            "I",
-            "you",
-            "he",
-            "she",
-            "it",
+            SubjectPronoun("this"),     //singular pronoun to talk about people or things near us
+            SubjectPronoun("that"),     //singular pronoun to talk about things that are not near us
         )
 
         val plural = listOf(
-            "we",
-            "you",
-            "they",
+            SubjectPronoun("these"),    //plural pronoun to talk about people or things near us
+            SubjectPronoun("those"),    //plural pronoun to talk about things that are not near us
         )
 
-        val all = singular.plus(plural)
+        val name = listOf(
+            SubjectPronoun("John's"),
+            SubjectPronoun("Emily's"),
+        )
     }
 
+    object Possessive {
+        val singular = listOf(
+            SubjectPronoun("mine"),
+            SubjectPronoun("yours"),
+            SubjectPronoun("his"),
+            SubjectPronoun("hers"),
+//            "-",
+        )
+
+        val plural = listOf(
+            SubjectPronoun("ours"),
+            SubjectPronoun("yours"),
+            SubjectPronoun("theirs"),
+        )
+
+        val name = listOf(
+            SubjectPronoun("John's"),
+            SubjectPronoun("Emily's"),
+        )
+    }
+
+    //TODO
     object Objects {
         val singular = listOf(
             "me",
@@ -39,73 +78,6 @@ object Pronouns {
             "you",
             "them",
         )
-
-        val all = singular.plus(plural)
-    }
-
-    object PossessiveAdjective {
-        val singular = listOf(
-            "my",
-            "your",
-            "his",
-            "her",
-            "its",
-        )
-
-        val plural = listOf(
-            "our",
-            "your",
-            "their",
-        )
-
-        val name = listOf(
-            "John's",
-            "Emily's",
-        )
-
-        val all = singular.plus(plural)
-    }
-
-    object PossessivePronoun {
-        val singular = listOf(
-            "mine",
-            "yours",
-            "his",
-            "hers",
-//            "-",
-        )
-
-        val plural = listOf(
-            "ours",
-            "yours",
-            "theirs",
-        )
-
-        val name = listOf(
-            "John's",
-            "Emily's",
-        )
-
-        val all = singular.plus(plural)
-    }
-
-    object Demonstratives {
-        val singular = listOf(
-            "this",     //singular pronoun to talk about people or things near us
-            "that",     //singular pronoun to talk about things that are not near us
-        )
-
-        val plural = listOf(
-            "these",    //plural pronoun to talk about people or things near us
-            "those",    //plural pronoun to talk about things that are not near us
-        )
-
-        val name = listOf(
-            "John's",
-            "Emily's",
-        )
-
-        val all = singular.plus(plural)
     }
 
     val reciprocal = listOf(

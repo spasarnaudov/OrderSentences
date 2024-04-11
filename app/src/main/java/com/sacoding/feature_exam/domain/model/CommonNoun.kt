@@ -53,11 +53,11 @@ fun List<String>.addArticle(): List<String> {
     return list
 }
 
-fun List<String>.addPossessiveAdjective(adjectives: List<String>): List<String> {
+fun List<String>.addPossessiveAdjective(adjectives: List<Adjective>): List<String> {
     val list = mutableListOf<String>()
     for (item in this) {
         for (adjective in adjectives) {
-            list.add("$adjective $item")
+            list.add("${adjective.build()} $item")
         }
     }
     return list

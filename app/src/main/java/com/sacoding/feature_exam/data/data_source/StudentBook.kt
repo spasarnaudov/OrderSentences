@@ -5,6 +5,8 @@ import com.sacoding.feature_exam.domain.Level
 import com.sacoding.feature_exam.domain.SentenceType
 import com.sacoding.feature_exam.domain.Tens
 import com.sacoding.feature_exam.domain.model.Exam
+import com.sacoding.feature_exam.domain.model.SingularPronoun
+import com.sacoding.feature_exam.domain.model.NounAdapter
 import com.sacoding.feature_exam.domain.model.addArticle
 import com.sacoding.feature_exam.domain.model.addPossessiveAdjective
 import com.sacoding.feature_exam.domain.model.plural
@@ -16,7 +18,11 @@ object StudentBook {
                 name = R.string.i_am_bulgarian,
                 level = Level.BEGINNER,
                 tenses = listOf(Tens.PRESENT_SIMPLE),
-                subjects = Pronouns.Subject.singular.plus(Pronouns.Subject.plural).plus(Pronouns.Subject.names),
+                subjects = NounAdapter(
+                    Pronouns.singular
+                        .plus(Pronouns.plural)
+                        .plus(Pronouns.names)
+                ).build(),
                 verbs = listOf(Verbs.toBe),
                 objectVals = Objects.nationals,
             ),
@@ -24,7 +30,10 @@ object StudentBook {
                 name = R.string.i_am_an_programmer,
                 level = Level.BEGINNER,
                 tenses = listOf(Tens.PRESENT_SIMPLE),
-                subjects = Pronouns.Subject.singular.plus(Pronouns.Subject.names),
+                subjects = NounAdapter(
+                    Pronouns.singular
+                        .plus(Pronouns.names)
+                ).build(),
                 verbs = listOf(Verbs.toBe),
                 objectVals = Objects.jobs.addArticle(),
             ),
@@ -32,7 +41,10 @@ object StudentBook {
                 name = R.string.i_am_from_bulgaria,
                 level = Level.BEGINNER,
                 tenses = listOf(Tens.PRESENT_SIMPLE),
-                subjects = Pronouns.Subject.singular.plus(Pronouns.Subject.plural).plus(Pronouns.Subject.names),
+                subjects = NounAdapter(
+                    Pronouns.singular
+                        .plus(Pronouns.names)
+                ).build(),
                 verbs = listOf(Verbs.toBe),
                 prepositions = Prepositions.originOrSourceOfMovement,
                 objectVals = Objects.countries,
@@ -42,7 +54,11 @@ object StudentBook {
                 level = Level.BEGINNER,
                 sentenceTypes = listOf(SentenceType.QUESTION),
                 tenses = listOf(Tens.PRESENT_SIMPLE),
-                subjects = Pronouns.Subject.all,
+                subjects = NounAdapter(
+                    Pronouns.singular
+                        .plus(Pronouns.plural)
+                        .plus(Pronouns.names)
+                ).build(),
                 questionWord = "Who",
                 verbs = listOf(Verbs.toBe),
                 objectVals = listOf("meeting"),
@@ -52,7 +68,11 @@ object StudentBook {
                 level = Level.BEGINNER,
                 sentenceTypes = listOf(SentenceType.QUESTION),
                 tenses = listOf(Tens.PRESENT_SIMPLE),
-                subjects = Pronouns.Subject.all,
+                subjects = NounAdapter(
+                    Pronouns.singular
+                        .plus(Pronouns.plural)
+                        .plus(Pronouns.names)
+                ).build(),
                 questionWord = "Where",
                 verbs = listOf(Verbs.toBe),
                 objectVals = listOf("from"),
@@ -62,7 +82,10 @@ object StudentBook {
                 level = Level.BEGINNER,
                 sentenceTypes = listOf(SentenceType.QUESTION),
                 tenses = listOf(Tens.PRESENT_SIMPLE),
-                subjects = Pronouns.Subject.all,
+                subjects = NounAdapter(
+                    Pronouns.singular.plus(Pronouns.plural)
+                        .plus(Pronouns.names)
+                ).build(),
                 questionWord = "When",
                 verbs = listOf(Verbs.toBe),
                 objectVals = listOf("arriving"),
@@ -72,7 +95,11 @@ object StudentBook {
                 level = Level.BEGINNER,
                 sentenceTypes = listOf(SentenceType.QUESTION),
                 tenses = listOf(Tens.PRESENT_SIMPLE),
-                subjects = Pronouns.Subject.all,
+                subjects = NounAdapter(
+                    Pronouns.singular
+                        .plus(Pronouns.plural)
+                        .plus(Pronouns.names)
+                ).build(),
                 questionWord = "Why",
                 verbs = listOf(Verbs.toBe),
                 objectVals = Objects.jobs.addArticle(),
@@ -82,25 +109,34 @@ object StudentBook {
                 level = Level.BEGINNER,
                 sentenceTypes = SentenceType.entries,
                 tenses = listOf(Tens.PRESENT_SIMPLE),
-                subjects = listOf("it"),
+                subjects = NounAdapter(SingularPronoun(SingularPronoun.Values.IT)).build(),
                 verbs = listOf(Verbs.toBe),
-                objectVals = Pronouns.PossessivePronoun.all.plus(Pronouns.PossessivePronoun.name),
+                objectVals = NounAdapter(
+                    Pronouns.Possessive.singular
+                        .plus(Pronouns.Possessive.plural)
+                        .plus(Pronouns.Possessive.name)
+                ).build(),
             ),
             Exam(
                 name = R.string.this_is_my_book,
                 level = Level.BEGINNER,
                 tenses = listOf(Tens.PRESENT_SIMPLE),
-                subjects = Pronouns.Demonstratives.singular,
+                subjects = NounAdapter(Pronouns.Demonstratives.singular).build(),
                 verbs = listOf(Verbs.toBe),
-                objectVals = Objects.thinks.addPossessiveAdjective(Pronouns.PossessiveAdjective.all.plus(Pronouns.PossessiveAdjective.name)),
+                objectVals = Objects.thinks.addPossessiveAdjective(
+                    Adjectives.Possessive.all.plus(
+                        Adjectives.Possessive.name
+                    )
+                ),
             ),
             Exam(
                 name = R.string.these_are_my_keys,
                 level = Level.BEGINNER,
                 tenses = listOf(Tens.PRESENT_SIMPLE),
-                subjects = Pronouns.Demonstratives.plural,
+                subjects = NounAdapter(Pronouns.Demonstratives.plural).build(),
                 verbs = listOf(Verbs.toBe),
-                objectVals = Objects.thinks.plural().addPossessiveAdjective(Pronouns.PossessiveAdjective.all.plus(Pronouns.PossessiveAdjective.name)),
+                objectVals = Objects.thinks.plural()
+                    .addPossessiveAdjective(Adjectives.Possessive.all.plus(Adjectives.Possessive.name)),
             ),
 //            Exam(
 //                name = R.string.where_do_you_live,
@@ -154,6 +190,7 @@ object StudentBook {
 //            ),
         )
     }
+
     object Elementary {
         val exams = listOf(
             Exam(
@@ -182,55 +219,71 @@ object StudentBook {
             ),
         )
     }
+
     object Intermediate {
         val exams = listOf(
             Exam(
                 name = R.string.they_help_each_other,
                 level = Level.INTERMEDIATE,
                 tenses = listOf(Tens.PRESENT_SIMPLE, Tens.PAST_SIMPLE),
-                subjects = Pronouns.Subject.plural,
+                subjects = NounAdapter(Pronouns.plural).build(),
                 verbs = Verbs.mutualOrReciprocalActions,
                 objectVals = Pronouns.reciprocal,
             ),
         )
     }
+
     object UpperIntermediate {
         val exams = listOf(
             Exam(
                 name = R.string.i_am_from_bulgaria,
                 level = Level.UPPER_INTERMEDIATE,
                 tenses = listOf(Tens.PRESENT_SIMPLE),
-                subjects = Pronouns.Subject.singular.plus(Pronouns.Subject.plural).plus(Pronouns.Subject.names),
+                subjects = NounAdapter(
+                    Pronouns.singular
+                        .plus(Pronouns.plural)
+                        .plus(Pronouns.names)
+                ).build(),
                 verbs = listOf(Verbs.toBe),
                 prepositions = Prepositions.originOrSourceOfMovement,
                 objectVals = Objects.countries,
             ),
         )
     }
+
     object Advanced {
         val exams = listOf(
             Exam(
                 name = R.string.i_am_from_bulgaria,
                 level = Level.ADVANCED,
                 tenses = listOf(Tens.PRESENT_SIMPLE),
-                subjects = Pronouns.Subject.singular.plus(Pronouns.Subject.plural).plus(Pronouns.Subject.names),
+                subjects = NounAdapter(
+                    Pronouns.singular
+                        .plus(Pronouns.plural)
+                        .plus(Pronouns.names)
+                ).build(),
                 verbs = listOf(Verbs.toBe),
                 prepositions = Prepositions.originOrSourceOfMovement,
                 objectVals = Objects.countries,
             ),
         )
     }
+
     object Proficient {
-            val exams = listOf(
-                Exam(
-                    name = R.string.i_am_from_bulgaria,
-                    level = Level.PROFICIENT,
-                    tenses = listOf(Tens.PRESENT_SIMPLE),
-                    subjects = Pronouns.Subject.singular.plus(Pronouns.Subject.plural).plus(Pronouns.Subject.names),
-                    verbs = listOf(Verbs.toBe),
-                    prepositions = Prepositions.originOrSourceOfMovement,
-                    objectVals = Objects.countries,
-                ),
-            )
-        }
+        val exams = listOf(
+            Exam(
+                name = R.string.i_am_from_bulgaria,
+                level = Level.PROFICIENT,
+                tenses = listOf(Tens.PRESENT_SIMPLE),
+                subjects = NounAdapter(
+                    Pronouns.singular
+                        .plus(Pronouns.plural)
+                        .plus(Pronouns.names)
+                ).build(),
+                verbs = listOf(Verbs.toBe),
+                prepositions = Prepositions.originOrSourceOfMovement,
+                objectVals = Objects.countries,
+            ),
+        )
+    }
 }

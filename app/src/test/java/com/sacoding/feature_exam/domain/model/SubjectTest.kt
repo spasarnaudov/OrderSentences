@@ -16,7 +16,7 @@ class SubjectTest {
         val they = PluralPronoun(PluralPronoun.Values.THEY)
         val john = SubjectPronoun("John")
         val multiSubjectPronoun = MultiSubjectPronoun(listOf(boy, john, they, i))
-        val subject = Subject(multiSubjectPronoun)
+        val subject = NounAdapter(listOf(multiSubjectPronoun))
         println(subject.build())
     }
 }
