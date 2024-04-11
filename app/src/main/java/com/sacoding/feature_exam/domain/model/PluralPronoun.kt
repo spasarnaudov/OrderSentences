@@ -1,8 +1,9 @@
 package com.sacoding.feature_exam.domain.model
 
 class PluralPronoun(
-    value: Values
-): Pronoun(value.value) {
+    private val value: Values,
+    private val preposition: String = "",
+): Pronoun(value.value, preposition) {
     enum class Values(val value: String) {
         WE("we"),
         YOU("you"),

@@ -1,5 +1,6 @@
 package com.sacoding.feature_exam.domain.model
 
 open class SubjectPronoun(
-    override val value: String,
-): Pronoun(value)
+    private val value: String,
+    private val preposition: String = "",
+): Pronoun(value, preposition)

@@ -2,7 +2,8 @@ package com.sacoding.feature_exam.domain.model
 
 open class MultiSubjectPronoun(
     private val subjectPronouns: List<Noun>,
-): Pronoun(toSubjectPronounValue(subjectPronouns))
+    private val preposition: String = "",
+): Pronoun(toSubjectPronounValue(subjectPronouns), preposition)
 
 fun toSubjectPronounValue(pronouns: List<Noun>): String {
     return buildString {

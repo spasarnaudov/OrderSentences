@@ -3,13 +3,15 @@ package com.sacoding.feature_exam.domain.model
 import com.sacoding.feature_exam.domain.Article
 
 data class SingularNoun(
+    private val value: String,
     private val article: Article = Article.NONE,
     private val adjective: Adjective = BLANK_ADJECTIVE,
-    private val value: String
+    private val preposition: String = "",
 ): CommonNoun(
+    value = value,
     article = article,
     adjective = adjective,
-    value = value
+    preposition = preposition,
 ) {
     override fun getArticle(article: Article): String {
         return if (article == Article.NONE) {
@@ -24,7 +26,7 @@ data class SingularNoun(
     }
 
     fun toPlural(): PluralNoun {
-        return PluralNoun(article, adjective, value)
+        return PluralNoun(value, article, adjective, preposition)
     }
 }
 

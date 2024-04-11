@@ -3,14 +3,18 @@ package com.sacoding.feature_exam.domain.model
 import com.sacoding.feature_exam.domain.Article
 
 abstract class CommonNoun(
+    private val value: String,
     private val article: Article = Article.NONE,
     private val adjective: Adjective = BLANK_ADJECTIVE,
-    private val value: String,
+    private val preposition: String = "",
 ): Noun() {
     abstract fun getArticle(article: Article = Article.NONE): String
 
     override fun build(): String {
         return buildString {
+            if (preposition.isNotBlank()) {
+                append(preposition).append(" ")
+            }
             if (article != Article.NONE) {
                 val articleVal = getArticle(article)
                 if (articleVal.isNotBlank()) {

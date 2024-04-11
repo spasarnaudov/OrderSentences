@@ -6,6 +6,13 @@ import org.junit.Test
 class PluralNounTest {
 
     @Test
+    fun boyWithPreposition() {
+        val boy = PluralNoun(value = "boy", preposition = "for")
+        println(boy.build())
+        assert(boy.build() == "for boys")
+    }
+
+    @Test
     fun boy() {
         val boy = PluralNoun(value = "boy")
         println(boy.build())

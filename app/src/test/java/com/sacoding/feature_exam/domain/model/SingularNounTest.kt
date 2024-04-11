@@ -6,6 +6,17 @@ import org.junit.Test
 class SingularNounTest {
 
     @Test
+    fun boyWithPreposition() {
+        val boy = SingularNoun(
+            adjective = Adjective(size = "little"),
+            value = "boy",
+            preposition = "for"
+        )
+        println(boy.build())
+        assert(boy.build() == "for little boy")
+    }
+
+    @Test
     fun boy() {
         val boy = SingularNoun(
             adjective = Adjective(size = "little"),
