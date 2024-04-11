@@ -1,7 +1,7 @@
 package com.sacoding.feature_exam.domain.use_case
 
 import com.sacoding.feature_exam.R
-import com.sacoding.feature_exam.data.data_source.Objects
+import com.sacoding.feature_exam.data.data_source.Nouns
 import com.sacoding.feature_exam.data.data_source.Verbs
 import com.sacoding.feature_exam.data.data_source.Prepositions
 import com.sacoding.feature_exam.data.data_source.Pronouns
@@ -161,7 +161,7 @@ class GenerateSentenceUseCaseTest {
             subjects = NounAdapter(Pronouns.singular.plus(Pronouns.names)).build(),
             verbs = listOf(Verbs.toBe),
             prepositions = Prepositions.originOrSourceOfMovement,
-            objectVals = Objects.countries,
+            objectVals = NounAdapter(Nouns.countries).build(),
         )
         assert(check(sentences, lessen))
     }
@@ -208,7 +208,7 @@ class GenerateSentenceUseCaseTest {
             subjects = NounAdapter(Pronouns.singular.plus(Pronouns.names)).build(),
             verbs = listOf(Verbs.toBe),
             prepositions = listOf(),
-            objectVals = Objects.nationals,
+            objectVals = NounAdapter(Nouns.nationals).build(),
         )
         print(lessen)
         assert(check(sentences, lessen))

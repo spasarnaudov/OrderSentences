@@ -6,6 +6,7 @@ import com.sacoding.feature_exam.domain.Level
 import com.sacoding.feature_exam.domain.SentenceType
 import com.sacoding.feature_exam.domain.Tens
 import com.sacoding.feature_exam.domain.model.Exam
+import com.sacoding.feature_exam.domain.model.Noun
 import com.sacoding.feature_exam.domain.model.SingularPronoun
 import com.sacoding.feature_exam.domain.model.NounAdapter
 import com.sacoding.feature_exam.domain.model.addArticle
@@ -25,7 +26,7 @@ object StudentBook {
                         .plus(Pronouns.names)
                 ).build(),
                 verbs = listOf(Verbs.toBe),
-                objectVals = Objects.nationals,
+                objectVals = NounAdapter(Nouns.nationals).build(),
             ),
             Exam(
                 name = R.string.i_am_an_programmer,
@@ -48,7 +49,7 @@ object StudentBook {
                 ).build(),
                 verbs = listOf(Verbs.toBe),
                 prepositions = Prepositions.originOrSourceOfMovement,
-                objectVals = Objects.countries,
+                objectVals = NounAdapter(Nouns.countries).build(),
             ),
             Exam(
                 name = R.string.who_are_you_meeting,
@@ -255,7 +256,7 @@ object StudentBook {
                 ).build(),
                 verbs = listOf(Verbs.toBe),
                 prepositions = Prepositions.originOrSourceOfMovement,
-                objectVals = Objects.countries,
+                objectVals = NounAdapter(Nouns.countries).build(),
             ),
         )
     }
@@ -273,7 +274,7 @@ object StudentBook {
                 ).build(),
                 verbs = listOf(Verbs.toBe),
                 prepositions = Prepositions.originOrSourceOfMovement,
-                objectVals = Objects.countries,
+                objectVals = NounAdapter(Nouns.countries).build(),
             ),
         )
     }
@@ -291,7 +292,7 @@ object StudentBook {
                 ).build(),
                 verbs = listOf(Verbs.toBe),
                 prepositions = Prepositions.originOrSourceOfMovement,
-                objectVals = Objects.countries,
+                objectVals = NounAdapter(Nouns.countries).build(),
             ),
         )
     }

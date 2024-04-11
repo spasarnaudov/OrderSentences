@@ -32,6 +32,7 @@ object Adjectives {
         "tiny",
         "huge",
     )
+
     val taste = listOf(
         "delicious",
         "tasteful",
