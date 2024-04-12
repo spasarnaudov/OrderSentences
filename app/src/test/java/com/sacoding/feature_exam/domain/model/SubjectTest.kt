@@ -1,6 +1,12 @@
 package com.sacoding.feature_exam.domain.model
 
 import com.sacoding.feature_exam.domain.Article
+import com.sacoding.feature_exam.domain.NounAdapter
+import com.sacoding.feature_exam.domain.model.noun.MultiSubjectPronoun
+import com.sacoding.feature_exam.domain.model.noun.PluralPronoun
+import com.sacoding.feature_exam.domain.model.noun.SingularNoun
+import com.sacoding.feature_exam.domain.model.noun.SingularPronoun
+import com.sacoding.feature_exam.domain.model.noun.SubjectPronoun
 import org.junit.Test
 
 class SubjectTest {

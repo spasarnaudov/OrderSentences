@@ -1,8 +1,8 @@
 package com.sacoding.feature_exam.data.data_source
 
-import com.sacoding.feature_exam.domain.model.PluralPronoun
-import com.sacoding.feature_exam.domain.model.SingularPronoun
-import com.sacoding.feature_exam.domain.model.SubjectPronoun
+import com.sacoding.feature_exam.domain.model.noun.PluralPronoun
+import com.sacoding.feature_exam.domain.model.noun.SingularPronoun
+import com.sacoding.feature_exam.domain.model.noun.SubjectPronoun
 
 object Pronouns {
 

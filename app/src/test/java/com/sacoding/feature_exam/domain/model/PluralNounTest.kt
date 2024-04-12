@@ -1,6 +1,7 @@
 package com.sacoding.feature_exam.domain.model
 
 import com.sacoding.feature_exam.domain.Article
+import com.sacoding.feature_exam.domain.model.noun.PluralNoun
 import org.junit.Test
 
 class PluralNounTest {

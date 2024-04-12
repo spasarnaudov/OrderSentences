@@ -2,7 +2,7 @@ package com.sacoding.feature_exam.data.data_source
 
 import com.sacoding.feature_exam.domain.Article
 import com.sacoding.feature_exam.domain.model.Adjective
-import com.sacoding.feature_exam.domain.model.SingularNoun
+import com.sacoding.feature_exam.domain.model.noun.SingularNoun
 
 object Nouns {
 

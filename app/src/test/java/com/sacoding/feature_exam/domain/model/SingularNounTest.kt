@@ -1,6 +1,7 @@
 package com.sacoding.feature_exam.domain.model
 
 import com.sacoding.feature_exam.domain.Article
+import com.sacoding.feature_exam.domain.model.noun.SingularNoun
 import org.junit.Test
 
 class SingularNounTest {

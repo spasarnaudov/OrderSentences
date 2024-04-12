@@ -1,5 +1,8 @@
 package com.sacoding.feature_exam.domain.model
 
+import com.sacoding.feature_exam.domain.model.noun.MultiSubjectPronoun
+import com.sacoding.feature_exam.domain.model.noun.SingularPronoun
+import com.sacoding.feature_exam.domain.model.noun.SubjectPronoun
 import org.junit.Test
 
 class MultiSubjectPronounTest {

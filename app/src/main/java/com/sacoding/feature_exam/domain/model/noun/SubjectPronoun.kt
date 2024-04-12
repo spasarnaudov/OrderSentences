@@ -1,4 +1,4 @@
-package com.sacoding.feature_exam.domain.model
+package com.sacoding.feature_exam.domain.model.noun
 
 open class SubjectPronoun(
     private val value: String,

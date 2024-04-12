@@ -6,12 +6,11 @@ import com.sacoding.feature_exam.domain.Level
 import com.sacoding.feature_exam.domain.SentenceType
 import com.sacoding.feature_exam.domain.Tens
 import com.sacoding.feature_exam.domain.model.Exam
-import com.sacoding.feature_exam.domain.model.Noun
-import com.sacoding.feature_exam.domain.model.SingularPronoun
-import com.sacoding.feature_exam.domain.model.NounAdapter
-import com.sacoding.feature_exam.domain.model.addArticle
-import com.sacoding.feature_exam.domain.model.addPossessiveAdjective
-import com.sacoding.feature_exam.domain.model.plural
+import com.sacoding.feature_exam.domain.model.noun.SingularPronoun
+import com.sacoding.feature_exam.domain.NounAdapter
+import com.sacoding.feature_exam.domain.model.noun.addArticle
+import com.sacoding.feature_exam.domain.model.noun.addPossessiveAdjective
+import com.sacoding.feature_exam.domain.model.noun.plural
 
 object StudentBook {
     object Beginner {

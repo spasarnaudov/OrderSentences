@@ -10,7 +10,7 @@ import com.sacoding.feature_exam.domain.Level
 import com.sacoding.feature_exam.domain.SentenceType
 import com.sacoding.feature_exam.domain.Tens
 import com.sacoding.feature_exam.domain.model.Exam
-import com.sacoding.feature_exam.domain.model.NounAdapter
+import com.sacoding.feature_exam.domain.NounAdapter
 import org.junit.Test
 
 class GenerateSentenceUseCaseTest {
