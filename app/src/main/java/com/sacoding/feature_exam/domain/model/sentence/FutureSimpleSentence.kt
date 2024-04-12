@@ -1,5 +1,6 @@
 package com.sacoding.feature_exam.domain.model.sentence
 
+import com.sacoding.feature_exam.domain.model.noun.Noun
 import com.sacoding.feature_exam.domain.model.verb.Verb
 
 /**
@@ -18,7 +19,7 @@ import com.sacoding.feature_exam.domain.model.verb.Verb
  * "With rings on her fingers and bells on her toes, She shall have music wherever she goes."
  */
 class FutureSimpleSentence(
-    private val subject: String,
+    private val subject: Noun,
     private val verb: Verb,
     private val objectVal: String,
     private val prepositionalPhrase: String = "",
@@ -29,7 +30,7 @@ class FutureSimpleSentence(
      * "She will walk around."
      */
     override fun positive(): String {
-        return "$subject will ${verb.baseForm} $objectVal."
+        return "${subject.build()} will ${verb.baseForm} $objectVal."
     }
 
     /**
@@ -37,7 +38,7 @@ class FutureSimpleSentence(
      * "She will not walk around."
      */
     override fun negative(): String {
-        return "$subject will not ${verb.baseForm} $objectVal."
+        return "${subject.build()} will not ${verb.baseForm} $objectVal."
     }
 
     /**
@@ -45,6 +46,6 @@ class FutureSimpleSentence(
      * "Will she walk around?"
      */
     override fun question(): String {
-        return "will $subject ${verb.baseForm} $objectVal?"
+        return "will ${subject.build()} ${verb.baseForm} $objectVal?"
     }
 }

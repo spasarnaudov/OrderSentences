@@ -1,5 +1,6 @@
 package com.sacoding.feature_exam.domain.model.sentence
 
+import com.sacoding.feature_exam.domain.model.noun.Noun
 import com.sacoding.feature_exam.domain.model.verb.Verb
 import com.sacoding.feature_exam.domain.model.verb.toHave
 
@@ -20,7 +21,7 @@ import com.sacoding.feature_exam.domain.model.verb.toHave
  * "Have you seen 'Gone with the Wind'?", "She's studied Japanese, Russian, and English."
  */
 class PresentPerfectSentence(
-    private val subject: String,
+    private val subject: Noun,
     private val verb: Verb,
     private val objectVal: String,
     private val prepositionalPhrase: String = "",
@@ -31,7 +32,7 @@ class PresentPerfectSentence(
      * "She has walked around."
      */
     override fun positive(): String {
-        return "$subject ${toHave(subject)} ${verb.pastParticiple} $objectVal."
+        return "${subject.build()} ${toHave(subject.build())} ${verb.pastParticiple} $objectVal."
     }
 
     /**
@@ -39,7 +40,7 @@ class PresentPerfectSentence(
      * "She has not walked around."
      */
     override fun negative(): String {
-        return "$subject ${toHave(subject)} not ${verb.pastParticiple} $objectVal."
+        return "${subject.build()} ${toHave(subject.build())} not ${verb.pastParticiple} $objectVal."
     }
 
     /**
@@ -47,6 +48,6 @@ class PresentPerfectSentence(
      * "Has she walked around?"
      */
     override fun question(): String {
-        return "${toHave(subject)} $subject ${verb.pastParticiple} $objectVal?"
+        return "${toHave(subject.build())} ${subject.build()} ${verb.pastParticiple} $objectVal?"
     }
 }

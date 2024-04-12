@@ -1,5 +1,6 @@
 package com.sacoding.feature_exam.domain.model.sentence
 
+import com.sacoding.feature_exam.domain.model.noun.Noun
 import com.sacoding.feature_exam.domain.model.verb.Verb
 import com.sacoding.feature_exam.domain.model.verb.toContinuous
 import com.sacoding.feature_exam.domain.model.verb.toHave
@@ -16,7 +17,7 @@ import com.sacoding.feature_exam.domain.model.verb.toHave
  */
 
 class PresentPerfectContinuousSentence(
-    private val subject: String,
+    private val subject: Noun,
     private val verb: Verb,
     private val objectVal: String,
     private val prepositionalPhrase: String = "",
@@ -27,7 +28,7 @@ class PresentPerfectContinuousSentence(
      * "She has been walking around."
      */
     override fun positive(): String {
-        return "$subject ${toHave(subject)} been ${verb.toContinuous()} $objectVal."
+        return "${subject.build()} ${toHave(subject.build())} been ${verb.toContinuous()} $objectVal."
     }
 
     /**
@@ -35,7 +36,7 @@ class PresentPerfectContinuousSentence(
      * "She has not been walking around."
      */
     override fun negative(): String {
-        return "$subject ${toHave(subject)} not been ${verb.toContinuous()} $objectVal."
+        return "${subject.build()} ${toHave(subject.build())} not been ${verb.toContinuous()} $objectVal."
     }
 
     /**
@@ -43,6 +44,6 @@ class PresentPerfectContinuousSentence(
      * "Has she been walking around?"
      */
     override fun question(): String {
-        return "${toHave(subject)} $subject been ${verb.toContinuous()} $objectVal?"
+        return "${toHave(subject.build())} ${subject.build()} been ${verb.toContinuous()} $objectVal?"
     }
 }

@@ -1,5 +1,6 @@
 package com.sacoding.feature_exam.domain.model.sentence
 
+import com.sacoding.feature_exam.domain.model.noun.Noun
 import com.sacoding.feature_exam.domain.model.verb.Verb
 import com.sacoding.feature_exam.domain.model.verb.toContinuous
 
@@ -8,7 +9,7 @@ import com.sacoding.feature_exam.domain.model.verb.toContinuous
  * the simple future of the verb "to be" + the present participle (base+ing)
  */
 class FutureContinuousSentence(
-    private val subject: String,
+    private val subject: Noun,
     private val verb: Verb,
     private val objectVal: String,
     private val prepositionalPhrase: String = "",
@@ -19,7 +20,7 @@ class FutureContinuousSentence(
      * "She will be walking around."
      */
     override fun positive(): String {
-        return "$subject will be ${verb.toContinuous()} $objectVal."
+        return "${subject.build()} will be ${verb.toContinuous()} $objectVal."
     }
 
     /**
@@ -27,7 +28,7 @@ class FutureContinuousSentence(
      * "She will not be walking around."
      */
     override fun negative(): String {
-        return "$subject will not be ${verb.toContinuous()} $objectVal."
+        return "${subject.build()} will not be ${verb.toContinuous()} $objectVal."
     }
 
     /**
@@ -35,6 +36,6 @@ class FutureContinuousSentence(
      * "Will she be walking around?"
      */
     override fun question(): String {
-        return "will $subject be ${verb.toContinuous()} $objectVal?"
+        return "will ${subject.build()} be ${verb.toContinuous()} $objectVal?"
     }
 }

@@ -1,6 +1,7 @@
 package com.sacoding.feature_exam.domain.model.sentence
 
 import com.sacoding.feature_exam.data.data_source.Verbs
+import com.sacoding.feature_exam.domain.model.noun.Noun
 import com.sacoding.feature_exam.domain.model.verb.Verb
 import com.sacoding.feature_exam.domain.model.verb.getSingularPresentTenseForm
 import com.sacoding.feature_exam.domain.model.verb.toBe
@@ -16,7 +17,7 @@ import com.sacoding.feature_exam.domain.model.verb.toBe
  */
 
 class PresentSimpleSentence(
-    private val subject: String,
+    private val subject: Noun,
     private val questionWord: String,
     private val verb: Verb,
     private val objectVal: String,
@@ -29,9 +30,9 @@ class PresentSimpleSentence(
      */
     override fun positive(): String {
         if (verb == Verbs.toBe) {
-            return "$subject ${toBe(subject)} $objectVal."
+            return "${subject.build()} ${toBe(subject.build())} $objectVal."
         }
-        return "$subject ${verb.getSingularPresentTenseForm(subject)} $objectVal."
+        return "${subject.build()} ${verb.getSingularPresentTenseForm(subject.build())} $objectVal."
     }
 
     /**
@@ -40,9 +41,9 @@ class PresentSimpleSentence(
      */
     override fun negative(): String {
         if (verb == Verbs.toBe) {
-            return "$subject ${toBe(subject)} not $objectVal."
+            return "${subject.build()} ${toBe(subject.build())} not $objectVal."
         }
-        return "$subject ${Verbs.`do`.getSingularPresentTenseForm(subject)} not ${verb.baseForm} $objectVal."
+        return "${subject.build()} ${Verbs.`do`.getSingularPresentTenseForm(subject.build())} not ${verb.baseForm} $objectVal."
     }
 
     /**
@@ -55,14 +56,14 @@ class PresentSimpleSentence(
                 if (questionWord.isNotBlank()) {
                     append(questionWord).append(" ")
                 }
-                append(toBe(subject)).append(" ")
-                append(subject).append(" ")
+                append(toBe(subject.build())).append(" ")
+                append(subject.build()).append(" ")
                 append(objectVal).append("?")
             }
         }
         return buildString {
-            append(Verbs.`do`.getSingularPresentTenseForm(subject)).append(" ")
-            append(subject).append(" ")
+            append(Verbs.`do`.getSingularPresentTenseForm(subject.build())).append(" ")
+            append(subject.build()).append(" ")
             append(verb.baseForm).append(" ")
             append(objectVal).append("?")
         }

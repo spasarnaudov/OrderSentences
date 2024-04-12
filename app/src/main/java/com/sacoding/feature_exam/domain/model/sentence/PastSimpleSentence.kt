@@ -1,6 +1,7 @@
 package com.sacoding.feature_exam.domain.model.sentence
 
 import com.sacoding.feature_exam.data.data_source.Verbs
+import com.sacoding.feature_exam.domain.model.noun.Noun
 import com.sacoding.feature_exam.domain.model.verb.Verb
 import com.sacoding.feature_exam.domain.model.verb.toBePast
 
@@ -10,7 +11,7 @@ import com.sacoding.feature_exam.domain.model.verb.toBePast
  * The time of the action can be in the recent past or the distant past and action duration is not important.
  */
 class PastSimpleSentence(
-    private val subject: String,
+    private val subject: Noun,
     private val verb: Verb,
     private val objectVal: String,
     private val prepositionalPhrase: String = "",
@@ -22,7 +23,7 @@ class PastSimpleSentence(
      */
     override fun positive(): String {
         if (verb == Verbs.toBe) {
-            return "$subject ${toBePast(subject)} $objectVal."
+            return "${subject.build()} ${toBePast(subject.build())} $objectVal."
         }
         return "$subject ${verb.pastTense} $objectVal."
     }
@@ -33,9 +34,9 @@ class PastSimpleSentence(
      */
     override fun negative(): String {
         if (verb == Verbs.toBe) {
-            return "$subject ${toBePast(subject)} not $objectVal."
+            return "${subject.build()} ${toBePast(subject.build())} not $objectVal."
         }
-        return "$subject did not ${verb.baseForm} $objectVal."
+        return "${subject.build()} did not ${verb.baseForm} $objectVal."
     }
 
     /**
@@ -44,8 +45,8 @@ class PastSimpleSentence(
      */
     override fun question(): String {
         if (verb == Verbs.toBe) {
-            return "${toBePast(subject)} $subject $objectVal?"
+            return "${toBePast(subject.build())} $subject $objectVal?"
         }
-        return "did $subject ${verb.baseForm} $objectVal?"
+        return "did ${subject.build()} ${verb.baseForm} $objectVal?"
     }
 }

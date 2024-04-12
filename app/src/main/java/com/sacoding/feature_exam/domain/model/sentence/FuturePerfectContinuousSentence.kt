@@ -1,5 +1,6 @@
 package com.sacoding.feature_exam.domain.model.sentence
 
+import com.sacoding.feature_exam.domain.model.noun.Noun
 import com.sacoding.feature_exam.domain.model.verb.Verb
 import com.sacoding.feature_exam.domain.model.verb.toContinuous
 
@@ -8,7 +9,7 @@ import com.sacoding.feature_exam.domain.model.verb.toContinuous
  * the future perfect of the verb "to be" (will have been) + the present participle of the main verb (base + ing)
  */
 class FuturePerfectContinuousSentence(
-    private val subject: String,
+    private val subject: Noun,
     private val verb: Verb,
     private val objectVal: String,
     private val prepositionalPhrase: String = "",
@@ -19,7 +20,7 @@ class FuturePerfectContinuousSentence(
      * "She will have been walking around."
      */
     override fun positive(): String {
-        return "$subject will have been ${verb.toContinuous()} $objectVal."
+        return "${subject.build()} will have been ${verb.toContinuous()} $objectVal."
     }
 
     /**
@@ -27,7 +28,7 @@ class FuturePerfectContinuousSentence(
      * "She will not have been walking around."
      */
     override fun negative(): String {
-        return "$subject will not have been ${verb.toContinuous()} $objectVal."
+        return "${subject.build()} will not have been ${verb.toContinuous()} $objectVal."
     }
 
     /**
@@ -35,6 +36,6 @@ class FuturePerfectContinuousSentence(
      * "Will she have been walking around?"
      */
     override fun question(): String {
-        return "will $subject have been ${verb.toContinuous()} $objectVal?"
+        return "will ${subject.build()} have been ${verb.toContinuous()} $objectVal?"
     }
 }

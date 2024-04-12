@@ -6,6 +6,7 @@ import com.sacoding.feature_exam.domain.model.sentence.PresentContinuousSentence
 import com.sacoding.feature_exam.domain.model.sentence.PresentSimpleSentence
 import com.sacoding.feature_exam.domain.SentenceType
 import com.sacoding.feature_exam.domain.Tens
+import com.sacoding.feature_exam.domain.model.noun.Noun
 import com.sacoding.feature_exam.domain.model.sentence.FutureContinuousSentence
 import com.sacoding.feature_exam.domain.model.sentence.FuturePerfectContinuousSentence
 import com.sacoding.feature_exam.domain.model.sentence.FuturePerfectSentence
@@ -22,7 +23,7 @@ class GenerateSentenceUseCase {
     operator fun invoke(
         sentenceType: SentenceType,
         tens: Tens,
-        subject: String,
+        subject: Noun,
         questionWord: String,
         verb: Verb,
         objectVal: String,

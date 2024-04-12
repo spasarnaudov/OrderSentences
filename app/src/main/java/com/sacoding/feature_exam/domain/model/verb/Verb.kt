@@ -80,6 +80,7 @@ fun toBe(subject: String): String {
     return "is"
 }
 
+//TODO must be create verb
 fun toBePast(subject: String): String {
     when (subject.lowercase()) {
         "you" -> return "were"

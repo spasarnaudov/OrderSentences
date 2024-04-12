@@ -5,6 +5,7 @@ import com.sacoding.feature_exam.data.data_source.addPreposition
 import com.sacoding.feature_exam.domain.Level
 import com.sacoding.feature_exam.domain.SentenceType
 import com.sacoding.feature_exam.domain.Tens
+import com.sacoding.feature_exam.domain.model.noun.Noun
 import com.sacoding.feature_exam.domain.model.verb.Verb
 import com.sacoding.feature_exam.domain.use_case.GenerateSentenceUseCase
 
@@ -13,7 +14,7 @@ data class Exam(
     val level: Level,
     val sentenceTypes: List<SentenceType> = SentenceType.entries,
     val tenses: List<Tens>,
-    val subjects: List<String>,
+    val subjects: List<Noun>,
     val questionWord: String = "",
     val verbs: List<Verb>,
     val prepositions: List<String> = listOf(),

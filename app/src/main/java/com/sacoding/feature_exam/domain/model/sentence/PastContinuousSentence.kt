@@ -1,5 +1,6 @@
 package com.sacoding.feature_exam.domain.model.sentence
 
+import com.sacoding.feature_exam.domain.model.noun.Noun
 import com.sacoding.feature_exam.domain.model.verb.Verb
 import com.sacoding.feature_exam.domain.model.verb.toBePast
 import com.sacoding.feature_exam.domain.model.verb.toContinuous
@@ -14,7 +15,7 @@ import com.sacoding.feature_exam.domain.model.verb.toContinuous
  * - to express a change of mind: "I was going to spend the day at the beach but I've decided to get my homework done instead."
  */
 class PastContinuousSentence(
-    private val subject: String,
+    private val subject: Noun,
     private val verb: Verb,
     private val objectVal: String,
     private val prepositionalPhrase: String = "",
@@ -25,7 +26,7 @@ class PastContinuousSentence(
      * "She was walking around."
      */
     override fun positive(): String {
-        return "$subject ${toBePast(subject)} ${verb.toContinuous()} $objectVal."
+        return "${subject.build()} ${toBePast(subject.build())} ${verb.toContinuous()} $objectVal."
     }
 
     /**
@@ -33,7 +34,7 @@ class PastContinuousSentence(
      * "She was not walking around."
      */
     override fun negative(): String {
-        return "$subject ${toBePast(subject)} not ${verb.toContinuous()} $objectVal."
+        return "${subject.build()} ${toBePast(subject.build())} not ${verb.toContinuous()} $objectVal."
     }
 
     /**
@@ -41,6 +42,6 @@ class PastContinuousSentence(
      * "Was she walking around?"
      */
     override fun question(): String {
-        return "${toBePast(subject)} $subject ${verb.toContinuous()} $objectVal?"
+        return "${toBePast(subject.build())} ${subject.build()} ${verb.toContinuous()} $objectVal?"
     }
 }

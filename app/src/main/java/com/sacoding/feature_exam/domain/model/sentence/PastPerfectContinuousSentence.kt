@@ -1,5 +1,6 @@
 package com.sacoding.feature_exam.domain.model.sentence
 
+import com.sacoding.feature_exam.domain.model.noun.Noun
 import com.sacoding.feature_exam.domain.model.verb.Verb
 import com.sacoding.feature_exam.domain.model.verb.toContinuous
 
@@ -8,7 +9,7 @@ import com.sacoding.feature_exam.domain.model.verb.toContinuous
  * As with the present perfect continuous, we are more interested in the process.
  */
 class PastPerfectContinuousSentence(
-    private val subject: String,
+    private val subject: Noun,
     private val verb: Verb,
     private val objectVal: String,
     private val prepositionalPhrase: String = "",
@@ -19,7 +20,7 @@ class PastPerfectContinuousSentence(
      * "She had been walking around."
      */
     override fun positive(): String {
-        return "$subject had been ${verb.toContinuous()} $objectVal."
+        return "${subject.build()} had been ${verb.toContinuous()} $objectVal."
     }
 
     /**
@@ -27,7 +28,7 @@ class PastPerfectContinuousSentence(
      * "She had not been walking around."
      */
     override fun negative(): String {
-        return "$subject had not been ${verb.toContinuous()} $objectVal."
+        return "${subject.build()} had not been ${verb.toContinuous()} $objectVal."
     }
 
     /**
@@ -35,6 +36,6 @@ class PastPerfectContinuousSentence(
      * "Had she been walking around?"
      */
     override fun question(): String {
-        return "had $subject been ${verb.toContinuous()} $objectVal?"
+        return "had ${subject.build()} been ${verb.toContinuous()} $objectVal?"
     }
 }

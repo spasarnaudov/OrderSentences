@@ -1,5 +1,6 @@
 package com.sacoding.feature_exam.domain.model.sentence
 
+import com.sacoding.feature_exam.domain.model.noun.Noun
 import com.sacoding.feature_exam.domain.model.verb.Verb
 
 /**
@@ -8,7 +9,7 @@ import com.sacoding.feature_exam.domain.model.verb.Verb
  * It does not matter which event is mentioned first - the tense makes it clear which one happened first.
  */
 class PastPerfectSentence(
-    private val subject: String,
+    private val subject: Noun,
     private val verb: Verb,
     private val objectVal: String,
     private val prepositionalPhrase: String = "",
@@ -19,7 +20,7 @@ class PastPerfectSentence(
      * "She had walked around."
      */
     override fun positive(): String {
-        return "$subject had ${verb.pastParticiple} $objectVal."
+        return "${subject.build()} had ${verb.pastParticiple} $objectVal."
     }
 
     /**
@@ -27,7 +28,7 @@ class PastPerfectSentence(
      * "She had not walked + around."
      */
     override fun negative(): String {
-        return "$subject had not ${verb.pastParticiple} $objectVal."
+        return "${subject.build()} had not ${verb.pastParticiple} $objectVal."
     }
 
     /**
@@ -35,6 +36,6 @@ class PastPerfectSentence(
      * "Had she walked around?"
      */
     override fun question(): String {
-        return "had $subject ${verb.pastParticiple} $objectVal?"
+        return "had ${subject.build()} ${verb.pastParticiple} $objectVal?"
     }
 }

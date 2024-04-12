@@ -1,5 +1,6 @@
 package com.sacoding.feature_exam.domain.model.sentence
 
+import com.sacoding.feature_exam.domain.model.noun.Noun
 import com.sacoding.feature_exam.domain.model.verb.Verb
 
 /**
@@ -7,7 +8,7 @@ import com.sacoding.feature_exam.domain.model.verb.Verb
  * the simple future of the verb "to have" (will have) + the past participle of the main verb
  */
 class FuturePerfectSentence(
-    private val subject: String,
+    private val subject: Noun,
     private val verb: Verb,
     private val objectVal: String,
     private val prepositionalPhrase: String = "",
@@ -18,7 +19,7 @@ class FuturePerfectSentence(
      * "She will have walked around."
      */
     override fun positive(): String {
-        return "$subject will have ${verb.pastParticiple} $objectVal."
+        return "${subject.build()} will have ${verb.pastParticiple} $objectVal."
     }
 
     /**
@@ -26,7 +27,7 @@ class FuturePerfectSentence(
      * "She will not have walked around."
      */
     override fun negative(): String {
-        return "$subject will not have ${verb.pastParticiple} $objectVal."
+        return "${subject.build()} will not have ${verb.pastParticiple} $objectVal."
     }
 
     /**
@@ -34,6 +35,6 @@ class FuturePerfectSentence(
      * "Will she have walked around?"
      */
     override fun question(): String {
-        return "will $subject have ${verb.pastParticiple} $objectVal?"
+        return "will ${subject.build()} have ${verb.pastParticiple} $objectVal?"
     }
 }
