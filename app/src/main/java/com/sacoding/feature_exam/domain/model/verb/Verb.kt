@@ -1,5 +1,7 @@
 package com.sacoding.feature_exam.domain.model.verb
 
+import com.sacoding.feature_exam.listVowels
+
 abstract class Verb(
     open val baseForm: String,
     open val pastTense: String,
@@ -7,7 +9,7 @@ abstract class Verb(
 )
 
 fun Verb.getSingularPresentTenseForm(subject: String): String {
-    when(subject.lowercase()) {
+    when (subject.lowercase()) {
         "i" -> return baseForm
         "you" -> return baseForm
         "we" -> return baseForm
@@ -20,10 +22,35 @@ fun Verb.getSingularPresentTenseForm(subject: String): String {
     return if (isSpecialCase) "${baseForm}es" else "${baseForm}s"
 }
 
+fun Verb.thirdPerson(): String {
+    if (baseForm.endsWith("ch")
+        || baseForm.endsWith("sh")
+        || baseForm.endsWith("s")
+        || baseForm.endsWith("x")
+        || baseForm.endsWith("z")
+    ) {
+        return "${baseForm}es"
+    }
+
+    val lastLetter = baseForm.lowercase()[baseForm.length-1]
+    val penultimate = baseForm.lowercase()[baseForm.length-2]
+    val isPenultimateVowel = listVowels.contains(penultimate.toString())
+
+    if (lastLetter == 'y' && !isPenultimateVowel) {
+        return "${baseForm.substring(0, baseForm.length-1)}ies"
+    }
+
+    if (lastLetter == 'o' && !isPenultimateVowel) {
+        return "${baseForm}es"
+    }
+
+    return "${baseForm}s"
+}
+
 fun Verb.toContinuous(): String {
     //When the verb ends in -e, we take off the -e and add -ing.
     if (baseForm.endsWith("e")) {
-        return "${baseForm.substring(0, baseForm.length-1)}ing"
+        return "${baseForm.substring(0, baseForm.length - 1)}ing"
     }
     //When the verb ends in a vowel + l, we double the consonant.
     if (baseForm.endsWith("l")) {
@@ -42,7 +69,7 @@ fun Verb.toContinuous(): String {
 }
 
 fun toBe(subject: String): String {
-    when(subject.lowercase()) {
+    when (subject.lowercase()) {
         "i" -> return "am"
         "you" -> return "are"
         "we" -> return "are"
@@ -54,7 +81,7 @@ fun toBe(subject: String): String {
 }
 
 fun toBePast(subject: String): String {
-    when(subject.lowercase()) {
+    when (subject.lowercase()) {
         "you" -> return "were"
         "we" -> return "were"
         "they" -> return "were"
@@ -63,7 +90,7 @@ fun toBePast(subject: String): String {
 }
 
 fun toHave(subject: String): String {
-    return when(subject.lowercase()) {
+    return when (subject.lowercase()) {
         "i", "you", "we", "they" -> "have"
         else -> "has"
     }
