@@ -1,4 +1,7 @@
-package com.sacoding.feature_exam.domain.model
+package com.sacoding.feature_exam.domain.model.sentence
+
+import com.sacoding.feature_exam.domain.model.Verb
+import com.sacoding.feature_exam.domain.model.toContinuous
 
 /**
  *The past perfect continuous corresponds to the present perfect continuous, but with reference to a time earlier than 'before now'.

@@ -1,19 +1,19 @@
 package com.sacoding.feature_exam.domain.use_case
 
-import com.sacoding.feature_exam.domain.model.FutureSimpleSentence
-import com.sacoding.feature_exam.domain.model.PastSimpleSentence
-import com.sacoding.feature_exam.domain.model.PresentContinuousSentence
-import com.sacoding.feature_exam.domain.model.PresentSimpleSentence
+import com.sacoding.feature_exam.domain.model.sentence.FutureSimpleSentence
+import com.sacoding.feature_exam.domain.model.sentence.PastSimpleSentence
+import com.sacoding.feature_exam.domain.model.sentence.PresentContinuousSentence
+import com.sacoding.feature_exam.domain.model.sentence.PresentSimpleSentence
 import com.sacoding.feature_exam.domain.SentenceType
 import com.sacoding.feature_exam.domain.Tens
-import com.sacoding.feature_exam.domain.model.FutureContinuousSentence
-import com.sacoding.feature_exam.domain.model.FuturePerfectContinuousSentence
-import com.sacoding.feature_exam.domain.model.FuturePerfectSentence
-import com.sacoding.feature_exam.domain.model.PastContinuousSentence
-import com.sacoding.feature_exam.domain.model.PastPerfectContinuousSentence
-import com.sacoding.feature_exam.domain.model.PastPerfectSentence
-import com.sacoding.feature_exam.domain.model.PresentPerfectContinuousSentence
-import com.sacoding.feature_exam.domain.model.PresentPerfectSentence
+import com.sacoding.feature_exam.domain.model.sentence.FutureContinuousSentence
+import com.sacoding.feature_exam.domain.model.sentence.FuturePerfectContinuousSentence
+import com.sacoding.feature_exam.domain.model.sentence.FuturePerfectSentence
+import com.sacoding.feature_exam.domain.model.sentence.PastContinuousSentence
+import com.sacoding.feature_exam.domain.model.sentence.PastPerfectContinuousSentence
+import com.sacoding.feature_exam.domain.model.sentence.PastPerfectSentence
+import com.sacoding.feature_exam.domain.model.sentence.PresentPerfectContinuousSentence
+import com.sacoding.feature_exam.domain.model.sentence.PresentPerfectSentence
 import com.sacoding.feature_exam.domain.model.Verb
 import com.sacoding.feature_exam.presentation.utils.upperFirstLetter
 
