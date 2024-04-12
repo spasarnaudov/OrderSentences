@@ -1,8 +1,8 @@
 package com.sacoding.feature_exam.domain.model.sentence
 
-import com.sacoding.feature_exam.domain.model.Verb
-import com.sacoding.feature_exam.domain.model.toBePast
-import com.sacoding.feature_exam.domain.model.toContinuous
+import com.sacoding.feature_exam.domain.model.verb.Verb
+import com.sacoding.feature_exam.domain.model.verb.toBePast
+import com.sacoding.feature_exam.domain.model.verb.toContinuous
 
 /**
  * - often, to describe the background in a story written in the past tense:

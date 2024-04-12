@@ -1,7 +1,7 @@
 package com.sacoding.feature_exam.domain.model.sentence
 
-import com.sacoding.feature_exam.domain.model.Verb
-import com.sacoding.feature_exam.domain.model.toHave
+import com.sacoding.feature_exam.domain.model.verb.Verb
+import com.sacoding.feature_exam.domain.model.verb.toHave
 
 /**
  * - Actions started in the past and continuing in the present:

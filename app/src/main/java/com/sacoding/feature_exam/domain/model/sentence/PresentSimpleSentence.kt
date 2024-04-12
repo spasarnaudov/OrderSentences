@@ -1,9 +1,9 @@
 package com.sacoding.feature_exam.domain.model.sentence
 
 import com.sacoding.feature_exam.data.data_source.Verbs
-import com.sacoding.feature_exam.domain.model.Verb
-import com.sacoding.feature_exam.domain.model.getSingularPresentTenseForm
-import com.sacoding.feature_exam.domain.model.toBe
+import com.sacoding.feature_exam.domain.model.verb.Verb
+import com.sacoding.feature_exam.domain.model.verb.getSingularPresentTenseForm
+import com.sacoding.feature_exam.domain.model.verb.toBe
 
 /**
  * Use for:

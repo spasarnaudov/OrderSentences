@@ -1,16 +1,9 @@
-package com.sacoding.feature_exam.domain.model
+package com.sacoding.feature_exam.domain.model.verb
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-
-@Entity(tableName = "verbs")
-data class Verb(
-    val baseForm: String,
-    val pastTense: String,
-    val pastParticiple: String,
-    val useCount: Int = 0,
-    val mistakeCount: Int = 0,
-    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+abstract class Verb(
+    open val baseForm: String,
+    open val pastTense: String,
+    open val pastParticiple: String,
 )
 
 fun Verb.getSingularPresentTenseForm(subject: String): String {

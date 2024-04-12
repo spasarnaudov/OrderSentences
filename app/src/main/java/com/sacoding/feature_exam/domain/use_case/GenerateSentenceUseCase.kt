@@ -14,7 +14,7 @@ import com.sacoding.feature_exam.domain.model.sentence.PastPerfectContinuousSent
 import com.sacoding.feature_exam.domain.model.sentence.PastPerfectSentence
 import com.sacoding.feature_exam.domain.model.sentence.PresentPerfectContinuousSentence
 import com.sacoding.feature_exam.domain.model.sentence.PresentPerfectSentence
-import com.sacoding.feature_exam.domain.model.Verb
+import com.sacoding.feature_exam.domain.model.verb.Verb
 import com.sacoding.feature_exam.presentation.utils.upperFirstLetter
 
 class GenerateSentenceUseCase {

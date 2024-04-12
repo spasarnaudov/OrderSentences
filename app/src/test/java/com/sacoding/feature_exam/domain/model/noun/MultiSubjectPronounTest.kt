@@ -1,4 +1,4 @@
-package com.sacoding.feature_exam.domain.model
+package com.sacoding.feature_exam.domain.model.noun
 
 import com.sacoding.feature_exam.domain.model.noun.MultiSubjectPronoun
 import com.sacoding.feature_exam.domain.model.noun.SingularPronoun

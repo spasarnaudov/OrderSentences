@@ -1,6 +1,6 @@
 package com.sacoding.feature_exam.domain.model.sentence
 
-import com.sacoding.feature_exam.domain.model.Verb
+import com.sacoding.feature_exam.domain.model.verb.Verb
 
 /**
  * The future perfect is composed of two elements

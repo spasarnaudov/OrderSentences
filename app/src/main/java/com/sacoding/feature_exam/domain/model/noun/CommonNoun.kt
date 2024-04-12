@@ -31,10 +31,6 @@ abstract class CommonNoun(
     }
 }
 
-val listVowels = listOf(
-    "a", "e", "i", "o", "u", "y"
-)
-
 fun List<CommonNoun>.addArticle(article: Article): List<CommonNoun> {
     val list = mutableListOf<CommonNoun>()
     for (item in this) {

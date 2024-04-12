@@ -4,7 +4,7 @@ import com.sacoding.feature_exam.data.data_source.StudentBook
 import com.sacoding.feature_exam.domain.GameState
 import com.sacoding.feature_exam.domain.Level
 import com.sacoding.feature_exam.domain.model.Exam
-import com.sacoding.feature_exam.domain.model.Verb
+import com.sacoding.feature_exam.domain.model.verb.Verb
 
 data class ExamState(
     val sentence: String = "",

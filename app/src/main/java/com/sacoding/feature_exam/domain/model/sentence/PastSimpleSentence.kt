@@ -1,8 +1,8 @@
 package com.sacoding.feature_exam.domain.model.sentence
 
 import com.sacoding.feature_exam.data.data_source.Verbs
-import com.sacoding.feature_exam.domain.model.Verb
-import com.sacoding.feature_exam.domain.model.toBePast
+import com.sacoding.feature_exam.domain.model.verb.Verb
+import com.sacoding.feature_exam.domain.model.verb.toBePast
 
 /**
  * The simple past tense, sometimes called the preterite, is used to talk about a completed action in a time before now.

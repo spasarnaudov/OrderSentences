@@ -1,4 +1,4 @@
-package com.sacoding.feature_exam.domain.model
+package com.sacoding.feature_exam.domain.model.sentence
 
 import com.sacoding.feature_exam.data.data_source.Verbs
 import com.sacoding.feature_exam.data.data_source.addPreposition

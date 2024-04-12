@@ -1,8 +1,8 @@
 package com.sacoding.feature_exam.domain.model.sentence
 
-import com.sacoding.feature_exam.domain.model.Verb
-import com.sacoding.feature_exam.domain.model.toBe
-import com.sacoding.feature_exam.domain.model.toContinuous
+import com.sacoding.feature_exam.domain.model.verb.Verb
+import com.sacoding.feature_exam.domain.model.verb.toBe
+import com.sacoding.feature_exam.domain.model.verb.toContinuous
 
 /**
  * Used:

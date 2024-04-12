@@ -3,6 +3,7 @@ package com.sacoding.feature_exam.domain.model.noun
 import com.sacoding.feature_exam.domain.Article
 import com.sacoding.feature_exam.domain.model.Adjective
 import com.sacoding.feature_exam.domain.model.BLANK_ADJECTIVE
+import com.sacoding.feature_exam.listVowels
 
 data class SingularNoun(
     private val value: String,

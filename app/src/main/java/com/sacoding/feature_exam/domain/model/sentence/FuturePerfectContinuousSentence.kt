@@ -1,7 +1,7 @@
 package com.sacoding.feature_exam.domain.model.sentence
 
-import com.sacoding.feature_exam.domain.model.Verb
-import com.sacoding.feature_exam.domain.model.toContinuous
+import com.sacoding.feature_exam.domain.model.verb.Verb
+import com.sacoding.feature_exam.domain.model.verb.toContinuous
 
 /**
  * The future perfect continuous is composed of two elements
