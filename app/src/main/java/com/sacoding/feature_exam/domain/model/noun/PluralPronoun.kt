@@ -9,5 +9,11 @@ class PluralPronoun(
         YOU("you"),
         THEY("they"),
     }
+
+    companion object {
+        val WE = PluralPronoun(PluralPronoun.Values.WE)
+        val YOU = PluralPronoun(PluralPronoun.Values.YOU)
+        val THEY = PluralPronoun(PluralPronoun.Values.THEY)
+    }
 }
 
