@@ -3,7 +3,7 @@ package com.sacoding.feature_exam.domain.model.sentence
 import com.sacoding.feature_exam.data.data_source.Verbs
 import com.sacoding.feature_exam.domain.model.noun.Noun
 import com.sacoding.feature_exam.domain.model.verb.Verb
-import com.sacoding.feature_exam.domain.model.verb.getSingularPresentTenseForm
+import com.sacoding.feature_exam.domain.model.verb.adaptToSubject
 import com.sacoding.feature_exam.domain.model.verb.toBe
 
 /**
@@ -32,7 +32,7 @@ class PresentSimpleSentence(
         if (verb == Verbs.toBe) {
             return "${subject.build()} ${toBe(subject.build())} $objectVal."
         }
-        return "${subject.build()} ${verb.getSingularPresentTenseForm(subject.build())} $objectVal."
+        return "${subject.build()} ${verb.adaptToSubject(subject)} $objectVal."
     }
 
     /**
@@ -43,7 +43,7 @@ class PresentSimpleSentence(
         if (verb == Verbs.toBe) {
             return "${subject.build()} ${toBe(subject.build())} not $objectVal."
         }
-        return "${subject.build()} ${Verbs.`do`.getSingularPresentTenseForm(subject.build())} not ${verb.baseForm} $objectVal."
+        return "${subject.build()} ${Verbs.`do`.adaptToSubject(subject)} not ${verb.baseForm} $objectVal."
     }
 
     /**
@@ -62,7 +62,7 @@ class PresentSimpleSentence(
             }
         }
         return buildString {
-            append(Verbs.`do`.getSingularPresentTenseForm(subject.build())).append(" ")
+            append(Verbs.`do`.adaptToSubject(subject)).append(" ")
             append(subject.build()).append(" ")
             append(verb.baseForm).append(" ")
             append(objectVal).append("?")

@@ -1,5 +1,6 @@
 package com.sacoding.feature_exam.domain.model.verb
 
+import com.sacoding.feature_exam.domain.model.noun.Noun
 import com.sacoding.feature_exam.listVowels
 
 abstract class Verb(
@@ -8,18 +9,12 @@ abstract class Verb(
     open val pastParticiple: String,
 )
 
-fun Verb.getSingularPresentTenseForm(subject: String): String {
-    when (subject.lowercase()) {
-        "i" -> return baseForm
-        "you" -> return baseForm
-        "we" -> return baseForm
-        "they" -> return baseForm
+fun Verb.adaptToSubject(subject: Noun): String {
+    return if (subject.isThirdPerson()) {
+        thirdPerson()
+    } else {
+        baseForm
     }
-    val isSpecialCase =
-        "go" == baseForm
-                || "do" == baseForm
-                || baseForm.endsWith("s", true)
-    return if (isSpecialCase) "${baseForm}es" else "${baseForm}s"
 }
 
 fun Verb.thirdPerson(): String {
@@ -68,6 +63,7 @@ fun Verb.toContinuous(): String {
     return "${baseForm}ing"
 }
 
+//TODO must be create verb
 fun toBe(subject: String): String {
     when (subject.lowercase()) {
         "i" -> return "am"
@@ -90,6 +86,7 @@ fun toBePast(subject: String): String {
     return "was"
 }
 
+//TODO must be create verb
 fun toHave(subject: String): String {
     return when (subject.lowercase()) {
         "i", "you", "we", "they" -> "have"

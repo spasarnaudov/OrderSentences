@@ -107,7 +107,6 @@ object StudentBook {
                 objectVals = NounAdapter(
                     Pronouns.Possessive.singular
                         .plus(Pronouns.Possessive.plural)
-                        .plus(Pronouns.Possessive.name)
                 ).build(),
             ),
             Exam(
@@ -231,7 +230,7 @@ object StudentBook {
                 tenses = listOf(Tens.PRESENT_SIMPLE, Tens.PAST_SIMPLE),
                 subjects = Pronouns.plural,
                 verbs = Verbs.mutualOrReciprocalActions,
-                objectVals = Pronouns.reciprocal,
+                objectVals = NounAdapter(Pronouns.reciprocal).build(),
             ),
         )
     }
