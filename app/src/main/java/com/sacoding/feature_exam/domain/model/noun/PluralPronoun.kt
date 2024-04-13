@@ -10,6 +10,10 @@ class PluralPronoun(
         THEY("they"),
     }
 
+    override fun isThirdPerson(): Boolean {
+        return false
+    }
+
     companion object {
         val WE = PluralPronoun(PluralPronoun.Values.WE)
         val YOU = PluralPronoun(PluralPronoun.Values.YOU)
