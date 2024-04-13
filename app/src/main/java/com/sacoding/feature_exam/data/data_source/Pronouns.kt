@@ -1,23 +1,32 @@
 package com.sacoding.feature_exam.data.data_source
 
+import com.sacoding.feature_exam.domain.model.noun.DemonstrativePronoun
+import com.sacoding.feature_exam.domain.model.noun.IndefiniteBodyPronoun
+import com.sacoding.feature_exam.domain.model.noun.IndefiniteOnePronoun
+import com.sacoding.feature_exam.domain.model.noun.IndefiniteThingPronoun
+import com.sacoding.feature_exam.domain.model.noun.PluralObjectPronoun
+import com.sacoding.feature_exam.domain.model.noun.PluralPossessivePronoun
 import com.sacoding.feature_exam.domain.model.noun.PluralPronoun
+import com.sacoding.feature_exam.domain.model.noun.Pronoun
+import com.sacoding.feature_exam.domain.model.noun.SingularObjectPronoun
+import com.sacoding.feature_exam.domain.model.noun.SingularPossessivePronoun
 import com.sacoding.feature_exam.domain.model.noun.SingularPronoun
 import com.sacoding.feature_exam.domain.model.noun.SubjectPronoun
 
 object Pronouns {
 
     val singular = listOf(
-        SingularPronoun(SingularPronoun.Values.I),
-        SingularPronoun(SingularPronoun.Values.YOU),
-        SingularPronoun(SingularPronoun.Values.HE),
-        SingularPronoun(SingularPronoun.Values.SHE),
-        SingularPronoun(SingularPronoun.Values.IT),
+        SingularPronoun.I,
+        SingularPronoun.YOU,
+        SingularPronoun.HE,
+        SingularPronoun.SHE,
+        SingularPronoun.IT,
     )
 
     val plural = listOf(
-        PluralPronoun(PluralPronoun.Values.WE),
-        PluralPronoun(PluralPronoun.Values.YOU),
-        PluralPronoun(PluralPronoun.Values.THEY),
+        PluralPronoun.WE,
+        PluralPronoun.YOU,
+        PluralPronoun.THEY,
     )
 
     val names = listOf(
@@ -27,62 +36,51 @@ object Pronouns {
 
     object Demonstratives {
         val singular = listOf(
-            SubjectPronoun("this"),     //singular pronoun to talk about people or things near us
-            SubjectPronoun("that"),     //singular pronoun to talk about things that are not near us
+            DemonstrativePronoun.THIS,
+            DemonstrativePronoun.THAT,
         )
-
         val plural = listOf(
-            SubjectPronoun("these"),    //plural pronoun to talk about people or things near us
-            SubjectPronoun("those"),    //plural pronoun to talk about things that are not near us
-        )
-
-        val name = listOf(
-            SubjectPronoun("John's"),
-            SubjectPronoun("Emily's"),
+            DemonstrativePronoun.THESE,
+            DemonstrativePronoun.THOSE,
         )
     }
 
     object Possessive {
         val singular = listOf(
-            SubjectPronoun("mine"),
-            SubjectPronoun("yours"),
-            SubjectPronoun("his"),
-            SubjectPronoun("hers"),
+            SingularPossessivePronoun.MINE,
+            SingularPossessivePronoun.YOURS,
+            SingularPossessivePronoun.HIS,
+            SingularPossessivePronoun.HERS,
 //            "-",
         )
-
         val plural = listOf(
-            SubjectPronoun("ours"),
-            SubjectPronoun("yours"),
-            SubjectPronoun("theirs"),
-        )
-
-        val name = listOf(
-            SubjectPronoun("John's"),
-            SubjectPronoun("Emily's"),
+            PluralPossessivePronoun.OURS,
+            PluralPossessivePronoun.YOURS,
+            PluralPossessivePronoun.THEIRS,
         )
     }
 
-    //TODO
     object Objects {
         val singular = listOf(
-            "me",
-            "you",
-            "him",
-            "her",
-            "it",
+            SingularObjectPronoun.ME,
+            SingularObjectPronoun.YOU,
+            SingularObjectPronoun.HIM,
+            SingularObjectPronoun.HER,
+            SingularObjectPronoun.IT,
         )
-
         val plural = listOf(
-            "us",
-            "you",
-            "them",
+            PluralObjectPronoun.US,
+            PluralObjectPronoun.YOU,
+            PluralObjectPronoun.THEM,
         )
     }
 
+    val EACH_OTHER = Pronoun("each other")
+    val ONE_ANOTHER = Pronoun("one another")
+
     val reciprocal = listOf(
-        "each other",
-        "one another",
+        EACH_OTHER,
+        ONE_ANOTHER,
     )
 
     /**
@@ -91,24 +89,22 @@ object Pronouns {
      */
     object Indefinite {
         val body = listOf(
-            "anybody",
-            "everybody",
-            "nobody",
-            "somebody",
+            IndefiniteBodyPronoun.ANYBODY,
+            IndefiniteBodyPronoun.EVERYBODY,
+            IndefiniteBodyPronoun.NOBODY,
+            IndefiniteBodyPronoun.SOMEBODY,
         )
-
         val one = listOf(
-            "anyone",
-            "everyone",
-            "no one",
-            "someone",
+            IndefiniteOnePronoun.ANYONE,
+            IndefiniteOnePronoun.EVERYONE,
+            IndefiniteOnePronoun.NO_ONE,
+            IndefiniteOnePronoun.SOMEONE,
         )
-
         val thing = listOf(
-            "anything",
-            "everything",
-            "nothing",
-            "something",
+            IndefiniteThingPronoun.ANYTHING,
+            IndefiniteThingPronoun.EVERYTHING,
+            IndefiniteThingPronoun.NOTHING,
+            IndefiniteThingPronoun.SOMETHING,
         )
     }
 
