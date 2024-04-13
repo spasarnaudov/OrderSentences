@@ -6,8 +6,8 @@ import com.sacoding.feature_exam.domain.Level
 import com.sacoding.feature_exam.domain.SentenceType
 import com.sacoding.feature_exam.domain.Tens
 import com.sacoding.feature_exam.domain.model.Exam
-import com.sacoding.feature_exam.domain.model.noun.SingularPronoun
 import com.sacoding.feature_exam.domain.NounAdapter
+import com.sacoding.feature_exam.domain.model.noun.Pronoun
 import com.sacoding.feature_exam.domain.model.noun.addArticle
 import com.sacoding.feature_exam.domain.model.noun.addPossessiveAdjective
 import com.sacoding.feature_exam.domain.model.noun.plural
@@ -102,7 +102,7 @@ object StudentBook {
                 level = Level.BEGINNER,
                 sentenceTypes = SentenceType.entries,
                 tenses = listOf(Tens.PRESENT_SIMPLE),
-                subjects = listOf(SingularPronoun(SingularPronoun.Values.IT)),
+                subjects = listOf(Pronoun.IT),
                 verbs = listOf(Verbs.toBe),
                 objectVals = NounAdapter(
                     Pronouns.Possessive.singular
@@ -140,6 +140,14 @@ object StudentBook {
                         )
                 ).build(),
             ),
+            Exam(
+                name = R.string.she_loves_john,
+                level = Level.BEGINNER,
+                tenses = listOf(Tens.PRESENT_SIMPLE),
+                subjects = Pronouns.singular.plus(Pronouns.plural).plus(Pronouns.names),
+                verbs = listOf(Verbs.love),
+                objectVals = NounAdapter(Pronouns.names.plus(Pronouns.Objects.singular.plus(Pronouns.Objects.plural))).build(),
+            ),
 //            Exam(
 //                name = R.string.where_do_you_live,
 //                level = Level.BEGINNER,
@@ -148,14 +156,6 @@ object StudentBook {
 //                verbs = Verbs.countriesAndCities,
 //                prepositions = Prepositions.enclosedSpaces,
 //                objectVals = Objects.cities,
-//            ),
-//            Exam(
-//                name = R.string.she_love_john,
-//                level = Level.BEGINNER,
-//                tenses = listOf(Tens.PRESENT_SIMPLE),
-//                subjects = Pronouns.Subject.singular.plus(Pronouns.Subject.plural),
-//                verbs = Verbs.feelings,
-//                objectVals = Pronouns.Subject.names,
 //            ),
 //            Exam(
 //                name = R.string.what_is_your_phone_number,

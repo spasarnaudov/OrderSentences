@@ -3,10 +3,8 @@ package com.sacoding.feature_exam.domain.model
 import com.sacoding.feature_exam.domain.Article
 import com.sacoding.feature_exam.domain.NounAdapter
 import com.sacoding.feature_exam.domain.model.noun.MultiSubjectPronoun
-import com.sacoding.feature_exam.domain.model.noun.PluralPronoun
+import com.sacoding.feature_exam.domain.model.noun.Pronoun
 import com.sacoding.feature_exam.domain.model.noun.SingularNoun
-import com.sacoding.feature_exam.domain.model.noun.SingularPronoun
-import com.sacoding.feature_exam.domain.model.noun.SubjectPronoun
 import org.junit.Test
 
 class SubjectTest {
@@ -18,9 +16,9 @@ class SubjectTest {
             adjective = Adjective("little"),
             value = "boy"
         )
-        val i = SingularPronoun(SingularPronoun.Values.I)
-        val they = PluralPronoun(PluralPronoun.Values.THEY)
-        val john = SubjectPronoun("John")
+        val i = Pronoun.I
+        val they = Pronoun.THEY
+        val john = Pronoun("John")
         val multiSubjectPronoun = MultiSubjectPronoun(listOf(boy, john, they, i))
         val subject = NounAdapter(listOf(multiSubjectPronoun))
         println(subject.build())
