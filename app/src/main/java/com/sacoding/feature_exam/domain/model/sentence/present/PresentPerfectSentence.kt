@@ -1,9 +1,10 @@
 package com.sacoding.feature_exam.domain.model.sentence.present
 
+import com.sacoding.feature_exam.data.data_source.Verbs
 import com.sacoding.feature_exam.domain.model.noun.Noun
 import com.sacoding.feature_exam.domain.model.sentence.Sentence
 import com.sacoding.feature_exam.domain.model.verb.Verb
-import com.sacoding.feature_exam.domain.model.verb.toHave
+import com.sacoding.feature_exam.domain.model.verb.adaptToSubject
 
 /**
  * - Actions started in the past and continuing in the present:
@@ -33,7 +34,7 @@ class PresentPerfectSentence(
      * "She has walked around."
      */
     override fun positive(): String {
-        return "${subject.build()} ${toHave(subject.build())} ${verb.pastParticiple} $objectVal."
+        return "${subject.build()} ${Verbs.have.adaptToSubject(subject)} ${verb.pastParticiple} $objectVal."
     }
 
     /**
@@ -41,7 +42,7 @@ class PresentPerfectSentence(
      * "She has not walked around."
      */
     override fun negative(): String {
-        return "${subject.build()} ${toHave(subject.build())} not ${verb.pastParticiple} $objectVal."
+        return "${subject.build()} ${Verbs.have.adaptToSubject(subject)} not ${verb.pastParticiple} $objectVal."
     }
 
     /**
@@ -49,6 +50,6 @@ class PresentPerfectSentence(
      * "Has she walked around?"
      */
     override fun question(): String {
-        return "${toHave(subject.build())} ${subject.build()} ${verb.pastParticiple} $objectVal?"
+        return "${Verbs.have.adaptToSubject(subject)} ${subject.build()} ${verb.pastParticiple} $objectVal?"
     }
 }

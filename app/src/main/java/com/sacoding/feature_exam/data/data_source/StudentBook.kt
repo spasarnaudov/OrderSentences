@@ -83,20 +83,6 @@ object StudentBook {
                 verbs = listOf(Verbs.toBe),
                 objectVals = listOf("arriving"),
             ),
-//            Exam(
-//                name = R.string.why_am_i_a_teacher,
-//                level = Level.BEGINNER,
-//                sentenceTypes = listOf(SentenceType.QUESTION),
-//                tenses = listOf(Tens.PRESENT_SIMPLE),
-//                subjects = NounAdapter(
-//                    Pronouns.singular
-//                        .plus(Pronouns.plural)
-//                        .plus(Pronouns.names)
-//                ).build(),
-//                questionWord = "Why",
-//                verbs = listOf(Verbs.toBe),
-//                objectVals = Objects.jobs.addArticle(),
-//            ),
             Exam(
                 name = R.string.it_is_mine,
                 level = Level.BEGINNER,
@@ -148,48 +134,16 @@ object StudentBook {
                 verbs = listOf(Verbs.love),
                 objectVals = NounAdapter(Pronouns.names.plus(Pronouns.Objects.singular.plus(Pronouns.Objects.plural))).build(),
             ),
-//            Exam(
-//                name = R.string.where_do_you_live,
-//                level = Level.BEGINNER,
-//                tenses = listOf(Tens.PRESENT_SIMPLE),
-//                subjects = Pronouns.Subject.singular.plus(Pronouns.Subject.plural).plus(Pronouns.Subject.names),
-//                verbs = Verbs.countriesAndCities,
-//                prepositions = Prepositions.enclosedSpaces,
-//                objectVals = Objects.cities,
-//            ),
-//            Exam(
-//                name = R.string.what_is_your_phone_number,
-//                level = Level.BEGINNER,
-//                tenses = listOf(Tens.PRESENT_SIMPLE),
-//                subjects = listOf("phone number").addPossessiveAdjective(Pronouns.PossessiveAdjective.all),
-//                verbs = listOf(Verbs.toBe),
-//                objectVals = Objects.phoneNumbers,
-//            ),
-//            Exam(
-//                name = R.string.what_is_your_phone_number,
-//                level = Level.BEGINNER,
-//                tenses = listOf(Tens.PRESENT_SIMPLE),
-//                subjects = listOf("phone number").addPossessiveAdjective(Pronouns.PossessiveAdjective.all),
-//                verbs = listOf(Verbs.toBe),
-//                objectVals = Objects.phoneNumbers,
-//            ),
-//            Exam(
-//                name = R.string.this_is_main,
-//                level = Level.BEGINNER,
-//                tenses = listOf(Tens.PRESENT_SIMPLE),
-//                subjects = Pronouns.Demonstratives.all.plus(Pronouns.Demonstratives.name),
-//                verbs = listOf(Verbs.toBe),
-//                objectVals = Pronouns.PossessivePronoun.all.plus(Pronouns.PossessivePronoun.name),
-//            ),
-//            Exam(
-//                name = R.string.birds,
-//                level = Level.BEGINNER,
-//                tenses = listOf(Tens.PRESENT_SIMPLE),
-//                subjects = Subjects.birds,
-//                verbs = listOf(Verb("fly", "flew", "flown")),
-//                prepositions = Prepositions.directionTowardsASpecificDestination,
-//                objectVals = Objects.countries,
-//            ),
+            Exam(
+                name = R.string.i_eat_pizza,
+                level = Level.BEGINNER,
+                tenses = listOf(Tens.PRESENT_SIMPLE),
+                subjects = Pronouns.singular
+                    .plus(Pronouns.plural)
+                    .plus(Pronouns.names),
+                verbs = listOf(Verbs.eat),
+                objectVals = NounAdapter(Nouns.pizza).build(),
+            ),
         )
     }
 

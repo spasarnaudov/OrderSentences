@@ -1,10 +1,11 @@
 package com.sacoding.feature_exam.domain.model.sentence.present
 
+import com.sacoding.feature_exam.data.data_source.Verbs
 import com.sacoding.feature_exam.domain.model.noun.Noun
 import com.sacoding.feature_exam.domain.model.sentence.Sentence
 import com.sacoding.feature_exam.domain.model.verb.Verb
+import com.sacoding.feature_exam.domain.model.verb.adaptToSubject
 import com.sacoding.feature_exam.domain.model.verb.toContinuous
-import com.sacoding.feature_exam.domain.model.verb.toHave
 
 /**
  * - Actions that started in the past and continue in the present:
@@ -29,7 +30,7 @@ class PresentPerfectContinuousSentence(
      * "She has been walking around."
      */
     override fun positive(): String {
-        return "${subject.build()} ${toHave(subject.build())} been ${verb.toContinuous()} $objectVal."
+        return "${subject.build()} ${Verbs.have.adaptToSubject(subject)} been ${verb.toContinuous()} $objectVal."
     }
 
     /**
@@ -37,7 +38,7 @@ class PresentPerfectContinuousSentence(
      * "She has not been walking around."
      */
     override fun negative(): String {
-        return "${subject.build()} ${toHave(subject.build())} not been ${verb.toContinuous()} $objectVal."
+        return "${subject.build()} ${Verbs.have.adaptToSubject(subject)} not been ${verb.toContinuous()} $objectVal."
     }
 
     /**
@@ -45,6 +46,6 @@ class PresentPerfectContinuousSentence(
      * "Has she been walking around?"
      */
     override fun question(): String {
-        return "${toHave(subject.build())} ${subject.build()} been ${verb.toContinuous()} $objectVal?"
+        return "${Verbs.have.adaptToSubject(subject)} ${subject.build()} been ${verb.toContinuous()} $objectVal?"
     }
 }

@@ -209,6 +209,7 @@ object Nouns {
     val potato = CommonNoun(value = "potato", countable = true, Plurality.SINGULAR)
     val city = CommonNoun(value = "city", countable = true, Plurality.SINGULAR)
     val day = CommonNoun(value = "day", countable = true, Plurality.SINGULAR)
+    val pizza = CommonNoun(value = "pizza", countable = true, Plurality.SINGULAR)
 
     val thinks = listOf(
         book,

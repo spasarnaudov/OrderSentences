@@ -1,5 +1,6 @@
 package com.sacoding.feature_exam.domain.model.verb
 
+import com.sacoding.feature_exam.data.data_source.Verbs
 import com.sacoding.feature_exam.domain.model.noun.Noun
 import com.sacoding.feature_exam.listVowels
 
@@ -18,6 +19,10 @@ fun Verb.adaptToSubject(subject: Noun): String {
 }
 
 fun Verb.thirdPerson(): String {
+    if (this == Verbs.have) {
+        return "has"
+    }
+
     if (baseForm.endsWith("ch")
         || baseForm.endsWith("sh")
         || baseForm.endsWith("s")
@@ -84,12 +89,4 @@ fun toBePast(subject: String): String {
         "they" -> return "were"
     }
     return "was"
-}
-
-//TODO must be create verb
-fun toHave(subject: String): String {
-    return when (subject.lowercase()) {
-        "i", "you", "we", "they" -> "have"
-        else -> "has"
-    }
 }
