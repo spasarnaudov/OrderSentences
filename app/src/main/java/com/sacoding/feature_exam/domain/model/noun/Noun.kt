@@ -1,6 +1,11 @@
 package com.sacoding.feature_exam.domain.model.noun
 
-abstract class Noun {
+import com.sacoding.feature_exam.domain.Plurality
+
+abstract class Noun(
+    open val countable: Boolean,
+    open val plurality: Plurality,
+) {
 
     abstract fun build(): String
 

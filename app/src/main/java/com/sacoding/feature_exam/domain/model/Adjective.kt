@@ -30,4 +30,14 @@ data class Adjective(
     fun isNotBlank(): Boolean {
         return this != BLANK_ADJECTIVE
     }
+
+    companion object {
+        val MY = Adjective(possessiveDeterminer = "my")
+        val YOUR = Adjective(possessiveDeterminer = "your")
+        val HE = Adjective(possessiveDeterminer = "his")
+        val HER = Adjective(possessiveDeterminer = "her")
+        val ITS = Adjective(possessiveDeterminer = "its")
+        val OUR = Adjective(possessiveDeterminer = "our")
+        val THEIR = Adjective(possessiveDeterminer = "their")
+    }
 }

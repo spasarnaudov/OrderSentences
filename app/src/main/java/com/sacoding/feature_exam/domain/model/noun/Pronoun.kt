@@ -1,9 +1,15 @@
 package com.sacoding.feature_exam.domain.model.noun
 
+import com.sacoding.feature_exam.domain.Plurality
+
 open class Pronoun(
-    val value: String,
+    private val value: String,
+    override val plurality: Plurality = Plurality.SINGULAR,
     private val preposition: String = "",
-): Noun() {
+): Noun(
+    countable = true,
+    plurality = plurality,
+) {
 
     override fun build(): String {
         return buildString {
@@ -23,32 +29,32 @@ open class Pronoun(
 
     companion object {
         val I = Pronoun("I")
-        val YOU = Pronoun("you")
+        val YOU = Pronoun("you", Plurality.PLURAL)
         val HE = Pronoun("he")
         val SHE = Pronoun("she")
         val IT = Pronoun("it")
 
-        val WE = Pronoun("we")
+        val WE = Pronoun("we", Plurality.PLURAL)
 //        val YOU = Pronoun("you")
-        val THEY = Pronoun("they")
+        val THEY = Pronoun("they", Plurality.PLURAL)
 
 //        Demonstratives
 
         val THIS = Pronoun("this")
         val THAT = Pronoun("that")
-        val THESE = Pronoun("these")
-        val THOSE = Pronoun("those")
+        val THESE = Pronoun("these", Plurality.PLURAL)
+        val THOSE = Pronoun("those", Plurality.PLURAL)
 
 //        Possessive
 
         val MINE = Pronoun("mine")
-        val YOURS = Pronoun("yours")
+        val YOURS = Pronoun("yours", Plurality.PLURAL)
         val HIS = Pronoun("his")
         val HERS = Pronoun("hers")
 
-        val OURS = Pronoun("ours")
+        val OURS = Pronoun("ours", Plurality.PLURAL)
 //        val YOURS = Pronoun("yours")
-        val THEIRS = Pronoun("theirs")
+        val THEIRS = Pronoun("theirs", Plurality.PLURAL)
 
 //        Objects
 
@@ -58,8 +64,8 @@ open class Pronoun(
         val HER = Pronoun("her")
 //        val IT = Pronoun("it")
 
-        val US = Pronoun("us")
-        val THEM = Pronoun("them")
+        val US = Pronoun("us", Plurality.PLURAL)
+        val THEM = Pronoun("them", Plurality.PLURAL)
 
 //        Reciprocal
 
@@ -68,18 +74,18 @@ open class Pronoun(
 
 //        Indefinite
 
-        val ANYBODY = Pronoun("anybody")
-        val EVERYBODY = Pronoun("everybody")
+        val ANYBODY = Pronoun("anybody", Plurality.PLURAL)
+        val EVERYBODY = Pronoun("everybody", Plurality.PLURAL)
         val NOBODY = Pronoun("nobody")
         val SOMEBODY = Pronoun("somebody")
 
-        val ANYONE = Pronoun("anyone")
-        val EVERYONE = Pronoun("everyone")
+        val ANYONE = Pronoun("anyone", Plurality.PLURAL)
+        val EVERYONE = Pronoun("everyone", Plurality.PLURAL)
         val NO_ONE = Pronoun("no one")
         val SOMEONE = Pronoun("someone")
 
-        val ANYTHING = Pronoun("anything")
-        val EVERYTHING = Pronoun("everything")
+        val ANYTHING = Pronoun("anything", Plurality.PLURAL)
+        val EVERYTHING = Pronoun("everything", Plurality.PLURAL)
         val NOTHING = Pronoun("nothing")
         val SOMETHING = Pronoun("something")
     }

@@ -1,13 +1,14 @@
 package com.sacoding.feature_exam.domain.model.sentence
 
+import com.sacoding.feature_exam.data.data_source.Nouns
 import com.sacoding.feature_exam.data.data_source.Verbs
 import com.sacoding.feature_exam.data.data_source.addPreposition
 import com.sacoding.feature_exam.domain.Article
 import com.sacoding.feature_exam.domain.SentenceType
 import com.sacoding.feature_exam.domain.Tens
+import com.sacoding.feature_exam.domain.model.Adjective
 import com.sacoding.feature_exam.domain.model.noun.Noun
 import com.sacoding.feature_exam.domain.model.noun.Pronoun
-import com.sacoding.feature_exam.domain.model.noun.SingularNoun
 import com.sacoding.feature_exam.domain.use_case.GenerateSentenceUseCase
 import org.junit.Test
 
@@ -15,30 +16,30 @@ class PresentSimpleSentenceTest {
 
     @Test
     fun positive() {
-        val iAmBulgarian = createPositiveSentence(Pronoun.I, SingularNoun(value = "Bulgarian").build())
+        val iAmBulgarian = createPositiveSentence(Pronoun.I, Nouns.bulgarian.build())
         assert(iAmBulgarian == "I am Bulgarian.")
 
-        val iAmAProgrammer = createPositiveSentence(Pronoun.I, SingularNoun(value = "programmer", article = Article.INDEFINITE).build())
+        val iAmAProgrammer = createPositiveSentence(Pronoun.I, Nouns.programmer.copy(article = Article.INDEFINITE).build())
         assert(iAmAProgrammer == "I am a programmer.")
 
-        val iAmFromBulgaria = createPositiveSentence(Pronoun.I, SingularNoun(value = "Bulgaria", preposition = "from").build())
+        val iAmFromBulgaria = createPositiveSentence(Pronoun.I, Nouns.bulgaria.copy(preposition = "from").build())
         assert(iAmFromBulgaria == "I am from Bulgaria.")
 
         val itIsMine = createPositiveSentence(Pronoun.IT, Pronoun.MINE.build())
         assert(itIsMine == "It is mine.")
 
-        val thisIsMyBook = createPositiveSentence(Pronoun.THIS, "my book")
+        val thisIsMyBook = createPositiveSentence(Pronoun.THIS, Nouns.book.copy(adjective = Adjective.MY).build())
         assert(thisIsMyBook == "This is my book.")
 
-        val theseAreMyKeys = createPositiveSentence(Pronoun.THESE, "my keys")
+        val theseAreMyKeys = createPositiveSentence(Pronoun.THESE, Nouns.key.plural().copy(adjective = Adjective.MY).build())
         assert(theseAreMyKeys == "These are my keys.")
     }
 
-    private fun createPositiveSentence(subject: Noun, objectVal: String): String {
+    private fun createPositiveSentence(noun: Noun, objectVal: String): String {
         val sentence = GenerateSentenceUseCase().invoke(
             sentenceType = SentenceType.POSITIVE,
             tens = Tens.PRESENT_SIMPLE,
-            subject = subject,
+            subject = noun,
             questionWord = "",
             verb = Verbs.toBe,
             objectVal = objectVal,
@@ -49,30 +50,30 @@ class PresentSimpleSentenceTest {
 
     @Test
     fun negative() {
-        val iAmBulgarian = createNegativeSentence(Pronoun.I, "Bulgarian")
-        assert(iAmBulgarian == "I am not Bulgarian.")
+        val iAmNotBulgarian = createNegativeSentence(Pronoun.I, Nouns.bulgarian.build())
+        assert(iAmNotBulgarian == "I am not Bulgarian.")
 
-        val iAmAProgrammer = createNegativeSentence(Pronoun.I, "a programmer")
-        assert(iAmAProgrammer == "I am not a programmer.")
+        val iAmNotAProgrammer = createNegativeSentence(Pronoun.I, Nouns.programmer.copy(article = Article.INDEFINITE).build())
+        assert(iAmNotAProgrammer == "I am not a programmer.")
 
-        val iAmFromBulgaria = createNegativeSentence(Pronoun.I, "Bulgaria".addPreposition("from"))
-        assert(iAmFromBulgaria == "I am not from Bulgaria.")
+        val iAmNotFromBulgaria = createNegativeSentence(Pronoun.I, Nouns.bulgaria.copy(preposition = "from").build())
+        assert(iAmNotFromBulgaria == "I am not from Bulgaria.")
 
-        val itIsNotMine = createNegativeSentence(Pronoun.IT, "mine")
+        val itIsNotMine = createNegativeSentence(Pronoun.IT, Pronoun.MINE.build())
         assert(itIsNotMine == "It is not mine.")
 
-        val thisIsNotMyBook = createNegativeSentence(Pronoun.THIS, "my book")
+        val thisIsNotMyBook = createNegativeSentence(Pronoun.THIS, Nouns.book.copy(adjective = Adjective.MY).build())
         assert(thisIsNotMyBook == "This is not my book.")
 
-        val theseAreNotMyKeys = createNegativeSentence(Pronoun.THESE, "my keys")
+        val theseAreNotMyKeys = createNegativeSentence(Pronoun.THESE, Nouns.key.plural().copy(adjective = Adjective.MY).build())
         assert(theseAreNotMyKeys == "These are not my keys.")
     }
 
-    private fun createNegativeSentence(subject: Noun, objectVal: String): String {
+    private fun createNegativeSentence(noun: Noun, objectVal: String): String {
         val sentence = GenerateSentenceUseCase().invoke(
             sentenceType = SentenceType.NEGATIVE,
             tens = Tens.PRESENT_SIMPLE,
-            subject = subject,
+            subject = noun,
             questionWord = "",
             verb = Verbs.toBe,
             objectVal = objectVal,
@@ -83,13 +84,13 @@ class PresentSimpleSentenceTest {
 
     @Test
     fun question() {
-        val amIBulgarian = createQuestionSentence(subject = Pronoun.I, questionWord = "", objectVal = "Bulgarian")
+        val amIBulgarian = createQuestionSentence(subject = Pronoun.I, questionWord = "", objectVal = Nouns.bulgarian.build())
         assert(amIBulgarian == "Am I Bulgarian?")
 
-        val amIAProgrammer = createQuestionSentence(subject = Pronoun.I, questionWord = "", objectVal = "a programmer")
+        val amIAProgrammer = createQuestionSentence(subject = Pronoun.I, questionWord = "", objectVal = Nouns.programmer.copy(article = Article.INDEFINITE).build())
         assert(amIAProgrammer == "Am I a programmer?")
 
-        val amIFromBulgaria = createQuestionSentence(subject = Pronoun.I, questionWord = "", objectVal = "Bulgaria".addPreposition("from"))
+        val amIFromBulgaria = createQuestionSentence(subject = Pronoun.I, questionWord = "", objectVal = Nouns.bulgaria.copy(preposition = "from").build())
         assert(amIFromBulgaria == "Am I from Bulgaria?")
 
         val whoAreYpuMeeting = createQuestionSentence(subject = Pronoun.YOU, questionWord = "Who", objectVal = "meeting")
@@ -101,16 +102,16 @@ class PresentSimpleSentenceTest {
         val whenAreTheyArriving = createQuestionSentence(subject = Pronoun.THEY, questionWord = "When", objectVal = "arriving")
         assert(whenAreTheyArriving == "When are they arriving?")
 
-        val whyAmIATeacher = createQuestionSentence(subject = Pronoun.I, questionWord = "Why", objectVal = "a teacher")
+        val whyAmIATeacher = createQuestionSentence(subject = Pronoun.I, questionWord = "Why", objectVal = Nouns.teacher.copy(article = Article.INDEFINITE).build())
         assert(whyAmIATeacher == "Why am I a teacher?")
 
-        val isItMine = createQuestionSentence(subject = Pronoun.IT, questionWord = "", objectVal = "mine")
+        val isItMine = createQuestionSentence(subject = Pronoun.IT, questionWord = "", objectVal = Pronoun.MINE.build())
         assert(isItMine == "Is it mine?")
 
-        val isThisMyBook = createQuestionSentence(Pronoun.THIS, questionWord = "", "my book")
+        val isThisMyBook = createQuestionSentence(Pronoun.THIS, questionWord = "", Nouns.book.copy(adjective = Adjective.MY).build())
         assert(isThisMyBook == "Is this my book?")
 
-        val areTheseAreNotMyKeys = createQuestionSentence(Pronoun.THESE, questionWord = "", "my keys")
+        val areTheseAreNotMyKeys = createQuestionSentence(Pronoun.THESE, questionWord = "", Nouns.key.plural().copy(adjective = Adjective.MY).build())
         assert(areTheseAreNotMyKeys == "Are these my keys?")
     }
 
