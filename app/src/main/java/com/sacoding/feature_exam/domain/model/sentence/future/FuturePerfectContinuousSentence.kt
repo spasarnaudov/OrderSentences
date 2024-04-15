@@ -1,6 +1,7 @@
-package com.sacoding.feature_exam.domain.model.sentence
+package com.sacoding.feature_exam.domain.model.sentence.future
 
 import com.sacoding.feature_exam.domain.model.noun.Noun
+import com.sacoding.feature_exam.domain.model.sentence.Sentence
 import com.sacoding.feature_exam.domain.model.verb.Verb
 import com.sacoding.feature_exam.domain.model.verb.toContinuous
 

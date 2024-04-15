@@ -1,7 +1,8 @@
-package com.sacoding.feature_exam.domain.model.sentence
+package com.sacoding.feature_exam.domain.model.sentence.past
 
 import com.sacoding.feature_exam.data.data_source.Verbs
 import com.sacoding.feature_exam.domain.model.noun.Noun
+import com.sacoding.feature_exam.domain.model.sentence.Sentence
 import com.sacoding.feature_exam.domain.model.verb.Verb
 import com.sacoding.feature_exam.domain.model.verb.toBePast
 

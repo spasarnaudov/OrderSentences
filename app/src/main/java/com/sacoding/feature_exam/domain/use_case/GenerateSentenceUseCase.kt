@@ -1,20 +1,20 @@
 package com.sacoding.feature_exam.domain.use_case
 
-import com.sacoding.feature_exam.domain.model.sentence.FutureSimpleSentence
-import com.sacoding.feature_exam.domain.model.sentence.PastSimpleSentence
-import com.sacoding.feature_exam.domain.model.sentence.PresentContinuousSentence
-import com.sacoding.feature_exam.domain.model.sentence.PresentSimpleSentence
+import com.sacoding.feature_exam.domain.model.sentence.future.FutureSimpleSentence
+import com.sacoding.feature_exam.domain.model.sentence.past.PastSimpleSentence
+import com.sacoding.feature_exam.domain.model.sentence.present.PresentContinuousSentence
+import com.sacoding.feature_exam.domain.model.sentence.present.PresentSimpleSentence
 import com.sacoding.feature_exam.domain.SentenceType
 import com.sacoding.feature_exam.domain.Tens
 import com.sacoding.feature_exam.domain.model.noun.Noun
-import com.sacoding.feature_exam.domain.model.sentence.FutureContinuousSentence
-import com.sacoding.feature_exam.domain.model.sentence.FuturePerfectContinuousSentence
-import com.sacoding.feature_exam.domain.model.sentence.FuturePerfectSentence
-import com.sacoding.feature_exam.domain.model.sentence.PastContinuousSentence
-import com.sacoding.feature_exam.domain.model.sentence.PastPerfectContinuousSentence
-import com.sacoding.feature_exam.domain.model.sentence.PastPerfectSentence
-import com.sacoding.feature_exam.domain.model.sentence.PresentPerfectContinuousSentence
-import com.sacoding.feature_exam.domain.model.sentence.PresentPerfectSentence
+import com.sacoding.feature_exam.domain.model.sentence.future.FutureContinuousSentence
+import com.sacoding.feature_exam.domain.model.sentence.future.FuturePerfectContinuousSentence
+import com.sacoding.feature_exam.domain.model.sentence.future.FuturePerfectSentence
+import com.sacoding.feature_exam.domain.model.sentence.past.PastContinuousSentence
+import com.sacoding.feature_exam.domain.model.sentence.past.PastPerfectContinuousSentence
+import com.sacoding.feature_exam.domain.model.sentence.past.PastPerfectSentence
+import com.sacoding.feature_exam.domain.model.sentence.present.PresentPerfectContinuousSentence
+import com.sacoding.feature_exam.domain.model.sentence.present.PresentPerfectSentence
 import com.sacoding.feature_exam.domain.model.verb.Verb
 import com.sacoding.feature_exam.presentation.utils.upperFirstLetter
 
