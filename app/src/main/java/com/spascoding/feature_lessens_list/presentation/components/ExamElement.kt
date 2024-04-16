@@ -23,7 +23,6 @@ fun ExamElement(
     onClickItem: () -> Unit,
     onClickInfo: () -> Unit,
     examName: String,
-    levelName: String,
 ) {
     Row(
         modifier = Modifier
@@ -43,7 +42,6 @@ fun ExamElement(
                 text = examName,
                 fontWeight = FontWeight.Bold
             )
-            Text(text = levelName)
         }
         Spacer(
             Modifier

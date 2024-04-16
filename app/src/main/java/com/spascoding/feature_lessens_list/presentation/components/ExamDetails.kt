@@ -34,13 +34,6 @@ fun ExamDetails(
             fontWeight = FontWeight.Bold,
             fontSize = FontSize.LARGE
         )
-        Text(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = Padding.MEDIUM),
-            text = viewModel.state.value.exam.level.text,
-            fontWeight = FontWeight.Bold,
-        )
         LazyColumn(
             modifier = Modifier.fillMaxWidth()
         ) {

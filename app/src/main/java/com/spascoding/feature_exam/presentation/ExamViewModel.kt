@@ -23,12 +23,6 @@ class ExamViewModel(
 
     fun onEvent(event: ExamEvent) {
         when (event) {
-            is ExamEvent.SelectLevel -> {
-                _state.value = state.value.copy(
-                    level = event.level
-                )
-            }
-
             is ExamEvent.SelectExam -> {
                 viewModelScope.launch {
                     val exam = event.exam
@@ -90,6 +84,6 @@ class ExamViewModel(
     }
 
     suspend fun getExams(): List<Exam> {
-        return examUseCases.getExamUseCase.invoke(state.value.level)
+        return examUseCases.getExamUseCase.invoke()
     }
 }

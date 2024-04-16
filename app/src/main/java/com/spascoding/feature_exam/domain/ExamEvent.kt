@@ -7,5 +7,4 @@ sealed interface ExamEvent {
     data class EnterText(val answerText: String) : ExamEvent
     data class SelectExam(val exam: Exam) : ExamEvent
     data class SelectExamInfo(val exam: Exam) : ExamEvent
-    data class SelectLevel(val level: Level) : ExamEvent
 }

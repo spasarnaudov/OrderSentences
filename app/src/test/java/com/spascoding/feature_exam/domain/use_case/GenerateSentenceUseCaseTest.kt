@@ -4,7 +4,6 @@ import com.spascoding.feature_exam.R
 import com.spascoding.feature_exam.data.data_source.Nouns
 import com.spascoding.feature_exam.data.data_source.Verbs
 import com.spascoding.feature_exam.data.data_source.Pronouns
-import com.spascoding.feature_exam.domain.Level
 import com.spascoding.feature_exam.domain.SentenceType
 import com.spascoding.feature_exam.domain.Tens
 import com.spascoding.feature_exam.domain.model.Exam
@@ -59,7 +58,6 @@ class GenerateSentenceUseCaseTest {
     private fun whereAreYouLiveLessen(tens: Tens) : Exam {
         return Exam(
             name = R.string.i_am_from_bulgaria,
-            level = Level.BEGINNER,
             sentenceTypes = SentenceType.entries,
             tens = tens,
             subjects = Pronouns.singular.plus(Pronouns.names),
@@ -142,7 +140,6 @@ class GenerateSentenceUseCaseTest {
         )
         val lessen = Exam(
             name = R.string.i_am_from_bulgaria,
-            level = Level.BEGINNER,
             sentenceTypes = SentenceType.entries,
             tens = Tens.PRESENT_SIMPLE,
             subjects = Pronouns.singular.plus(Pronouns.names),
@@ -188,7 +185,6 @@ class GenerateSentenceUseCaseTest {
         )
         val lessen = Exam(
             name = R.string.i_am_bulgarian,
-            level = Level.BEGINNER,
             sentenceTypes = SentenceType.entries,
             tens = Tens.PRESENT_SIMPLE,
             subjects = Pronouns.singular.plus(Pronouns.names),
