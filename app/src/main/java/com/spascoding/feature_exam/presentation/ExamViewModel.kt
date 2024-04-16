@@ -33,7 +33,7 @@ class ExamViewModel(
                 viewModelScope.launch {
                     val exam = event.exam
                     val sentenceType = exam.sentenceTypes.random()
-                    val tens = exam.tenses.random()
+                    val tens = exam.tens
                     val subject = exam.subjects.random()
                     val verb = exam.verbs.random()
                     val objectVal = exam.objects.random()

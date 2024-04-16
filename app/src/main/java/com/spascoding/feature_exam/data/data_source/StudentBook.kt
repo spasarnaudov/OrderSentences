@@ -20,7 +20,7 @@ object StudentBook {
             Exam(
                 name = R.string.i_am_bulgarian,
                 level = Level.BEGINNER,
-                tenses = listOf(Tens.PRESENT_SIMPLE),
+                tens = Tens.PRESENT_SIMPLE,
                 subjects = Pronouns.singular.plus(Pronouns.plural).plus(Pronouns.names),
                 verbs = listOf(Verbs.toBe),
                 objects = NounAdapter(Nouns.nationals).build(),
@@ -28,7 +28,7 @@ object StudentBook {
             Exam(
                 name = R.string.i_am_an_programmer,
                 level = Level.BEGINNER,
-                tenses = listOf(Tens.PRESENT_SIMPLE),
+                tens = Tens.PRESENT_SIMPLE,
                 subjects = Pronouns.singular.plus(Pronouns.names),
                 verbs = listOf(Verbs.toBe),
                 objects = NounAdapter(Nouns.jobs.addArticle(Article.INDEFINITE)).build(),
@@ -36,7 +36,7 @@ object StudentBook {
             Exam(
                 name = R.string.i_am_from_bulgaria,
                 level = Level.BEGINNER,
-                tenses = listOf(Tens.PRESENT_SIMPLE),
+                tens = Tens.PRESENT_SIMPLE,
                 subjects = Pronouns.singular.plus(Pronouns.names),
                 verbs = listOf(Verbs.toBe),
                 objects = NounAdapter(Nouns.countries.addPreposition(Preposition.FROM)).build(),
@@ -83,7 +83,7 @@ object StudentBook {
                 name = R.string.it_is_mine,
                 level = Level.BEGINNER,
                 sentenceTypes = SentenceType.entries,
-                tenses = listOf(Tens.PRESENT_SIMPLE),
+                tens = Tens.PRESENT_SIMPLE,
                 subjects = listOf(Pronoun.IT),
                 verbs = listOf(Verbs.toBe),
                 objects = NounAdapter(
@@ -94,7 +94,7 @@ object StudentBook {
             Exam(
                 name = R.string.this_is_my_book,
                 level = Level.BEGINNER,
-                tenses = listOf(Tens.PRESENT_SIMPLE),
+                tens = Tens.PRESENT_SIMPLE,
                 subjects = Pronouns.Demonstratives.singular,
                 verbs = listOf(Verbs.toBe),
                 objects = NounAdapter(
@@ -109,7 +109,7 @@ object StudentBook {
             Exam(
                 name = R.string.these_are_my_keys,
                 level = Level.BEGINNER,
-                tenses = listOf(Tens.PRESENT_SIMPLE),
+                tens = Tens.PRESENT_SIMPLE,
                 subjects = Pronouns.Demonstratives.plural,
                 verbs = listOf(Verbs.toBe),
                 objects = NounAdapter(
@@ -125,7 +125,7 @@ object StudentBook {
             Exam(
                 name = R.string.she_loves_john,
                 level = Level.BEGINNER,
-                tenses = listOf(Tens.PRESENT_SIMPLE),
+                tens = Tens.PRESENT_SIMPLE,
                 subjects = Pronouns.singular.plus(Pronouns.plural).plus(Pronouns.names),
                 verbs = listOf(Verbs.love),
                 objects = NounAdapter(Pronouns.names.plus(Pronouns.Objects.singular.plus(Pronouns.Objects.plural))).build(),
@@ -133,7 +133,7 @@ object StudentBook {
             Exam(
                 name = R.string.i_eat_pizza,
                 level = Level.BEGINNER,
-                tenses = listOf(Tens.PRESENT_SIMPLE),
+                tens = Tens.PRESENT_SIMPLE,
                 subjects = Pronouns.singular
                     .plus(Pronouns.plural)
                     .plus(Pronouns.names),
@@ -177,7 +177,7 @@ object StudentBook {
             Exam(
                 name = R.string.they_help_each_other,
                 level = Level.INTERMEDIATE,
-                tenses = listOf(Tens.PRESENT_SIMPLE, Tens.PAST_SIMPLE),
+                tens = Tens.PAST_SIMPLE,
                 subjects = Pronouns.plural,
                 verbs = Verbs.mutualOrReciprocalActions,
                 objects = NounAdapter(Pronouns.reciprocal).build(),
@@ -190,7 +190,7 @@ object StudentBook {
             Exam(
                 name = R.string.i_am_from_bulgaria,
                 level = Level.UPPER_INTERMEDIATE,
-                tenses = listOf(Tens.PRESENT_SIMPLE),
+                tens = Tens.PRESENT_SIMPLE,
                 subjects = Pronouns.singular
                         .plus(Pronouns.plural)
                         .plus(Pronouns.names)
@@ -206,7 +206,7 @@ object StudentBook {
             Exam(
                 name = R.string.i_am_from_bulgaria,
                 level = Level.ADVANCED,
-                tenses = listOf(Tens.PRESENT_SIMPLE),
+                tens = Tens.PRESENT_SIMPLE,
                 subjects = Pronouns.singular
                         .plus(Pronouns.plural)
                         .plus(Pronouns.names)
@@ -222,7 +222,7 @@ object StudentBook {
             Exam(
                 name = R.string.i_am_from_bulgaria,
                 level = Level.PROFICIENT,
-                tenses = listOf(Tens.PRESENT_SIMPLE),
+                tens = Tens.PRESENT_SIMPLE,
                 subjects = Pronouns.singular
                         .plus(Pronouns.plural)
                         .plus(Pronouns.names)

@@ -12,7 +12,7 @@ data class Exam(
     @StringRes val name: Int,
     val level: Level,
     val sentenceTypes: List<SentenceType> = SentenceType.entries,
-    val tenses: List<Tens>,
+    val tens: Tens,
     val subjects: List<Noun>,
     val verbs: List<Verb>,
     val objects: List<String>
@@ -22,19 +22,17 @@ fun Exam.info() : List<String> {
     val list = mutableListOf<String>()
 
     for (sentenceType in sentenceTypes) {
-        for (tens in tenses) {
-            for (subject in subjects) {
-                for (verb in verbs) {
-                    for (objectVal in objects) {
-                        val sentence = GenerateSentenceUseCase().invoke(
-                            sentenceType,
-                            tens,
-                            subject,
-                            verb,
-                            objectVal
-                        )
-                        list.add(sentence)
-                    }
+        for (subject in subjects) {
+            for (verb in verbs) {
+                for (objectVal in objects) {
+                    val sentence = GenerateSentenceUseCase().invoke(
+                        sentenceType,
+                        tens,
+                        subject,
+                        verb,
+                        objectVal
+                    )
+                    list.add(sentence)
                 }
             }
         }

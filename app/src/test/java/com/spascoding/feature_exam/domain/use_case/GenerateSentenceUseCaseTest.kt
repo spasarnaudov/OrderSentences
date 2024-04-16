@@ -3,9 +3,7 @@ package com.spascoding.feature_exam.domain.use_case
 import com.spascoding.feature_exam.R
 import com.spascoding.feature_exam.data.data_source.Nouns
 import com.spascoding.feature_exam.data.data_source.Verbs
-import com.spascoding.feature_exam.data.data_source.Prepositions
 import com.spascoding.feature_exam.data.data_source.Pronouns
-import com.spascoding.feature_exam.data.data_source.addPreposition
 import com.spascoding.feature_exam.domain.Level
 import com.spascoding.feature_exam.domain.SentenceType
 import com.spascoding.feature_exam.domain.Tens
@@ -18,21 +16,19 @@ class GenerateSentenceUseCaseTest {
     private fun check(sentences: List<String>, exam: Exam): Boolean {
         var counter = 0
         for (sentenceType in exam.sentenceTypes) {
-            for (tens in exam.tenses) {
-                for (subject in exam.subjects) {
-                    for (verb in exam.verbs) {
-                        for (objectVal in exam.objects) {
-                            val sentence = GenerateSentenceUseCase().invoke(
-                                sentenceType,
-                                tens,
-                                subject,
-                                verb,
-                                objectVal
-                            )
-                            counter++
-                            if (!sentences.contains(sentence)) {
-                                return false
-                            }
+            for (subject in exam.subjects) {
+                for (verb in exam.verbs) {
+                    for (objectVal in exam.objects) {
+                        val sentence = GenerateSentenceUseCase().invoke(
+                            sentenceType,
+                            exam.tens,
+                            subject,
+                            verb,
+                            objectVal
+                        )
+                        counter++
+                        if (!sentences.contains(sentence)) {
+                            return false
                         }
                     }
                 }
@@ -43,19 +39,17 @@ class GenerateSentenceUseCaseTest {
 
     private fun print(exam: Exam) {
         for (sentenceType in exam.sentenceTypes) {
-            for (tens in exam.tenses) {
-                for (subject in exam.subjects) {
-                    for (verb in exam.verbs) {
-                        for (objectVal in exam.objects) {
-                            val sentence = GenerateSentenceUseCase().invoke(
-                                sentenceType,
-                                tens,
-                                subject,
-                                verb,
-                                objectVal
-                            )
-                            println("\"$sentence\",")
-                        }
+            for (subject in exam.subjects) {
+                for (verb in exam.verbs) {
+                    for (objectVal in exam.objects) {
+                        val sentence = GenerateSentenceUseCase().invoke(
+                            sentenceType,
+                            exam.tens,
+                            subject,
+                            verb,
+                            objectVal
+                        )
+                        println("\"$sentence\",")
                     }
                 }
             }
@@ -67,7 +61,7 @@ class GenerateSentenceUseCaseTest {
             name = R.string.i_am_from_bulgaria,
             level = Level.BEGINNER,
             sentenceTypes = SentenceType.entries,
-            tenses = listOf(tens),
+            tens = tens,
             subjects = Pronouns.singular.plus(Pronouns.names),
             verbs = Verbs.countriesAndCities,
             objects = listOf("Australia"),
@@ -150,7 +144,7 @@ class GenerateSentenceUseCaseTest {
             name = R.string.i_am_from_bulgaria,
             level = Level.BEGINNER,
             sentenceTypes = SentenceType.entries,
-            tenses = listOf(Tens.PRESENT_SIMPLE),
+            tens = Tens.PRESENT_SIMPLE,
             subjects = Pronouns.singular.plus(Pronouns.names),
             verbs = listOf(Verbs.toBe),
             objects = NounAdapter(Nouns.countries).build(),
@@ -196,7 +190,7 @@ class GenerateSentenceUseCaseTest {
             name = R.string.i_am_bulgarian,
             level = Level.BEGINNER,
             sentenceTypes = SentenceType.entries,
-            tenses = listOf(Tens.PRESENT_SIMPLE),
+            tens = Tens.PRESENT_SIMPLE,
             subjects = Pronouns.singular.plus(Pronouns.names),
             verbs = listOf(Verbs.toBe),
             objects = NounAdapter(Nouns.nationals).build(),
