@@ -14,7 +14,7 @@ class GenerateSentenceUseCaseTest {
 
     private fun check(sentences: List<String>, exam: Exam): Boolean {
         var counter = 0
-        for (sentenceType in exam.sentenceTypes) {
+        for (sentenceType in SentenceType.entries) {
             for (subject in exam.subjects) {
                 for (verb in exam.verbs) {
                     for (objectVal in exam.objects) {
@@ -37,7 +37,7 @@ class GenerateSentenceUseCaseTest {
     }
 
     private fun print(exam: Exam) {
-        for (sentenceType in exam.sentenceTypes) {
+        for (sentenceType in SentenceType.entries) {
             for (subject in exam.subjects) {
                 for (verb in exam.verbs) {
                     for (objectVal in exam.objects) {
@@ -58,7 +58,6 @@ class GenerateSentenceUseCaseTest {
     private fun whereAreYouLiveLessen(tens: Tens) : Exam {
         return Exam(
             name = R.string.i_am_from_bulgaria,
-            sentenceTypes = SentenceType.entries,
             tens = tens,
             subjects = Pronouns.singular.plus(Pronouns.names),
             verbs = Verbs.countriesAndCities,
@@ -140,7 +139,6 @@ class GenerateSentenceUseCaseTest {
         )
         val lessen = Exam(
             name = R.string.i_am_from_bulgaria,
-            sentenceTypes = SentenceType.entries,
             tens = Tens.PRESENT_SIMPLE,
             subjects = Pronouns.singular.plus(Pronouns.names),
             verbs = listOf(Verbs.toBe),
@@ -185,7 +183,6 @@ class GenerateSentenceUseCaseTest {
         )
         val lessen = Exam(
             name = R.string.i_am_bulgarian,
-            sentenceTypes = SentenceType.entries,
             tens = Tens.PRESENT_SIMPLE,
             subjects = Pronouns.singular.plus(Pronouns.names),
             verbs = listOf(Verbs.toBe),

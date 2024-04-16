@@ -39,7 +39,6 @@ object StudentBook {
             ),
             Exam(
                 name = R.string.it_is_mine,
-                sentenceTypes = SentenceType.entries,
                 tens = Tens.PRESENT_SIMPLE,
                 subjects = listOf(Pronoun.IT),
                 verbs = listOf(Verbs.toBe),

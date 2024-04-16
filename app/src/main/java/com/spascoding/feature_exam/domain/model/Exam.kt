@@ -9,7 +9,6 @@ import com.spascoding.feature_exam.domain.use_case.GenerateSentenceUseCase
 
 data class Exam(
     @StringRes val name: Int,
-    val sentenceTypes: List<SentenceType> = SentenceType.entries,
     val tens: Tens,
     val subjects: List<Noun>,
     val verbs: List<Verb>,
@@ -19,7 +18,7 @@ data class Exam(
 fun Exam.info() : List<String> {
     val list = mutableListOf<String>()
 
-    for (sentenceType in sentenceTypes) {
+    for (sentenceType in SentenceType.entries) {
         for (subject in subjects) {
             for (verb in verbs) {
                 for (objectVal in objects) {

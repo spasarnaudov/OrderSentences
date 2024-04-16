@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.spascoding.feature_exam.domain.ExamEvent
 import com.spascoding.feature_exam.domain.GameState
+import com.spascoding.feature_exam.domain.SentenceType
 import com.spascoding.feature_exam.domain.model.Exam
 import com.spascoding.feature_exam.domain.use_case.GenerateSentenceUseCase
 import com.spascoding.feature_exam.domain.use_case.ExamUseCases
@@ -26,7 +27,7 @@ class ExamViewModel(
             is ExamEvent.SelectExam -> {
                 viewModelScope.launch {
                     val exam = event.exam
-                    val sentenceType = exam.sentenceTypes.random()
+                    val sentenceType = SentenceType.entries.random()
                     val tens = exam.tens
                     val subject = exam.subjects.random()
                     val verb = exam.verbs.random()
