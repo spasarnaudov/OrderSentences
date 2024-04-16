@@ -4,11 +4,21 @@ import com.sacoding.feature_exam.data.data_source.Verbs
 import com.sacoding.feature_exam.domain.model.noun.Noun
 import com.sacoding.feature_exam.listVowels
 
-abstract class Verb(
-    open val baseForm: String,
-    open val pastTense: String,
-    open val pastParticiple: String,
+class Verb(
+    val baseForm: String,
+    val pastTense: String = baseForm.toPast(),
+    val pastParticiple: String = baseForm.toPast(),
 )
+
+fun String.toPast(): String {
+    if (lowercase().endsWith("e")) {
+        return "${this}d"
+    }
+    if (lowercase().endsWith("y")) {
+        return "${substring(0, length-1)}ied"
+    }
+    return "${this}ed"
+}
 
 fun Verb.adaptToSubject(subject: Noun): String {
     return if (subject.isThirdPerson()) {
