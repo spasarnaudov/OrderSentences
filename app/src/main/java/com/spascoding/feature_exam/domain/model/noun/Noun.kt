@@ -1,10 +1,12 @@
 package com.spascoding.feature_exam.domain.model.noun
 
 import com.spascoding.feature_exam.domain.Plurality
+import com.spascoding.feature_exam.domain.model.Preposition
 
 abstract class Noun(
     open val countable: Boolean,
     open val plurality: Plurality,
+    open var preposition: Preposition,
 ) {
 
     abstract fun build(): String
@@ -13,4 +15,11 @@ abstract class Noun(
         return true
     }
 
+}
+
+fun List<Noun>.addPreposition(preposition: Preposition): List<Noun> {
+    for (item in this) {
+        item.preposition = preposition
+    }
+    return this
 }

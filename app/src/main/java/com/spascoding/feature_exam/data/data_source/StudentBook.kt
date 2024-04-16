@@ -7,9 +7,11 @@ import com.spascoding.feature_exam.domain.SentenceType
 import com.spascoding.feature_exam.domain.Tens
 import com.spascoding.feature_exam.domain.model.Exam
 import com.spascoding.feature_exam.domain.NounAdapter
+import com.spascoding.feature_exam.domain.model.Preposition
 import com.spascoding.feature_exam.domain.model.noun.Pronoun
 import com.spascoding.feature_exam.domain.model.noun.addAdjective
 import com.spascoding.feature_exam.domain.model.noun.addArticle
+import com.spascoding.feature_exam.domain.model.noun.addPreposition
 import com.spascoding.feature_exam.domain.model.noun.plural
 
 object StudentBook {
@@ -37,7 +39,7 @@ object StudentBook {
                 tenses = listOf(Tens.PRESENT_SIMPLE),
                 subjects = Pronouns.singular.plus(Pronouns.names),
                 verbs = listOf(Verbs.toBe),
-                objects = NounAdapter(Nouns.countries).build(),
+                objects = NounAdapter(Nouns.countries.addPreposition(Preposition.FROM)).build(),
             ),
 //            Exam(
 //                name = R.string.who_are_you_meeting,

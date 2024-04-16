@@ -1,20 +1,22 @@
 package com.spascoding.feature_exam.domain.model.noun
 
 import com.spascoding.feature_exam.domain.Plurality
+import com.spascoding.feature_exam.domain.model.Preposition
 
-open class Pronoun(
+data class Pronoun(
     private val value: String,
     override val plurality: Plurality = Plurality.SINGULAR,
-    private val preposition: String = "",
+    override var preposition: Preposition = Preposition.EMPTY,
 ): Noun(
     countable = true,
     plurality = plurality,
+    preposition = preposition,
 ) {
 
     override fun build(): String {
         return buildString {
-            if (preposition.isNotBlank()) {
-                append(preposition).append(" ")
+            if (preposition != Preposition.EMPTY) {
+                append(preposition.value).append(" ")
             }
             append(value)
         }

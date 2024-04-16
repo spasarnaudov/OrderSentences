@@ -4,6 +4,7 @@ import com.spascoding.feature_exam.domain.Article
 import com.spascoding.feature_exam.domain.Plurality
 import com.spascoding.feature_exam.domain.model.Adjective
 import com.spascoding.feature_exam.domain.model.BLANK_ADJECTIVE
+import com.spascoding.feature_exam.domain.model.Preposition
 import com.spascoding.feature_exam.listVowels
 
 data class CommonNoun(
@@ -11,19 +12,20 @@ data class CommonNoun(
     override val countable: Boolean,
     override val plurality: Plurality,
     private val irregular: Boolean = false,
-    private val preposition: String = "",
+    override var preposition: Preposition = Preposition.EMPTY,
     private val article: Article = Article.NONE,
     private val adjectiveBefore: Adjective = BLANK_ADJECTIVE,
     private val adjectiveAfter: Adjective = BLANK_ADJECTIVE,
 ): Noun(
     countable = countable,
     plurality = plurality,
+    preposition = preposition,
 ) {
 
     override fun build(): String {
         return buildString {
-            if (preposition.isNotBlank()) {
-                append(preposition).append(" ")
+            if (preposition != Preposition.EMPTY) {
+                append(preposition.value).append(" ")
             }
             if (article != Article.NONE) {
                 val articleVal = getArticle(article)
