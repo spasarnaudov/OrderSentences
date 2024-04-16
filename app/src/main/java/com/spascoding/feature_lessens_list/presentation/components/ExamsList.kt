@@ -27,6 +27,7 @@ fun ExamsList(
         ) {
             viewModel.viewModelScope.launch {
                 viewModel.getExams().forEach() { exam ->
+                    val name = viewModel.getFirstItemName(exam)
                     item {
                         ExamElement(
                             onClickItem = {
@@ -37,7 +38,7 @@ fun ExamsList(
                                 viewModel.onEvent(ExamEvent.SelectExam(exam))
                                 navController.navigate(Screen.ExamDetail.route)
                             },
-                            examName = stringResource(id = exam.name),
+                            examName = name,
                             tens = exam.tens.value
                         )
                     }

@@ -87,4 +87,20 @@ class ExamViewModel(
     suspend fun getExams(): List<Exam> {
         return examUseCases.getExamUseCase.invoke()
     }
+
+    fun getFirstItemName(exam: Exam): String {
+        val sentenceType = SentenceType.POSITIVE
+        val tens = exam.tens
+        val subject = exam.subjects[0]
+        val verb = exam.verbs[0]
+        val objectVal = exam.objects[0]
+
+        return GenerateSentenceUseCase().invoke(
+            sentenceType,
+            tens,
+            subject,
+            verb,
+            objectVal
+        )
+    }
 }

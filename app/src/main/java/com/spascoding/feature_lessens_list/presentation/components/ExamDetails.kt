@@ -27,10 +27,11 @@ fun ExamDetails(
             .padding(Padding.LARGE),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        val name = viewModel.getFirstItemName(viewModel.state.value.exam)
         Text(
             modifier = Modifier
                 .fillMaxWidth(),
-            text = stringResource(id = viewModel.state.value.exam.name),
+            text = name,
             fontWeight = FontWeight.Bold,
             fontSize = FontSize.LARGE
         )
