@@ -23,3 +23,9 @@ fun List<Noun>.addPreposition(preposition: Preposition): List<Noun> {
     }
     return this
 }
+
+fun List<Noun>.build(): List<String> {
+    return this.map { noun ->
+        noun.build()
+    }
+}

@@ -8,7 +8,7 @@ import com.spascoding.feature_exam.domain.Level
 import com.spascoding.feature_exam.domain.SentenceType
 import com.spascoding.feature_exam.domain.Tens
 import com.spascoding.feature_exam.domain.model.Exam
-import com.spascoding.feature_exam.domain.NounAdapter
+import com.spascoding.feature_exam.domain.model.noun.build
 import org.junit.Test
 
 class GenerateSentenceUseCaseTest {
@@ -147,7 +147,7 @@ class GenerateSentenceUseCaseTest {
             tens = Tens.PRESENT_SIMPLE,
             subjects = Pronouns.singular.plus(Pronouns.names),
             verbs = listOf(Verbs.toBe),
-            objects = NounAdapter(Nouns.countries).build(),
+            objects = Nouns.countries.build(),
         )
         assert(check(sentences, lessen))
     }
@@ -193,7 +193,7 @@ class GenerateSentenceUseCaseTest {
             tens = Tens.PRESENT_SIMPLE,
             subjects = Pronouns.singular.plus(Pronouns.names),
             verbs = listOf(Verbs.toBe),
-            objects = NounAdapter(Nouns.nationals).build(),
+            objects = Nouns.nationals.build(),
         )
         print(lessen)
         assert(check(sentences, lessen))
