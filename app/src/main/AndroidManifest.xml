@@ -13,7 +13,7 @@
 		android:theme="@style/Theme.EnglishStructure"
 		tools:targetApi="31">
 		<activity
-			android:name="com.sacoding.feature_exam.presentation.ExamActivity"
+			android:name="com.spascoding.feature_exam.presentation.ExamActivity"
 			android:exported="true"
 			android:theme="@style/Theme.EnglishStructure">
 			<intent-filter>

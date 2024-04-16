@@ -1,0 +1,49 @@
+package com.spascoding.feature_exam.presentation
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.viewModels
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.ui.Modifier
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import com.spascoding.feature_exam.data.repository.VerbRepositoryImpl
+import com.spascoding.feature_exam.domain.use_case.GetExamUseCase
+import com.spascoding.feature_exam.domain.use_case.ExamUseCases
+import com.spascoding.feature_exam.presentation.theme.OrderSentencesTheme
+import com.spascoding.feature_lessens_list.presentation.components.Navigation
+
+class ExamActivity : ComponentActivity() {
+
+    private val viewModel by viewModels<ExamViewModel>(
+        factoryProducer = {
+            object : ViewModelProvider.Factory {
+                override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                    val repository = VerbRepositoryImpl()
+                    val useCases = ExamUseCases(
+                        GetExamUseCase(repository = repository),
+                    )
+                    return ExamViewModel(useCases) as T
+                }
+            }
+        }
+    )
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            OrderSentencesTheme {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    Navigation(viewModel)
+                }
+            }
+        }
+    }
+
+}
