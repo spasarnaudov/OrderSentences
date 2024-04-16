@@ -1,5 +1,6 @@
 package com.spascoding.feature_exam.domain.model.sentence.future
 
+import com.spascoding.feature_exam.data.data_source.Verbs
 import com.spascoding.feature_exam.domain.model.noun.Noun
 import com.spascoding.feature_exam.domain.model.sentence.Sentence
 import com.spascoding.feature_exam.domain.model.verb.Verb
@@ -30,6 +31,9 @@ class FutureSimpleSentence(
      * "She will walk around."
      */
     override fun positive(): String {
+        if (verb == Verbs.toBe) {
+            return "${subject.build()} will be $objectVal."
+        }
         return "${subject.build()} will ${verb.baseForm} $objectVal."
     }
 
@@ -38,6 +42,9 @@ class FutureSimpleSentence(
      * "She will not walk around."
      */
     override fun negative(): String {
+        if (verb == Verbs.toBe) {
+            return "${subject.build()} will not be $objectVal."
+        }
         return "${subject.build()} will not ${verb.baseForm} $objectVal."
     }
 
@@ -46,6 +53,9 @@ class FutureSimpleSentence(
      * "Will she walk around?"
      */
     override fun question(): String {
+        if (verb == Verbs.toBe) {
+            return "will ${subject.build()} be $objectVal?"
+        }
         return "will ${subject.build()} ${verb.baseForm} $objectVal?"
     }
 }

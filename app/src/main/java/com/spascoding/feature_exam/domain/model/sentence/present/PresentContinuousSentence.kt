@@ -1,5 +1,6 @@
 package com.spascoding.feature_exam.domain.model.sentence.present
 
+import com.spascoding.feature_exam.data.data_source.Verbs
 import com.spascoding.feature_exam.domain.model.noun.Noun
 import com.spascoding.feature_exam.domain.model.sentence.Sentence
 import com.spascoding.feature_exam.domain.model.verb.Verb
@@ -25,6 +26,9 @@ class PresentContinuousSentence(
      * "She is walking around."
      */
     override fun positive(): String {
+        if (verb == Verbs.toBe) {
+            return "${subject.build()} ${toBe(subject.build())} being $objectVal."
+        }
         return "${subject.build()} ${toBe(subject.build())} ${verb.continuous()} $objectVal."
     }
 
@@ -33,6 +37,9 @@ class PresentContinuousSentence(
      * "She is not walking around."
      */
     override fun negative(): String {
+        if (verb == Verbs.toBe) {
+            return "${subject.build()} ${toBe(subject.build())} not being $objectVal."
+        }
         return "${subject.build()} ${toBe(subject.build())} not ${verb.continuous()} $objectVal."
     }
 
@@ -41,6 +48,9 @@ class PresentContinuousSentence(
      * "Is she walking around?"
      */
     override fun question(): String {
+        if (verb == Verbs.toBe) {
+            return "${toBe(subject.build())} ${subject.build()} being $objectVal?"
+        }
         return "${toBe(subject.build())} ${subject.build()} ${verb.continuous()} $objectVal?"
     }
 

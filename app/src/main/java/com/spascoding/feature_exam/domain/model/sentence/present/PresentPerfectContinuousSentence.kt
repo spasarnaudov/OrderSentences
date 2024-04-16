@@ -27,6 +27,9 @@ class PresentPerfectContinuousSentence(
      * "She has been walking around."
      */
     override fun positive(): String {
+        if (verb == Verbs.toBe) {
+            return "${subject.build()} ${Verbs.have.subjectBaseForm(subject)} been being $objectVal."
+        }
         return "${subject.build()} ${Verbs.have.subjectBaseForm(subject)} been ${verb.continuous()} $objectVal."
     }
 
@@ -35,6 +38,9 @@ class PresentPerfectContinuousSentence(
      * "She has not been walking around."
      */
     override fun negative(): String {
+        if (verb == Verbs.toBe) {
+            return "${subject.build()} ${Verbs.have.subjectBaseForm(subject)} not been being $objectVal."
+        }
         return "${subject.build()} ${Verbs.have.subjectBaseForm(subject)} not been ${verb.continuous()} $objectVal."
     }
 
@@ -43,6 +49,9 @@ class PresentPerfectContinuousSentence(
      * "Has she been walking around?"
      */
     override fun question(): String {
+        if (verb == Verbs.toBe) {
+            return "${Verbs.have.subjectBaseForm(subject)} ${subject.build()} been being $objectVal?"
+        }
         return "${Verbs.have.subjectBaseForm(subject)} ${subject.build()} been ${verb.continuous()} $objectVal?"
     }
 }

@@ -1,5 +1,6 @@
 package com.spascoding.feature_exam.domain.model.sentence.past
 
+import com.spascoding.feature_exam.data.data_source.Verbs
 import com.spascoding.feature_exam.domain.model.noun.Noun
 import com.spascoding.feature_exam.domain.model.sentence.Sentence
 import com.spascoding.feature_exam.domain.model.verb.Verb
@@ -25,6 +26,9 @@ class PastContinuousSentence(
      * "She was walking around."
      */
     override fun positive(): String {
+        if (verb == Verbs.toBe) {
+            return "${subject.build()} ${toBePast(subject.build())} being $objectVal."
+        }
         return "${subject.build()} ${toBePast(subject.build())} ${verb.continuous()} $objectVal."
     }
 
@@ -33,6 +37,9 @@ class PastContinuousSentence(
      * "She was not walking around."
      */
     override fun negative(): String {
+        if (verb == Verbs.toBe) {
+            return "${subject.build()} ${toBePast(subject.build())} not being $objectVal."
+        }
         return "${subject.build()} ${toBePast(subject.build())} not ${verb.continuous()} $objectVal."
     }
 
@@ -41,6 +48,9 @@ class PastContinuousSentence(
      * "Was she walking around?"
      */
     override fun question(): String {
+        if (verb == Verbs.toBe) {
+            return "${toBePast(subject.build())} ${subject.build()} being $objectVal?"
+        }
         return "${toBePast(subject.build())} ${subject.build()} ${verb.continuous()} $objectVal?"
     }
 }

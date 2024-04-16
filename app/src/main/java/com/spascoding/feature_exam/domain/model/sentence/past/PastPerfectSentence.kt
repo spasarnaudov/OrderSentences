@@ -1,5 +1,6 @@
 package com.spascoding.feature_exam.domain.model.sentence.past
 
+import com.spascoding.feature_exam.data.data_source.Verbs
 import com.spascoding.feature_exam.domain.model.noun.Noun
 import com.spascoding.feature_exam.domain.model.sentence.Sentence
 import com.spascoding.feature_exam.domain.model.verb.Verb
@@ -20,6 +21,9 @@ class PastPerfectSentence(
      * "She had walked around."
      */
     override fun positive(): String {
+        if (verb == Verbs.toBe) {
+            return "${subject.build()} had been $objectVal."
+        }
         return "${subject.build()} had ${verb.pastParticiple} $objectVal."
     }
 
@@ -28,6 +32,9 @@ class PastPerfectSentence(
      * "She had not walked + around."
      */
     override fun negative(): String {
+        if (verb == Verbs.toBe) {
+            return "${subject.build()} had not been $objectVal."
+        }
         return "${subject.build()} had not ${verb.pastParticiple} $objectVal."
     }
 
@@ -36,6 +43,9 @@ class PastPerfectSentence(
      * "Had she walked around?"
      */
     override fun question(): String {
+        if (verb == Verbs.toBe) {
+            return "had ${subject.build()} been $objectVal?"
+        }
         return "had ${subject.build()} ${verb.pastParticiple} $objectVal?"
     }
 }

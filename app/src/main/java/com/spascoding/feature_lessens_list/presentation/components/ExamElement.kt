@@ -23,6 +23,7 @@ fun ExamElement(
     onClickItem: () -> Unit,
     onClickInfo: () -> Unit,
     examName: String,
+    tens: String,
 ) {
     Row(
         modifier = Modifier
@@ -42,6 +43,7 @@ fun ExamElement(
                 text = examName,
                 fontWeight = FontWeight.Bold
             )
+            Text(text = tens)
         }
         Spacer(
             Modifier

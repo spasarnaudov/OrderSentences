@@ -32,6 +32,9 @@ class PresentPerfectSentence(
      * "She has walked around."
      */
     override fun positive(): String {
+        if (verb == Verbs.toBe) {
+            return "${subject.build()} ${Verbs.have.subjectBaseForm(subject)} been $objectVal."
+        }
         return "${subject.build()} ${Verbs.have.subjectBaseForm(subject)} ${verb.pastParticiple} $objectVal."
     }
 
@@ -40,6 +43,9 @@ class PresentPerfectSentence(
      * "She has not walked around."
      */
     override fun negative(): String {
+        if (verb == Verbs.toBe) {
+            return "${subject.build()} ${Verbs.have.subjectBaseForm(subject)} not been $objectVal."
+        }
         return "${subject.build()} ${Verbs.have.subjectBaseForm(subject)} not ${verb.pastParticiple} $objectVal."
     }
 
@@ -48,6 +54,9 @@ class PresentPerfectSentence(
      * "Has she walked around?"
      */
     override fun question(): String {
+        if (verb == Verbs.toBe) {
+            return "${Verbs.have.subjectBaseForm(subject)} ${subject.build()} been $objectVal?"
+        }
         return "${Verbs.have.subjectBaseForm(subject)} ${subject.build()} ${verb.pastParticiple} $objectVal?"
     }
 }

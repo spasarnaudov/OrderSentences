@@ -1,5 +1,6 @@
 package com.spascoding.feature_exam.domain.model.sentence.future
 
+import com.spascoding.feature_exam.data.data_source.Verbs
 import com.spascoding.feature_exam.domain.model.noun.Noun
 import com.spascoding.feature_exam.domain.model.sentence.Sentence
 import com.spascoding.feature_exam.domain.model.verb.Verb
@@ -19,6 +20,9 @@ class FuturePerfectContinuousSentence(
      * "She will have been walking around."
      */
     override fun positive(): String {
+        if (verb == Verbs.toBe) {
+            return "${subject.build()} will been being $objectVal."
+        }
         return "${subject.build()} will have been ${verb.continuous()} $objectVal."
     }
 
@@ -27,6 +31,9 @@ class FuturePerfectContinuousSentence(
      * "She will not have been walking around."
      */
     override fun negative(): String {
+        if (verb == Verbs.toBe) {
+            return "${subject.build()} will not been being $objectVal."
+        }
         return "${subject.build()} will not have been ${verb.continuous()} $objectVal."
     }
 
@@ -35,6 +42,9 @@ class FuturePerfectContinuousSentence(
      * "Will she have been walking around?"
      */
     override fun question(): String {
+        if (verb == Verbs.toBe) {
+            return "will ${subject.build()} been being $objectVal?"
+        }
         return "will ${subject.build()} have been ${verb.continuous()} $objectVal?"
     }
 }

@@ -38,6 +38,7 @@ fun ExamsList(
                                 navController.navigate(Screen.ExamDetail.route)
                             },
                             examName = stringResource(id = exam.name),
+                            tens = exam.tens.value
                         )
                     }
                 }

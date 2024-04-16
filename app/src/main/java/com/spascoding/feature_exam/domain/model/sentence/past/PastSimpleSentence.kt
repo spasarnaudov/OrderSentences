@@ -45,7 +45,7 @@ class PastSimpleSentence(
      */
     override fun question(): String {
         if (verb == Verbs.toBe) {
-            return "${toBePast(subject.build())} $subject $objectVal?"
+            return "${toBePast(subject.build())} ${subject.build()} $objectVal?"
         }
         return "did ${subject.build()} ${verb.baseForm} $objectVal?"
     }
