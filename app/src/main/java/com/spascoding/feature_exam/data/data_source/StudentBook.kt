@@ -8,8 +8,8 @@ import com.spascoding.feature_exam.domain.Tens
 import com.spascoding.feature_exam.domain.model.Exam
 import com.spascoding.feature_exam.domain.NounAdapter
 import com.spascoding.feature_exam.domain.model.noun.Pronoun
+import com.spascoding.feature_exam.domain.model.noun.addAdjective
 import com.spascoding.feature_exam.domain.model.noun.addArticle
-import com.spascoding.feature_exam.domain.model.noun.addPossessiveAdjective
 import com.spascoding.feature_exam.domain.model.noun.plural
 
 object StudentBook {
@@ -19,9 +19,7 @@ object StudentBook {
                 name = R.string.i_am_bulgarian,
                 level = Level.BEGINNER,
                 tenses = listOf(Tens.PRESENT_SIMPLE),
-                subjects = Pronouns.singular
-                    .plus(Pronouns.plural)
-                    .plus(Pronouns.names),
+                subjects = Pronouns.singular.plus(Pronouns.plural).plus(Pronouns.names),
                 verbs = listOf(Verbs.toBe),
                 objects = NounAdapter(Nouns.nationals).build(),
             ),
@@ -29,8 +27,7 @@ object StudentBook {
                 name = R.string.i_am_an_programmer,
                 level = Level.BEGINNER,
                 tenses = listOf(Tens.PRESENT_SIMPLE),
-                subjects = Pronouns.singular
-                    .plus(Pronouns.names),
+                subjects = Pronouns.singular.plus(Pronouns.names),
                 verbs = listOf(Verbs.toBe),
                 objects = NounAdapter(Nouns.jobs.addArticle(Article.INDEFINITE)).build(),
             ),
@@ -38,9 +35,7 @@ object StudentBook {
                 name = R.string.i_am_from_bulgaria,
                 level = Level.BEGINNER,
                 tenses = listOf(Tens.PRESENT_SIMPLE),
-                subjects = Pronouns.singular
-                        .plus(Pronouns.names)
-                ,
+                subjects = Pronouns.singular.plus(Pronouns.names),
                 verbs = listOf(Verbs.toBe),
                 objects = NounAdapter(Nouns.countries).build(),
             ),
@@ -102,7 +97,7 @@ object StudentBook {
                 verbs = listOf(Verbs.toBe),
                 objects = NounAdapter(
                     Nouns.thinks
-                        .addPossessiveAdjective(
+                        .addAdjective(
                             Adjectives.Possessive.singular
                                 .plus(Adjectives.Possessive.plural)
                                 .plus(Adjectives.Possessive.name)
@@ -118,7 +113,7 @@ object StudentBook {
                 objects = NounAdapter(
                     Nouns.thinks
                         .plural()
-                        .addPossessiveAdjective(
+                        .addAdjective(
                             Adjectives.Possessive.singular
                                 .plus(Adjectives.Possessive.plural)
                                 .plus(Adjectives.Possessive.name)

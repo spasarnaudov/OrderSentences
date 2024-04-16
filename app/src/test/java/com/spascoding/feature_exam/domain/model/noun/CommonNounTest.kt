@@ -21,20 +21,20 @@ class CommonNounTest {
         println(theBoy.build())
         assert(theBoy.build() == "the boy")
 
-        val littleBoy = Nouns.boy.copy(adjective = Adjective(size = "little"))
+        val littleBoy = Nouns.boy.copy(adjectiveBefore = Adjective(size = "little"))
         println(littleBoy.build())
         assert(littleBoy.build() == "little boy")
 
         val aLittleBoy = Nouns.boy.copy(
             article = Article.INDEFINITE,
-            adjective = Adjective(size = "little")
+            adjectiveBefore = Adjective(size = "little")
         )
         println(aLittleBoy.build())
         assert(aLittleBoy.build() == "a little boy")
 
         val theLittleBoy = Nouns.boy.copy(
             article = Article.DEFINITE,
-            adjective = Adjective(size = "little")
+            adjectiveBefore = Adjective(size = "little")
         )
         println(theLittleBoy.build())
         assert(theLittleBoy.build() == "the little boy")
@@ -54,20 +54,20 @@ class CommonNounTest {
         println(theApple.build())
         assert(theApple.build() == "the apple")
 
-        val greenApple = Nouns.apple.copy(adjective = Adjective(color = "green"))
+        val greenApple = Nouns.apple.copy(adjectiveBefore = Adjective(color = "green"))
         println(greenApple.build())
         assert(greenApple.build() == "green apple")
 
         val anGreenApple = Nouns.apple.copy(
             article = Article.INDEFINITE,
-            adjective = Adjective(color = "green")
+            adjectiveBefore = Adjective(color = "green")
         )
         println(anGreenApple.build())
         assert(anGreenApple.build() == "an green apple")
 
         val theGreenApple = Nouns.apple.copy(
             article = Article.DEFINITE,
-            adjective = Adjective(color = "green")
+            adjectiveBefore = Adjective(color = "green")
         )
         println(theGreenApple.build())
         assert(theGreenApple.build() == "the green apple")
@@ -92,21 +92,21 @@ class CommonNounTest {
         assert(theBoys.build() == "the boys")
 
         val littleBoy = Nouns.boy.plural().copy(
-            adjective = Adjective(size = "little")
+            adjectiveBefore = Adjective(size = "little")
         )
         println(littleBoy.build())
         assert(littleBoy.build() == "little boys")
 
         val aLittleBoys = Nouns.boy.plural().copy(
             article = Article.INDEFINITE,
-            adjective = Adjective(size = "little")
+            adjectiveBefore = Adjective(size = "little")
         )
         println(aLittleBoys.build())
         assert(aLittleBoys.build() == "little boys")
 
         val theLittleBoy = Nouns.boy.plural().copy(
             article = Article.DEFINITE,
-            adjective = Adjective(size = "little")
+            adjectiveBefore = Adjective(size = "little")
         )
         println(theLittleBoy.build())
         assert(theLittleBoy.build() == "the little boys")
@@ -131,21 +131,21 @@ class CommonNounTest {
         assert(theApples.build() == "the apples")
 
         val greenApples = Nouns.apple.plural().copy(
-            adjective = Adjective(color = "green")
+            adjectiveBefore = Adjective(color = "green")
         )
         println(greenApples.build())
         assert(greenApples.build() == "green apples")
 
         val anApple = Nouns.apple.plural().copy(
             article = Article.INDEFINITE,
-            adjective = Adjective(color = "green")
+            adjectiveBefore = Adjective(color = "green")
         )
         println(anApple.build())
         assert(anApple.build() == "green apples")
 
         val theGreenApple = Nouns.apple.plural().copy(
             article = Article.DEFINITE,
-            adjective = Adjective(color = "green")
+            adjectiveBefore = Adjective(color = "green")
         )
         println(theGreenApple.build())
         assert(theGreenApple.build() == "the green apples")

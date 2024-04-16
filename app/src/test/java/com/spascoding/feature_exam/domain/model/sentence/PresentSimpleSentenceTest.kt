@@ -27,10 +27,10 @@ class PresentSimpleSentenceTest {
         val itIsMine = createPositiveSentence(Pronoun.IT, Pronoun.MINE.build())
         assert(itIsMine == "It is mine.")
 
-        val thisIsMyBook = createPositiveSentence(Pronoun.THIS, Nouns.book.copy(adjective = Adjective.MY).build())
+        val thisIsMyBook = createPositiveSentence(Pronoun.THIS, Nouns.book.copy(adjectiveBefore = Adjective.MY).build())
         assert(thisIsMyBook == "This is my book.")
 
-        val theseAreMyKeys = createPositiveSentence(Pronoun.THESE, Nouns.key.plural().copy(adjective = Adjective.MY).build())
+        val theseAreMyKeys = createPositiveSentence(Pronoun.THESE, Nouns.key.plural().copy(adjectiveBefore = Adjective.MY).build())
         assert(theseAreMyKeys == "These are my keys.")
     }
 
@@ -60,10 +60,10 @@ class PresentSimpleSentenceTest {
         val itIsNotMine = createNegativeSentence(Pronoun.IT, Pronoun.MINE.build())
         assert(itIsNotMine == "It is not mine.")
 
-        val thisIsNotMyBook = createNegativeSentence(Pronoun.THIS, Nouns.book.copy(adjective = Adjective.MY).build())
+        val thisIsNotMyBook = createNegativeSentence(Pronoun.THIS, Nouns.book.copy(adjectiveBefore = Adjective.MY).build())
         assert(thisIsNotMyBook == "This is not my book.")
 
-        val theseAreNotMyKeys = createNegativeSentence(Pronoun.THESE, Nouns.key.plural().copy(adjective = Adjective.MY).build())
+        val theseAreNotMyKeys = createNegativeSentence(Pronoun.THESE, Nouns.key.plural().copy(adjectiveBefore = Adjective.MY).build())
         assert(theseAreNotMyKeys == "These are not my keys.")
     }
 
@@ -81,38 +81,38 @@ class PresentSimpleSentenceTest {
 
     @Test
     fun question() {
-        val amIBulgarian = createQuestionSentence(subject = Pronoun.I, questionWord = "", objectVal = Nouns.bulgarian.build())
+        val amIBulgarian = createQuestionSentence(subject = Pronoun.I, objectVal = Nouns.bulgarian.build())
         assert(amIBulgarian == "Am I Bulgarian?")
 
-        val amIAProgrammer = createQuestionSentence(subject = Pronoun.I, questionWord = "", objectVal = Nouns.programmer.copy(article = Article.INDEFINITE).build())
+        val amIAProgrammer = createQuestionSentence(subject = Pronoun.I, objectVal = Nouns.programmer.copy(article = Article.INDEFINITE).build())
         assert(amIAProgrammer == "Am I a programmer?")
 
-        val amIFromBulgaria = createQuestionSentence(subject = Pronoun.I, questionWord = "", objectVal = Nouns.bulgaria.copy(preposition = "from").build())
+        val amIFromBulgaria = createQuestionSentence(subject = Pronoun.I, objectVal = Nouns.bulgaria.copy(preposition = "from").build())
         assert(amIFromBulgaria == "Am I from Bulgaria?")
 
-        val whoAreYpuMeeting = createQuestionSentence(subject = Pronoun.YOU, questionWord = "Who", objectVal = "meeting")
+        val whoAreYpuMeeting = createQuestionSentence(subject = Pronoun.YOU, objectVal = "meeting")
         assert(whoAreYpuMeeting == "Who are you meeting?")
 
-        val whereIsSheFrom = createQuestionSentence(subject = Pronoun.SHE, questionWord = "Where", objectVal = "from")
+        val whereIsSheFrom = createQuestionSentence(subject = Pronoun.SHE, objectVal = "from")
         assert(whereIsSheFrom == "Where is she from?")
 
-        val whenAreTheyArriving = createQuestionSentence(subject = Pronoun.THEY, questionWord = "When", objectVal = "arriving")
+        val whenAreTheyArriving = createQuestionSentence(subject = Pronoun.THEY, objectVal = "arriving")
         assert(whenAreTheyArriving == "When are they arriving?")
 
-        val whyAmIATeacher = createQuestionSentence(subject = Pronoun.I, questionWord = "Why", objectVal = Nouns.teacher.copy(article = Article.INDEFINITE).build())
+        val whyAmIATeacher = createQuestionSentence(subject = Pronoun.I, objectVal = Nouns.teacher.copy(article = Article.INDEFINITE).build())
         assert(whyAmIATeacher == "Why am I a teacher?")
 
-        val isItMine = createQuestionSentence(subject = Pronoun.IT, questionWord = "", objectVal = Pronoun.MINE.build())
+        val isItMine = createQuestionSentence(subject = Pronoun.IT, objectVal = Pronoun.MINE.build())
         assert(isItMine == "Is it mine?")
 
-        val isThisMyBook = createQuestionSentence(Pronoun.THIS, questionWord = "", Nouns.book.copy(adjective = Adjective.MY).build())
+        val isThisMyBook = createQuestionSentence(Pronoun.THIS, Nouns.book.copy(adjectiveBefore = Adjective.MY).build())
         assert(isThisMyBook == "Is this my book?")
 
-        val areTheseAreNotMyKeys = createQuestionSentence(Pronoun.THESE, questionWord = "", Nouns.key.plural().copy(adjective = Adjective.MY).build())
+        val areTheseAreNotMyKeys = createQuestionSentence(Pronoun.THESE, Nouns.key.plural().copy(adjectiveBefore = Adjective.MY).build())
         assert(areTheseAreNotMyKeys == "Are these my keys?")
     }
 
-    private fun createQuestionSentence(subject: Noun, questionWord: String, objectVal: String): String {
+    private fun createQuestionSentence(subject: Noun, objectVal: String): String {
         val sentence = GenerateSentenceUseCase().invoke(
             sentenceType = SentenceType.QUESTION,
             tens = Tens.PRESENT_SIMPLE,

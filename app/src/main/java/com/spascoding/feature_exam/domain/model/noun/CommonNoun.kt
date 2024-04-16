@@ -13,7 +13,8 @@ data class CommonNoun(
     private val irregular: Boolean = false,
     private val preposition: String = "",
     private val article: Article = Article.NONE,
-    private val adjective: Adjective = BLANK_ADJECTIVE,
+    private val adjectiveBefore: Adjective = BLANK_ADJECTIVE,
+    private val adjectiveAfter: Adjective = BLANK_ADJECTIVE,
 ): Noun(
     countable = countable,
     plurality = plurality,
@@ -30,10 +31,13 @@ data class CommonNoun(
                     append(articleVal).append(" ")
                 }
             }
-            if (adjective.isNotBlank()) {
-                append(adjective.build()).append(" ")
+            if (adjectiveBefore.isNotBlank()) {
+                append(adjectiveBefore.build()).append(" ")
             }
             append(value)
+            if (adjectiveAfter.isNotBlank()) {
+                append(adjectiveAfter.build()).append(" ")
+            }
         }
     }
 
@@ -140,11 +144,20 @@ fun List<CommonNoun>.addArticle(article: Article): List<CommonNoun> {
     return list
 }
 
-fun List<CommonNoun>.addPossessiveAdjective(adjectives: List<Adjective>): List<CommonNoun> {
+enum class AdjectivePosition {
+    BEFORE,
+    AFTER
+}
+
+fun List<CommonNoun>.addAdjective(adjectives: List<Adjective>, adjectivePosition: AdjectivePosition = AdjectivePosition.BEFORE): List<CommonNoun> {
     val list = mutableListOf<CommonNoun>()
     for (item in this) {
         for (adjective in adjectives) {
-            list.add(item.copy(adjective = adjective))
+            if (adjectivePosition == AdjectivePosition.BEFORE) {
+                list.add(item.copy(adjectiveBefore = adjective))
+            } else {
+                list.add(item.copy(adjectiveAfter = adjective))
+            }
         }
     }
     return list
