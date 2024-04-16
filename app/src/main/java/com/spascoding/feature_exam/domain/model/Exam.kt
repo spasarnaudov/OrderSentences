@@ -1,7 +1,6 @@
 package com.spascoding.feature_exam.domain.model
 
 import androidx.annotation.StringRes
-import com.spascoding.feature_exam.data.data_source.addPreposition
 import com.spascoding.feature_exam.domain.Level
 import com.spascoding.feature_exam.domain.SentenceType
 import com.spascoding.feature_exam.domain.Tens
@@ -15,10 +14,8 @@ data class Exam(
     val sentenceTypes: List<SentenceType> = SentenceType.entries,
     val tenses: List<Tens>,
     val subjects: List<Noun>,
-    val questionWord: String = "",
     val verbs: List<Verb>,
-    val prepositions: List<String> = listOf(),
-    val objectVals: List<String>
+    val objects: List<String>
 )
 
 fun Exam.info() : List<String> {
@@ -28,30 +25,15 @@ fun Exam.info() : List<String> {
         for (tens in tenses) {
             for (subject in subjects) {
                 for (verb in verbs) {
-                    for (objectVal in objectVals) {
-                        if (prepositions.isEmpty()) {
-                            val sentence = GenerateSentenceUseCase().invoke(
-                                sentenceType,
-                                tens,
-                                subject,
-                                questionWord,
-                                verb,
-                                objectVal
-                            )
-                            list.add(sentence)
-                        } else {
-                            for (preposition in prepositions) {
-                                val sentence = GenerateSentenceUseCase().invoke(
-                                    sentenceType,
-                                    tens,
-                                    subject,
-                                    questionWord,
-                                    verb,
-                                    objectVal.addPreposition(preposition)
-                                )
-                                list.add(sentence)
-                            }
-                        }
+                    for (objectVal in objects) {
+                        val sentence = GenerateSentenceUseCase().invoke(
+                            sentenceType,
+                            tens,
+                            subject,
+                            verb,
+                            objectVal
+                        )
+                        list.add(sentence)
                     }
                 }
             }

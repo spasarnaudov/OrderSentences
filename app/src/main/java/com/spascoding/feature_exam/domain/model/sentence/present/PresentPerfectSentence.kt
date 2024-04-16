@@ -4,7 +4,6 @@ import com.spascoding.feature_exam.data.data_source.Verbs
 import com.spascoding.feature_exam.domain.model.noun.Noun
 import com.spascoding.feature_exam.domain.model.sentence.Sentence
 import com.spascoding.feature_exam.domain.model.verb.Verb
-import com.spascoding.feature_exam.domain.model.verb.adaptToSubject
 
 /**
  * - Actions started in the past and continuing in the present:
@@ -26,7 +25,6 @@ class PresentPerfectSentence(
     private val subject: Noun,
     private val verb: Verb,
     private val objectVal: String,
-    private val prepositionalPhrase: String = "",
 ) : Sentence {
 
     /**
@@ -34,7 +32,7 @@ class PresentPerfectSentence(
      * "She has walked around."
      */
     override fun positive(): String {
-        return "${subject.build()} ${Verbs.have.adaptToSubject(subject)} ${verb.pastParticiple} $objectVal."
+        return "${subject.build()} ${Verbs.have.subjectBaseForm(subject)} ${verb.pastParticiple} $objectVal."
     }
 
     /**
@@ -42,7 +40,7 @@ class PresentPerfectSentence(
      * "She has not walked around."
      */
     override fun negative(): String {
-        return "${subject.build()} ${Verbs.have.adaptToSubject(subject)} not ${verb.pastParticiple} $objectVal."
+        return "${subject.build()} ${Verbs.have.subjectBaseForm(subject)} not ${verb.pastParticiple} $objectVal."
     }
 
     /**
@@ -50,6 +48,6 @@ class PresentPerfectSentence(
      * "Has she walked around?"
      */
     override fun question(): String {
-        return "${Verbs.have.adaptToSubject(subject)} ${subject.build()} ${verb.pastParticiple} $objectVal?"
+        return "${Verbs.have.subjectBaseForm(subject)} ${subject.build()} ${verb.pastParticiple} $objectVal?"
     }
 }

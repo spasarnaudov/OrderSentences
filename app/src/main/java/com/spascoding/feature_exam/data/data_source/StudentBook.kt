@@ -23,7 +23,7 @@ object StudentBook {
                     .plus(Pronouns.plural)
                     .plus(Pronouns.names),
                 verbs = listOf(Verbs.toBe),
-                objectVals = NounAdapter(Nouns.nationals).build(),
+                objects = NounAdapter(Nouns.nationals).build(),
             ),
             Exam(
                 name = R.string.i_am_an_programmer,
@@ -32,7 +32,7 @@ object StudentBook {
                 subjects = Pronouns.singular
                     .plus(Pronouns.names),
                 verbs = listOf(Verbs.toBe),
-                objectVals = NounAdapter(Nouns.jobs.addArticle(Article.INDEFINITE)).build(),
+                objects = NounAdapter(Nouns.jobs.addArticle(Article.INDEFINITE)).build(),
             ),
             Exam(
                 name = R.string.i_am_from_bulgaria,
@@ -42,47 +42,46 @@ object StudentBook {
                         .plus(Pronouns.names)
                 ,
                 verbs = listOf(Verbs.toBe),
-                prepositions = Prepositions.originOrSourceOfMovement,
-                objectVals = NounAdapter(Nouns.countries).build(),
+                objects = NounAdapter(Nouns.countries).build(),
             ),
-            Exam(
-                name = R.string.who_are_you_meeting,
-                level = Level.BEGINNER,
-                sentenceTypes = listOf(SentenceType.QUESTION),
-                tenses = listOf(Tens.PRESENT_SIMPLE),
-                subjects = Pronouns.singular
-                        .plus(Pronouns.plural)
-                        .plus(Pronouns.names)
-                ,
-                questionWord = "Who",
-                verbs = listOf(Verbs.toBe),
-                objectVals = listOf("meeting"),
-            ),
-            Exam(
-                name = R.string.where_is_she_from,
-                level = Level.BEGINNER,
-                sentenceTypes = listOf(SentenceType.QUESTION),
-                tenses = listOf(Tens.PRESENT_SIMPLE),
-                subjects = Pronouns.singular
-                        .plus(Pronouns.plural)
-                        .plus(Pronouns.names)
-                ,
-                questionWord = "Where",
-                verbs = listOf(Verbs.toBe),
-                objectVals = listOf("from"),
-            ),
-            Exam(
-                name = R.string.when_are_they_arriving,
-                level = Level.BEGINNER,
-                sentenceTypes = listOf(SentenceType.QUESTION),
-                tenses = listOf(Tens.PRESENT_SIMPLE),
-                subjects = Pronouns.singular.plus(Pronouns.plural)
-                        .plus(Pronouns.names)
-                ,
-                questionWord = "When",
-                verbs = listOf(Verbs.toBe),
-                objectVals = listOf("arriving"),
-            ),
+//            Exam(
+//                name = R.string.who_are_you_meeting,
+//                level = Level.BEGINNER,
+//                sentenceTypes = listOf(SentenceType.QUESTION),
+//                tenses = listOf(Tens.PRESENT_SIMPLE),
+//                subjects = Pronouns.singular
+//                        .plus(Pronouns.plural)
+//                        .plus(Pronouns.names)
+//                ,
+////                questionWord = "Who",
+//                verbs = listOf(Verbs.toBe),
+//                objectVals = listOf("meeting"),
+//            ),
+//            Exam(
+//                name = R.string.where_is_she_from,
+//                level = Level.BEGINNER,
+//                sentenceTypes = listOf(SentenceType.QUESTION),
+//                tenses = listOf(Tens.PRESENT_SIMPLE),
+//                subjects = Pronouns.singular
+//                        .plus(Pronouns.plural)
+//                        .plus(Pronouns.names)
+//                ,
+////                questionWord = "Where",
+//                verbs = listOf(Verbs.toBe),
+//                objectVals = listOf("from"),
+//            ),
+//            Exam(
+//                name = R.string.when_are_they_arriving,
+//                level = Level.BEGINNER,
+//                sentenceTypes = listOf(SentenceType.QUESTION),
+//                tenses = listOf(Tens.PRESENT_SIMPLE),
+//                subjects = Pronouns.singular.plus(Pronouns.plural)
+//                        .plus(Pronouns.names)
+//                ,
+////                questionWord = "When",
+//                verbs = listOf(Verbs.toBe),
+//                objectVals = listOf("arriving"),
+//            ),
             Exam(
                 name = R.string.it_is_mine,
                 level = Level.BEGINNER,
@@ -90,7 +89,7 @@ object StudentBook {
                 tenses = listOf(Tens.PRESENT_SIMPLE),
                 subjects = listOf(Pronoun.IT),
                 verbs = listOf(Verbs.toBe),
-                objectVals = NounAdapter(
+                objects = NounAdapter(
                     Pronouns.Possessive.singular
                         .plus(Pronouns.Possessive.plural)
                 ).build(),
@@ -101,7 +100,7 @@ object StudentBook {
                 tenses = listOf(Tens.PRESENT_SIMPLE),
                 subjects = Pronouns.Demonstratives.singular,
                 verbs = listOf(Verbs.toBe),
-                objectVals = NounAdapter(
+                objects = NounAdapter(
                     Nouns.thinks
                         .addPossessiveAdjective(
                             Adjectives.Possessive.singular
@@ -116,7 +115,7 @@ object StudentBook {
                 tenses = listOf(Tens.PRESENT_SIMPLE),
                 subjects = Pronouns.Demonstratives.plural,
                 verbs = listOf(Verbs.toBe),
-                objectVals = NounAdapter(
+                objects = NounAdapter(
                     Nouns.thinks
                         .plural()
                         .addPossessiveAdjective(
@@ -132,7 +131,7 @@ object StudentBook {
                 tenses = listOf(Tens.PRESENT_SIMPLE),
                 subjects = Pronouns.singular.plus(Pronouns.plural).plus(Pronouns.names),
                 verbs = listOf(Verbs.love),
-                objectVals = NounAdapter(Pronouns.names.plus(Pronouns.Objects.singular.plus(Pronouns.Objects.plural))).build(),
+                objects = NounAdapter(Pronouns.names.plus(Pronouns.Objects.singular.plus(Pronouns.Objects.plural))).build(),
             ),
             Exam(
                 name = R.string.i_eat_pizza,
@@ -142,7 +141,7 @@ object StudentBook {
                     .plus(Pronouns.plural)
                     .plus(Pronouns.names),
                 verbs = listOf(Verbs.eat),
-                objectVals = NounAdapter(Nouns.pizza).build(),
+                objects = NounAdapter(Nouns.pizza).build(),
             ),
         )
     }
@@ -184,7 +183,7 @@ object StudentBook {
                 tenses = listOf(Tens.PRESENT_SIMPLE, Tens.PAST_SIMPLE),
                 subjects = Pronouns.plural,
                 verbs = Verbs.mutualOrReciprocalActions,
-                objectVals = NounAdapter(Pronouns.reciprocal).build(),
+                objects = NounAdapter(Pronouns.reciprocal).build(),
             ),
         )
     }
@@ -200,8 +199,7 @@ object StudentBook {
                         .plus(Pronouns.names)
                 ,
                 verbs = listOf(Verbs.toBe),
-                prepositions = Prepositions.originOrSourceOfMovement,
-                objectVals = NounAdapter(Nouns.countries).build(),
+                objects = NounAdapter(Nouns.countries).build(),
             ),
         )
     }
@@ -217,8 +215,7 @@ object StudentBook {
                         .plus(Pronouns.names)
                 ,
                 verbs = listOf(Verbs.toBe),
-                prepositions = Prepositions.originOrSourceOfMovement,
-                objectVals = NounAdapter(Nouns.countries).build(),
+                objects = NounAdapter(Nouns.countries).build(),
             ),
         )
     }
@@ -234,8 +231,7 @@ object StudentBook {
                         .plus(Pronouns.names)
                 ,
                 verbs = listOf(Verbs.toBe),
-                prepositions = Prepositions.originOrSourceOfMovement,
-                objectVals = NounAdapter(Nouns.countries).build(),
+                objects = NounAdapter(Nouns.countries).build(),
             ),
         )
     }

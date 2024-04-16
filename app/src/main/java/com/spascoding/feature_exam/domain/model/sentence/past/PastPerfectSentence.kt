@@ -13,7 +13,6 @@ class PastPerfectSentence(
     private val subject: Noun,
     private val verb: Verb,
     private val objectVal: String,
-    private val prepositionalPhrase: String = "",
 ): Sentence {
 
     /**

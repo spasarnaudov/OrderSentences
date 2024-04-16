@@ -3,7 +3,6 @@ package com.spascoding.feature_exam.domain.model.sentence.future
 import com.spascoding.feature_exam.domain.model.noun.Noun
 import com.spascoding.feature_exam.domain.model.sentence.Sentence
 import com.spascoding.feature_exam.domain.model.verb.Verb
-import com.spascoding.feature_exam.domain.model.verb.toContinuous
 
 /**
  * The future perfect continuous is composed of two elements
@@ -13,7 +12,6 @@ class FuturePerfectContinuousSentence(
     private val subject: Noun,
     private val verb: Verb,
     private val objectVal: String,
-    private val prepositionalPhrase: String = "",
 ): Sentence {
 
     /**
@@ -21,7 +19,7 @@ class FuturePerfectContinuousSentence(
      * "She will have been walking around."
      */
     override fun positive(): String {
-        return "${subject.build()} will have been ${verb.toContinuous()} $objectVal."
+        return "${subject.build()} will have been ${verb.continuous()} $objectVal."
     }
 
     /**
@@ -29,7 +27,7 @@ class FuturePerfectContinuousSentence(
      * "She will not have been walking around."
      */
     override fun negative(): String {
-        return "${subject.build()} will not have been ${verb.toContinuous()} $objectVal."
+        return "${subject.build()} will not have been ${verb.continuous()} $objectVal."
     }
 
     /**
@@ -37,6 +35,6 @@ class FuturePerfectContinuousSentence(
      * "Will she have been walking around?"
      */
     override fun question(): String {
-        return "will ${subject.build()} have been ${verb.toContinuous()} $objectVal?"
+        return "will ${subject.build()} have been ${verb.continuous()} $objectVal?"
     }
 }

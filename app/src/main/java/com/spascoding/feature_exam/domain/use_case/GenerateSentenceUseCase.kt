@@ -24,7 +24,6 @@ class GenerateSentenceUseCase {
         sentenceType: SentenceType,
         tens: Tens,
         subject: Noun,
-        questionWord: String,
         verb: Verb,
         objectVal: String,
     ): String {
@@ -34,7 +33,7 @@ class GenerateSentenceUseCase {
             Tens.PAST_PERFECT -> PastPerfectSentence(subject, verb, objectVal)
             Tens.PAST_PERFECT_CONTINUOUS -> PastPerfectContinuousSentence(subject, verb, objectVal)
 
-            Tens.PRESENT_SIMPLE -> PresentSimpleSentence(subject, questionWord, verb, objectVal)
+            Tens.PRESENT_SIMPLE -> PresentSimpleSentence(subject, verb, objectVal)
             Tens.PRESENT_CONTINUOUS -> PresentContinuousSentence(subject, verb, objectVal)
             Tens.PRESENT_PERFECT -> PresentPerfectSentence(subject, verb, objectVal)
             Tens.PRESENT_PERFECT_CONTINUOUS -> PresentPerfectContinuousSentence(subject, verb, objectVal)

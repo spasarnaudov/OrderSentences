@@ -21,16 +21,13 @@ class GenerateSentenceUseCaseTest {
             for (tens in exam.tenses) {
                 for (subject in exam.subjects) {
                     for (verb in exam.verbs) {
-                        for (objectVal in exam.objectVals) {
+                        for (objectVal in exam.objects) {
                             val sentence = GenerateSentenceUseCase().invoke(
                                 sentenceType,
                                 tens,
                                 subject,
-                                exam.questionWord,
                                 verb,
-                                if (exam.prepositions.isEmpty()) objectVal else objectVal.addPreposition(
-                                    exam.prepositions.random()
-                                )
+                                objectVal
                             )
                             counter++
                             if (!sentences.contains(sentence)) {
@@ -49,16 +46,13 @@ class GenerateSentenceUseCaseTest {
             for (tens in exam.tenses) {
                 for (subject in exam.subjects) {
                     for (verb in exam.verbs) {
-                        for (objectVal in exam.objectVals) {
+                        for (objectVal in exam.objects) {
                             val sentence = GenerateSentenceUseCase().invoke(
                                 sentenceType,
                                 tens,
                                 subject,
-                                exam.questionWord,
                                 verb,
-                                if (exam.prepositions.isEmpty()) objectVal else objectVal.addPreposition(
-                                    exam.prepositions.random()
-                                )
+                                objectVal
                             )
                             println("\"$sentence\",")
                         }
@@ -76,8 +70,7 @@ class GenerateSentenceUseCaseTest {
             tenses = listOf(tens),
             subjects = Pronouns.singular.plus(Pronouns.names),
             verbs = Verbs.countriesAndCities,
-            prepositions = Prepositions.enclosedSpaces,
-            objectVals = listOf("Australia"),
+            objects = listOf("Australia"),
         )
     }
 
@@ -160,8 +153,7 @@ class GenerateSentenceUseCaseTest {
             tenses = listOf(Tens.PRESENT_SIMPLE),
             subjects = Pronouns.singular.plus(Pronouns.names),
             verbs = listOf(Verbs.toBe),
-            prepositions = Prepositions.originOrSourceOfMovement,
-            objectVals = NounAdapter(Nouns.countries).build(),
+            objects = NounAdapter(Nouns.countries).build(),
         )
         assert(check(sentences, lessen))
     }
@@ -207,8 +199,7 @@ class GenerateSentenceUseCaseTest {
             tenses = listOf(Tens.PRESENT_SIMPLE),
             subjects = Pronouns.singular.plus(Pronouns.names),
             verbs = listOf(Verbs.toBe),
-            prepositions = listOf(),
-            objectVals = NounAdapter(Nouns.nationals).build(),
+            objects = NounAdapter(Nouns.nationals).build(),
         )
         print(lessen)
         assert(check(sentences, lessen))

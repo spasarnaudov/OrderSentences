@@ -4,7 +4,6 @@ import com.spascoding.feature_exam.domain.model.noun.Noun
 import com.spascoding.feature_exam.domain.model.sentence.Sentence
 import com.spascoding.feature_exam.domain.model.verb.Verb
 import com.spascoding.feature_exam.domain.model.verb.toBe
-import com.spascoding.feature_exam.domain.model.verb.toContinuous
 
 /**
  * Used:
@@ -19,7 +18,6 @@ class PresentContinuousSentence(
     private val subject: Noun,
     private val verb: Verb,
     private val objectVal: String,
-    private val prepositionalPhrase: String = "",
 ): Sentence {
 
     /**
@@ -27,7 +25,7 @@ class PresentContinuousSentence(
      * "She is walking around."
      */
     override fun positive(): String {
-        return "${subject.build()} ${toBe(subject.build())} ${verb.toContinuous()} $objectVal."
+        return "${subject.build()} ${toBe(subject.build())} ${verb.continuous()} $objectVal."
     }
 
     /**
@@ -35,7 +33,7 @@ class PresentContinuousSentence(
      * "She is not walking around."
      */
     override fun negative(): String {
-        return "${subject.build()} ${toBe(subject.build())} not ${verb.toContinuous()} $objectVal."
+        return "${subject.build()} ${toBe(subject.build())} not ${verb.continuous()} $objectVal."
     }
 
     /**
@@ -43,7 +41,7 @@ class PresentContinuousSentence(
      * "Is she walking around?"
      */
     override fun question(): String {
-        return "${toBe(subject.build())} ${subject.build()} ${verb.toContinuous()} $objectVal?"
+        return "${toBe(subject.build())} ${subject.build()} ${verb.continuous()} $objectVal?"
     }
 
     //TODO

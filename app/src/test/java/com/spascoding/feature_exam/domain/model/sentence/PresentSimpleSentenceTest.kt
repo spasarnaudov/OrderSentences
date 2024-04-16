@@ -39,7 +39,6 @@ class PresentSimpleSentenceTest {
             sentenceType = SentenceType.POSITIVE,
             tens = Tens.PRESENT_SIMPLE,
             subject = noun,
-            questionWord = "",
             verb = Verbs.toBe,
             objectVal = objectVal,
         )
@@ -73,7 +72,6 @@ class PresentSimpleSentenceTest {
             sentenceType = SentenceType.NEGATIVE,
             tens = Tens.PRESENT_SIMPLE,
             subject = noun,
-            questionWord = "",
             verb = Verbs.toBe,
             objectVal = objectVal,
         )
@@ -119,7 +117,6 @@ class PresentSimpleSentenceTest {
             sentenceType = SentenceType.QUESTION,
             tens = Tens.PRESENT_SIMPLE,
             subject = subject,
-            questionWord = questionWord,
             verb = Verbs.toBe,
             objectVal = objectVal,
         )

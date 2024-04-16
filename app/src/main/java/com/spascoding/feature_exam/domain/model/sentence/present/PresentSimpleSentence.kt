@@ -4,7 +4,6 @@ import com.spascoding.feature_exam.data.data_source.Verbs
 import com.spascoding.feature_exam.domain.model.noun.Noun
 import com.spascoding.feature_exam.domain.model.sentence.Sentence
 import com.spascoding.feature_exam.domain.model.verb.Verb
-import com.spascoding.feature_exam.domain.model.verb.adaptToSubject
 import com.spascoding.feature_exam.domain.model.verb.toBe
 
 /**
@@ -19,10 +18,8 @@ import com.spascoding.feature_exam.domain.model.verb.toBe
 
 class PresentSimpleSentence(
     private val subject: Noun,
-    private val questionWord: String,
     private val verb: Verb,
     private val objectVal: String,
-    private val prepositionalPhrase: String = "",
 ) : Sentence {
 
     /**
@@ -33,7 +30,7 @@ class PresentSimpleSentence(
         if (verb == Verbs.toBe) {
             return "${subject.build()} ${toBe(subject.build())} $objectVal."
         }
-        return "${subject.build()} ${verb.adaptToSubject(subject)} $objectVal."
+        return "${subject.build()} ${verb.subjectBaseForm(subject)} $objectVal."
     }
 
     /**
@@ -44,7 +41,7 @@ class PresentSimpleSentence(
         if (verb == Verbs.toBe) {
             return "${subject.build()} ${toBe(subject.build())} not $objectVal."
         }
-        return "${subject.build()} ${Verbs.`do`.adaptToSubject(subject)} not ${verb.baseForm} $objectVal."
+        return "${subject.build()} ${Verbs.`do`.subjectBaseForm(subject)} not ${verb.baseForm} $objectVal."
     }
 
     /**
@@ -53,20 +50,8 @@ class PresentSimpleSentence(
      */
     override fun question(): String {
         if (verb == Verbs.toBe) {
-            return buildString {
-                if (questionWord.isNotBlank()) {
-                    append(questionWord).append(" ")
-                }
-                append(toBe(subject.build())).append(" ")
-                append(subject.build()).append(" ")
-                append(objectVal).append("?")
-            }
+            return "${toBe(subject.build())} ${subject.build()} $objectVal?"
         }
-        return buildString {
-            append(Verbs.`do`.adaptToSubject(subject)).append(" ")
-            append(subject.build()).append(" ")
-            append(verb.baseForm).append(" ")
-            append(objectVal).append("?")
-        }
+        return "${Verbs.`do`.subjectBaseForm(subject)} ${subject.build()} ${verb.baseForm} $objectVal?"
     }
 }

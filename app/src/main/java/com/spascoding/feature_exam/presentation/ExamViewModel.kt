@@ -6,7 +6,6 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.spascoding.feature_exam.domain.ExamEvent
-import com.spascoding.feature_exam.data.data_source.addPreposition
 import com.spascoding.feature_exam.domain.GameState
 import com.spascoding.feature_exam.domain.model.Exam
 import com.spascoding.feature_exam.domain.use_case.GenerateSentenceUseCase
@@ -37,15 +36,14 @@ class ExamViewModel(
                     val tens = exam.tenses.random()
                     val subject = exam.subjects.random()
                     val verb = exam.verbs.random()
-                    val objectVal = exam.objectVals.random()
+                    val objectVal = exam.objects.random()
 
                     val sentence = GenerateSentenceUseCase().invoke(
                         sentenceType,
                         tens,
                         subject,
-                        exam.questionWord,
                         verb,
-                        if (exam.prepositions.isEmpty()) objectVal else objectVal.addPreposition(exam.prepositions.random())
+                        objectVal
                     )
                     val shuffledSentence = sentence.shuffleSentence(" / ")
                     _state.value = state.value.copy(

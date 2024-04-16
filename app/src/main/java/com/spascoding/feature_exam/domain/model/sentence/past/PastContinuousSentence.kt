@@ -4,7 +4,6 @@ import com.spascoding.feature_exam.domain.model.noun.Noun
 import com.spascoding.feature_exam.domain.model.sentence.Sentence
 import com.spascoding.feature_exam.domain.model.verb.Verb
 import com.spascoding.feature_exam.domain.model.verb.toBePast
-import com.spascoding.feature_exam.domain.model.verb.toContinuous
 
 /**
  * - often, to describe the background in a story written in the past tense:
@@ -19,7 +18,6 @@ class PastContinuousSentence(
     private val subject: Noun,
     private val verb: Verb,
     private val objectVal: String,
-    private val prepositionalPhrase: String = "",
 ): Sentence {
 
     /**
@@ -27,7 +25,7 @@ class PastContinuousSentence(
      * "She was walking around."
      */
     override fun positive(): String {
-        return "${subject.build()} ${toBePast(subject.build())} ${verb.toContinuous()} $objectVal."
+        return "${subject.build()} ${toBePast(subject.build())} ${verb.continuous()} $objectVal."
     }
 
     /**
@@ -35,7 +33,7 @@ class PastContinuousSentence(
      * "She was not walking around."
      */
     override fun negative(): String {
-        return "${subject.build()} ${toBePast(subject.build())} not ${verb.toContinuous()} $objectVal."
+        return "${subject.build()} ${toBePast(subject.build())} not ${verb.continuous()} $objectVal."
     }
 
     /**
@@ -43,6 +41,6 @@ class PastContinuousSentence(
      * "Was she walking around?"
      */
     override fun question(): String {
-        return "${toBePast(subject.build())} ${subject.build()} ${verb.toContinuous()} $objectVal?"
+        return "${toBePast(subject.build())} ${subject.build()} ${verb.continuous()} $objectVal?"
     }
 }
