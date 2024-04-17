@@ -25,7 +25,7 @@ class PastSimpleSentence(
         if (verb == Verbs.toBe) {
             return "${subject.build()} ${toBePast(subject.build())} $objectVal."
         }
-        return "$subject ${verb.pastTense} $objectVal."
+        return "${subject.build()} ${verb.pastTense} $objectVal."
     }
 
     /**
