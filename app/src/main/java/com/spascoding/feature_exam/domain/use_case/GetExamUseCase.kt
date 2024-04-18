@@ -1,14 +1,15 @@
 package com.spascoding.feature_exam.domain.use_case
 
 import com.spascoding.feature_exam.domain.model.Exam
-import com.spascoding.feature_exam.domain.repository.VerbRepository
+import com.spascoding.feature_exam.domain.repository.SentencesRepository
+import javax.inject.Inject
 
-class GetExamUseCase(
-    private val repository: VerbRepository
+class GetExamUseCase @Inject constructor(
+    private val repository: SentencesRepository
 ) {
 
     suspend operator fun invoke(): List<Exam> {
-        return repository.getExam(0)
+        return repository.getExam()
     }
 
 }

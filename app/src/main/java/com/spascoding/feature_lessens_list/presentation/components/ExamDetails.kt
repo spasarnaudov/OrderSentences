@@ -11,6 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.spascoding.core.constants.FontSize
 import com.spascoding.core.constants.Padding
 import com.spascoding.feature_exam.R
@@ -19,7 +20,7 @@ import com.spascoding.feature_exam.presentation.ExamViewModel
 
 @Composable
 fun ExamDetails(
-    viewModel: ExamViewModel
+    viewModel: ExamViewModel = hiltViewModel()
 ) {
     Column(
         modifier = Modifier

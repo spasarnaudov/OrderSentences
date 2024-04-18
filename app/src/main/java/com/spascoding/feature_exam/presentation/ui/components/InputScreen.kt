@@ -22,13 +22,14 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.spascoding.feature_exam.R
 import com.spascoding.feature_exam.domain.ExamEvent
 import com.spascoding.feature_exam.presentation.ExamViewModel
 
 @Composable
 fun InputScreen(
-    viewModel: ExamViewModel
+    viewModel: ExamViewModel = hiltViewModel()
 ) {
     var answerText by remember { mutableStateOf("") }
     val focusRequester = remember { FocusRequester() }

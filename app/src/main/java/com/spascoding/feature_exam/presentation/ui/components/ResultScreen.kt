@@ -17,6 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.spascoding.core.constants.Padding
 import com.spascoding.feature_exam.R
 import com.spascoding.feature_exam.domain.ExamEvent
@@ -24,7 +25,7 @@ import com.spascoding.feature_exam.presentation.ExamViewModel
 
 @Composable
 fun ResultScreen(
-    viewModel: ExamViewModel
+    viewModel: ExamViewModel = hiltViewModel()
 ) {
     Column(
         modifier = Modifier

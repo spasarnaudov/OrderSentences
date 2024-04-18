@@ -6,6 +6,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import com.spascoding.feature_exam.domain.ExamEvent
@@ -16,7 +17,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun ExamsList(
     navController: NavController,
-    viewModel: ExamViewModel,
+    viewModel: ExamViewModel = hiltViewModel(),
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally

@@ -13,9 +13,12 @@ import com.spascoding.feature_exam.domain.use_case.GenerateSentenceUseCase
 import com.spascoding.feature_exam.domain.use_case.ExamUseCases
 import com.spascoding.feature_exam.presentation.utils.scratchWords
 import com.spascoding.feature_exam.presentation.utils.shuffleSentence
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ExamViewModel(
+@HiltViewModel
+class ExamViewModel @Inject constructor(
     private val examUseCases: ExamUseCases,
 ) : ViewModel() {
 
