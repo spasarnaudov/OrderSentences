@@ -9,6 +9,7 @@ class RegularVerbTest {
         threeFormVerbAssert(Verb("talk"), "talk", "talked", "talked")
         threeFormVerbAssert(Verb("like"), "like", "liked", "liked")
         threeFormVerbAssert(Verb("cry"), "cry", "cried", "cried")
+        threeFormVerbAssert(Verb("play"), "play", "played", "played")
     }
 
     private fun threeFormVerbAssert(verb: Verb, baseForm: String, pastTense: String, pastParticiple: String) {

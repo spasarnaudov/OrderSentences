@@ -73,7 +73,12 @@ fun String.toPast(): String {
         return "${this}d"
     }
     if (lowercase().endsWith("y")) {
-        return "${substring(0, length-1)}ied"
+        val penultimate = lowercase()[length-2]
+        return if (listVowels.contains(penultimate.toString())) {
+            "${this}ed"
+        } else {
+            "${substring(0, length-1)}ied"
+        }
     }
     return "${this}ed"
 }
