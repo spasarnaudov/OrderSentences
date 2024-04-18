@@ -2,6 +2,7 @@ package com.spascoding.feature_exam.data.data_source
 
 import com.spascoding.feature_exam.domain.Plurality
 import com.spascoding.feature_exam.domain.model.noun.CommonNoun
+import com.spascoding.feature_exam.domain.model.noun.Pronoun
 
 object Nouns {
 
@@ -187,7 +188,279 @@ object Nouns {
         biologist,
     )
 
+    val cat = CommonNoun(value = "cat", countable = true, Plurality.SINGULAR)
+    val dog = CommonNoun(value = "dog", countable = true, Plurality.SINGULAR)
+
+    val pets = listOf(
+        cat,
+        dog,
+    )
+
+    val basketball = CommonNoun(value = "basketball", countable = true, Plurality.SINGULAR)
+    val boardGame = CommonNoun(value = "board game", countable = true, Plurality.SINGULAR)
+    val card = CommonNoun(value = "card", countable = true, Plurality.SINGULAR)
+    val chess = CommonNoun(value = "chess", countable = true, Plurality.SINGULAR)
+    val football = CommonNoun(value = "football", countable = true, Plurality.SINGULAR)
+    val golf = CommonNoun(value = "golf", countable = true, Plurality.SINGULAR)
+    val hideAndSeek = CommonNoun(value = "hide and seek", countable = true, Plurality.SINGULAR)
+    val soccer = CommonNoun(value = "soccer", countable = true, Plurality.SINGULAR)
+    val tennis = CommonNoun(value = "tennis", countable = true, Plurality.SINGULAR)
+    val videoGame = CommonNoun(value = "video game", countable = true, Plurality.SINGULAR)
+    val volleyball = CommonNoun(value = "volleyball", countable = true, Plurality.SINGULAR)
+
+    val games = listOf(
+        basketball,
+        boardGame,
+        card.plural(),
+        chess,
+        football,
+        golf,
+        hideAndSeek,
+        soccer,
+        tennis,
+        videoGame,
+        volleyball,
+    )
+
+    val accordion = CommonNoun(value = "accordion", countable = true, Plurality.SINGULAR)
+    val clarinet = CommonNoun(value = "clarinet", countable = true, Plurality.SINGULAR)
+    val drum = CommonNoun(value = "drum", countable = true, Plurality.SINGULAR)
+    val flute = CommonNoun(value = "flute", countable = true, Plurality.SINGULAR)
+    val guitar = CommonNoun(value = "guitar", countable = true, Plurality.SINGULAR)
+    val piano = CommonNoun(value = "piano", countable = true, Plurality.SINGULAR)
+    val saxophone = CommonNoun(value = "saxophone", countable = true, Plurality.SINGULAR)
+    val trumpet = CommonNoun(value = "trumpet", countable = true, Plurality.SINGULAR)
+    val ukulele = CommonNoun(value = "ukulele", countable = true, Plurality.SINGULAR)
+    val viola = CommonNoun(value = "viola", countable = true, Plurality.SINGULAR)
+    val violin = CommonNoun(value = "violin", countable = true, Plurality.SINGULAR)
+
+    val musicalInstruments = listOf(
+        accordion,
+        clarinet,
+        drum.plural(),
+        flute,
+        guitar,
+        piano,
+        saxophone,
+        trumpet,
+        ukulele,
+        viola,
+        violin,
+    )
+
+    val artGallery = CommonNoun(value = "art gallery", countable = true, Plurality.SINGULAR)
+    val aquarium = CommonNoun(value = "aquarium", countable = true, Plurality.SINGULAR)
+    val beach = CommonNoun(value = "beach", countable = true, Plurality.SINGULAR)
+    val castles = CommonNoun(value = "castles", countable = true, Plurality.SINGULAR)
+    val chirche = CommonNoun(value = "chirche", countable = true, Plurality.SINGULAR)
+    val cinema = CommonNoun(value = "cinema", countable = true, Plurality.SINGULAR)
+    val library = CommonNoun(value = "library", countable = true, Plurality.SINGULAR)
+    val mountain = CommonNoun(value = "mountain", countable = true, Plurality.SINGULAR)
+    val museum = CommonNoun(value = "museum", countable = true, Plurality.SINGULAR)
+    val park = CommonNoun(value = "park", countable = true, Plurality.SINGULAR)
+    val theater = CommonNoun(value = "theater", countable = true, Plurality.SINGULAR)
+    val zoo = CommonNoun(value = "zoo", countable = true, Plurality.SINGULAR)
+
+    val places = listOf(
+        artGallery,
+        aquarium,
+        beach,
+        castles,
+        chirche,
+        cinema,
+        library,
+        mountain,
+        museum,
+        park,
+        theater,
+        zoo,
+    )
+
+    val apple = CommonNoun(value = "apple", countable = true, Plurality.SINGULAR)
+    val banana = CommonNoun(value = "banana", countable = true, Plurality.SINGULAR)
+    val blueberry = CommonNoun(value = "blueberry", countable = true, Plurality.SINGULAR)
+    val cherry = CommonNoun(value = "cherry", countable = true, Plurality.SINGULAR)
+    val coconut = CommonNoun(value = "coconut", countable = true, Plurality.SINGULAR)
+    val grape = CommonNoun(value = "grape", countable = true, Plurality.SINGULAR)
+    val kiwi = CommonNoun(value = "kiwi", countable = true, Plurality.SINGULAR)
+    val lemon = CommonNoun(value = "lemon", countable = true, Plurality.SINGULAR)
+    val mango = CommonNoun(value = "mango", countable = true, Plurality.SINGULAR)
+    val orange = CommonNoun(value = "orange", countable = true, Plurality.SINGULAR)
+    val peach = CommonNoun(value = "peach", countable = true, Plurality.SINGULAR)
+    val pear = CommonNoun(value = "pear", countable = true, Plurality.SINGULAR)
+    val raspberry = CommonNoun(value = "raspberry", countable = true, Plurality.SINGULAR)
+    val strawberry = CommonNoun(value = "strawberry", countable = true, Plurality.SINGULAR)
+    val watermelon = CommonNoun(value = "watermelon", countable = true, Plurality.SINGULAR)
+
+    val fruits = listOf(
+        apple,
+        banana,
+        blueberry,
+        cherry,
+        coconut,
+        grape,
+        kiwi,
+        lemon,
+        mango,
+        orange,
+        peach,
+        pear,
+        raspberry,
+        strawberry,
+        watermelon,
+    )
+
+    val asparagus = CommonNoun(value = "asparagus", countable = true, Plurality.SINGULAR)
+    val broccoli = CommonNoun(value = "broccoli", countable = true, Plurality.SINGULAR)
+    val cabbage = CommonNoun(value = "cabbage", countable = true, Plurality.SINGULAR)
+    val carrot = CommonNoun(value = "carrot", countable = true, Plurality.SINGULAR)
+    val cauliflower = CommonNoun(value = "cauliflower", countable = true, Plurality.SINGULAR)
+    val celery = CommonNoun(value = "celery", countable = true, Plurality.SINGULAR)
+    val corn = CommonNoun(value = "corn", countable = true, Plurality.SINGULAR)
+    val courgette = CommonNoun(value = "courgette", countable = true, Plurality.SINGULAR)
+    val cucumber = CommonNoun(value = "cucumber", countable = true, Plurality.SINGULAR)
+    val garlic = CommonNoun(value = "garlic", countable = true, Plurality.SINGULAR)
+    val greenBeans = CommonNoun(value = "green beans", countable = true, Plurality.SINGULAR)
+    val greenPeas = CommonNoun(value = "green peas", countable = true, Plurality.SINGULAR)
+    val leeks = CommonNoun(value = "leeks", countable = true, Plurality.SINGULAR)
+    val lentils = CommonNoun(value = "lentils", countable = true, Plurality.SINGULAR)
+    val onion = CommonNoun(value = "onion", countable = true, Plurality.SINGULAR)
+    val pepper = CommonNoun(value = "pepper", countable = true, Plurality.SINGULAR)
+    val potato = CommonNoun(value = "potato", countable = true, Plurality.SINGULAR)
+    val pumpkin = CommonNoun(value = "pumpkin", countable = true, Plurality.SINGULAR)
+    val rice = CommonNoun(value = "rice", countable = true, Plurality.SINGULAR)
+    val tomato = CommonNoun(value = "tomato", countable = true, Plurality.SINGULAR)
+    val turnip = CommonNoun(value = "turnip", countable = true, Plurality.SINGULAR)
+
+    val vegetables = listOf(
+        asparagus,
+        broccoli,
+        cabbage,
+        carrot,
+        cauliflower,
+        celery,
+        corn,
+        courgette,
+        cucumber,
+        garlic,
+        greenBeans,
+        greenPeas,
+        leeks,
+        lentils,
+        onion,
+        pepper,
+        potato,
+        pumpkin,
+        rice,
+        tomato,
+        turnip,
+    )
+
+    val vegetablesForCook = listOf(
+        asparagus,
+        broccoli,
+        cabbage,
+        corn,
+        courgette,
+        greenBeans,
+        greenPeas,
+        leeks,
+        lentils,
+        potato,
+        pumpkin,
+        rice,
+        tomato,
+    )
+
+    val beer = CommonNoun(value = "beer", countable = true, Plurality.SINGULAR)
+    val cocktail = CommonNoun(value = "cocktail", countable = true, Plurality.SINGULAR)
+    val coffee = CommonNoun(value = "coffee", countable = true, Plurality.SINGULAR)
+    val fruitJuice = CommonNoun(value = "fruit juice", countable = true, Plurality.SINGULAR)
+    val lemonade = CommonNoun(value = "lemonade", countable = true, Plurality.SINGULAR)
+    val milk = CommonNoun(value = "milk", countable = true, Plurality.SINGULAR)
+    val vegetableJuice = CommonNoun(value = "vegetable juice", countable = true, Plurality.SINGULAR)
+    val water = CommonNoun(value = "water", countable = true, Plurality.SINGULAR)
+    val wine = CommonNoun(value = "wine", countable = true, Plurality.SINGULAR)
+
+    val drinks = listOf(
+        beer,
+        cocktail,
+        coffee,
+        fruitJuice,
+        lemonade,
+        milk,
+        vegetableJuice,
+        water,
+        wine,
+    )
+
+    val dinner = CommonNoun(value = "dinner", countable = true, Plurality.SINGULAR)
+    val pizza = CommonNoun(value = "pizza", countable = true, Plurality.SINGULAR)
+
+    val food = listOf(
+        dinner,
+        pizza,
+    )
+
+    val article = CommonNoun(value = "article", countable = true, Plurality.SINGULAR)
+    val autobiography = CommonNoun(value = "autobiography", countable = true, Plurality.SINGULAR)
+    val biography = CommonNoun(value = "biography", countable = true, Plurality.SINGULAR)
+    val blog = CommonNoun(value = "blog", countable = true, Plurality.SINGULAR)
     val book = CommonNoun(value = "book", countable = true, Plurality.SINGULAR)
+    val content = CommonNoun(value = "content", countable = true, Plurality.SINGULAR)
+    val email = CommonNoun(value = "email", countable = true, Plurality.SINGULAR)
+    val journal = CommonNoun(value = "journal", countable = true, Plurality.SINGULAR)
+    val letter = CommonNoun(value = "letter", countable = true, Plurality.SINGULAR)
+    val report = CommonNoun(value = "report", countable = true, Plurality.SINGULAR)
+    val socialMediaPost = CommonNoun(value = "social media post", countable = true, Plurality.SINGULAR)
+
+    val writeReadMaterials = listOf(
+        article,
+        autobiography,
+        biography,
+        blog,
+        book,
+        content,
+        email,
+        journal,
+        letter,
+        report,
+        socialMediaPost,
+    )
+
+    val art = CommonNoun(value = "art", countable = true, Plurality.SINGULAR)
+    val biology = CommonNoun(value = "biology", countable = true, Plurality.SINGULAR)
+    val dance = CommonNoun(value = "dance", countable = true, Plurality.SINGULAR)
+    val drama = CommonNoun(value = "drama", countable = true, Plurality.SINGULAR)
+    val economics = CommonNoun(value = "economics", countable = true, Plurality.SINGULAR)
+    val geography = CommonNoun(value = "geography", countable = true, Plurality.SINGULAR)
+    val history = CommonNoun(value = "history", countable = true, Plurality.SINGULAR)
+    val math = CommonNoun(value = "math", countable = true, Plurality.SINGULAR)
+    val music = CommonNoun(value = "music", countable = true, Plurality.SINGULAR)
+    val psychology = CommonNoun(value = "psychology", countable = true, Plurality.SINGULAR)
+    val science = CommonNoun(value = "science", countable = true, Plurality.SINGULAR)
+    val sociology = CommonNoun(value = "sociology", countable = true, Plurality.SINGULAR)
+
+    val schoolSubjects = listOf(
+        art,
+        biology,
+        dance,
+        drama,
+        economics,
+        geography,
+        history,
+        math,
+        music,
+        psychology,
+        science,
+        sociology,
+    )
+
+    val names = listOf(
+        Pronoun("John"),
+        Pronoun("Emily"),
+    )
+
     val laptop = CommonNoun(value = "laptop", countable = true, Plurality.SINGULAR)
     val phone = CommonNoun(value = "phone", countable = true, Plurality.SINGULAR)
     val car = CommonNoun(value = "car", countable = true, Plurality.SINGULAR)
@@ -197,7 +470,6 @@ object Nouns {
     val desk = CommonNoun(value = "desk", countable = true, Plurality.SINGULAR)
     val pen = CommonNoun(value = "pen", countable = true, Plurality.SINGULAR)
     val boy = CommonNoun(value = "boy", countable = true, Plurality.SINGULAR)
-    val apple = CommonNoun(value = "apple", countable = true, Plurality.SINGULAR)
     val bench = CommonNoun(value = "bench", countable = true, Plurality.SINGULAR)
     val box = CommonNoun(value = "box", countable = true, Plurality.SINGULAR)
     val kiss = CommonNoun(value = "kiss", countable = true, Plurality.SINGULAR)
@@ -206,23 +478,15 @@ object Nouns {
     val shelf = CommonNoun(value = "shelf", countable = true, Plurality.SINGULAR)
     val wife = CommonNoun(value = "wife", countable = true, Plurality.SINGULAR)
     val radio = CommonNoun(value = "radio", countable = true, Plurality.SINGULAR)
-    val potato = CommonNoun(value = "potato", countable = true, Plurality.SINGULAR)
     val city = CommonNoun(value = "city", countable = true, Plurality.SINGULAR)
     val day = CommonNoun(value = "day", countable = true, Plurality.SINGULAR)
-    val pizza = CommonNoun(value = "pizza", countable = true, Plurality.SINGULAR)
-
-    val thinks = listOf(
-        book,
-        laptop,
-        phone,
-        car,
-        bus,
-        house,
-        key,
-        desk,
-        pen,
-        bench,
-        box,
-    )
+    val sofa = CommonNoun(value = "sofa", countable = true, Plurality.SINGULAR)
+    val song = CommonNoun(value = "song", countable = true, Plurality.SINGULAR)
+    val lesson = CommonNoun(value = "lesson", countable = true, Plurality.SINGULAR)
+    val picture = CommonNoun(value = "picture", countable = true, Plurality.SINGULAR)
+    val school = CommonNoun(value = "school", countable = true, Plurality.SINGULAR)
+    val movie = CommonNoun(value = "movie", countable = true, Plurality.SINGULAR)
+    val rule = CommonNoun(value = "rule", countable = true, Plurality.SINGULAR)
+    val homework = CommonNoun(value = "homework", countable = true, Plurality.SINGULAR)
 
 }

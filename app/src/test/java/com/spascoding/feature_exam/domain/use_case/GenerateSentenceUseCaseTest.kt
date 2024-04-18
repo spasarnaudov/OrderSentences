@@ -1,6 +1,5 @@
 package com.spascoding.feature_exam.domain.use_case
 
-import com.spascoding.feature_exam.R
 import com.spascoding.feature_exam.data.data_source.Nouns
 import com.spascoding.feature_exam.data.data_source.Verbs
 import com.spascoding.feature_exam.data.data_source.Pronouns
@@ -57,9 +56,8 @@ class GenerateSentenceUseCaseTest {
 
     private fun whereAreYouLiveLessen(tens: Tens) : Exam {
         return Exam(
-            name = R.string.i_am_from_bulgaria,
             tens = tens,
-            subjects = Pronouns.singular.plus(Pronouns.names),
+            subjects = Pronouns.singular.plus(Nouns.names),
             verbs = Verbs.countriesAndCities,
             objects = listOf("Australia"),
         )
@@ -138,9 +136,8 @@ class GenerateSentenceUseCaseTest {
             "is Emily from Australia?",
         )
         val lessen = Exam(
-            name = R.string.i_am_from_bulgaria,
             tens = Tens.PRESENT_SIMPLE,
-            subjects = Pronouns.singular.plus(Pronouns.names),
+            subjects = Pronouns.singular.plus(Nouns.names),
             verbs = listOf(Verbs.toBe),
             objects = Nouns.countries.build(),
         )
@@ -182,9 +179,8 @@ class GenerateSentenceUseCaseTest {
             "is Emily Australian?",
         )
         val lessen = Exam(
-            name = R.string.i_am_bulgarian,
             tens = Tens.PRESENT_SIMPLE,
-            subjects = Pronouns.singular.plus(Pronouns.names),
+            subjects = Pronouns.singular.plus(Nouns.names),
             verbs = listOf(Verbs.toBe),
             objects = Nouns.nationals.build(),
         )

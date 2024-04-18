@@ -18,11 +18,6 @@ object Pronouns {
         Pronoun.THEY,
     )
 
-    val names = listOf(
-        Pronoun("John"),
-        Pronoun("Emily")
-    )
-
     object Demonstratives {
         val singular = listOf(
             Pronoun.THIS,

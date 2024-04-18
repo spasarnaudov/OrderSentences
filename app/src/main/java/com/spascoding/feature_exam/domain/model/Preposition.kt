@@ -7,7 +7,7 @@ enum class Preposition(val value: String) {
 //    Prepositions of Time
 
     AT("at"),               //Used for specific times (e.g., at 5 o'clock)
-    NO("on"),               //Used for days and dates (e.g., on Monday, on December 5th)
+    ON("on"),               //Used for days and dates (e.g., on Monday, on December 5th)
     IN("in"),               //Used for nonspecific times during a day, month, season, year (e.g., in the morning, in December, in summer)
 
 //    Prepositions of Place

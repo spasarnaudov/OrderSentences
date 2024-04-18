@@ -57,61 +57,59 @@ object Verbs {
 
     //  Irregular verbs same base and past principle forms
 
-    val come = Verb("come", "came", "come")
-    val run = Verb("run", "ran", "run")
     val become = Verb("become", "became", "become")
+    val come = Verb("come", "came", "come")
     val overcome = Verb("overcome", "overcame", "overcome")
+    val run = Verb("run", "ran", "run")
 
     //  Irregular verbs all three forms are different
 
     val begin = Verb("begin", "began", "begun")
-    val drink = Verb("drink", "drank", "drunk")
-    val sing = Verb("sing", "sang", "sung")
-    val swim = Verb("swim", "swam", "swum")
-    val ring = Verb("ring", "rang", "rung")
-    val go = Verb("go", "went", "gone")
-    val ride = Verb("ride", "rode", "ridden")
-    val write = Verb("write", "wrote", "written")
-    val rise = Verb("rise", "rose", "risen")
-    val drive = Verb("drive", "drove", "driven")
     val choose = Verb("choose", "chose", "chosen")
+    val `do` = Verb("do", "did", "done")
+    val drink = Verb("drink", "drank", "drunk")
+    val drive = Verb("drive", "drove", "driven")
     val eat = Verb("eat", "ate", "eaten")
     val fall = Verb("fall", "fell", "fallen")
     val give = Verb("give", "gave", "given")
-    val `see` = Verb("see", "saw", "seen")
-    val `do` = Verb("do", "did", "done")
+    val go = Verb("go", "went", "gone")
     val know = Verb("know", "knew", "known")
-    val `throw` = Verb("throw", "threw", "thrown")
+    val ride = Verb("ride", "rode", "ridden")
+    val ring = Verb("ring", "rang", "rung")
+    val rise = Verb("rise", "rose", "risen")
+    val `see` = Verb("see", "saw", "seen")
+    val sing = Verb("sing", "sang", "sung")
+    val swim = Verb("swim", "swam", "swum")
     val take = Verb("take", "took", "taken")
+    val `throw` = Verb("throw", "threw", "thrown")
+    val write = Verb("write", "wrote", "written")
 
     //  Regular verbs
 
+    val assign = Verb("assign")
+    val cook = Verb("cook")
+    val explain = Verb("explain")
+    val finish = Verb("finish")
+    val greet = Verb("greet")
+    val hate = Verb("hate")
+    val help = Verb("help")
+    val learn = Verb("learn")
+    val like = Verb("like")
+    val listen = Verb("listen")
     val live = Verb("live")
     val love = Verb("love")
-    val like = Verb("like")
-    val hate = Verb("hate")
-    val trust = Verb("trust")
-    val cook = Verb("cook")
-    val help = Verb("help")
+    val paint = Verb("paint")
+    val play = Verb("play")
     val respect = Verb("respect")
-    val greet = Verb("greet")
-    val learn = Verb("learn")
-    val listen = Verb("listen")
-    val support = Verb("support")
     val smile = Verb("smile")
+    val study = Verb("study")
+    val support = Verb("support")
+    val trust = Verb("trust")
+    val visit = Verb("visit")
+    val walk = Verb("walk")
+    val watch = Verb("watch")
 
     val countriesAndCities: List<Verb> = listOf(
         live,
-    )
-
-    val mutualOrReciprocalActions = listOf(
-        help,
-        understand,
-        respect,
-        trust,
-        greet,
-        learn,
-        listen,
-        support,
     )
 }

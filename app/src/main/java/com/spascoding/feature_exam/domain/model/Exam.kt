@@ -1,6 +1,5 @@
 package com.spascoding.feature_exam.domain.model
 
-import androidx.annotation.StringRes
 import com.spascoding.feature_exam.domain.SentenceType
 import com.spascoding.feature_exam.domain.Tens
 import com.spascoding.feature_exam.domain.model.noun.Noun
@@ -8,7 +7,6 @@ import com.spascoding.feature_exam.domain.model.verb.Verb
 import com.spascoding.feature_exam.domain.use_case.GenerateSentenceUseCase
 
 data class Exam(
-    @StringRes val name: Int,
     val tens: Tens,
     val subjects: List<Noun>,
     val verbs: List<Verb>,
