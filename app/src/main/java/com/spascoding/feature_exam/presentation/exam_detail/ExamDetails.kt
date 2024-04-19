@@ -43,7 +43,8 @@ fun ExamDetails(
             viewModel.state.value.exam?.info()?.forEachIndexed() { index, exam ->
                 item {
                     Text(
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier.fillMaxWidth()
+                            .padding(bottom = Padding.SMALL),
                         text = stringResource(R.string.lessen_row_info_pattern, index + 1, exam)
                     )
                 }
