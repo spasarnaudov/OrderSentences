@@ -19,7 +19,7 @@ class GetInitialDataUseCaseTest {
 
     @Test
     fun getBeginnerData() = runBlocking {
-        val data = GetInitialDataUseCase(repository).invoke(Tens.PRESENT_SIMPLE)
+        val data = GetExamUseCase(repository).invoke(Tens.PRESENT_SIMPLE)
         for (exam in data) {
             for (value in exam.info()) {
                 println(value)

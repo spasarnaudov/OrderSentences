@@ -8,7 +8,7 @@ import com.spascoding.feature_exam.domain.enums.SentenceType
 import com.spascoding.feature_exam.domain.enums.Tens
 import com.spascoding.feature_exam.domain.model.Exam
 import com.spascoding.feature_exam.domain.use_case.ExamUseCases
-import com.spascoding.feature_exam.domain.use_case.GenerateSentenceUseCase
+import com.spascoding.feature_exam.domain.utils.GenerateSentence
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -59,7 +59,7 @@ class ExamListViewModel @Inject constructor(
         val verb = exam.verbs[0]
         val objectVal = exam.objects[0]
 
-        return GenerateSentenceUseCase().invoke(
+        return GenerateSentence().invoke(
             sentenceType,
             tens,
             subject,

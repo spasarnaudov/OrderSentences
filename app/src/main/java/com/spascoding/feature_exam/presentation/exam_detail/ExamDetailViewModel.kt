@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.spascoding.feature_exam.domain.enums.SentenceType
 import com.spascoding.feature_exam.domain.enums.Tens
 import com.spascoding.feature_exam.domain.use_case.ExamUseCases
-import com.spascoding.feature_exam.domain.use_case.GenerateSentenceUseCase
+import com.spascoding.feature_exam.domain.utils.GenerateSentence
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -46,7 +46,7 @@ class ExamDetailViewModel @Inject constructor(
         val objectVal = state.value.exam?.objects?.get(0)
 
         if (tens != null && subject != null && verb != null && objectVal != null) {
-            return GenerateSentenceUseCase().invoke(
+            return GenerateSentence().invoke(
                 sentenceType,
                 tens,
                 subject,

@@ -7,6 +7,7 @@ import com.spascoding.feature_exam.domain.enums.SentenceType
 import com.spascoding.feature_exam.domain.enums.Tens
 import com.spascoding.feature_exam.domain.model.Exam
 import com.spascoding.feature_exam.domain.model.noun.build
+import com.spascoding.feature_exam.domain.utils.GenerateSentence
 import org.junit.Test
 
 class GenerateSentenceUseCaseTest {
@@ -17,7 +18,7 @@ class GenerateSentenceUseCaseTest {
             for (subject in exam.subjects) {
                 for (verb in exam.verbs) {
                     for (objectVal in exam.objects) {
-                        val sentence = GenerateSentenceUseCase().invoke(
+                        val sentence = GenerateSentence().invoke(
                             sentenceType,
                             exam.tens,
                             subject,
@@ -40,7 +41,7 @@ class GenerateSentenceUseCaseTest {
             for (subject in exam.subjects) {
                 for (verb in exam.verbs) {
                     for (objectVal in exam.objects) {
-                        val sentence = GenerateSentenceUseCase().invoke(
+                        val sentence = GenerateSentence().invoke(
                             sentenceType,
                             exam.tens,
                             subject,

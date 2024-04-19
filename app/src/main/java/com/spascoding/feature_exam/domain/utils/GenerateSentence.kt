@@ -1,4 +1,4 @@
-package com.spascoding.feature_exam.domain.use_case
+package com.spascoding.feature_exam.domain.utils
 
 import com.spascoding.feature_exam.domain.model.sentence.future.FutureSimpleSentence
 import com.spascoding.feature_exam.domain.model.sentence.past.PastSimpleSentence
@@ -18,7 +18,7 @@ import com.spascoding.feature_exam.domain.model.sentence.present.PresentPerfectS
 import com.spascoding.feature_exam.domain.model.verb.Verb
 import com.spascoding.feature_exam.presentation.utils.upperFirstLetter
 
-class GenerateSentenceUseCase {
+class GenerateSentence {
 
     operator fun invoke(
         sentenceType: SentenceType,

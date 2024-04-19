@@ -9,7 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.spascoding.feature_exam.domain.enums.ExamState
 import com.spascoding.feature_exam.domain.enums.SentenceType
 import com.spascoding.feature_exam.domain.enums.Tens
-import com.spascoding.feature_exam.domain.use_case.GenerateSentenceUseCase
+import com.spascoding.feature_exam.domain.utils.GenerateSentence
 import com.spascoding.feature_exam.domain.use_case.ExamUseCases
 import com.spascoding.feature_exam.presentation.utils.scratchWords
 import com.spascoding.feature_exam.presentation.utils.shuffleSentence
@@ -73,7 +73,7 @@ class ExamViewModel @Inject constructor(
             val verb = exam.verbs.random()
             val objectVal = exam.objects.random()
 
-            val sentence = GenerateSentenceUseCase().invoke(
+            val sentence = GenerateSentence().invoke(
                 sentenceType,
                 tens,
                 subject,

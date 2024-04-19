@@ -4,7 +4,7 @@ import com.spascoding.feature_exam.domain.enums.SentenceType
 import com.spascoding.feature_exam.domain.enums.Tens
 import com.spascoding.feature_exam.domain.model.noun.Noun
 import com.spascoding.feature_exam.domain.model.verb.Verb
-import com.spascoding.feature_exam.domain.use_case.GenerateSentenceUseCase
+import com.spascoding.feature_exam.domain.utils.GenerateSentence
 
 data class Exam(
     val tens: Tens,
@@ -20,7 +20,7 @@ fun Exam.info() : List<String> {
         for (subject in subjects) {
             for (verb in verbs) {
                 for (objectVal in objects) {
-                    val sentence = GenerateSentenceUseCase().invoke(
+                    val sentence = GenerateSentence().invoke(
                         sentenceType,
                         tens,
                         subject,

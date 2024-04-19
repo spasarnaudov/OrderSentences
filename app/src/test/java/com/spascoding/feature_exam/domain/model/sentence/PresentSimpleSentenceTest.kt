@@ -9,7 +9,7 @@ import com.spascoding.feature_exam.domain.model.Adjective
 import com.spascoding.feature_exam.domain.model.Preposition
 import com.spascoding.feature_exam.domain.model.noun.Noun
 import com.spascoding.feature_exam.domain.model.noun.Pronoun
-import com.spascoding.feature_exam.domain.use_case.GenerateSentenceUseCase
+import com.spascoding.feature_exam.domain.utils.GenerateSentence
 import org.junit.Test
 
 class PresentSimpleSentenceTest {
@@ -36,7 +36,7 @@ class PresentSimpleSentenceTest {
     }
 
     private fun createPositiveSentence(noun: Noun, objectVal: String): String {
-        val sentence = GenerateSentenceUseCase().invoke(
+        val sentence = GenerateSentence().invoke(
             sentenceType = SentenceType.POSITIVE,
             tens = Tens.PRESENT_SIMPLE,
             subject = noun,
@@ -69,7 +69,7 @@ class PresentSimpleSentenceTest {
     }
 
     private fun createNegativeSentence(noun: Noun, objectVal: String): String {
-        val sentence = GenerateSentenceUseCase().invoke(
+        val sentence = GenerateSentence().invoke(
             sentenceType = SentenceType.NEGATIVE,
             tens = Tens.PRESENT_SIMPLE,
             subject = noun,
@@ -114,7 +114,7 @@ class PresentSimpleSentenceTest {
     }
 
     private fun createQuestionSentence(subject: Noun, objectVal: String): String {
-        val sentence = GenerateSentenceUseCase().invoke(
+        val sentence = GenerateSentence().invoke(
             sentenceType = SentenceType.QUESTION,
             tens = Tens.PRESENT_SIMPLE,
             subject = subject,
