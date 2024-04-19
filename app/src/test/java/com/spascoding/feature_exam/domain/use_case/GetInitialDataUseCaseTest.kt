@@ -1,22 +1,20 @@
 package com.spascoding.feature_exam.domain.use_case
 
-import com.spascoding.feature_exam.data.repository.SentencesRepositoryImpl
+import com.spascoding.feature_exam.data.repository.ExamRepositoryImpl
 import com.spascoding.feature_exam.domain.Tens
 import com.spascoding.feature_exam.domain.model.info
-import com.spascoding.feature_exam.domain.repository.SentencesRepository
-import kotlinx.coroutines.Dispatchers
+import com.spascoding.feature_exam.domain.repository.ExamRepository
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withContext
 import org.junit.Before
 import org.junit.Test
 
 class GetInitialDataUseCaseTest {
 
-    private lateinit var repository: SentencesRepository
+    private lateinit var repository: ExamRepository
 
     @Before
     fun setup() {
-        repository = SentencesRepositoryImpl()
+        repository = ExamRepositoryImpl()
     }
 
     @Test

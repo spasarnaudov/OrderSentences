@@ -3,6 +3,8 @@ package com.spascoding.feature_exam.domain.repository
 import com.spascoding.feature_exam.domain.Tens
 import com.spascoding.feature_exam.domain.model.Exam
 
-interface SentencesRepository {
+interface ExamRepository {
+
     fun getExam(tens: Tens): List<Exam>
+
 }

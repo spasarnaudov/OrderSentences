@@ -2,11 +2,11 @@ package com.spascoding.feature_exam.domain.use_case
 
 import com.spascoding.feature_exam.domain.Tens
 import com.spascoding.feature_exam.domain.model.Exam
-import com.spascoding.feature_exam.domain.repository.SentencesRepository
+import com.spascoding.feature_exam.domain.repository.ExamRepository
 import javax.inject.Inject
 
 class GetExamUseCase @Inject constructor(
-    private val repository: SentencesRepository
+    private val repository: ExamRepository
 ) {
 
     operator fun invoke(tens: Tens): List<Exam> {

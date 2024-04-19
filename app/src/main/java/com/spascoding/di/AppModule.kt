@@ -1,9 +1,9 @@
 package com.spascoding.di
 
 import android.content.Context
-import com.spascoding.feature_exam.data.repository.SentencesRepositoryImpl
+import com.spascoding.feature_exam.data.repository.ExamRepositoryImpl
 import com.spascoding.feature_exam.data.repository.SharedPreferencesRepositoryImpl
-import com.spascoding.feature_exam.domain.repository.SentencesRepository
+import com.spascoding.feature_exam.domain.repository.ExamRepository
 import com.spascoding.feature_exam.domain.repository.SharedPreferencesRepository
 import com.spascoding.feature_exam.domain.use_case.ExamUseCases
 import com.spascoding.feature_exam.domain.use_case.GetExamUseCase
@@ -20,8 +20,8 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideInitialDataRepository(): SentencesRepository {
-        return SentencesRepositoryImpl()
+    fun provideInitialDataRepository(): ExamRepository {
+        return ExamRepositoryImpl()
     }
 
     @Provides
