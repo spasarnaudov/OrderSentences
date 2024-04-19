@@ -3,6 +3,7 @@ package com.spascoding.feature_exam.presentation.exam_list
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import com.spascoding.feature_exam.data.repository.SharedPreferencesRepositoryImpl
 import com.spascoding.feature_exam.domain.SentenceType
 import com.spascoding.feature_exam.domain.Tens
 import com.spascoding.feature_exam.domain.model.Exam
@@ -14,12 +15,16 @@ import javax.inject.Inject
 @HiltViewModel
 class ExamListViewModel @Inject constructor(
     private val examUseCases: ExamUseCases,
+    private val sharedPreferencesRepository: SharedPreferencesRepositoryImpl,
 ) : ViewModel() {
 
     private val _state = mutableStateOf(ExamListViewModelState())
     val state: State<ExamListViewModelState> = _state
 
     init {
+        _state.value = state.value.copy(
+            tens = sharedPreferencesRepository.getSelectedTens(),
+        )
         getExams(state.value.tens)
     }
 
@@ -32,6 +37,7 @@ class ExamListViewModel @Inject constructor(
 
             }
             is ExamListEvent.SelectTens -> {
+                sharedPreferencesRepository.setSelectedTens(event.tens)
                 _state.value = state.value.copy(
                     tens = event.tens,
                 )
