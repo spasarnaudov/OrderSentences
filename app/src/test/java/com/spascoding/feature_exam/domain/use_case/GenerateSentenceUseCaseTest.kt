@@ -3,8 +3,8 @@ package com.spascoding.feature_exam.domain.use_case
 import com.spascoding.feature_exam.data.data_source.Nouns
 import com.spascoding.feature_exam.data.data_source.Verbs
 import com.spascoding.feature_exam.data.data_source.Pronouns
-import com.spascoding.feature_exam.domain.SentenceType
-import com.spascoding.feature_exam.domain.Tens
+import com.spascoding.feature_exam.domain.enums.SentenceType
+import com.spascoding.feature_exam.domain.enums.Tens
 import com.spascoding.feature_exam.domain.model.Exam
 import com.spascoding.feature_exam.domain.model.noun.build
 import org.junit.Test

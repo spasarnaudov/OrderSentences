@@ -6,7 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.spascoding.feature_exam.domain.Tens
+import com.spascoding.feature_exam.domain.enums.Tens
 import com.spascoding.feature_exam.presentation.exam_detail.ExamDetails
 import com.spascoding.feature_exam.presentation.exam_list.ExamsList
 import com.spascoding.feature_exam.presentation.exam_screen.ExamScreen

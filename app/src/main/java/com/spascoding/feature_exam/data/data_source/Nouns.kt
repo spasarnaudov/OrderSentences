@@ -1,6 +1,6 @@
 package com.spascoding.feature_exam.data.data_source
 
-import com.spascoding.feature_exam.domain.Plurality
+import com.spascoding.feature_exam.domain.enums.Plurality
 import com.spascoding.feature_exam.domain.model.noun.CommonNoun
 import com.spascoding.feature_exam.domain.model.noun.Pronoun
 

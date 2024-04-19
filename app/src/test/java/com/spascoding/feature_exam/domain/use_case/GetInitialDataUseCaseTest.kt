@@ -1,7 +1,7 @@
 package com.spascoding.feature_exam.domain.use_case
 
 import com.spascoding.feature_exam.data.repository.ExamRepositoryImpl
-import com.spascoding.feature_exam.domain.Tens
+import com.spascoding.feature_exam.domain.enums.Tens
 import com.spascoding.feature_exam.domain.model.info
 import com.spascoding.feature_exam.domain.repository.ExamRepository
 import kotlinx.coroutines.runBlocking

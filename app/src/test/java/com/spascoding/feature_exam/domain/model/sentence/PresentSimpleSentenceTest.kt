@@ -2,9 +2,9 @@ package com.spascoding.feature_exam.domain.model.sentence
 
 import com.spascoding.feature_exam.data.data_source.Nouns
 import com.spascoding.feature_exam.data.data_source.Verbs
-import com.spascoding.feature_exam.domain.Article
-import com.spascoding.feature_exam.domain.SentenceType
-import com.spascoding.feature_exam.domain.Tens
+import com.spascoding.feature_exam.domain.enums.Article
+import com.spascoding.feature_exam.domain.enums.SentenceType
+import com.spascoding.feature_exam.domain.enums.Tens
 import com.spascoding.feature_exam.domain.model.Adjective
 import com.spascoding.feature_exam.domain.model.Preposition
 import com.spascoding.feature_exam.domain.model.noun.Noun

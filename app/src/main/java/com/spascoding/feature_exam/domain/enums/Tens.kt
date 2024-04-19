@@ -1,4 +1,4 @@
-package com.spascoding.feature_exam.domain
+package com.spascoding.feature_exam.domain.enums
 
 enum class Tens(val value: String, val int: Int) {
     PAST_SIMPLE("Past simple", 0),

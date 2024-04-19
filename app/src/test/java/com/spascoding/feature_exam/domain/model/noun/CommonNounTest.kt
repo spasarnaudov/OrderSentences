@@ -1,7 +1,7 @@
 package com.spascoding.feature_exam.domain.model.noun
 
 import com.spascoding.feature_exam.data.data_source.Nouns
-import com.spascoding.feature_exam.domain.Article
+import com.spascoding.feature_exam.domain.enums.Article
 import com.spascoding.feature_exam.domain.model.Adjective
 import org.junit.Test
 

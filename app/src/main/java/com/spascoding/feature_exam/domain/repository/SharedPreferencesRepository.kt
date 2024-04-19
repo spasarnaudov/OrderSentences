@@ -1,6 +1,6 @@
 package com.spascoding.feature_exam.domain.repository
 
-import com.spascoding.feature_exam.domain.Tens
+import com.spascoding.feature_exam.domain.enums.Tens
 
 interface SharedPreferencesRepository {
 

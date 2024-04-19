@@ -1,4 +1,4 @@
-package com.spascoding.feature_exam.domain
+package com.spascoding.feature_exam.domain.enums
 
 enum class SentenceType {
     POSITIVE,

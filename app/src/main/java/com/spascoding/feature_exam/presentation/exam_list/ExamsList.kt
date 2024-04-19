@@ -15,7 +15,7 @@ import androidx.navigation.NavController
 import com.spascoding.core.constants.Padding
 import com.spascoding.core.presentation.DropDownMenu
 import com.spascoding.feature_exam.R
-import com.spascoding.feature_exam.domain.Tens
+import com.spascoding.feature_exam.domain.enums.Tens
 import com.spascoding.feature_exam.presentation.Screen
 import kotlinx.coroutines.launch
 

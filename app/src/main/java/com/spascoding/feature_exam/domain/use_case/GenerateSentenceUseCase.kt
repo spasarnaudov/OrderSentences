@@ -4,8 +4,8 @@ import com.spascoding.feature_exam.domain.model.sentence.future.FutureSimpleSent
 import com.spascoding.feature_exam.domain.model.sentence.past.PastSimpleSentence
 import com.spascoding.feature_exam.domain.model.sentence.present.PresentContinuousSentence
 import com.spascoding.feature_exam.domain.model.sentence.present.PresentSimpleSentence
-import com.spascoding.feature_exam.domain.SentenceType
-import com.spascoding.feature_exam.domain.Tens
+import com.spascoding.feature_exam.domain.enums.SentenceType
+import com.spascoding.feature_exam.domain.enums.Tens
 import com.spascoding.feature_exam.domain.model.noun.Noun
 import com.spascoding.feature_exam.domain.model.sentence.future.FutureContinuousSentence
 import com.spascoding.feature_exam.domain.model.sentence.future.FuturePerfectContinuousSentence

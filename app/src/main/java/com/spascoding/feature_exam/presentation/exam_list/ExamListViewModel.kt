@@ -4,8 +4,8 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.spascoding.feature_exam.data.repository.SharedPreferencesRepositoryImpl
-import com.spascoding.feature_exam.domain.SentenceType
-import com.spascoding.feature_exam.domain.Tens
+import com.spascoding.feature_exam.domain.enums.SentenceType
+import com.spascoding.feature_exam.domain.enums.Tens
 import com.spascoding.feature_exam.domain.model.Exam
 import com.spascoding.feature_exam.domain.use_case.ExamUseCases
 import com.spascoding.feature_exam.domain.use_case.GenerateSentenceUseCase

@@ -1,6 +1,6 @@
 package com.spascoding.feature_exam.domain.model.noun
 
-import com.spascoding.feature_exam.domain.Plurality
+import com.spascoding.feature_exam.domain.enums.Plurality
 import com.spascoding.feature_exam.domain.model.Preposition
 
 data class Pronoun(

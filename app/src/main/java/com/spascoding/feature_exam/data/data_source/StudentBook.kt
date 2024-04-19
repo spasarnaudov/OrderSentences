@@ -1,7 +1,7 @@
 package com.spascoding.feature_exam.data.data_source
 
-import com.spascoding.feature_exam.domain.Article
-import com.spascoding.feature_exam.domain.Tens
+import com.spascoding.feature_exam.domain.enums.Article
+import com.spascoding.feature_exam.domain.enums.Tens
 import com.spascoding.feature_exam.domain.model.Exam
 import com.spascoding.feature_exam.domain.model.noun.addArticle
 import com.spascoding.feature_exam.domain.model.noun.build

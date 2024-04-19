@@ -2,7 +2,7 @@ package com.spascoding.feature_exam.presentation.exam_screen
 
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.spascoding.feature_exam.domain.ExamState
+import com.spascoding.feature_exam.domain.enums.ExamState
 
 @Composable
 fun ExamScreen(

@@ -6,9 +6,9 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.spascoding.feature_exam.domain.ExamState
-import com.spascoding.feature_exam.domain.SentenceType
-import com.spascoding.feature_exam.domain.Tens
+import com.spascoding.feature_exam.domain.enums.ExamState
+import com.spascoding.feature_exam.domain.enums.SentenceType
+import com.spascoding.feature_exam.domain.enums.Tens
 import com.spascoding.feature_exam.domain.use_case.GenerateSentenceUseCase
 import com.spascoding.feature_exam.domain.use_case.ExamUseCases
 import com.spascoding.feature_exam.presentation.utils.scratchWords
