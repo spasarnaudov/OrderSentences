@@ -1,4 +1,4 @@
-package com.spascoding.feature_lessens_list.presentation.components
+package com.spascoding.feature_exam.presentation.exam_detail
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -16,11 +16,11 @@ import com.spascoding.core.constants.FontSize
 import com.spascoding.core.constants.Padding
 import com.spascoding.feature_exam.R
 import com.spascoding.feature_exam.domain.model.info
-import com.spascoding.feature_exam.presentation.ExamViewModel
+import com.spascoding.feature_exam.presentation.exam_screen.ExamViewModel
 
 @Composable
 fun ExamDetails(
-    viewModel: ExamViewModel = hiltViewModel()
+    viewModel: ExamDetailViewModel = hiltViewModel()
 ) {
     Column(
         modifier = Modifier
@@ -28,10 +28,11 @@ fun ExamDetails(
             .padding(Padding.LARGE),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        val name = viewModel.getFirstItemName(viewModel.state.value.exam)
+        val name = viewModel.getFirstItemName()
         Text(
             modifier = Modifier
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .padding(bottom = Padding.MEDIUM),
             text = name,
             fontWeight = FontWeight.Bold,
             fontSize = FontSize.LARGE
@@ -39,7 +40,7 @@ fun ExamDetails(
         LazyColumn(
             modifier = Modifier.fillMaxWidth()
         ) {
-            viewModel.state.value.exam.info().forEachIndexed() { index, exam ->
+            viewModel.state.value.exam?.info()?.forEachIndexed() { index, exam ->
                 item {
                     Text(
                         modifier = Modifier.fillMaxWidth(),

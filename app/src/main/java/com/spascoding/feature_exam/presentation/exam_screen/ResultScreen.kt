@@ -1,4 +1,4 @@
-package com.spascoding.feature_exam.presentation.ui.components
+package com.spascoding.feature_exam.presentation.exam_screen
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -20,8 +20,6 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.spascoding.core.constants.Padding
 import com.spascoding.feature_exam.R
-import com.spascoding.feature_exam.domain.ExamEvent
-import com.spascoding.feature_exam.presentation.ExamViewModel
 
 @Composable
 fun ResultScreen(
@@ -62,7 +60,7 @@ fun ResultScreen(
             modifier = Modifier
                 .wrapContentSize(),
             onClick = {
-                viewModel.onEvent(ExamEvent.SelectExam(viewModel.state.value.exam))
+                viewModel.onEvent(ExamEvent.NewExam(viewModel.state.value.exam))
             },
         ) {
             Text(text = stringResource(R.string.start_game))

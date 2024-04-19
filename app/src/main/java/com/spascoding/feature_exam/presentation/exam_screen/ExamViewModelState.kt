@@ -1,15 +1,13 @@
-package com.spascoding.feature_exam.presentation
+package com.spascoding.feature_exam.presentation.exam_screen
 
 import com.spascoding.feature_exam.data.data_source.StudentBook
-import com.spascoding.feature_exam.domain.GameState
+import com.spascoding.feature_exam.domain.ExamState
 import com.spascoding.feature_exam.domain.model.Exam
-import com.spascoding.feature_exam.domain.model.verb.Verb
 
-data class ExamState(
+data class ExamViewModelState(
     val sentence: String = "",
     val shuffledSentence: String = "",
     val enteredSentence: String = "",
-    val verb: Verb? = null,
-    val gameState: GameState = GameState.FINISHED,
+    val gameState: ExamState = ExamState.FINISHED,
     val exam: Exam = StudentBook.Beginner.exams[0],
 )

@@ -8,37 +8,6 @@
 
 	<!--	feature_exam_list	-->
 	<string name="lessen_row_info_pattern">%1$s. %2$s</string>
-
-	<!--	Beginner exam titles	-->
-	<string name="i_am_bulgarian">I am Bulgarian.</string>
-	<string name="i_am_an_programmer">I am a programmer</string>
-	<string name="i_am_from_bulgaria">I am from Bulgaria.</string>
-	<string name="who_are_you_meeting">Who are you meeting?</string>
-<!--	<string name="what_is_your_name">What is your name?</string>-->
-	<string name="where_is_she_from">Where is she from?</string>
-	<string name="when_are_they_arriving">When are they arriving?</string>
-	<string name="why_am_i_a_teacher">Why am I a teacher?</string>
-<!--	<string name="how_old_is_your_best_friend">How old is your best friend?</string>-->
-	<string name="it_is_mine">It is mine.</string>
-	<string name="this_is_my_book">This is my book.</string>
-	<string name="these_are_my_keys">These are my keys.</string>
-	<string name="she_loves_john">She loves John?</string>
-	<string name="i_eat_a_pizza">I eat a pizza.</string>
-
-	<!--	Beginner exam titles	-->
-	<string name="the_room_is_small">The room is small.</string>
-	<string name="the_soup_was_delicious">The soup was delicious.</string>
-	<string name="this_hat_is_beautiful">This hat is beautiful.</string>
-
-
-
-
-	<string name="where_do_you_live">Where do you live?</string>
-	<string name="what_is_your_phone_number">What is your phone number?</string>
-	<string name="this_is_main">This is main.</string>
-	<string name="birds">Birds</string>
-
-	<string name="distances">Distances</string>
-	<string name="they_help_each_other">They help each other</string>
+	<string name="tenses">Tenses</string>
 
 </resources>

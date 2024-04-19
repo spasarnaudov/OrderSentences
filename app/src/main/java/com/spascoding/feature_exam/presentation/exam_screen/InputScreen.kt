@@ -1,4 +1,4 @@
-package com.spascoding.feature_exam.presentation.ui.components
+package com.spascoding.feature_exam.presentation.exam_screen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -24,8 +24,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.spascoding.feature_exam.R
-import com.spascoding.feature_exam.domain.ExamEvent
-import com.spascoding.feature_exam.presentation.ExamViewModel
 
 @Composable
 fun InputScreen(
@@ -63,7 +61,7 @@ fun InputScreen(
                 .wrapContentSize(),
             enabled = answerText.isNotBlank(),
             onClick = {
-                viewModel.onEvent(ExamEvent.EndGame(answerText))
+                viewModel.onEvent(ExamEvent.EndExam(answerText))
             },
         ) {
             Text(text = stringResource(R.string.finish_game))

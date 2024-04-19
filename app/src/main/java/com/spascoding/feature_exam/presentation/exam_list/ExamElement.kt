@@ -1,4 +1,4 @@
-package com.spascoding.feature_lessens_list.presentation.components
+package com.spascoding.feature_exam.presentation.exam_list
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
