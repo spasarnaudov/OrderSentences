@@ -91,4 +91,7 @@ dependencies {
     kapt ("com.google.dagger:hilt-android-compiler:2.50")
     kapt ("androidx.hilt:hilt-compiler:1.1.0")
     implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
+
+    //Coroutines
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.1-Beta")
 }
