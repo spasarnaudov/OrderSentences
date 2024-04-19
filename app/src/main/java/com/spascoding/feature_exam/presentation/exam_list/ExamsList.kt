@@ -27,11 +27,12 @@ fun ExamsList(
     Column(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Box(modifier = Modifier.padding(Padding.MEDIUM)) {
+        Box(modifier = Modifier
+            .padding(Padding.MEDIUM)) {
             DropDownMenu(
                 title = stringResource(R.string.tenses),
                 defaultValue = viewModel.state.value.tens.value,
-                list = Tens.entries.map { it.value },
+                list = Tens.entries.sortedBy { it.int }.map { it.value },
             ) {
                 viewModel.onEvent(ExamListEvent.SelectTens(tens = Tens.fromString(it)))
             }
@@ -53,7 +54,6 @@ fun ExamsList(
                                 navController.navigate(Screen.ExamDetail.route + "?examIndex=$index&tens=${exam.tens.int}")
                             },
                             examName = name,
-                            tens = exam.tens.value
                         )
                     }
                 }

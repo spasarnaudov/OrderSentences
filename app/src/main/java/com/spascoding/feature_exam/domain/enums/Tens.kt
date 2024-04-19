@@ -1,20 +1,20 @@
 package com.spascoding.feature_exam.domain.enums
 
 enum class Tens(val value: String, val int: Int) {
-    PAST_SIMPLE("Past simple", 0),
-    PAST_CONTINUOUS("Past continuous", 1),
-    PAST_PERFECT("Past perfect", 2),
-    PAST_PERFECT_CONTINUOUS("Past perfect continuous", 3),
+    PAST_SIMPLE("Past simple (A1)", 1),
+    PAST_CONTINUOUS("Past continuous (A2)", 3),
+    PAST_PERFECT("Past perfect (B2)", 7),
+    PAST_PERFECT_CONTINUOUS("Past perfect continuous (C1)", 10),
 
-    PRESENT_SIMPLE("Present simple", 4),
-    PRESENT_CONTINUOUS("Present continuous", 5),
-    PRESENT_PERFECT("Present perfect", 6),
-    PRESENT_PERFECT_CONTINUOUS("Present perfect continuous", 7),
+    PRESENT_SIMPLE("Present simple (A1)", 0),
+    PRESENT_CONTINUOUS("Present continuous (A2)", 2),
+    PRESENT_PERFECT("Present perfect (B1)", 5),
+    PRESENT_PERFECT_CONTINUOUS("Present perfect continuous (C1)", 9),
 
-    FUTURE_SIMPLE("Future simple", 8),
-    FUTURE_CONTINUOUS("Future continuous", 9),
-    FUTURE_PERFECT("Future perfect", 10),
-    FUTURE_PERFECT_CONTINUOUS("Future perfect continuous", 11);
+    FUTURE_SIMPLE("Future simple (A2)", 4),
+    FUTURE_CONTINUOUS("Future continuous (B1)", 6),
+    FUTURE_PERFECT("Future perfect (B2)", 8),
+    FUTURE_PERFECT_CONTINUOUS("Future perfect continuous (C2)", 11);
 
     companion object {
         fun fromString(name: String): Tens {

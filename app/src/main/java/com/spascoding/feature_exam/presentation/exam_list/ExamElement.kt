@@ -4,7 +4,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -23,7 +22,6 @@ fun ExamElement(
     onClickItem: () -> Unit,
     onClickInfo: () -> Unit,
     examName: String,
-    tens: String,
 ) {
     Row(
         modifier = Modifier
@@ -33,26 +31,15 @@ fun ExamElement(
     ) {
         Column(
             modifier = Modifier
-                .padding(
-                    start = Padding.LARGE,
-                    top = Padding.SMALL,
-                    bottom = Padding.SMALL,
-                )
+                .padding(start = Padding.LARGE)
+                .weight(1f)
         ) {
             Text(
-                text = examName,
-                fontWeight = FontWeight.Bold
+                text = examName, fontWeight = FontWeight.Bold
             )
-            Text(text = tens)
         }
-        Spacer(
-            Modifier
-                .weight(1f)
-                .fillMaxHeight())
         IconButton(
-            onClick = onClickInfo,
-            modifier = Modifier
-                .padding(end = Padding.SMALL)
+            onClick = onClickInfo, modifier = Modifier.padding(end = Padding.SMALL)
         ) {
             Icon(Icons.Default.Info, contentDescription = null)
         }

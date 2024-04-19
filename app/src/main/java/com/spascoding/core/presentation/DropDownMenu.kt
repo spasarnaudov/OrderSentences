@@ -2,6 +2,7 @@ package com.spascoding.core.presentation
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material.icons.Icons
@@ -55,6 +56,7 @@ fun DropDownMenu(
             readOnly = true,
             onValueChange = { selectedItem = it },
             modifier = modifier
+                .fillMaxWidth()
                 .wrapContentHeight()
                 .onGloballyPositioned { coordinates ->
                     textFiledSize = coordinates.size.toSize()
