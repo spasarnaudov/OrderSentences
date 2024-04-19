@@ -20,7 +20,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.spascoding.feature_exam.R
@@ -29,7 +31,7 @@ import com.spascoding.feature_exam.R
 fun InputScreen(
     viewModel: ExamViewModel = hiltViewModel()
 ) {
-    var answerText by remember { mutableStateOf("") }
+    var answerText by remember { mutableStateOf(TextFieldValue(text = viewModel.state.value.enteredSentence, selection = TextRange(viewModel.state.value.enteredSentence.length))) }
     val focusRequester = remember { FocusRequester() }
     Column(
         modifier = Modifier
@@ -52,16 +54,16 @@ fun InputScreen(
             value = answerText,
             onValueChange = {
                 answerText = it
-                viewModel.onEvent(ExamEvent.EnterText(answerText))
+                viewModel.onEvent(ExamEvent.EnterText(answerText.text))
             },
             label = { Text(stringResource(R.string.enter_your_sentence)) },
         )
         Button(
             modifier = Modifier
                 .wrapContentSize(),
-            enabled = answerText.isNotBlank(),
+            enabled = answerText.text.isNotBlank(),
             onClick = {
-                viewModel.onEvent(ExamEvent.EndExam(answerText))
+                viewModel.onEvent(ExamEvent.EndExam(answerText.text))
             },
         ) {
             Text(text = stringResource(R.string.finish_game))
