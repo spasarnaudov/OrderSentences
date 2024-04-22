@@ -2,7 +2,7 @@ package com.spascoding.feature_exam.domain.model.sentence.past
 
 import com.spascoding.feature_exam.data.data_source.Verbs
 import com.spascoding.feature_exam.domain.model.noun.Noun
-import com.spascoding.feature_exam.domain.model.sentence.Sentence
+import com.spascoding.feature_exam.domain.model.sentence.Structure
 import com.spascoding.feature_exam.domain.model.verb.Verb
 
 /**
@@ -10,11 +10,11 @@ import com.spascoding.feature_exam.domain.model.verb.Verb
  * It is used to make it clear that one event happened before another in the past.
  * It does not matter which event is mentioned first - the tense makes it clear which one happened first.
  */
-class PastPerfectSentence(
+class PastPerfectStructure(
     private val subject: Noun,
     private val verb: Verb,
     private val objectVal: String,
-): Sentence {
+): Structure {
 
     /**
      * Positive: Subject + had + past participle + object.

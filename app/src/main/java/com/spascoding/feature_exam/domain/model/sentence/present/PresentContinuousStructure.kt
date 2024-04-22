@@ -2,7 +2,7 @@ package com.spascoding.feature_exam.domain.model.sentence.present
 
 import com.spascoding.feature_exam.data.data_source.Verbs
 import com.spascoding.feature_exam.domain.model.noun.Noun
-import com.spascoding.feature_exam.domain.model.sentence.Sentence
+import com.spascoding.feature_exam.domain.model.sentence.Structure
 import com.spascoding.feature_exam.domain.model.verb.Verb
 import com.spascoding.feature_exam.domain.model.verb.toBe
 
@@ -15,11 +15,11 @@ import com.spascoding.feature_exam.domain.model.verb.toBe
  * - with "always, forever, constantly", to describe and emphasise a continuing series of repeated actions: "Harry and Sally are always arguing!", "You're constantly complaining about your mother-in-law!"
  */
 
-class PresentContinuousSentence(
+class PresentContinuousStructure(
     private val subject: Noun,
     private val verb: Verb,
     private val objectVal: String,
-): Sentence {
+): Structure {
 
     /**
      * Positive: Subject + am/is/are + verb-ing + object.

@@ -2,7 +2,7 @@ package com.spascoding.feature_exam.domain.model.sentence.present
 
 import com.spascoding.feature_exam.data.data_source.Verbs
 import com.spascoding.feature_exam.domain.model.noun.Noun
-import com.spascoding.feature_exam.domain.model.sentence.Sentence
+import com.spascoding.feature_exam.domain.model.sentence.Structure
 import com.spascoding.feature_exam.domain.model.verb.Verb
 
 /**
@@ -16,11 +16,11 @@ import com.spascoding.feature_exam.domain.model.verb.Verb
  * "Someone's been eating my chips (= half of them have gone)."
  */
 
-class PresentPerfectContinuousSentence(
+class PresentPerfectContinuousStructure(
     private val subject: Noun,
     private val verb: Verb,
     private val objectVal: String,
-): Sentence {
+): Structure {
 
     /**
      * Positive: Subject + has/have been + verb-ing + object.

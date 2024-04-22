@@ -2,18 +2,18 @@ package com.spascoding.feature_exam.domain.model.sentence.past
 
 import com.spascoding.feature_exam.data.data_source.Verbs
 import com.spascoding.feature_exam.domain.model.noun.Noun
-import com.spascoding.feature_exam.domain.model.sentence.Sentence
+import com.spascoding.feature_exam.domain.model.sentence.Structure
 import com.spascoding.feature_exam.domain.model.verb.Verb
 
 /**
  *The past perfect continuous corresponds to the present perfect continuous, but with reference to a time earlier than 'before now'.
  * As with the present perfect continuous, we are more interested in the process.
  */
-class PastPerfectContinuousSentence(
+class PastPerfectContinuousStructure(
     private val subject: Noun,
     private val verb: Verb,
     private val objectVal: String,
-): Sentence {
+): Structure {
 
     /**
      * Positive: Subject + had been + verb-ing + object.

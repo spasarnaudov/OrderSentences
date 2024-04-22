@@ -12,7 +12,7 @@ import com.spascoding.feature_exam.domain.model.noun.Pronoun
 import com.spascoding.feature_exam.domain.utils.GenerateSentence
 import org.junit.Test
 
-class PresentSimpleSentenceTest {
+class PresentSimpleStructureTest {
 
     @Test
     fun positive() {

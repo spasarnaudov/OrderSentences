@@ -2,7 +2,7 @@ package com.spascoding.feature_exam.domain.model.sentence.present
 
 import com.spascoding.feature_exam.data.data_source.Verbs
 import com.spascoding.feature_exam.domain.model.noun.Noun
-import com.spascoding.feature_exam.domain.model.sentence.Sentence
+import com.spascoding.feature_exam.domain.model.sentence.Structure
 import com.spascoding.feature_exam.domain.model.verb.Verb
 import com.spascoding.feature_exam.domain.model.verb.toBe
 
@@ -16,11 +16,11 @@ import com.spascoding.feature_exam.domain.model.verb.toBe
  * - future constructions: "She'll see you before she leaves.", "We'll give it to her when she arrives."
  */
 
-class PresentSimpleSentence(
+class PresentSimpleStructure(
     private val subject: Noun,
     private val verb: Verb,
     private val objectVal: String,
-) : Sentence {
+) : Structure {
 
     /**
      * Positive: Subject + base verb (+ "s/es" for third person singular) + object.

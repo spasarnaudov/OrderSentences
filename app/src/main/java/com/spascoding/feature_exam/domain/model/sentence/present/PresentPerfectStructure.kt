@@ -2,7 +2,7 @@ package com.spascoding.feature_exam.domain.model.sentence.present
 
 import com.spascoding.feature_exam.data.data_source.Verbs
 import com.spascoding.feature_exam.domain.model.noun.Noun
-import com.spascoding.feature_exam.domain.model.sentence.Sentence
+import com.spascoding.feature_exam.domain.model.sentence.Structure
 import com.spascoding.feature_exam.domain.model.verb.Verb
 
 /**
@@ -21,11 +21,11 @@ import com.spascoding.feature_exam.domain.model.verb.Verb
  * - When the precise time of the action is not important or not known: "Someone has eaten my soup!",
  * "Have you seen 'Gone with the Wind'?", "She's studied Japanese, Russian, and English."
  */
-class PresentPerfectSentence(
+class PresentPerfectStructure(
     private val subject: Noun,
     private val verb: Verb,
     private val objectVal: String,
-) : Sentence {
+) : Structure {
 
     /**
      * Positive: Subject + has/have + past participle + object.

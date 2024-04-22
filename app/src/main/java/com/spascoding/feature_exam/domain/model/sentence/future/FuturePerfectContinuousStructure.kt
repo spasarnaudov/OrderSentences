@@ -2,18 +2,18 @@ package com.spascoding.feature_exam.domain.model.sentence.future
 
 import com.spascoding.feature_exam.data.data_source.Verbs
 import com.spascoding.feature_exam.domain.model.noun.Noun
-import com.spascoding.feature_exam.domain.model.sentence.Sentence
+import com.spascoding.feature_exam.domain.model.sentence.Structure
 import com.spascoding.feature_exam.domain.model.verb.Verb
 
 /**
  * The future perfect continuous is composed of two elements
  * the future perfect of the verb "to be" (will have been) + the present participle of the main verb (base + ing)
  */
-class FuturePerfectContinuousSentence(
+class FuturePerfectContinuousStructure(
     private val subject: Noun,
     private val verb: Verb,
     private val objectVal: String,
-): Sentence {
+): Structure {
 
     /**
      * Positive: Subject + will have been + verb-ing + object.

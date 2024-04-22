@@ -2,7 +2,7 @@ package com.spascoding.feature_exam.domain.model.sentence.future
 
 import com.spascoding.feature_exam.data.data_source.Verbs
 import com.spascoding.feature_exam.domain.model.noun.Noun
-import com.spascoding.feature_exam.domain.model.sentence.Sentence
+import com.spascoding.feature_exam.domain.model.sentence.Structure
 import com.spascoding.feature_exam.domain.model.verb.Verb
 
 /**
@@ -20,11 +20,11 @@ import com.spascoding.feature_exam.domain.model.verb.Verb
  * or to ask for advice (see examples above). With the other persons (you, he, she, they) shall is only used in literary or poetic situations:
  * "With rings on her fingers and bells on her toes, She shall have music wherever she goes."
  */
-class FutureSimpleSentence(
+class FutureSimpleStructure(
     private val subject: Noun,
     private val verb: Verb,
     private val objectVal: String,
-): Sentence {
+): Structure {
 
     /**
      * Positive: Subject + will + base verb + object.

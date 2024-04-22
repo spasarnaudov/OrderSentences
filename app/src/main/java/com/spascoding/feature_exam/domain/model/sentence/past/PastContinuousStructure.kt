@@ -2,7 +2,7 @@ package com.spascoding.feature_exam.domain.model.sentence.past
 
 import com.spascoding.feature_exam.data.data_source.Verbs
 import com.spascoding.feature_exam.domain.model.noun.Noun
-import com.spascoding.feature_exam.domain.model.sentence.Sentence
+import com.spascoding.feature_exam.domain.model.sentence.Structure
 import com.spascoding.feature_exam.domain.model.verb.Verb
 import com.spascoding.feature_exam.domain.model.verb.toBePast
 
@@ -15,11 +15,11 @@ import com.spascoding.feature_exam.domain.model.verb.toBePast
  * - to describe an unfinished action that was interrupted by another event or action: "I was having a beautiful dream when the alarm clock rang."
  * - to express a change of mind: "I was going to spend the day at the beach but I've decided to get my homework done instead."
  */
-class PastContinuousSentence(
+class PastContinuousStructure(
     private val subject: Noun,
     private val verb: Verb,
     private val objectVal: String,
-): Sentence {
+): Structure {
 
     /**
      * Positive: Subject + was/were + verb-ing + object.

@@ -2,18 +2,18 @@ package com.spascoding.feature_exam.domain.model.sentence.future
 
 import com.spascoding.feature_exam.data.data_source.Verbs
 import com.spascoding.feature_exam.domain.model.noun.Noun
-import com.spascoding.feature_exam.domain.model.sentence.Sentence
+import com.spascoding.feature_exam.domain.model.sentence.Structure
 import com.spascoding.feature_exam.domain.model.verb.Verb
 
 /**
  * The future continuous is made up of two elements:
  * the simple future of the verb "to be" + the present participle (base+ing)
  */
-class FutureContinuousSentence(
+class FutureContinuousStructure(
     private val subject: Noun,
     private val verb: Verb,
     private val objectVal: String,
-) : Sentence {
+) : Structure {
 
     /**
      * Positive: Subject + will be + verb-ing object.
