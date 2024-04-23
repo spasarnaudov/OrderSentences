@@ -27,7 +27,7 @@ class GenerateSentence {
         verb: Verb,
         objectVal: String,
     ): String {
-        val sentence = when(tens) {
+        val structure = when(tens) {
             Tens.PAST_SIMPLE -> PastSimpleStructure(subject, verb, objectVal)
             Tens.PAST_CONTINUOUS -> PastContinuousStructure(subject, verb, objectVal)
             Tens.PAST_PERFECT -> PastPerfectStructure(subject, verb, objectVal)
@@ -46,13 +46,13 @@ class GenerateSentence {
 
         return when(sentenceType) {
             SentenceType.POSITIVE -> {
-                sentence.positive().upperFirstLetter()
+                structure.positive().upperFirstLetter()
             }
             SentenceType.NEGATIVE -> {
-                sentence.negative().upperFirstLetter()
+                structure.negative().upperFirstLetter()
             }
             SentenceType.QUESTION -> {
-                sentence.question().upperFirstLetter()
+                structure.question().upperFirstLetter()
             }
         }
     }
