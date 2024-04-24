@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.spascoding.feature_exam.data.repository.SharedPreferencesRepositoryImpl
 import com.spascoding.feature_exam.domain.enums.SentenceType
 import com.spascoding.feature_exam.domain.enums.Tens
-import com.spascoding.feature_exam.domain.model.Exam
+import com.spascoding.feature_exam.domain.model.ExamPattern
 import com.spascoding.feature_exam.domain.use_case.ExamUseCases
 import com.spascoding.feature_exam.domain.utils.GenerateSentence
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -25,7 +25,7 @@ class ExamListViewModel @Inject constructor(
         _state.value = state.value.copy(
             tens = sharedPreferencesRepository.getSelectedTens(),
         )
-        getExams(state.value.tens)
+        getExams()
     }
 
     fun onEvent(event: ExamListEvent) {
@@ -41,20 +41,20 @@ class ExamListViewModel @Inject constructor(
                 _state.value = state.value.copy(
                     tens = event.tens,
                 )
-                getExams(state.value.tens)
+                getExams()
             }
         }
     }
 
-    private fun getExams(tens: Tens) {
+    private fun getExams() {
         _state.value = state.value.copy(
-            exams = examUseCases.getExamUseCase.invoke(tens),
+            exams = examUseCases.getExamUseCase.invoke(),
         )
     }
 
-    fun getFirstItemName(exam: Exam): String {
+    fun getFirstItemName(exam: ExamPattern): String {
         val sentenceType = SentenceType.POSITIVE
-        val tens = exam.tens
+        val tens = state.value.tens
         val subject = exam.subjects[0]
         val verb = exam.verbs[0]
         val objectVal = exam.objects[0]

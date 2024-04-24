@@ -47,11 +47,11 @@ fun ExamsList(
                         ExamElement(
                             onClickItem = {
                                 viewModel.onEvent(ExamListEvent.SelectExam(exam))
-                                navController.navigate(Screen.ExamScreen.route + "?examIndex=$index&tens=${exam.tens.int}")
+                                navController.navigate(Screen.ExamScreen.route + "?examIndex=$index&tens=${viewModel.state.value.tens.int}")
                             },
                             onClickInfo = {
                                 viewModel.onEvent(ExamListEvent.SelectExam(exam))
-                                navController.navigate(Screen.ExamDetail.route + "?examIndex=$index&tens=${exam.tens.int}")
+                                navController.navigate(Screen.ExamDetail.route + "?examIndex=$index&tens=${viewModel.state.value.tens.int}")
                             },
                             examName = name,
                         )

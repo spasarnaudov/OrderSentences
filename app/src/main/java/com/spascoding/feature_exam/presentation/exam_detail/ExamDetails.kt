@@ -16,7 +16,6 @@ import com.spascoding.core.constants.FontSize
 import com.spascoding.core.constants.Padding
 import com.spascoding.feature_exam.R
 import com.spascoding.feature_exam.domain.model.info
-import com.spascoding.feature_exam.presentation.exam_screen.ExamViewModel
 
 @Composable
 fun ExamDetails(

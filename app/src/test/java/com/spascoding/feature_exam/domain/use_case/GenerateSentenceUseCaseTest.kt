@@ -5,14 +5,14 @@ import com.spascoding.feature_exam.data.data_source.Verbs
 import com.spascoding.feature_exam.data.data_source.Pronouns
 import com.spascoding.feature_exam.domain.enums.SentenceType
 import com.spascoding.feature_exam.domain.enums.Tens
-import com.spascoding.feature_exam.domain.model.Exam
+import com.spascoding.feature_exam.domain.model.ExamPattern
 import com.spascoding.feature_exam.domain.model.noun.build
 import com.spascoding.feature_exam.domain.utils.GenerateSentence
 import org.junit.Test
 
 class GenerateSentenceUseCaseTest {
 
-    private fun check(sentences: List<String>, exam: Exam): Boolean {
+    private fun check(sentences: List<String>, exam: ExamPattern): Boolean {
         var counter = 0
         for (sentenceType in SentenceType.entries) {
             for (subject in exam.subjects) {
@@ -20,7 +20,7 @@ class GenerateSentenceUseCaseTest {
                     for (objectVal in exam.objects) {
                         val sentence = GenerateSentence().invoke(
                             sentenceType,
-                            exam.tens,
+                            Tens.PRESENT_SIMPLE,
                             subject,
                             verb,
                             objectVal
@@ -36,14 +36,14 @@ class GenerateSentenceUseCaseTest {
         return counter == sentences.size
     }
 
-    private fun print(exam: Exam) {
+    private fun print(exam: ExamPattern) {
         for (sentenceType in SentenceType.entries) {
             for (subject in exam.subjects) {
                 for (verb in exam.verbs) {
                     for (objectVal in exam.objects) {
                         val sentence = GenerateSentence().invoke(
                             sentenceType,
-                            exam.tens,
+                            Tens.PRESENT_SIMPLE,
                             subject,
                             verb,
                             objectVal
@@ -55,9 +55,8 @@ class GenerateSentenceUseCaseTest {
         }
     }
 
-    private fun whereAreYouLiveLessen(tens: Tens) : Exam {
-        return Exam(
-            tens = tens,
+    private fun whereAreYouLiveLessen(tens: Tens) : ExamPattern {
+        return ExamPattern(
             subjects = Pronouns.singular.plus(Nouns.names),
             verbs = Verbs.countriesAndCities,
             objects = listOf("Australia"),
@@ -136,8 +135,7 @@ class GenerateSentenceUseCaseTest {
             "is John from Australia?",
             "is Emily from Australia?",
         )
-        val lessen = Exam(
-            tens = Tens.PRESENT_SIMPLE,
+        val lessen = ExamPattern(
             subjects = Pronouns.singular.plus(Nouns.names),
             verbs = listOf(Verbs.toBe),
             objects = Nouns.countries.build(),
@@ -179,8 +177,7 @@ class GenerateSentenceUseCaseTest {
             "is John Australian?",
             "is Emily Australian?",
         )
-        val lessen = Exam(
-            tens = Tens.PRESENT_SIMPLE,
+        val lessen = ExamPattern(
             subjects = Pronouns.singular.plus(Nouns.names),
             verbs = listOf(Verbs.toBe),
             objects = Nouns.nationals.build(),

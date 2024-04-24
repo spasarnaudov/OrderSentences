@@ -6,9 +6,9 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.spascoding.feature_exam.data.repository.SharedPreferencesRepositoryImpl
 import com.spascoding.feature_exam.domain.enums.ExamState
 import com.spascoding.feature_exam.domain.enums.SentenceType
-import com.spascoding.feature_exam.domain.enums.Tens
 import com.spascoding.feature_exam.domain.utils.GenerateSentence
 import com.spascoding.feature_exam.domain.use_case.ExamUseCases
 import com.spascoding.feature_exam.presentation.utils.scratchWords
@@ -21,6 +21,7 @@ import javax.inject.Inject
 class ExamViewModel @Inject constructor(
     private val examUseCases: ExamUseCases,
     savedStateHandle: SavedStateHandle,
+    private val sharedPreferencesRepository: SharedPreferencesRepositoryImpl,
 ) : ViewModel() {
 
     private val _state = mutableStateOf(ExamViewModelState())
@@ -31,7 +32,7 @@ class ExamViewModel @Inject constructor(
             savedStateHandle.get<Int>("tens")?.also { tens ->
                 if (examIndex != -1) {
                     viewModelScope.launch {
-                        examUseCases.getExamUseCase.invoke(Tens.fromInt(tens))[examIndex].also {
+                        examUseCases.getExamUseCase.invoke()[examIndex].also {
                             _state.value = state.value.copy(
                                 exam = it,
                             )
@@ -68,7 +69,7 @@ class ExamViewModel @Inject constructor(
         viewModelScope.launch {
             val exam = state.value.exam
             val sentenceType = SentenceType.entries.random()
-            val tens = exam.tens
+            val tens = sharedPreferencesRepository.getSelectedTens()
             val subject = exam.subjects.random()
             val verb = exam.verbs.random()
             val objectVal = exam.objects.random()

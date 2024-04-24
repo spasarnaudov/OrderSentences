@@ -1,14 +1,13 @@
 package com.spascoding.feature_exam.data.repository
 
 import com.spascoding.feature_exam.data.data_source.StudentBook
-import com.spascoding.feature_exam.domain.enums.Tens
-import com.spascoding.feature_exam.domain.model.Exam
+import com.spascoding.feature_exam.domain.model.ExamPattern
 import com.spascoding.feature_exam.domain.repository.ExamRepository
 
 class ExamRepositoryImpl: ExamRepository {
 
-    override fun getExam(tens: Tens): List<Exam> {
-        return StudentBook.exams(tens)
+    override fun getExam(): List<ExamPattern> {
+        return StudentBook.exams()
     }
     
 }
