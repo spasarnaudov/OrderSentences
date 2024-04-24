@@ -15,7 +15,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.spascoding.core.constants.FontSize
 import com.spascoding.core.constants.Padding
 import com.spascoding.feature_exam.R
-import com.spascoding.feature_exam.domain.model.info
 
 @Composable
 fun ExamDetails(

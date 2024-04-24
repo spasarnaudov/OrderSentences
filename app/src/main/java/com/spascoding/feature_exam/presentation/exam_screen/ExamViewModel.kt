@@ -5,41 +5,35 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.text.AnnotatedString
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.spascoding.feature_exam.data.repository.SharedPreferencesRepositoryImpl
 import com.spascoding.feature_exam.domain.enums.ExamState
-import com.spascoding.feature_exam.domain.enums.SentenceType
-import com.spascoding.feature_exam.domain.utils.GenerateSentence
+import com.spascoding.feature_exam.domain.enums.Tens
 import com.spascoding.feature_exam.domain.use_case.ExamUseCases
 import com.spascoding.feature_exam.presentation.utils.scratchWords
 import com.spascoding.feature_exam.presentation.utils.shuffleSentence
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
 class ExamViewModel @Inject constructor(
     private val examUseCases: ExamUseCases,
     savedStateHandle: SavedStateHandle,
-    private val sharedPreferencesRepository: SharedPreferencesRepositoryImpl,
 ) : ViewModel() {
 
     private val _state = mutableStateOf(ExamViewModelState())
     val state: State<ExamViewModelState> = _state
 
     init {
-        savedStateHandle.get<Int>("examIndex")?.also { examIndex ->
-            savedStateHandle.get<Int>("tens")?.also { tens ->
-                if (examIndex != -1) {
-                    viewModelScope.launch {
-                        examUseCases.getExamPatternsUseCase.invoke()[examIndex].also {
-                            _state.value = state.value.copy(
-                                exam = it,
-                            )
-                            generateSentence()
-                        }
-                    }
-                }
+        savedStateHandle.get<Int>("tens")?.also { tens ->
+            savedStateHandle.get<String>("examName")?.also { examName ->
+                _state.value = state.value.copy(
+                    tens = Tens.fromInt(tens),
+                    examName = examName
+                )
+                getSentence()
             }
         }
     }
@@ -47,7 +41,7 @@ class ExamViewModel @Inject constructor(
     fun onEvent(event: ExamEvent) {
         when (event) {
             is ExamEvent.NewExam -> {
-                generateSentence()
+                getSentence()
             }
 
             is ExamEvent.EnterText -> {
@@ -61,34 +55,48 @@ class ExamViewModel @Inject constructor(
                     enteredSentence = event.answerText,
                     gameState = ExamState.FINISHED
                 )
+
+                var sentence = state.value.sentences[0]
+                if (!isCorrectAnswer()) {
+                    sentence = state.value.sentences[0].copy(
+                        mistakeCount = state.value.sentences[0].mistakeCount + 1
+                    )
+                }
+                GlobalScope.launch {
+                    withContext(Dispatchers.IO) {
+                        examUseCases.upsertSentencesToDatabaseUseCase.invoke(listOf(sentence))
+                    }
+                }
+            }
+        }
+    }
+
+    private fun getSentence() {
+        val tens = state.value.tens
+        val examName = state.value.examName
+        GlobalScope.launch {
+            withContext(Dispatchers.IO) {
+                examUseCases.getSentenceUseCase.invoke(tens, examName).also { sentence ->
+                    withContext(Dispatchers.Main) {
+                        _state.value = state.value.copy(
+                            sentences = listOf(sentence),
+                        )
+                        generateSentence()
+                    }
+                }
             }
         }
     }
 
     private fun generateSentence() {
-        viewModelScope.launch {
-            val exam = state.value.exam
-            val sentenceType = SentenceType.entries.random()
-            val tens = sharedPreferencesRepository.getSelectedTens()
-            val subject = exam.subjects.random()
-            val verb = exam.verbs.random()
-            val objectVal = exam.objects.random()
-
-            val sentence = GenerateSentence().invoke(
-                sentenceType,
-                tens,
-                subject,
-                verb,
-                objectVal
-            )
-            val shuffledSentence = sentence.shuffleSentence(" / ")
-            _state.value = state.value.copy(
-                sentence = sentence,
-                shuffledSentence = shuffledSentence,
-                enteredSentence = "",
-                gameState = ExamState.STARTED,
-            )
-        }
+        val sentence = state.value.sentences[0]
+        val shuffledSentence = sentence.value.shuffleSentence(" / ")
+        _state.value = state.value.copy(
+            sentence = sentence.value,
+            shuffledSentence = shuffledSentence,
+            enteredSentence = "",
+            gameState = ExamState.STARTED,
+        )
     }
 
     fun getShuffledText(): AnnotatedString {

@@ -27,11 +27,11 @@ class ExamDetailViewModel @Inject constructor(
             savedStateHandle.get<String>("examName")?.also { examName ->
                 GlobalScope.launch {
                     withContext(Dispatchers.IO) {
-                        examUseCases.getSentencesUseCase.invoke(Tens.fromInt(tens), examName).also { sentence ->
+                        examUseCases.getSentencesUseCase.invoke(Tens.fromInt(tens), examName).also { sentences ->
                             withContext(Dispatchers.Main) {
                                 _state.value = state.value.copy(
                                     examName = examName,
-                                    sentences = sentence.map { it.value },
+                                    sentences = sentences.map { it.value },
                                 )
                             }
                         }

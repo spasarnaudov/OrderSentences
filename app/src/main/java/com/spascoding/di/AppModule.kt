@@ -11,6 +11,7 @@ import com.spascoding.feature_exam.domain.repository.SharedPreferencesRepository
 import com.spascoding.feature_exam.domain.use_case.ExamUseCases
 import com.spascoding.feature_exam.domain.use_case.GetExamPatternsUseCase
 import com.spascoding.feature_exam.domain.use_case.database.GetExamNamesUseCase
+import com.spascoding.feature_exam.domain.use_case.database.GetSentenceUseCase
 import com.spascoding.feature_exam.domain.use_case.database.GetSentencesUseCase
 import com.spascoding.feature_exam.domain.use_case.database.UpsertSentencesToDatabaseUseCase
 import dagger.Module
@@ -36,12 +37,14 @@ object AppModule {
         getExamPatternsUseCase: GetExamPatternsUseCase,
         getExamNamesUseCase: GetExamNamesUseCase,
         getSentencesUseCase: GetSentencesUseCase,
+        getSentenceUseCase: GetSentenceUseCase,
         upsertSentencesToDatabaseUseCase: UpsertSentencesToDatabaseUseCase,
     ): ExamUseCases {
         return ExamUseCases(
             getExamPatternsUseCase,
             getExamNamesUseCase,
             getSentencesUseCase,
+            getSentenceUseCase,
             upsertSentencesToDatabaseUseCase,
         )
     }

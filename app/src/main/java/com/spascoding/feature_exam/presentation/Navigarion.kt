@@ -41,13 +41,13 @@ fun Navigation(
         }
         composable(
             route = Screen.ExamScreen.route +
-                    "?examIndex={examIndex}&tens={tens}",
+                    "?tens={tens}&examName={examName}",
             arguments = listOf(
                 navArgument(
-                    name = "examIndex"
+                    name = "examName"
                 ) {
-                    type = NavType.IntType
-                    defaultValue = -1
+                    type = NavType.StringType
+                    defaultValue = ""
                 },
                 navArgument(
                     name = "tens"

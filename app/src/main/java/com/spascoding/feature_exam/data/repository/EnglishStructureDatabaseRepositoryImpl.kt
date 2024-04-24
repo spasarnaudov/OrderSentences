@@ -21,15 +21,11 @@ class EnglishStructureDatabaseRepositoryImpl @Inject constructor(
         return dao.getExamNames(tens.int)
     }
 
-    override suspend fun getSentence(tens: Tens): Sentence {
-        return dao.getSentence(tens.int)
-    }
-
     override suspend fun getSentences(tens: Tens, examName: String): List<Sentence> {
         return dao.getSentences(tens.int, examName)
     }
 
-    override suspend fun getSentenceAndIncrementUsageCount(tens: Tens): Sentence {
-        return dao.getSentenceAndIncrementUsageCount(tens)
+    override suspend fun getSentenceAndIncrementUsageCount(tens: Tens, examName: String): Sentence {
+        return dao.getSentenceAndIncrementUsageCount(tens, examName)
     }
 }

@@ -18,15 +18,15 @@ interface EnglishStructureDao {
     @Query("SELECT DISTINCT examName FROM sentences WHERE tens=:examTens")
     suspend fun getExamNames(examTens: Int): List<String>
 
-    @Query("SELECT * FROM sentences WHERE tens=:examTens LIMIT 1")
-    suspend fun getSentence(examTens: Int): Sentence
+    @Query("SELECT * FROM sentences WHERE tens=:examTens AND examName=:examName ORDER BY useCount ASC, mistakeCount DESC LIMIT 1")
+    suspend fun getSentence(examTens: Int, examName: String): Sentence
 
     @Query("SELECT * FROM sentences WHERE tens=:examTens AND examName=:examName")
     suspend fun getSentences(examTens: Int, examName: String): List<Sentence>
 
     @Transaction
-    suspend fun getSentenceAndIncrementUsageCount(tens: Tens): Sentence {
-        val sentence = getSentence(tens.int)
+    suspend fun getSentenceAndIncrementUsageCount(tens: Tens, examName: String): Sentence {
+        val sentence = getSentence(tens.int, examName)
         val verbWithIncrementedUseCount = sentence.copy(
             useCount = sentence.useCount + 1
         )

@@ -11,26 +11,3 @@ data class ExamPattern(
     val verbs: List<Verb>,
     val objects: List<String>
 )
-
-fun ExamPattern.info() : List<String> {
-    val list = mutableListOf<String>()
-
-//    for (sentenceType in SentenceType.entries) {
-//        for (subject in subjects) {
-//            for (verb in verbs) {
-//                for (objectVal in objects) {
-//                    val sentence = GenerateSentence().invoke(
-//                        sentenceType,
-//                        Tens.PRESENT_SIMPLE,
-//                        subject,
-//                        verb,
-//                        objectVal
-//                    )
-//                    list.add(sentence)
-//                }
-//            }
-//        }
-//    }
-
-    return list
-}
