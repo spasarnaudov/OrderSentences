@@ -4,14 +4,15 @@ import android.content.Context
 import androidx.room.Room.databaseBuilder
 import com.spascoding.feature_exam.data.local.EnglishStructureDao
 import com.spascoding.feature_exam.data.local.EnglishStructureDatabase
-import com.spascoding.feature_exam.data.repository.ExamRepositoryImpl
+import com.spascoding.feature_exam.data.repository.ExamPatternRepositoryImpl
 import com.spascoding.feature_exam.data.repository.SharedPreferencesRepositoryImpl
-import com.spascoding.feature_exam.domain.repository.ExamRepository
+import com.spascoding.feature_exam.domain.repository.ExamPatternRepository
 import com.spascoding.feature_exam.domain.repository.SharedPreferencesRepository
 import com.spascoding.feature_exam.domain.use_case.ExamUseCases
-import com.spascoding.feature_exam.domain.use_case.GetExamUseCase
+import com.spascoding.feature_exam.domain.use_case.GetExamPatternsUseCase
+import com.spascoding.feature_exam.domain.use_case.database.GetExamNamesUseCase
 import com.spascoding.feature_exam.domain.use_case.database.GetSentencesUseCase
-import com.spascoding.feature_exam.domain.use_case.database.UpsertSentencesUseCase
+import com.spascoding.feature_exam.domain.use_case.database.UpsertSentencesToDatabaseUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -25,21 +26,23 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideInitialDataRepository(): ExamRepository {
-        return ExamRepositoryImpl()
+    fun provideInitialDataRepository(): ExamPatternRepository {
+        return ExamPatternRepositoryImpl()
     }
 
     @Provides
     @Singleton
     fun provideExamUseCases(
-        getExamUseCase: GetExamUseCase,
+        getExamPatternsUseCase: GetExamPatternsUseCase,
+        getExamNamesUseCase: GetExamNamesUseCase,
         getSentencesUseCase: GetSentencesUseCase,
-        getUpsertSentencesUseCase: UpsertSentencesUseCase,
+        upsertSentencesToDatabaseUseCase: UpsertSentencesToDatabaseUseCase,
     ): ExamUseCases {
         return ExamUseCases(
-            getExamUseCase,
+            getExamPatternsUseCase,
+            getExamNamesUseCase,
             getSentencesUseCase,
-            getUpsertSentencesUseCase,
+            upsertSentencesToDatabaseUseCase,
         )
     }
 

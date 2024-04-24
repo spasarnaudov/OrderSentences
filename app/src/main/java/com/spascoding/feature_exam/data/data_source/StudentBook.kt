@@ -1,13 +1,12 @@
 package com.spascoding.feature_exam.data.data_source
 
 import com.spascoding.feature_exam.domain.enums.Article
-import com.spascoding.feature_exam.domain.enums.Tens
 import com.spascoding.feature_exam.domain.model.ExamPattern
 import com.spascoding.feature_exam.domain.model.noun.addArticle
 import com.spascoding.feature_exam.domain.model.noun.build
 
 object StudentBook {
-    fun exams(): List<ExamPattern> {
+    fun examPatterns(): List<ExamPattern> {
         return listOf(
             playMusic(),
             playGame(),

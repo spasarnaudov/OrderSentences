@@ -17,6 +17,10 @@ class EnglishStructureDatabaseRepositoryImpl @Inject constructor(
         dao.upsertSentences(sentences)
     }
 
+    override suspend fun getExamNames(tens: Tens): List<String> {
+        return dao.getExamNames(tens.int)
+    }
+
     override suspend fun getSentence(tens: Tens): Sentence {
         return dao.getSentence(tens.int)
     }

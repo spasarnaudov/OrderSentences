@@ -1,11 +1,13 @@
 package com.spascoding.feature_exam.domain.use_case
 
+import com.spascoding.feature_exam.domain.use_case.database.GetExamNamesUseCase
 import com.spascoding.feature_exam.domain.use_case.database.GetSentencesUseCase
-import com.spascoding.feature_exam.domain.use_case.database.UpsertSentencesUseCase
+import com.spascoding.feature_exam.domain.use_case.database.UpsertSentencesToDatabaseUseCase
 import javax.inject.Inject
 
 data class ExamUseCases @Inject constructor(
-    val getExamUseCase: GetExamUseCase,
+    val getExamPatternsUseCase: GetExamPatternsUseCase,
+    val getExamNamesUseCase: GetExamNamesUseCase,
     val getSentencesUseCase: GetSentencesUseCase,
-    val getUpsertSentencesUseCase: UpsertSentencesUseCase,
+    val upsertSentencesToDatabaseUseCase: UpsertSentencesToDatabaseUseCase,
 )

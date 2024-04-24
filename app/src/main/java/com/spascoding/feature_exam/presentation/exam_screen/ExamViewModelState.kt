@@ -9,5 +9,5 @@ data class ExamViewModelState(
     val shuffledSentence: String = "",
     val enteredSentence: String = "",
     val gameState: ExamState = ExamState.FINISHED,
-    val exam: ExamPattern = StudentBook.exams()[0],
+    val exam: ExamPattern = StudentBook.examPatterns()[0],
 )

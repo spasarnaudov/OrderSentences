@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.spascoding.feature_exam.data.repository.SharedPreferencesRepositoryImpl
 import com.spascoding.feature_exam.domain.enums.SentenceType
-import com.spascoding.feature_exam.domain.enums.Tens
 import com.spascoding.feature_exam.domain.use_case.ExamUseCases
 import com.spascoding.feature_exam.domain.utils.GenerateSentence
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -29,7 +28,7 @@ class ExamDetailViewModel @Inject constructor(
             savedStateHandle.get<Int>("tens")?.also { tens ->
                 if(examIndex != -1) {
                     viewModelScope.launch {
-                        examUseCases.getExamUseCase.invoke()[examIndex].also {
+                        examUseCases.getExamPatternsUseCase.invoke()[examIndex].also {
                             _state.value = state.value.copy(
                                 exam = it,
                             )

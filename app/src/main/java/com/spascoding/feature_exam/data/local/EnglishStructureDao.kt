@@ -15,8 +15,11 @@ interface EnglishStructureDao {
     @Upsert
     suspend fun upsertSentences(sentences: List<Sentence>)
 
+    @Query("SELECT DISTINCT examName FROM sentences WHERE tens=:examTens")
+    suspend fun getExamNames(examTens: Int): List<String>
+
     @Query("SELECT * FROM sentences WHERE tens=:examTens LIMIT 1")
-    fun getSentence(examTens: Int): Sentence
+    suspend fun getSentence(examTens: Int): Sentence
 
     @Query("SELECT * FROM sentences WHERE tens=:examTens")
     suspend fun getSentences(examTens: Int): List<Sentence>

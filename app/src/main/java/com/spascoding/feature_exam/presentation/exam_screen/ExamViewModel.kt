@@ -32,7 +32,7 @@ class ExamViewModel @Inject constructor(
             savedStateHandle.get<Int>("tens")?.also { tens ->
                 if (examIndex != -1) {
                     viewModelScope.launch {
-                        examUseCases.getExamUseCase.invoke()[examIndex].also {
+                        examUseCases.getExamPatternsUseCase.invoke()[examIndex].also {
                             _state.value = state.value.copy(
                                 exam = it,
                             )

@@ -2,8 +2,8 @@ package com.spascoding.feature_exam.domain.repository
 
 import com.spascoding.feature_exam.domain.model.ExamPattern
 
-interface ExamRepository {
+interface ExamPatternRepository {
 
-    fun getExam(): List<ExamPattern>
+    fun getExamPatterns(): List<ExamPattern>
 
 }

@@ -1,15 +1,15 @@
 package com.spascoding.feature_exam.domain.use_case.database
 
 import com.spascoding.feature_exam.data.repository.EnglishStructureDatabaseRepositoryImpl
-import com.spascoding.feature_exam.domain.model.sentence.entity.Sentence
+import com.spascoding.feature_exam.domain.enums.Tens
 import javax.inject.Inject
 
-class UpsertSentencesUseCase @Inject constructor(
+class GetExamNamesUseCase @Inject constructor(
     private val repository: EnglishStructureDatabaseRepositoryImpl
 ) {
 
-    suspend operator fun invoke(sentences: List<Sentence>) {
-        return repository.upsertSentences(sentences)
+    suspend operator fun invoke(tens: Tens): List<String> {
+        return repository.getExamNames(tens)
     }
 
 }

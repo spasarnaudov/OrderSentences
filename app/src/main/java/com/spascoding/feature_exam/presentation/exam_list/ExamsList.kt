@@ -41,19 +41,18 @@ fun ExamsList(
             modifier = Modifier.fillMaxSize()
         ) {
             viewModel.viewModelScope.launch {
-                viewModel.state.value.exams.forEachIndexed() { index, exam ->
-                    val name = viewModel.getFirstItemName(exam)
+                viewModel.state.value.exams.forEach() { examName ->
                     item {
                         ExamElement(
                             onClickItem = {
-                                viewModel.onEvent(ExamListEvent.SelectExam(exam))
-                                navController.navigate(Screen.ExamScreen.route + "?examIndex=$index&tens=${viewModel.state.value.tens.int}")
+//                                viewModel.onEvent(ExamListEvent.SelectExam(exam))
+                                navController.navigate(Screen.ExamScreen.route + "?examIndex=${0}&tens=${viewModel.state.value.tens.int}")
                             },
                             onClickInfo = {
-                                viewModel.onEvent(ExamListEvent.SelectExam(exam))
-                                navController.navigate(Screen.ExamDetail.route + "?examIndex=$index&tens=${viewModel.state.value.tens.int}")
+//                                viewModel.onEvent(ExamListEvent.SelectExam(exam))
+                                navController.navigate(Screen.ExamDetail.route + "?examIndex=${0}&tens=${viewModel.state.value.tens.int}")
                             },
-                            examName = name,
+                            examName = examName,
                         )
                     }
                 }
