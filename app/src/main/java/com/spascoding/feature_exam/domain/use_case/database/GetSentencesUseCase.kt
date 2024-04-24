@@ -9,8 +9,8 @@ class GetSentencesUseCase @Inject constructor(
     private val repository: EnglishStructureDatabaseRepositoryImpl
 ) {
 
-    suspend operator fun invoke(tens: Tens): List<Sentence> {
-        return repository.getSentences(tens)
+    suspend operator fun invoke(tens: Tens, examName: String): List<Sentence> {
+        return repository.getSentences(tens, examName)
     }
 
 }

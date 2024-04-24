@@ -50,7 +50,7 @@ fun ExamsList(
                             },
                             onClickInfo = {
 //                                viewModel.onEvent(ExamListEvent.SelectExam(exam))
-                                navController.navigate(Screen.ExamDetail.route + "?examIndex=${0}&tens=${viewModel.state.value.tens.int}")
+                                navController.navigate(Screen.ExamDetail.route + "?tens=${viewModel.state.value.tens.int}&examName=$examName")
                             },
                             examName = examName,
                         )

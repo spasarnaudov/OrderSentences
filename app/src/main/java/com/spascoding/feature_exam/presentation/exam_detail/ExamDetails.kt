@@ -27,19 +27,18 @@ fun ExamDetails(
             .padding(Padding.LARGE),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        val name = viewModel.getFirstItemName()
         Text(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(bottom = Padding.MEDIUM),
-            text = name,
+            text = viewModel.state.value.examName,
             fontWeight = FontWeight.Bold,
             fontSize = FontSize.LARGE
         )
         LazyColumn(
             modifier = Modifier.fillMaxWidth()
         ) {
-            viewModel.state.value.exam?.info()?.forEachIndexed() { index, exam ->
+            viewModel.state.value.sentences.forEachIndexed() { index, exam ->
                 item {
                     Text(
                         modifier = Modifier.fillMaxWidth()

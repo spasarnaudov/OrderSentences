@@ -8,6 +8,6 @@ interface EnglishStructureDatabaseRepository {
     suspend fun upsertSentences(sentences: List<Sentence>)
     suspend fun getExamNames(tens: Tens): List<String>
     suspend fun getSentence(tens: Tens): Sentence
-    suspend fun getSentences(tens: Tens): List<Sentence>
+    suspend fun getSentences(tens: Tens, examName: String): List<Sentence>
     suspend fun getSentenceAndIncrementUsageCount(tens: Tens): Sentence
 }

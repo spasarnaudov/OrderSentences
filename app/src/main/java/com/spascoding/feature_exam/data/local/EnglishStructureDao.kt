@@ -21,8 +21,8 @@ interface EnglishStructureDao {
     @Query("SELECT * FROM sentences WHERE tens=:examTens LIMIT 1")
     suspend fun getSentence(examTens: Int): Sentence
 
-    @Query("SELECT * FROM sentences WHERE tens=:examTens")
-    suspend fun getSentences(examTens: Int): List<Sentence>
+    @Query("SELECT * FROM sentences WHERE tens=:examTens AND examName=:examName")
+    suspend fun getSentences(examTens: Int, examName: String): List<Sentence>
 
     @Transaction
     suspend fun getSentenceAndIncrementUsageCount(tens: Tens): Sentence {
