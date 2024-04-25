@@ -6,5 +6,6 @@ interface SharedPreferencesRepository {
 
     fun setSelectedTens(tens: Tens)
     fun getSelectedTens(): Tens
-
+    fun setInitialDataVersion(version: Int)
+    fun getInitialDataVersion(): Int
 }

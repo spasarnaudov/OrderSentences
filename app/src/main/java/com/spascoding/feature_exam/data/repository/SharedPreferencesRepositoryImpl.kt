@@ -10,6 +10,7 @@ import javax.inject.Inject
 class SharedPreferencesRepositoryImpl @Inject constructor(@ApplicationContext context: Context): SharedPreferencesRepository {
 
     private val SELECTED_TENS = "selectedTens"
+    private val INITIAL_DATA_VERSION = "initialDataVersion"
 
     private val preferences: SharedPreferences = context.getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
 
@@ -19,5 +20,13 @@ class SharedPreferencesRepositoryImpl @Inject constructor(@ApplicationContext co
 
     override fun getSelectedTens(): Tens {
         return Tens.fromInt(preferences.getInt(SELECTED_TENS, Tens.PRESENT_SIMPLE.int))
+    }
+
+    override fun setInitialDataVersion(version: Int) {
+        preferences.edit().putInt(INITIAL_DATA_VERSION, version).apply()
+    }
+
+    override fun getInitialDataVersion(): Int {
+        return preferences.getInt(INITIAL_DATA_VERSION, -1)
     }
 }

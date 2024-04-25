@@ -252,7 +252,7 @@ object Nouns {
     val aquarium = CommonNoun(value = "aquarium", countable = true, Plurality.SINGULAR)
     val beach = CommonNoun(value = "beach", countable = true, Plurality.SINGULAR)
     val castles = CommonNoun(value = "castles", countable = true, Plurality.SINGULAR)
-    val chirche = CommonNoun(value = "chirche", countable = true, Plurality.SINGULAR)
+    val church = CommonNoun(value = "church", countable = true, Plurality.SINGULAR)
     val cinema = CommonNoun(value = "cinema", countable = true, Plurality.SINGULAR)
     val library = CommonNoun(value = "library", countable = true, Plurality.SINGULAR)
     val mountain = CommonNoun(value = "mountain", countable = true, Plurality.SINGULAR)
@@ -266,7 +266,7 @@ object Nouns {
         aquarium,
         beach,
         castles,
-        chirche,
+        church,
         cinema,
         library,
         mountain,

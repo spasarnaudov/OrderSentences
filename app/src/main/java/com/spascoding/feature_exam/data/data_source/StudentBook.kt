@@ -6,6 +6,9 @@ import com.spascoding.feature_exam.domain.model.noun.addArticle
 import com.spascoding.feature_exam.domain.model.noun.build
 
 object StudentBook {
+    //Student book version must be increment, when data are changed
+    val version = 1
+
     fun examPatterns(): List<ExamPattern> {
         return listOf(
             playMusic(),

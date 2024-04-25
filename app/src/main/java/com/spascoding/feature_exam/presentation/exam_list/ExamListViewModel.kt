@@ -4,6 +4,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.spascoding.feature_exam.data.repository.SharedPreferencesRepositoryImpl
+import com.spascoding.feature_exam.domain.enums.Tens
 import com.spascoding.feature_exam.domain.use_case.ExamUseCases
 import com.spascoding.feature_exam.domain.utils.SentencesGenerator
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -23,7 +24,9 @@ class ExamListViewModel @Inject constructor(
         _state.value = state.value.copy(
             tens = sharedPreferencesRepository.getSelectedTens(),
         )
-        getExams()
+        saveSentencesToDatabase(state.value.tens).also {
+            getExams(state.value.tens)
+        }
     }
 
     fun onEvent(event: ExamListEvent) {
@@ -40,23 +43,35 @@ class ExamListViewModel @Inject constructor(
                     tens = event.tens,
                 )
 
-                GlobalScope.launch {
-                    withContext(Dispatchers.IO) {
-                        val examPatterns = examUseCases.getExamPatternsUseCase.invoke()
-                        val sentences = SentencesGenerator(sharedPreferencesRepository.getSelectedTens(), examPatterns).generate()
-                        examUseCases.upsertSentencesToDatabaseUseCase.invoke(sentences)
-                    }
-                }.also {
-                    getExams()
+                saveSentencesToDatabase(state.value.tens).also {
+                    getExams(state.value.tens)
                 }
             }
         }
     }
 
-    private fun getExams() {
+    private fun saveSentencesToDatabase(tens: Tens) {
+        GlobalScope.launch {
+            var examNames: List<String>
+            withContext(Dispatchers.IO) {
+                val examPatterns = examUseCases.getExamPatternsUseCase.invoke()
+                val sentences = SentencesGenerator(tens, examPatterns).generate()
+                examUseCases.upsertSentencesToDatabaseUseCase.invoke(sentences)
+                examNames = examUseCases.getExamNamesUseCase.invoke(tens)
+            }.also {
+                withContext(Dispatchers.Main) {
+                    _state.value = state.value.copy(
+                        exams = examNames,
+                    )
+                }
+            }
+        }
+    }
+
+    private fun getExams(tens: Tens) {
         GlobalScope.launch {
             withContext(Dispatchers.IO) {
-                val examNames = examUseCases.getExamNamesUseCase.invoke(sharedPreferencesRepository.getSelectedTens())
+                val examNames = examUseCases.getExamNamesUseCase.invoke(tens)
                 withContext(Dispatchers.Main) {
                     _state.value = state.value.copy(
                         exams = examNames,
