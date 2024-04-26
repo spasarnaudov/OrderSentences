@@ -10,12 +10,16 @@ import com.spascoding.feature_exam.domain.enums.Tens
 import com.spascoding.feature_exam.presentation.exam_detail.ExamDetails
 import com.spascoding.feature_exam.presentation.exam_list.ExamsList
 import com.spascoding.feature_exam.presentation.exam_screen.ExamScreen
+import com.spascoding.feature_exam.presentation.tens_screen.TensScreen
 
 @Composable
 fun Navigation(
 ) {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = Screen.ExamList.route) {
+    NavHost(navController = navController, startDestination = Screen.TensScreen.route) {
+        composable(route = Screen.TensScreen.route) {
+            TensScreen(navController)
+        }
         composable(route = Screen.ExamList.route) {
             ExamsList(navController)
         }
