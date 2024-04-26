@@ -2,7 +2,7 @@
 	<string name="app_name">English Structure</string>
 
 	<!--	feature_exam	-->
-	<string name="enter_your_sentence">Enter your sentence</string>
+	<string name="put_the_sentence_in_the_correct_order">Put the sentence in the correct order</string>
 	<string name="finish_game">Finish game</string>
 	<string name="start_game">Start game</string>
 

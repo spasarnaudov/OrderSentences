@@ -56,7 +56,7 @@ fun InputScreen(
                 answerText = it
                 viewModel.onEvent(ExamEvent.EnterText(answerText.text))
             },
-            label = { Text(stringResource(R.string.enter_your_sentence)) },
+            label = { Text(stringResource(R.string.put_the_sentence_in_the_correct_order)) },
         )
         Button(
             modifier = Modifier
