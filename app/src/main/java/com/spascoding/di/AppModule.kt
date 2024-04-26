@@ -13,7 +13,8 @@ import com.spascoding.feature_exam.domain.use_case.GetExamPatternsUseCase
 import com.spascoding.feature_exam.domain.use_case.database.GetExamNamesUseCase
 import com.spascoding.feature_exam.domain.use_case.database.GetSentenceUseCase
 import com.spascoding.feature_exam.domain.use_case.database.GetSentencesUseCase
-import com.spascoding.feature_exam.domain.use_case.database.UpsertSentencesToDatabaseUseCase
+import com.spascoding.feature_exam.domain.use_case.database.ImportNotExistedSentencesUseCase
+import com.spascoding.feature_exam.domain.use_case.database.UpdateSentenceUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -38,13 +39,15 @@ object AppModule {
         getExamNamesUseCase: GetExamNamesUseCase,
         getSentencesUseCase: GetSentencesUseCase,
         getSentenceUseCase: GetSentenceUseCase,
-        upsertSentencesToDatabaseUseCase: UpsertSentencesToDatabaseUseCase,
+        updateSentenceUseCase: UpdateSentenceUseCase,
+        upsertSentencesToDatabaseUseCase: ImportNotExistedSentencesUseCase,
     ): ExamUseCases {
         return ExamUseCases(
             getExamPatternsUseCase,
             getExamNamesUseCase,
             getSentencesUseCase,
             getSentenceUseCase,
+            updateSentenceUseCase,
             upsertSentencesToDatabaseUseCase,
         )
     }

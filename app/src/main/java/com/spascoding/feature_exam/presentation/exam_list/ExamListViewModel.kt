@@ -56,7 +56,7 @@ class ExamListViewModel @Inject constructor(
             withContext(Dispatchers.IO) {
                 val examPatterns = examUseCases.getExamPatternsUseCase.invoke()
                 val sentences = SentencesGenerator(tens, examPatterns).generate()
-                examUseCases.upsertSentencesToDatabaseUseCase.invoke(sentences)
+                examUseCases.importNotExistedSentencesUseCase.invoke(sentences)
                 examNames = examUseCases.getExamNamesUseCase.invoke(tens)
             }.also {
                 withContext(Dispatchers.Main) {

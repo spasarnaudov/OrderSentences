@@ -59,12 +59,13 @@ class ExamViewModel @Inject constructor(
                 var sentence = state.value.sentences[0]
                 if (!isCorrectAnswer()) {
                     sentence = state.value.sentences[0].copy(
-                        mistakeCount = state.value.sentences[0].mistakeCount + 1
+                        useCount = state.value.sentences[0].useCount + 1,
+                        mistakeCount = state.value.sentences[0].mistakeCount + 1,
                     )
                 }
                 GlobalScope.launch {
                     withContext(Dispatchers.IO) {
-                        examUseCases.upsertSentencesToDatabaseUseCase.invoke(listOf(sentence))
+                        examUseCases.updateSentenceUseCase.invoke(sentence)
                     }
                 }
             }

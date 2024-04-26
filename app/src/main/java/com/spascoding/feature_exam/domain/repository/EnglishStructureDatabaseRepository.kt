@@ -4,9 +4,9 @@ import com.spascoding.feature_exam.domain.enums.Tens
 import com.spascoding.feature_exam.domain.model.sentence.entity.Sentence
 
 interface EnglishStructureDatabaseRepository {
-    suspend fun upsertSentence(sentence: Sentence)
-    suspend fun upsertSentences(sentences: List<Sentence>)
+    suspend fun updateSentence(sentence: Sentence)
+    suspend fun importNotExistedSentences(sentences: List<Sentence>)
     suspend fun getExamNames(tens: Tens): List<String>
     suspend fun getSentences(tens: Tens, examName: String): List<Sentence>
-    suspend fun getSentenceAndIncrementUsageCount(tens: Tens, examName: String): Sentence
+    suspend fun getSentence(tens: Tens, examName: String): Sentence
 }

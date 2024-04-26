@@ -4,12 +4,12 @@ import com.spascoding.feature_exam.data.repository.EnglishStructureDatabaseRepos
 import com.spascoding.feature_exam.domain.model.sentence.entity.Sentence
 import javax.inject.Inject
 
-class UpsertSentencesToDatabaseUseCase @Inject constructor(
+class ImportNotExistedSentencesUseCase @Inject constructor(
     private val repository: EnglishStructureDatabaseRepositoryImpl
 ) {
 
     suspend operator fun invoke(sentences: List<Sentence>) {
-        return repository.upsertSentences(sentences)
+        return repository.importNotExistedSentences(sentences)
     }
 
 }

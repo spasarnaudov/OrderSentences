@@ -9,12 +9,12 @@ import javax.inject.Inject
 class EnglishStructureDatabaseRepositoryImpl @Inject constructor(
     private val dao: EnglishStructureDao
 ): EnglishStructureDatabaseRepository {
-    override suspend fun upsertSentence(sentence: Sentence) {
-        dao.upsertSentence(sentence)
+    override suspend fun updateSentence(sentence: Sentence) {
+        dao.updateSentence(sentence)
     }
 
-    override suspend fun upsertSentences(sentences: List<Sentence>) {
-        dao.upsertSentences(sentences)
+    override suspend fun importNotExistedSentences(sentences: List<Sentence>) {
+        dao.importNotExistedSentences(sentences)
     }
 
     override suspend fun getExamNames(tens: Tens): List<String> {
@@ -25,7 +25,7 @@ class EnglishStructureDatabaseRepositoryImpl @Inject constructor(
         return dao.getSentences(tens.int, examName)
     }
 
-    override suspend fun getSentenceAndIncrementUsageCount(tens: Tens, examName: String): Sentence {
-        return dao.getSentenceAndIncrementUsageCount(tens, examName)
+    override suspend fun getSentence(tens: Tens, examName: String): Sentence {
+        return dao.getSentence(tens.int, examName)
     }
 }
