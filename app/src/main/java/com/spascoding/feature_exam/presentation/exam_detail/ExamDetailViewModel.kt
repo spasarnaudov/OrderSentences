@@ -31,7 +31,7 @@ class ExamDetailViewModel @Inject constructor(
                             withContext(Dispatchers.Main) {
                                 _state.value = state.value.copy(
                                     examName = examName,
-                                    sentences = sentences.map { it.value },
+                                    sentences = sentences,
                                 )
                             }
                         }

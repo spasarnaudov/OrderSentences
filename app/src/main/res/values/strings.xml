@@ -8,6 +8,8 @@
 
 	<!--	feature_exam_list	-->
 	<string name="lessen_row_info_pattern">%1$s. %2$s</string>
+	<string name="use_mistake_ratio_pattern_description">Use count / mistake count</string>
+	<string name="use_mistake_ratio_pattern">%1$s / %2$s</string>
 	<string name="tenses">Tenses</string>
 
 </resources>
