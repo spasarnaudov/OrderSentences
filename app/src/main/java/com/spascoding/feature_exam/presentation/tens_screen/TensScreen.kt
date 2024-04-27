@@ -19,9 +19,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -50,7 +52,6 @@ fun TensScreen(
             example1 = "worked",
             example2 = "work",
             example3 = "will work",
-            icon = Icons.Default.Info,
             navController = navController,
         )
         Divider()
@@ -63,7 +64,6 @@ fun TensScreen(
             example1 = "had worked",
             example2 = "have worked",
             example3 = "will have worked",
-            icon = Icons.Default.Info,
             navController = navController,
         )
         Divider()
@@ -76,7 +76,6 @@ fun TensScreen(
             example1 = "was working",
             example2 = "am working",
             example3 = "will be working",
-            icon = Icons.Default.Info,
             navController = navController,
         )
         Divider()
@@ -89,7 +88,6 @@ fun TensScreen(
             example1 = "has been working",
             example2 = "have been working",
             example3 = "will have been working",
-            icon = Icons.Default.Info,
             navController = navController,
         )
     }
@@ -149,7 +147,6 @@ fun TensRow(
     example1: String,
     example2: String,
     example3: String,
-    icon: ImageVector,
     navController: NavController,
 ) {
     Row(
@@ -163,7 +160,6 @@ fun TensRow(
             tens = tens1,
             tensText = tensText,
             exampleText = example1,
-            icon = icon,
             navController = navController,
         )
         TensButton(
@@ -173,7 +169,6 @@ fun TensRow(
             tens = tens2,
             tensText = tensText,
             exampleText = example2,
-            icon = icon,
             navController = navController,
         )
         TensButton(
@@ -183,7 +178,6 @@ fun TensRow(
             tens = tens3,
             tensText = tensText,
             exampleText = example3,
-            icon = icon,
             navController = navController,
         )
     }
@@ -195,7 +189,6 @@ fun TensButton(
     tens: Tens,
     tensText: String,
     exampleText: String,
-    icon: ImageVector,
     navController: NavController,
     viewModel: TensScreenViewModel = hiltViewModel(),
 ) {
@@ -232,17 +225,39 @@ fun TensButton(
             color = Color.Black,
             textAlign = TextAlign.Center,
         )
-        Icon(
-            imageVector = icon,
-            contentDescription = null,
+        Text(
             modifier = Modifier
-                .wrapContentSize()
+                .fillMaxWidth()
+                .padding(
+                    start = Padding.SMALL,
+                    end = Padding.SMALL,
+                ),
+            text = "${viewModel.getProgress(tens)}%",
+            color = Color.Black,
+            fontWeight = FontWeight.Bold,
+            textAlign = TextAlign.Center,
+            fontSize = FontSize.LARGE,
+        )
+        Text(
+            modifier = Modifier
+                .fillMaxWidth()
                 .padding(
                     bottom = Padding.SMALL,
                     start = Padding.SMALL,
                     end = Padding.SMALL,
-                )
-                .align(Alignment.CenterHorizontally),
+                ),
+            text = buildAnnotatedString {
+                append("accuracy of\n")
+                append("last ")
+                withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
+                    append("${viewModel.getSentencesCount(tens)}")
+                }
+                append(" sentences")
+            },
+            color = Color.Black,
+            textAlign = TextAlign.Center,
+            fontSize = FontSize.SMALL,
+            lineHeight = FontSize.SMALL,
         )
     }
 }

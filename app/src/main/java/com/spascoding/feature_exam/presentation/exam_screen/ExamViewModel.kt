@@ -56,13 +56,12 @@ class ExamViewModel @Inject constructor(
                     gameState = ExamState.FINISHED
                 )
 
-                var sentence = state.value.sentences[0]
-                if (!isCorrectAnswer()) {
-                    sentence = state.value.sentences[0].copy(
-                        useCount = state.value.sentences[0].useCount + 1,
-                        mistakeCount = state.value.sentences[0].mistakeCount + 1,
-                    )
-                }
+                var mistakeCount = 0
+                if (!isCorrectAnswer()) { mistakeCount++ }
+                val sentence = state.value.sentences[0].copy(
+                    useCount = state.value.sentences[0].useCount + 1,
+                    mistakeCount = mistakeCount,
+                )
                 GlobalScope.launch {
                     withContext(Dispatchers.IO) {
                         examUseCases.updateSentenceUseCase.invoke(sentence)

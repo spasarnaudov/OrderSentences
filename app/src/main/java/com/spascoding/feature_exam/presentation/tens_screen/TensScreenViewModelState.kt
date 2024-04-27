@@ -4,4 +4,7 @@ import com.spascoding.feature_exam.domain.enums.Tens
 
 data class TensScreenViewModelState(
     val tens: Tens = Tens.PRESENT_SIMPLE,
+    val mistakesCounts: Map<Int, Int> = mutableMapOf(),
+    val useCountUseCase: Map<Int, Int> = mutableMapOf(),
+    val sentencesCounts: Map<Int, Int> = mutableMapOf(),
 )

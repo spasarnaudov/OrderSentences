@@ -13,8 +13,11 @@ import com.spascoding.feature_exam.domain.use_case.GetExamPatternsUseCase
 import com.spascoding.feature_exam.domain.use_case.database.GetExamNamesUseCase
 import com.spascoding.feature_exam.domain.use_case.database.GetSentenceUseCase
 import com.spascoding.feature_exam.domain.use_case.database.GetSentencesUseCase
+import com.spascoding.feature_exam.domain.use_case.database.GetMistakesCountsUseCase
+import com.spascoding.feature_exam.domain.use_case.database.GetSentencesCountUseCase
 import com.spascoding.feature_exam.domain.use_case.database.ImportNotExistedSentencesUseCase
 import com.spascoding.feature_exam.domain.use_case.database.UpdateSentenceUseCase
+import com.spascoding.feature_exam.domain.use_case.database.GetUseCountUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -38,7 +41,10 @@ object AppModule {
         getExamPatternsUseCase: GetExamPatternsUseCase,
         getExamNamesUseCase: GetExamNamesUseCase,
         getSentencesUseCase: GetSentencesUseCase,
+        getSentencesCountsUseCase: GetSentencesCountUseCase,
         getSentenceUseCase: GetSentenceUseCase,
+        getMistakesCountsUseCase: GetMistakesCountsUseCase,
+        getUseCountUseCase: GetUseCountUseCase,
         updateSentenceUseCase: UpdateSentenceUseCase,
         upsertSentencesToDatabaseUseCase: ImportNotExistedSentencesUseCase,
     ): ExamUseCases {
@@ -46,7 +52,10 @@ object AppModule {
             getExamPatternsUseCase,
             getExamNamesUseCase,
             getSentencesUseCase,
+            getSentencesCountsUseCase,
             getSentenceUseCase,
+            getMistakesCountsUseCase,
+            getUseCountUseCase,
             updateSentenceUseCase,
             upsertSentencesToDatabaseUseCase,
         )
