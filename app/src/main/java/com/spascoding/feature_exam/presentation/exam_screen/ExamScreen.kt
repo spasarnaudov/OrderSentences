@@ -1,12 +1,13 @@
 package com.spascoding.feature_exam.presentation.exam_screen
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -19,15 +20,17 @@ import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewModelScope
+import com.spascoding.core.constants.FontSize
 import com.spascoding.core.constants.Padding
 import com.spascoding.feature_exam.R
 import com.spascoding.feature_exam.domain.model.sentence.entity.Sentence
-import com.spascoding.feature_exam.presentation.tens_screen.Divider
 import kotlinx.coroutines.launch
 
 @Composable
@@ -35,11 +38,22 @@ fun ExamScreen(
     viewModel: ExamViewModel = hiltViewModel()
 ) {
     val focusRequester = remember { FocusRequester() }
+    val onBackgroundColor = MaterialTheme.colorScheme.onBackground
     Column(
-        modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        val underlineColor = MaterialTheme.colorScheme.onBackground
+        Text(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(viewModel.state.value.tens.color)
+                .padding(
+                    vertical = Padding.MEDIUM,
+                ),
+            text = viewModel.state.value.tens.value,
+            fontSize = FontSize.LARGE,
+            textAlign = TextAlign.Center,
+            color = Color.Black,
+        )
         Text(
             modifier = Modifier
                 .wrapContentSize()
@@ -53,7 +67,7 @@ fun ExamScreen(
                     val strokeWidthPx = 2.dp.toPx()
                     val verticalOffset = size.height
                     drawLine(
-                        color = underlineColor,
+                        color = onBackgroundColor,
                         strokeWidth = strokeWidthPx,
                         start = Offset(0f, verticalOffset),
                         end = Offset(size.width, verticalOffset)
@@ -72,10 +86,6 @@ fun ExamScreen(
                 viewModel.onEvent(ExamEvent.EnterText(it.text))
             },
             label = { Text(stringResource(R.string.put_the_sentence_in_the_correct_order)) },
-//            colors = TextFieldDefaults.outlinedTextFieldColors(
-//                focusedBorderColor = Color.Black,
-//                unfocusedBorderColor = Color.Black
-//            )
         )
         Button(
             modifier = Modifier
@@ -119,4 +129,13 @@ fun ExamScreenRow(sentence: Sentence) {
         Text(text = sentence.value, fontWeight = FontWeight.Bold)
         Text(text = sentence.userValue)
     }
+}
+
+@Composable
+fun Divider() {
+    HorizontalDivider(
+        modifier = Modifier.fillMaxWidth(),
+        thickness = 1.dp,
+        color = MaterialTheme.colorScheme.onBackground
+    )
 }

@@ -4,6 +4,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import com.spascoding.feature_exam.data.repository.SharedPreferencesRepositoryImpl
 import com.spascoding.feature_exam.domain.enums.Tens
 import com.spascoding.feature_exam.domain.use_case.ExamUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,6 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ExamDetailViewModel @Inject constructor(
     private val examUseCases: ExamUseCases,
+    sharedPreferencesRepositoryImpl: SharedPreferencesRepositoryImpl,
     savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
 
@@ -30,6 +32,7 @@ class ExamDetailViewModel @Inject constructor(
                         examUseCases.getSentencesUseCase.invoke(Tens.fromInt(tens), examName).also { sentences ->
                             withContext(Dispatchers.Main) {
                                 _state.value = state.value.copy(
+                                    tens = sharedPreferencesRepositoryImpl.getSelectedTens(),
                                     examName = examName,
                                     sentences = sentences,
                                 )

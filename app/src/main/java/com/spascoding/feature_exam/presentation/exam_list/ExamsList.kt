@@ -1,21 +1,22 @@
 package com.spascoding.feature_exam.presentation.exam_list
 
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
+import com.spascoding.core.constants.FontSize
 import com.spascoding.core.constants.Padding
-import com.spascoding.core.presentation.DropDownMenu
-import com.spascoding.feature_exam.R
-import com.spascoding.feature_exam.domain.enums.Tens
 import com.spascoding.feature_exam.presentation.Screen
 import kotlinx.coroutines.launch
 
@@ -27,16 +28,18 @@ fun ExamsList(
     Column(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Box(modifier = Modifier
-            .padding(Padding.MEDIUM)) {
-            DropDownMenu(
-                title = stringResource(R.string.tenses),
-                defaultValue = viewModel.state.value.tens.value,
-                list = Tens.entries.sortedBy { it.int }.map { it.value },
-            ) {
-                viewModel.onEvent(ExamListEvent.SelectTens(tens = Tens.fromString(it)))
-            }
-        }
+        Text(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(viewModel.state.value.tens.color)
+                .padding(
+                    vertical = Padding.MEDIUM,
+                ),
+            text = viewModel.state.value.tens.value,
+            fontSize = FontSize.LARGE,
+            textAlign = TextAlign.Center,
+            color = Color.Black,
+        )
         LazyColumn(
             modifier = Modifier.fillMaxSize()
         ) {

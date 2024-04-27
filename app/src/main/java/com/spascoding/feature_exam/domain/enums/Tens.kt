@@ -1,20 +1,23 @@
 package com.spascoding.feature_exam.domain.enums
 
-enum class Tens(val value: String, val int: Int) {
-    PAST_SIMPLE("Past simple (A1)", 1),
-    PAST_CONTINUOUS("Past continuous (A2)", 3),
-    PAST_PERFECT("Past perfect (B2)", 7),
-    PAST_PERFECT_CONTINUOUS("Past perfect continuous (C1)", 10),
+import androidx.compose.ui.graphics.Color
+import com.spascoding.core.constants.Colors
 
-    PRESENT_SIMPLE("Present simple (A1)", 0),
-    PRESENT_CONTINUOUS("Present continuous (A2)", 2),
-    PRESENT_PERFECT("Present perfect (B1)", 5),
-    PRESENT_PERFECT_CONTINUOUS("Present perfect continuous (C1)", 9),
+enum class Tens(val value: String, val int: Int, val color: Color) {
+    PAST_SIMPLE("Past simple (A1)", 1, Colors.Blue),
+    PAST_CONTINUOUS("Past continuous (A2)", 3, Colors.Blue),
+    PAST_PERFECT("Past perfect (B2)", 7, Colors.Blue),
+    PAST_PERFECT_CONTINUOUS("Past perfect continuous (C1)", 10, Colors.Blue),
 
-    FUTURE_SIMPLE("Future simple (A2)", 4),
-    FUTURE_CONTINUOUS("Future continuous (B1)", 6),
-    FUTURE_PERFECT("Future perfect (B2)", 8),
-    FUTURE_PERFECT_CONTINUOUS("Future perfect continuous (C2)", 11);
+    PRESENT_SIMPLE("Present simple (A1)", 0, Colors.Yellow),
+    PRESENT_CONTINUOUS("Present continuous (A2)", 2, Colors.Yellow),
+    PRESENT_PERFECT("Present perfect (B1)", 5, Colors.Yellow),
+    PRESENT_PERFECT_CONTINUOUS("Present perfect continuous (C1)", 9, Colors.Yellow),
+
+    FUTURE_SIMPLE("Future simple (A2)", 4, Colors.Red),
+    FUTURE_CONTINUOUS("Future continuous (B1)", 6, Colors.Red),
+    FUTURE_PERFECT("Future perfect (B2)", 8, Colors.Red),
+    FUTURE_PERFECT_CONTINUOUS("Future perfect continuous (C2)", 11, Colors.Red);
 
     companion object {
         fun fromString(name: String): Tens {
