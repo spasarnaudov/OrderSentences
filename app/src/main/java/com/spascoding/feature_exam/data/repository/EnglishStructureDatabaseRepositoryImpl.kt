@@ -40,4 +40,8 @@ class EnglishStructureDatabaseRepositoryImpl @Inject constructor(
     override suspend fun getUseCounts(sentenceCount: Int): Map<Int, Int> {
         return dao.getUseCounts(sentenceCount)
     }
+
+    override suspend fun getUserSentences(tens: Tens, examName: String, sentenceCount: Int): List<Sentence> {
+        return dao.getUserSentences(tens.int, examName, sentenceCount)
+    }
 }

@@ -8,6 +8,8 @@ data class Sentence(
     @PrimaryKey val value: String,
     val tens: Int,
     val examName: String,
+    val userValue: String = "",
+    val userValueTime: Long = 0,
     val useCount: Int = 0,
     val mistakeCount: Int = 0,
 )

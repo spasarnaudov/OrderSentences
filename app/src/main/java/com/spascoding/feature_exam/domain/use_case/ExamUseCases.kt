@@ -8,6 +8,7 @@ import com.spascoding.feature_exam.domain.use_case.database.GetSentencesCountUse
 import com.spascoding.feature_exam.domain.use_case.database.ImportNotExistedSentencesUseCase
 import com.spascoding.feature_exam.domain.use_case.database.UpdateSentenceUseCase
 import com.spascoding.feature_exam.domain.use_case.database.GetUseCountUseCase
+import com.spascoding.feature_exam.domain.use_case.database.GetUserSentenceUseCase
 import javax.inject.Inject
 
 data class ExamUseCases @Inject constructor(
@@ -20,4 +21,5 @@ data class ExamUseCases @Inject constructor(
     val getUseCountUseCase: GetUseCountUseCase,
     val updateSentenceUseCase: UpdateSentenceUseCase,
     val importNotExistedSentencesUseCase: ImportNotExistedSentencesUseCase,
+    val getUserSentenceUseCase: GetUserSentenceUseCase,
 )

@@ -10,6 +10,7 @@ interface EnglishStructureDatabaseRepository {
     suspend fun getSentences(tens: Tens, examName: String): List<Sentence>
     suspend fun getSentencesCounts(): Map<Int, Int>
     suspend fun getSentence(tens: Tens, examName: String): Sentence
-    suspend fun getMistakesCounts(limit: Int): Map<Int, Int>
-    suspend fun getUseCounts(limit: Int): Map<Int, Int>
+    suspend fun getMistakesCounts(sentenceCount: Int): Map<Int, Int>
+    suspend fun getUseCounts(sentenceCount: Int): Map<Int, Int>
+    suspend fun getUserSentences(tens: Tens, examName: String, sentenceCount: Int): List<Sentence>
 }

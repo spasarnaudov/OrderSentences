@@ -1,5 +1,6 @@
 package com.spascoding.feature_exam.presentation.utils
 
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -50,7 +51,7 @@ fun scratchWords(
 
         allWords.map { word ->
             if (wordsToScratch.contains(word)) {
-                withStyle(style = SpanStyle(textDecoration = TextDecoration.LineThrough)) {
+                withStyle(style = SpanStyle(textDecoration = TextDecoration.LineThrough, color = Color.Gray)) {
                     append(word)
                 }
             } else {

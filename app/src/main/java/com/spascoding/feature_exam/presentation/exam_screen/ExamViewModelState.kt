@@ -1,9 +1,10 @@
 package com.spascoding.feature_exam.presentation.exam_screen
 
-import com.spascoding.feature_exam.data.data_source.StudentBook
-import com.spascoding.feature_exam.domain.enums.ExamState
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.text.TextRange
+import androidx.compose.ui.text.input.TextFieldValue
 import com.spascoding.feature_exam.domain.enums.Tens
-import com.spascoding.feature_exam.domain.model.ExamPattern
 import com.spascoding.feature_exam.domain.model.sentence.entity.Sentence
 
 data class ExamViewModelState(
@@ -12,7 +13,7 @@ data class ExamViewModelState(
     val sentence: String = "",
     val shuffledSentence: String = "",
     val enteredSentence: String = "",
-    val gameState: ExamState = ExamState.FINISHED,
-    val exam: ExamPattern = StudentBook.examPatterns()[0],
+    var answerText: MutableState<TextFieldValue> = mutableStateOf(TextFieldValue(text = "", selection = TextRange(0))),
     val sentences: List<Sentence> = listOf(),
+    val history: List<Sentence> = listOf(),
 )

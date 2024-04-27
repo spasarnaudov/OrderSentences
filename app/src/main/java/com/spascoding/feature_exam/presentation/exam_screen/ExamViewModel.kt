@@ -3,10 +3,13 @@ package com.spascoding.feature_exam.presentation.exam_screen
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.TextRange
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import com.spascoding.feature_exam.domain.enums.ExamState
+import com.spascoding.feature_exam.domain.MIN_COUNT_SENTECES
 import com.spascoding.feature_exam.domain.enums.Tens
+import com.spascoding.feature_exam.domain.model.sentence.entity.Sentence
 import com.spascoding.feature_exam.domain.use_case.ExamUseCases
 import com.spascoding.feature_exam.presentation.utils.scratchWords
 import com.spascoding.feature_exam.presentation.utils.shuffleSentence
@@ -15,6 +18,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.Date
 import javax.inject.Inject
 
 @HiltViewModel
@@ -33,70 +37,72 @@ class ExamViewModel @Inject constructor(
                     tens = Tens.fromInt(tens),
                     examName = examName
                 )
-                getSentence()
+                GlobalScope.launch {
+                    withContext(Dispatchers.IO) {
+                        val newSentence = examUseCases.getSentenceUseCase.invoke(Tens.fromInt(tens), examName)
+                        val history = examUseCases.getUserSentenceUseCase.invoke(Tens.fromInt(tens), examName, 10)
+                        withContext(Dispatchers.Main) {
+                            _state.value = state.value.copy(
+                                sentences = listOf(newSentence),
+                                sentence = newSentence.value,
+                                shuffledSentence = newSentence.value.shuffleSentence(" / "),
+                                history = history,
+                            )
+                        }
+                    }
+                }
             }
         }
     }
 
     fun onEvent(event: ExamEvent) {
         when (event) {
-            is ExamEvent.NewExam -> {
-                getSentence()
-            }
-
             is ExamEvent.EnterText -> {
                 _state.value = state.value.copy(
-                    enteredSentence = event.answerText
+                    enteredSentence = event.answerText,
+                    answerText = mutableStateOf(TextFieldValue(text = event.answerText, selection = TextRange(event.answerText.length))),
                 )
             }
 
-            is ExamEvent.EndExam -> {
-                _state.value = state.value.copy(
-                    enteredSentence = event.answerText,
-                    gameState = ExamState.FINISHED
-                )
+            is ExamEvent.CheckExam -> {
+                val originSentence = state.value.sentences[0]
 
-                var mistakeCount = 0
-                if (!isCorrectAnswer()) { mistakeCount++ }
-                val sentence = state.value.sentences[0].copy(
-                    useCount = state.value.sentences[0].useCount + 1,
-                    mistakeCount = mistakeCount,
-                )
+                val tens = state.value.tens
+                val examName = state.value.examName
+
                 GlobalScope.launch {
                     withContext(Dispatchers.IO) {
-                        examUseCases.updateSentenceUseCase.invoke(sentence)
+                        updateCurrentSentence(originSentence, event.answerText)
+                        val newSentence = examUseCases.getSentenceUseCase.invoke(tens, examName)
+                        val history = examUseCases.getUserSentenceUseCase.invoke(tens, examName, 10)
+                        withContext(Dispatchers.Main) {
+                            _state.value = state.value.copy(
+                                sentences = listOf(newSentence),
+                                sentence = newSentence.value,
+                                shuffledSentence = newSentence.value.shuffleSentence(" / "),
+                                enteredSentence = "",
+                                answerText = mutableStateOf(TextFieldValue(text = "", selection = TextRange(0))),
+                                history = history,
+                            )
+                        }
                     }
                 }
             }
         }
     }
 
-    private fun getSentence() {
-        val tens = state.value.tens
-        val examName = state.value.examName
-        GlobalScope.launch {
-            withContext(Dispatchers.IO) {
-                examUseCases.getSentenceUseCase.invoke(tens, examName).also { sentence ->
-                    withContext(Dispatchers.Main) {
-                        _state.value = state.value.copy(
-                            sentences = listOf(sentence),
-                        )
-                        generateSentence()
-                    }
-                }
-            }
+    private suspend fun updateCurrentSentence(originSentence: Sentence, answerText: String) {
+        var mistakeCount = originSentence.mistakeCount
+        if (!isCorrectAnswer()) {
+            mistakeCount++
         }
-    }
-
-    private fun generateSentence() {
-        val sentence = state.value.sentences[0]
-        val shuffledSentence = sentence.value.shuffleSentence(" / ")
-        _state.value = state.value.copy(
-            sentence = sentence.value,
-            shuffledSentence = shuffledSentence,
-            enteredSentence = "",
-            gameState = ExamState.STARTED,
+        val sentence = originSentence.copy(
+            useCount = state.value.sentences[0].useCount + 1,
+            mistakeCount = mistakeCount,
+            userValue = answerText,
+            userValueTime = Date().time
         )
+        examUseCases.updateSentenceUseCase.invoke(sentence)
     }
 
     fun getShuffledText(): AnnotatedString {
@@ -106,7 +112,7 @@ class ExamViewModel @Inject constructor(
         )
     }
 
-    fun isCorrectAnswer(): Boolean {
+    private fun isCorrectAnswer(): Boolean {
         return state.value.enteredSentence == state.value.sentence
     }
 
