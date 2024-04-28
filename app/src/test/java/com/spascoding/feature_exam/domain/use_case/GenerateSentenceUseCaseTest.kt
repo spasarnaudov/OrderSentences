@@ -57,6 +57,7 @@ class GenerateSentenceUseCaseTest {
 
     private fun whereAreYouLiveLessen(tens: Tens) : ExamPattern {
         return ExamPattern(
+            "",
             subjects = Pronouns.singular.plus(Nouns.names),
             verbs = Verbs.countriesAndCities,
             objects = listOf("Australia"),
@@ -136,6 +137,7 @@ class GenerateSentenceUseCaseTest {
             "is Emily from Australia?",
         )
         val lessen = ExamPattern(
+            "",
             subjects = Pronouns.singular.plus(Nouns.names),
             verbs = listOf(Verbs.toBe),
             objects = Nouns.countries.build(),
@@ -178,6 +180,7 @@ class GenerateSentenceUseCaseTest {
             "is Emily Australian?",
         )
         val lessen = ExamPattern(
+            "",
             subjects = Pronouns.singular.plus(Nouns.names),
             verbs = listOf(Verbs.toBe),
             objects = Nouns.nationals.build(),

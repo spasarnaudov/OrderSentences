@@ -23,12 +23,11 @@ class SentencesGenerator(
     private val tens: Tens,
     private val examPatterns: List<ExamPattern>
 ) {
-
     fun generate(): List<Sentence> {
         val sentences = mutableListOf<Sentence>()
 
         for (examPattern in examPatterns) {
-            val examName = getExamName(examPattern)
+            val examName = examPattern.name
             for (subject in examPattern.subjects) {
                 for (verb in examPattern.verbs) {
                     for (objectVal in examPattern.objects) {
@@ -74,10 +73,4 @@ class SentencesGenerator(
             )
         }
     }
-
-    private fun getExamName(examPattern: ExamPattern): String {
-        return getStructure(examPattern.subjects[0], examPattern.verbs[0], examPattern.objects[0])
-            .positive()
-    }
-
 }

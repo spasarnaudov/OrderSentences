@@ -6,8 +6,11 @@ import com.spascoding.feature_exam.domain.model.noun.addArticle
 import com.spascoding.feature_exam.domain.model.noun.build
 
 object StudentBook {
-    //Student book version must be increment, when data are changed
-    val version = 1
+    val musicPattern = "music"
+    val gamePattern = "game"
+    val travelPattern = "travel"
+    val kitchenPattern = "kitchen"
+    val schoolPattern = "school"
 
     fun examPatterns(): List<ExamPattern> {
         return listOf(
@@ -26,6 +29,7 @@ object StudentBook {
 
     private fun playMusic(): ExamPattern {
         return ExamPattern(
+            musicPattern,
             subjects = Pronouns.singular.plus(Pronouns.plural).plus(Nouns.names),
             verbs = listOf(Verbs.play),
             objects = Nouns.musicalInstruments.addArticle(Article.DEFINITE).build(),
@@ -34,6 +38,7 @@ object StudentBook {
 
     private fun playGame(): ExamPattern {
         return ExamPattern(
+            gamePattern,
             subjects = Pronouns.singular.plus(Pronouns.plural).plus(Nouns.names),
             verbs = listOf(Verbs.play),
             objects = Nouns.games.build(),
@@ -42,6 +47,7 @@ object StudentBook {
 
     private fun visitPlaces(): ExamPattern {
         return ExamPattern(
+            travelPattern,
             subjects = Pronouns.singular.plus(Pronouns.plural).plus(Nouns.names),
             verbs = listOf(Verbs.visit),
             objects = Nouns.places.addArticle(Article.DEFINITE).build(),
@@ -50,6 +56,7 @@ object StudentBook {
 
     private fun eat(): ExamPattern {
         return ExamPattern(
+            kitchenPattern,
             subjects = Pronouns.singular.plus(Pronouns.plural).plus(Nouns.names).plus(Nouns.teacher.copy(article = Article.DEFINITE)),
             verbs = listOf(Verbs.eat),
             objects = Nouns.fruits.addArticle(Article.INDEFINITE).build(),
@@ -58,6 +65,7 @@ object StudentBook {
 
     private fun cook(): ExamPattern {
         return ExamPattern(
+            kitchenPattern,
             subjects = Pronouns.singular.plus(Pronouns.plural).plus(Nouns.names),
             verbs = listOf(Verbs.cook),
             objects = Nouns.vegetablesForCook.addArticle(Article.INDEFINITE).build(),
@@ -66,6 +74,7 @@ object StudentBook {
 
     private fun drink(): ExamPattern {
         return ExamPattern(
+            kitchenPattern,
             subjects = Pronouns.singular.plus(Pronouns.plural).plus(Nouns.names),
             verbs = listOf(Verbs.drink),
             objects = Nouns.drinks.addArticle(Article.INDEFINITE).build(),
@@ -74,6 +83,7 @@ object StudentBook {
 
     private fun writeRead(): ExamPattern {
         return ExamPattern(
+            schoolPattern,
             subjects = Pronouns.singular.plus(Pronouns.plural).plus(Nouns.names),
             verbs = listOf(Verbs.write, Verbs.read),
             objects = Nouns.writeReadMaterials.addArticle(Article.INDEFINITE).build(),
@@ -82,6 +92,7 @@ object StudentBook {
 
     private fun learn(): ExamPattern {
         return ExamPattern(
+            schoolPattern,
             subjects = Pronouns.singular.plus(Pronouns.plural).plus(Nouns.names),
             verbs = listOf(Verbs.learn, Verbs.study, Verbs.teach),
             objects = Nouns.nationals.plus(Nouns.schoolSubjects).addArticle(Article.INDEFINITE).build(),
