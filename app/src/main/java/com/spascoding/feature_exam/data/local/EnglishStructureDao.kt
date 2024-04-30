@@ -31,10 +31,10 @@ interface EnglishStructureDao {
     @Query("SELECT DISTINCT tens FROM sentences")
     suspend fun getTenses(): List<Int>
 
-    @Query("SELECT SUM(mistakeCount) FROM sentences WHERE tens=:examTens ORDER BY mistakeCount DESC LIMIT :sentenceCount")
+    @Query("SELECT SUM(mistakeCount) FROM sentences WHERE tens=:examTens ORDER BY userValueTime DESC LIMIT :sentenceCount")
     suspend fun getMistakesCount(examTens: Int, sentenceCount: Int): Int
 
-    @Query("SELECT SUM(useCount) FROM sentences WHERE tens=:examTens ORDER BY useCount DESC LIMIT :sentenceCount")
+    @Query("SELECT SUM(useCount) FROM sentences WHERE tens=:examTens ORDER BY userValueTime DESC LIMIT :sentenceCount")
     suspend fun getUseCount(examTens: Int, sentenceCount: Int): Int
 
     @Transaction
