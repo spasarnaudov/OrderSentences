@@ -80,7 +80,7 @@ fun DetailsRow(
             text = stringResource(R.string.lessen_row_info_pattern, index + 1, sentence.value)
         )
         Text(
-            text = stringResource(R.string.use_mistake_ratio_pattern, sentence.useCount, sentence.mistakeCount)
+            text = stringResource(R.string.use_mistake_ratio_pattern, sentence.usedCount, sentence.mistakeCount)
         )
     }
 

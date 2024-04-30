@@ -10,6 +10,6 @@ data class Sentence(
     val examName: String,
     val userValue: String = "",
     val userValueTime: Long = 0,
-    val useCount: Int = 0,
+    val usedCount: Int = 0,
     val mistakeCount: Int = 0,
 )

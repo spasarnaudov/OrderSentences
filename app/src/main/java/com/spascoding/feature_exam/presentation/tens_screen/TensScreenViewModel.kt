@@ -27,12 +27,12 @@ class TensScreenViewModel @Inject constructor(
         GlobalScope.launch {
             withContext(Dispatchers.IO) {
                 val mistakesCounts = examUseCases.getMistakesCountsUseCase.invoke(MIN_COUNT_SENTECES)
-                val useCountUseCase = examUseCases.getUseCountUseCase.invoke(MIN_COUNT_SENTECES)
+                val usedCountUseCase = examUseCases.getUsedCountUseCase.invoke(MIN_COUNT_SENTECES)
                 val sentencesCounts = examUseCases.getSentencesCountsUseCase.invoke()
                 withContext(Dispatchers.Main) {
                     _state.value = state.value.copy(
                         mistakesCounts = mistakesCounts,
-                        useCountUseCase = useCountUseCase,
+                        usedCountUseCase = usedCountUseCase,
                         sentencesCounts = sentencesCounts,
                         tens = sharedPreferencesRepository.getSelectedTens(),
                     )
@@ -54,10 +54,10 @@ class TensScreenViewModel @Inject constructor(
 
     fun getProgress(tens: Tens): Int {
         if (state.value.mistakesCounts.containsKey(tens.int)
-            && state.value.useCountUseCase.containsKey(tens.int)) {
+            && state.value.usedCountUseCase.containsKey(tens.int)) {
             val mistakesCounts = state.value.mistakesCounts[tens.int]!!
-            val useCount = state.value.useCountUseCase[tens.int]!!
-            return calculateAccuracy(mistakesCounts, useCount)
+            val usedCount = state.value.usedCountUseCase[tens.int]!!
+            return calculateAccuracy(mistakesCounts, usedCount)
         }
         return 0
     }

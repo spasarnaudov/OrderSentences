@@ -97,7 +97,7 @@ class ExamViewModel @Inject constructor(
             mistakeCount++
         }
         val sentence = originSentence.copy(
-            useCount = state.value.sentences[0].useCount + 1,
+            usedCount = state.value.sentences[0].usedCount + 1,
             mistakeCount = mistakeCount,
             userValue = answerText,
             userValueTime = Date().time

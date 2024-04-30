@@ -19,13 +19,13 @@ interface EnglishStructureDao {
     @Query("SELECT DISTINCT examName FROM sentences WHERE tens=:examTens")
     suspend fun getExamNames(examTens: Int): List<String>
 
-    @Query("SELECT * FROM sentences WHERE tens=:examTens AND examName=:examName ORDER BY useCount ASC, mistakeCount DESC LIMIT 1")
+    @Query("SELECT * FROM sentences WHERE tens=:examTens AND examName=:examName ORDER BY usedCount ASC, mistakeCount DESC LIMIT 1")
     suspend fun getSentence(examTens: Int, examName: String): Sentence
 
-    @Query("SELECT * FROM sentences WHERE tens=:examTens AND examName=:examName ORDER BY useCount ASC, mistakeCount DESC")
+    @Query("SELECT * FROM sentences WHERE tens=:examTens AND examName=:examName ORDER BY usedCount ASC, mistakeCount DESC")
     suspend fun getSentences(examTens: Int, examName: String): List<Sentence>
 
-    @Query("SELECT COUNT(useCount) FROM sentences WHERE tens=:examTens AND useCount > 0")
+    @Query("SELECT COUNT(usedCount) FROM sentences WHERE tens=:examTens AND usedCount > 0")
     suspend fun getSentencesCount(examTens: Int): Int
 
     @Query("SELECT DISTINCT tens FROM sentences")
@@ -34,8 +34,8 @@ interface EnglishStructureDao {
     @Query("SELECT SUM(mistakeCount) FROM sentences WHERE tens=:examTens ORDER BY userValueTime DESC LIMIT :sentenceCount")
     suspend fun getMistakesCount(examTens: Int, sentenceCount: Int): Int
 
-    @Query("SELECT SUM(useCount) FROM sentences WHERE tens=:examTens ORDER BY userValueTime DESC LIMIT :sentenceCount")
-    suspend fun getUseCount(examTens: Int, sentenceCount: Int): Int
+    @Query("SELECT SUM(usedCount) FROM sentences WHERE tens=:examTens ORDER BY userValueTime DESC LIMIT :sentenceCount")
+    suspend fun getUsedCount(examTens: Int, sentenceCount: Int): Int
 
     @Transaction
     suspend fun getSentencesCounts(): Map<Int, Int> {
@@ -58,15 +58,15 @@ interface EnglishStructureDao {
     }
 
     @Transaction
-    suspend fun getUseCounts(sentenceCount: Int): Map<Int, Int> {
-        val useCounts = mutableMapOf<Int, Int>()
+    suspend fun getUsedCounts(sentenceCount: Int): Map<Int, Int> {
+        val usedCounts = mutableMapOf<Int, Int>()
         val tenses = getTenses()
         for (tens in tenses) {
-            useCounts[tens] = getUseCount(tens, sentenceCount)
+            usedCounts[tens] = getUsedCount(tens, sentenceCount)
         }
-        return useCounts;
+        return usedCounts;
     }
 
-    @Query("SELECT * FROM sentences WHERE tens=:examTens AND examName=:examName AND useCount > 0 ORDER BY userValueTime DESC LIMIT :sentenceCount")
+    @Query("SELECT * FROM sentences WHERE tens=:examTens AND examName=:examName AND usedCount > 0 ORDER BY userValueTime DESC LIMIT :sentenceCount")
     suspend fun getUserSentences(examTens: Int, examName: String, sentenceCount: Int): List<Sentence>
 }
