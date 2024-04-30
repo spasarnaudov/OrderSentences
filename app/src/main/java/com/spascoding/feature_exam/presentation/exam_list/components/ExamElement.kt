@@ -41,8 +41,8 @@ fun ExamElement(
             Icon(Icons.Default.Info, contentDescription = null)
         }
         AccuracyInfo(
-            progress = viewModel.getProgress(viewModel.state.value.tens),
-            sentenceCount = viewModel.getSentencesCount(viewModel.state.value.tens),
+            progress = viewModel.getProgress(examName),
+            sentenceCount = viewModel.getSentencesCount(examName),
         )
     }
 }

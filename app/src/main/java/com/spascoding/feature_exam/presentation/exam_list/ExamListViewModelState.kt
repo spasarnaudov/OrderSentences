@@ -5,7 +5,7 @@ import com.spascoding.feature_exam.domain.enums.Tens
 data class ExamListViewModelState(
     val exams: List<String> = listOf(),
     val tens: Tens = Tens.PRESENT_SIMPLE,
-    val mistakesCounts: Map<Int, Int> = mutableMapOf(),
-    val usedCountUseCase: Map<Int, Int> = mutableMapOf(),
-    val sentencesCounts: Map<Int, Int> = mutableMapOf(),
+    val mistakesCounts: Map<String, Int> = mutableMapOf(),
+    val usedCounts: Map<String, Int> = mutableMapOf(),
+    val sentencesCounts: Map<String, Int> = mutableMapOf(),
 )

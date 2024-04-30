@@ -1,10 +1,13 @@
 package com.spascoding.feature_exam.domain.use_case
 
 import com.spascoding.feature_exam.domain.use_case.database.GetExamNamesUseCase
+import com.spascoding.feature_exam.domain.use_case.database.GetMistakesCountByTensAndExamNameUseCase
 import com.spascoding.feature_exam.domain.use_case.database.GetSentenceUseCase
 import com.spascoding.feature_exam.domain.use_case.database.GetSentencesUseCase
 import com.spascoding.feature_exam.domain.use_case.database.GetMistakesCountsUseCase
+import com.spascoding.feature_exam.domain.use_case.database.GetSentencesCountByExamNameUseCase
 import com.spascoding.feature_exam.domain.use_case.database.GetSentencesCountUseCase
+import com.spascoding.feature_exam.domain.use_case.database.GetUsedCountByTensAndExamNameUseCase
 import com.spascoding.feature_exam.domain.use_case.database.ImportNotExistedSentencesUseCase
 import com.spascoding.feature_exam.domain.use_case.database.UpdateSentenceUseCase
 import com.spascoding.feature_exam.domain.use_case.database.GetUsedCountUseCase
@@ -22,4 +25,7 @@ data class ExamUseCases @Inject constructor(
     val updateSentenceUseCase: UpdateSentenceUseCase,
     val importNotExistedSentencesUseCase: ImportNotExistedSentencesUseCase,
     val getUsedSentenceUseCase: GetUsedSentenceUseCase,
+    val getMistakesCountByTensAndExamNameUseCase: GetMistakesCountByTensAndExamNameUseCase,
+    val getUsedCountByTensAndExamNameUseCase: GetUsedCountByTensAndExamNameUseCase,
+    val getSentencesCountByExamNameUseCase: GetSentencesCountByExamNameUseCase,
 )

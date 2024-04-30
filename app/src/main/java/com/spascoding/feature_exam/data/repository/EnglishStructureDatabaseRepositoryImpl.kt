@@ -41,6 +41,24 @@ class EnglishStructureDatabaseRepositoryImpl @Inject constructor(
         return dao.getUsedCounts(sentenceCount)
     }
 
+    override suspend fun getMistakesCountsByTensAndExamName(
+        tens: Tens,
+        sentenceCount: Int
+    ): Map<String, Int> {
+        return dao.getMistakesCountsByTens(tens.int, sentenceCount)
+    }
+
+    override suspend fun getUsedCountsByTensAndExamName(
+        tens: Tens,
+        sentenceCount: Int
+    ): Map<String, Int> {
+        return dao.getUsedCountsByTens(tens.int, sentenceCount)
+    }
+
+    override suspend fun getSentencesCountByExamName(tens: Tens, sentenceCount: Int): Map<String, Int> {
+        return dao.getSentencesCountsByTens(tens.int, sentenceCount)
+    }
+
     override suspend fun getUsedSentences(tens: Tens, examName: String, sentenceCount: Int): List<Sentence> {
         return dao.getUsedSentences(tens.int, examName, sentenceCount)
     }

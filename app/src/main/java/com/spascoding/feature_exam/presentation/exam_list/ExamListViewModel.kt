@@ -30,15 +30,16 @@ class ExamListViewModel @Inject constructor(
             getExams(state.value.tens)
         }
 
+        val tens = state.value.tens
         GlobalScope.launch {
             withContext(Dispatchers.IO) {
-                val mistakesCounts = examUseCases.getMistakesCountsUseCase.invoke(MIN_COUNT_SENTECES)
-                val usedCountUseCase = examUseCases.getUsedCountUseCase.invoke(MIN_COUNT_SENTECES)
-                val sentencesCounts = examUseCases.getSentencesCountsUseCase.invoke()
+                val mistakesCounts = examUseCases.getMistakesCountByTensAndExamNameUseCase.invoke(tens, MIN_COUNT_SENTECES)
+                val usedCounts = examUseCases.getUsedCountByTensAndExamNameUseCase.invoke(tens, MIN_COUNT_SENTECES)
+                val sentencesCounts = examUseCases.getSentencesCountByExamNameUseCase.invoke(tens, MIN_COUNT_SENTECES)
                 withContext(Dispatchers.Main) {
                     _state.value = state.value.copy(
                         mistakesCounts = mistakesCounts,
-                        usedCountUseCase = usedCountUseCase,
+                        usedCounts = usedCounts,
                         sentencesCounts = sentencesCounts,
                     )
                 }
@@ -98,19 +99,19 @@ class ExamListViewModel @Inject constructor(
         }
     }
 
-    fun getProgress(tens: Tens): Int {
-        if (state.value.mistakesCounts.containsKey(tens.int)
-            && state.value.usedCountUseCase.containsKey(tens.int)) {
-            val mistakesCounts = state.value.mistakesCounts[tens.int]!!
-            val usedCount = state.value.usedCountUseCase[tens.int]!!
+    fun getProgress(examName: String): Int {
+        if (state.value.mistakesCounts.containsKey(examName)
+            && state.value.usedCounts.containsKey(examName)) {
+            val mistakesCounts = state.value.mistakesCounts[examName]!!
+            val usedCount = state.value.usedCounts[examName]!!
             return calculateAccuracy(mistakesCounts, usedCount)
         }
         return 0
     }
 
-    fun getSentencesCount(tens: Tens): Int {
-        if (state.value.sentencesCounts.containsKey(tens.int)) {
-            val sentencesCounts = state.value.sentencesCounts[tens.int]!!
+    fun getSentencesCount(examName: String): Int {
+        if (state.value.sentencesCounts.containsKey(examName)) {
+            val sentencesCounts = state.value.sentencesCounts[examName]!!
             if (sentencesCounts > MIN_COUNT_SENTECES) {
                 return MIN_COUNT_SENTECES
             }
