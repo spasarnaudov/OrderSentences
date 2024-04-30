@@ -68,5 +68,5 @@ interface EnglishStructureDao {
     }
 
     @Query("SELECT * FROM sentences WHERE tens=:examTens AND examName=:examName AND usedCount > 0 ORDER BY userValueTime DESC LIMIT :sentenceCount")
-    suspend fun getUserSentences(examTens: Int, examName: String, sentenceCount: Int): List<Sentence>
+    suspend fun getUsedSentences(examTens: Int, examName: String, sentenceCount: Int): List<Sentence>
 }

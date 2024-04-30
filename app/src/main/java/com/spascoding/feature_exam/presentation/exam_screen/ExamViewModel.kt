@@ -40,7 +40,7 @@ class ExamViewModel @Inject constructor(
                 GlobalScope.launch {
                     withContext(Dispatchers.IO) {
                         val newSentence = examUseCases.getSentenceUseCase.invoke(Tens.fromInt(tens), examName)
-                        val history = examUseCases.getUserSentenceUseCase.invoke(Tens.fromInt(tens), examName, MIN_COUNT_SENTECES)
+                        val history = examUseCases.getUsedSentenceUseCase.invoke(Tens.fromInt(tens), examName, MIN_COUNT_SENTECES)
                         withContext(Dispatchers.Main) {
                             _state.value = state.value.copy(
                                 sentences = listOf(newSentence),
@@ -74,7 +74,7 @@ class ExamViewModel @Inject constructor(
                     withContext(Dispatchers.IO) {
                         updateCurrentSentence(originSentence, event.answerText)
                         val newSentence = examUseCases.getSentenceUseCase.invoke(tens, examName)
-                        val history = examUseCases.getUserSentenceUseCase.invoke(tens, examName, MIN_COUNT_SENTECES)
+                        val history = examUseCases.getUsedSentenceUseCase.invoke(tens, examName, MIN_COUNT_SENTECES)
                         withContext(Dispatchers.Main) {
                             _state.value = state.value.copy(
                                 sentences = listOf(newSentence),

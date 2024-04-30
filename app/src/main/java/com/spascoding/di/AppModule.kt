@@ -18,7 +18,7 @@ import com.spascoding.feature_exam.domain.use_case.database.GetSentencesCountUse
 import com.spascoding.feature_exam.domain.use_case.database.ImportNotExistedSentencesUseCase
 import com.spascoding.feature_exam.domain.use_case.database.UpdateSentenceUseCase
 import com.spascoding.feature_exam.domain.use_case.database.GetUsedCountUseCase
-import com.spascoding.feature_exam.domain.use_case.database.GetUserSentenceUseCase
+import com.spascoding.feature_exam.domain.use_case.database.GetUsedSentenceUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -48,7 +48,7 @@ object AppModule {
         getUsedCountUseCase: GetUsedCountUseCase,
         updateSentenceUseCase: UpdateSentenceUseCase,
         upsertSentencesToDatabaseUseCase: ImportNotExistedSentencesUseCase,
-        getUserSentenceUseCase: GetUserSentenceUseCase,
+        getUsedSentenceUseCase: GetUsedSentenceUseCase,
     ): ExamUseCases {
         return ExamUseCases(
             getExamPatternsUseCase,
@@ -60,7 +60,7 @@ object AppModule {
             getUsedCountUseCase,
             updateSentenceUseCase,
             upsertSentencesToDatabaseUseCase,
-            getUserSentenceUseCase,
+            getUsedSentenceUseCase,
         )
     }
 

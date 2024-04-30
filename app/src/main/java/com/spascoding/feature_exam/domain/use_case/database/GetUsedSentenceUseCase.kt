@@ -5,12 +5,12 @@ import com.spascoding.feature_exam.domain.enums.Tens
 import com.spascoding.feature_exam.domain.model.sentence.entity.Sentence
 import javax.inject.Inject
 
-class GetUserSentenceUseCase @Inject constructor(
+class GetUsedSentenceUseCase @Inject constructor(
     private val repository: EnglishStructureDatabaseRepositoryImpl
 ) {
 
     suspend operator fun invoke(tens: Tens, examName: String, sentenceCount: Int): List<Sentence> {
-        return repository.getUserSentences(tens, examName, sentenceCount)
+        return repository.getUsedSentences(tens, examName, sentenceCount)
     }
 
 }
