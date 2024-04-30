@@ -11,17 +11,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.withStyle
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.spascoding.core.constants.FontSize
 import com.spascoding.core.constants.Padding
 import com.spascoding.feature_exam.domain.enums.Tens
 import com.spascoding.feature_exam.presentation.Screen
+import com.spascoding.feature_exam.presentation.components.AccuracyInfo
 import com.spascoding.feature_exam.presentation.tens_screen.TensScreenEventEvent
 import com.spascoding.feature_exam.presentation.tens_screen.TensScreenViewModel
 
@@ -71,39 +68,9 @@ fun TensButton(
             color = Color.Black,
             textAlign = TextAlign.Center,
         )
-        Text(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(
-                    start = Padding.SMALL,
-                    end = Padding.SMALL,
-                ),
-            text = "${viewModel.getProgress(tensButtonObject.tens)}%",
-            color = Color.Black,
-            fontWeight = FontWeight.Bold,
-            textAlign = TextAlign.Center,
-            fontSize = FontSize.LARGE,
-        )
-        Text(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(
-                    bottom = Padding.SMALL,
-                    start = Padding.SMALL,
-                    end = Padding.SMALL,
-                ),
-            text = buildAnnotatedString {
-                append("accuracy of\n")
-                append("last ")
-                withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
-                    append("${viewModel.getSentencesCount(tensButtonObject.tens)}")
-                }
-                append(" sentences")
-            },
-            color = Color.Black,
-            textAlign = TextAlign.Center,
-            fontSize = FontSize.SMALL,
-            lineHeight = FontSize.SMALL,
+        AccuracyInfo(
+            progress = viewModel.getProgress(tensButtonObject.tens),
+            sentenceCount = viewModel.getSentencesCount(tensButtonObject.tens)
         )
     }
 }
