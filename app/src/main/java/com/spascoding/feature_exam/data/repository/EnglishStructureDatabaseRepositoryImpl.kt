@@ -9,29 +9,19 @@ import javax.inject.Inject
 class EnglishStructureDatabaseRepositoryImpl @Inject constructor(
     private val dao: EnglishStructureDao
 ): EnglishStructureDatabaseRepository {
-    override suspend fun updateSentence(sentence: Sentence) {
-        dao.updateSentence(sentence)
-    }
-
     override suspend fun importNotExistedSentences(sentences: List<Sentence>) {
         dao.importNotExistedSentences(sentences)
     }
 
-    override suspend fun getExamNames(tens: Tens): List<String> {
-        return dao.getExamNames(tens.int)
+    override suspend fun updateSentence(sentence: Sentence) {
+        dao.updateSentence(sentence)
     }
 
-    override suspend fun getSentences(tens: Tens, examName: String): List<Sentence> {
-        return dao.getSentences(tens.int, examName)
+    override suspend fun getSentence(tens: Tens, topic: String): Sentence {
+        return dao.getSentence(tens.int, topic)
     }
 
-    override suspend fun getSentencesCounts(): Map<Int, Int> {
-        return dao.getSentencesCounts()
-    }
-
-    override suspend fun getSentence(tens: Tens, examName: String): Sentence {
-        return dao.getSentence(tens.int, examName)
-    }
+    // TENSES
 
     override suspend fun getMistakesCounts(sentenceCount: Int): Map<Int, Int> {
         return dao.getMistakesCounts(sentenceCount)
@@ -41,25 +31,39 @@ class EnglishStructureDatabaseRepositoryImpl @Inject constructor(
         return dao.getUsedCounts(sentenceCount)
     }
 
-    override suspend fun getMistakesCountsByTensAndExamName(
+    override suspend fun getSentencesCounts(): Map<Int, Int> {
+        return dao.getSentencesCounts()
+    }
+
+    // TOPICS
+
+    override suspend fun getSentences(tens: Tens, topic: String): List<Sentence> {
+        return dao.getSentences(tens.int, topic)
+    }
+
+    override suspend fun getTopics(tens: Tens): List<String> {
+        return dao.getTopics(tens.int)
+    }
+
+    override suspend fun getUsedSentencesByTensAndTopic(tens: Tens, topic: String, sentenceCount: Int): List<Sentence> {
+        return dao.getUsedSentencesByTensAndTopic(tens.int, topic, sentenceCount)
+    }
+
+    override suspend fun getMistakesTopicsCountsByTens(
         tens: Tens,
         sentenceCount: Int
     ): Map<String, Int> {
-        return dao.getMistakesCountsByTens(tens.int, sentenceCount)
+        return dao.getMistakesTopicsCountsByTens(tens.int, sentenceCount)
     }
 
-    override suspend fun getUsedCountsByTensAndExamName(
+    override suspend fun getUsedTopicsCountsByTens(
         tens: Tens,
         sentenceCount: Int
     ): Map<String, Int> {
-        return dao.getUsedCountsByTens(tens.int, sentenceCount)
+        return dao.getUsedTopicsCountsByTens(tens.int, sentenceCount)
     }
 
-    override suspend fun getSentencesCountByExamName(tens: Tens, sentenceCount: Int): Map<String, Int> {
-        return dao.getSentencesCountsByTens(tens.int, sentenceCount)
-    }
-
-    override suspend fun getUsedSentences(tens: Tens, examName: String, sentenceCount: Int): List<Sentence> {
-        return dao.getUsedSentences(tens.int, examName, sentenceCount)
+    override suspend fun getSentencesTopicsCountsByTens(tens: Tens, sentenceCount: Int): Map<String, Int> {
+        return dao.getSentencesTopicsCountsByTens(tens.int, sentenceCount)
     }
 }

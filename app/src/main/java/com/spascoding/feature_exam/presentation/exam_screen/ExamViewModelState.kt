@@ -9,7 +9,7 @@ import com.spascoding.feature_exam.domain.model.sentence.entity.Sentence
 
 data class ExamViewModelState(
     val tens: Tens = Tens.PRESENT_SIMPLE,
-    val examName: String = "",
+    val topic: String = "",
     val sentence: String = "",
     val shuffledSentence: String = "",
     val enteredSentence: String = "",

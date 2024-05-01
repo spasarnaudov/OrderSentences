@@ -1,4 +1,4 @@
-package com.spascoding.feature_exam.presentation.exam_list
+package com.spascoding.feature_exam.presentation.topics_screen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -13,20 +13,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.spascoding.core.constants.FontSize
 import com.spascoding.core.constants.Padding
-import com.spascoding.core.presentation.Table
 import com.spascoding.feature_exam.presentation.Screen
-import com.spascoding.feature_exam.presentation.exam_list.components.ExamElement
+import com.spascoding.feature_exam.presentation.topics_screen.components.ExamElement
 
 @Composable
-fun ExamsList(
+fun TopicsScreen(
     navController: NavController,
-    viewModel: ExamListViewModel = hiltViewModel(),
+    viewModel: TopicsViewModel = hiltViewModel(),
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally
@@ -47,17 +45,17 @@ fun ExamsList(
             modifier = Modifier.fillMaxSize(),
             columns = StaggeredGridCells.Fixed(3),
         ) {
-            items(viewModel.state.value.exams) { examName ->
+            items(viewModel.state.value.topics) { topic ->
                 ExamElement(
                     onClickItem = {
 //                                viewModel.onEvent(ExamListEvent.SelectExam(examName))
-                        navController.navigate(Screen.ExamScreen.route + "?tens=${viewModel.state.value.tens.int}&examName=$examName")
+                        navController.navigate(Screen.ExamScreen.route + "?tens=${viewModel.state.value.tens.int}&topic=$topic")
                     },
                     onClickInfo = {
 //                                viewModel.onEvent(ExamListEvent.SelectExam(examName))
-                        navController.navigate(Screen.ExamDetail.route + "?tens=${viewModel.state.value.tens.int}&examName=$examName")
+                        navController.navigate(Screen.ExamDetail.route + "?tens=${viewModel.state.value.tens.int}&topic=$topic")
                     },
-                    examName = examName,
+                    examName = topic,
                 )
             }
         }

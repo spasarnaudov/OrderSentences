@@ -1,9 +1,9 @@
-package com.spascoding.feature_exam.presentation.exam_list
+package com.spascoding.feature_exam.presentation.topics_screen
 
 import com.spascoding.feature_exam.domain.enums.Tens
 
-data class ExamListViewModelState(
-    val exams: List<String> = listOf(),
+data class TopicsViewModelState(
+    val topics: List<String> = listOf(),
     val tens: Tens = Tens.PRESENT_SIMPLE,
     val mistakesCounts: Map<String, Int> = mutableMapOf(),
     val usedCounts: Map<String, Int> = mutableMapOf(),

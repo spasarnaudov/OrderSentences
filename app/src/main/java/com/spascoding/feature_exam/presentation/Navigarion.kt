@@ -8,7 +8,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.spascoding.feature_exam.domain.enums.Tens
 import com.spascoding.feature_exam.presentation.exam_detail.ExamDetails
-import com.spascoding.feature_exam.presentation.exam_list.ExamsList
+import com.spascoding.feature_exam.presentation.topics_screen.TopicsScreen
 import com.spascoding.feature_exam.presentation.exam_screen.ExamScreen
 import com.spascoding.feature_exam.presentation.tens_screen.TensScreen
 
@@ -21,14 +21,14 @@ fun Navigation(
             TensScreen(navController)
         }
         composable(route = Screen.ExamList.route) {
-            ExamsList(navController)
+            TopicsScreen(navController)
         }
         composable(
             route = Screen.ExamDetail.route +
-                    "?tens={tens}&examName={examName}",
+                    "?tens={tens}&topic={topic}",
             arguments = listOf(
                 navArgument(
-                    name = "examName"
+                    name = "topic"
                 ) {
                     type = NavType.StringType
                     defaultValue = ""
@@ -45,10 +45,10 @@ fun Navigation(
         }
         composable(
             route = Screen.ExamScreen.route +
-                    "?tens={tens}&examName={examName}",
+                    "?tens={tens}&topic={topic}",
             arguments = listOf(
                 navArgument(
-                    name = "examName"
+                    name = "topic"
                 ) {
                     type = NavType.StringType
                     defaultValue = ""

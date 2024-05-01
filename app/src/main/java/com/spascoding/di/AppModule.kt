@@ -8,20 +8,22 @@ import com.spascoding.feature_exam.data.repository.ExamPatternRepositoryImpl
 import com.spascoding.feature_exam.data.repository.SharedPreferencesRepositoryImpl
 import com.spascoding.feature_exam.domain.repository.ExamPatternRepository
 import com.spascoding.feature_exam.domain.repository.SharedPreferencesRepository
-import com.spascoding.feature_exam.domain.use_case.ExamUseCases
+import com.spascoding.feature_exam.domain.use_case.CommonUseCases
+import com.spascoding.feature_exam.domain.use_case.TensUseCases
 import com.spascoding.feature_exam.domain.use_case.GetExamPatternsUseCase
-import com.spascoding.feature_exam.domain.use_case.database.GetExamNamesUseCase
-import com.spascoding.feature_exam.domain.use_case.database.GetMistakesCountByTensAndExamNameUseCase
+import com.spascoding.feature_exam.domain.use_case.TopicsUseCases
+import com.spascoding.feature_exam.domain.use_case.database.GetTopicsUseCase
+import com.spascoding.feature_exam.domain.use_case.database.GetMistakesTopicsCountsByTensUseCase
 import com.spascoding.feature_exam.domain.use_case.database.GetSentenceUseCase
 import com.spascoding.feature_exam.domain.use_case.database.GetSentencesUseCase
 import com.spascoding.feature_exam.domain.use_case.database.GetMistakesCountsUseCase
-import com.spascoding.feature_exam.domain.use_case.database.GetSentencesCountByExamNameUseCase
+import com.spascoding.feature_exam.domain.use_case.database.GetSentencesTopicsCountsByTensUseCase
 import com.spascoding.feature_exam.domain.use_case.database.GetSentencesCountUseCase
-import com.spascoding.feature_exam.domain.use_case.database.GetUsedCountByTensAndExamNameUseCase
+import com.spascoding.feature_exam.domain.use_case.database.GetUsedTopicsCountsByTensUseCase
 import com.spascoding.feature_exam.domain.use_case.database.ImportNotExistedSentencesUseCase
 import com.spascoding.feature_exam.domain.use_case.database.UpdateSentenceUseCase
 import com.spascoding.feature_exam.domain.use_case.database.GetUsedCountUseCase
-import com.spascoding.feature_exam.domain.use_case.database.GetUsedSentenceUseCase
+import com.spascoding.feature_exam.domain.use_case.database.GetUsedSentencesByTensAndTopicUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -41,35 +43,51 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideExamUseCases(
+    fun provideCommonUseCases(
         getExamPatternsUseCase: GetExamPatternsUseCase,
-        getExamNamesUseCase: GetExamNamesUseCase,
-        getSentencesUseCase: GetSentencesUseCase,
-        getSentencesCountsUseCase: GetSentencesCountUseCase,
+        importNotExistedSentencesUseCase: ImportNotExistedSentencesUseCase,
+        updateSentenceUseCase: UpdateSentenceUseCase,
         getSentenceUseCase: GetSentenceUseCase,
+    ): CommonUseCases {
+        return CommonUseCases(
+            getExamPatternsUseCase,
+            importNotExistedSentencesUseCase,
+            updateSentenceUseCase,
+            getSentenceUseCase,
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideTensUseCases(
         getMistakesCountsUseCase: GetMistakesCountsUseCase,
         getUsedCountUseCase: GetUsedCountUseCase,
-        updateSentenceUseCase: UpdateSentenceUseCase,
-        upsertSentencesToDatabaseUseCase: ImportNotExistedSentencesUseCase,
-        getUsedSentenceUseCase: GetUsedSentenceUseCase,
-        getMistakesCountByTensAndExamNameUseCase: GetMistakesCountByTensAndExamNameUseCase,
-        getUsedCountByTensAndExamNameUseCase: GetUsedCountByTensAndExamNameUseCase,
-        getSentencesCountByExamNameUseCase: GetSentencesCountByExamNameUseCase,
-    ): ExamUseCases {
-        return ExamUseCases(
-            getExamPatternsUseCase,
-            getExamNamesUseCase,
-            getSentencesUseCase,
-            getSentencesCountsUseCase,
-            getSentenceUseCase,
+        getSentencesCountsUseCase: GetSentencesCountUseCase,
+    ): TensUseCases {
+        return TensUseCases(
             getMistakesCountsUseCase,
             getUsedCountUseCase,
-            updateSentenceUseCase,
-            upsertSentencesToDatabaseUseCase,
-            getUsedSentenceUseCase,
-            getMistakesCountByTensAndExamNameUseCase,
-            getUsedCountByTensAndExamNameUseCase,
-            getSentencesCountByExamNameUseCase,
+            getSentencesCountsUseCase,
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideTopicsUseCases(
+        getSentencesUseCase: GetSentencesUseCase,
+        getTopicsUseCase: GetTopicsUseCase,
+        getUsedSentencesByTensAndTopicUseCase: GetUsedSentencesByTensAndTopicUseCase,
+        getMistakesTopicsCountsByTensUseCase: GetMistakesTopicsCountsByTensUseCase,
+        getUsedTopicsCountsByTensUseCase: GetUsedTopicsCountsByTensUseCase,
+        getSentencesTopicsCountsByTensUseCase: GetSentencesTopicsCountsByTensUseCase,
+    ): TopicsUseCases {
+        return TopicsUseCases(
+            getSentencesUseCase,
+            getTopicsUseCase,
+            getUsedSentencesByTensAndTopicUseCase,
+            getMistakesTopicsCountsByTensUseCase,
+            getUsedTopicsCountsByTensUseCase,
+            getSentencesTopicsCountsByTensUseCase,
         )
     }
 

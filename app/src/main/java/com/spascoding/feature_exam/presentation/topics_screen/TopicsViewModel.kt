@@ -1,4 +1,4 @@
-package com.spascoding.feature_exam.presentation.exam_list
+package com.spascoding.feature_exam.presentation.topics_screen
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
@@ -6,7 +6,8 @@ import androidx.lifecycle.ViewModel
 import com.spascoding.feature_exam.data.repository.SharedPreferencesRepositoryImpl
 import com.spascoding.feature_exam.domain.MIN_COUNT_SENTECES
 import com.spascoding.feature_exam.domain.enums.Tens
-import com.spascoding.feature_exam.domain.use_case.ExamUseCases
+import com.spascoding.feature_exam.domain.use_case.CommonUseCases
+import com.spascoding.feature_exam.domain.use_case.TopicsUseCases
 import com.spascoding.feature_exam.domain.utils.SentencesGenerator
 import com.spascoding.feature_exam.presentation.tens_screen.calculateAccuracy
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,13 +15,14 @@ import kotlinx.coroutines.*
 import javax.inject.Inject
 
 @HiltViewModel
-class ExamListViewModel @Inject constructor(
-    private val examUseCases: ExamUseCases,
+class TopicsViewModel @Inject constructor(
+    private val commonUseCases: CommonUseCases,
+    private val topicsUseCases: TopicsUseCases,
     private val sharedPreferencesRepository: SharedPreferencesRepositoryImpl,
 ) : ViewModel() {
 
-    private val _state = mutableStateOf(ExamListViewModelState())
-    val state: State<ExamListViewModelState> = _state
+    private val _state = mutableStateOf(TopicsViewModelState())
+    val state: State<TopicsViewModelState> = _state
 
     init {
         _state.value = state.value.copy(
@@ -33,9 +35,9 @@ class ExamListViewModel @Inject constructor(
         val tens = state.value.tens
         GlobalScope.launch {
             withContext(Dispatchers.IO) {
-                val mistakesCounts = examUseCases.getMistakesCountByTensAndExamNameUseCase.invoke(tens, MIN_COUNT_SENTECES)
-                val usedCounts = examUseCases.getUsedCountByTensAndExamNameUseCase.invoke(tens, MIN_COUNT_SENTECES)
-                val sentencesCounts = examUseCases.getSentencesCountByExamNameUseCase.invoke(tens, MIN_COUNT_SENTECES)
+                val mistakesCounts = topicsUseCases.getMistakesTopicsCountsByTensUseCase.invoke(tens, MIN_COUNT_SENTECES)
+                val usedCounts = topicsUseCases.getUsedTopicsCountsByTensUseCase.invoke(tens, MIN_COUNT_SENTECES)
+                val sentencesCounts = topicsUseCases.getSentencesTopicsCountsByTensUseCase.invoke(tens, MIN_COUNT_SENTECES)
                 withContext(Dispatchers.Main) {
                     _state.value = state.value.copy(
                         mistakesCounts = mistakesCounts,
@@ -47,39 +49,29 @@ class ExamListViewModel @Inject constructor(
         }
     }
 
-    fun onEvent(event: ExamListEvent) {
+    fun onEvent(event: TopicsScreenEvent) {
         when (event) {
-            is ExamListEvent.SelectExam -> {
+            is TopicsScreenEvent.SelectTopic -> {
 
             }
-            is ExamListEvent.SelectExamInfo -> {
+            is TopicsScreenEvent.SelectTopicInfo -> {
 
-            }
-            is ExamListEvent.SelectTens -> {
-                sharedPreferencesRepository.setSelectedTens(event.tens)
-                _state.value = state.value.copy(
-                    tens = event.tens,
-                )
-
-                saveSentencesToDatabase(state.value.tens).also {
-                    getExams(state.value.tens)
-                }
             }
         }
     }
 
     private fun saveSentencesToDatabase(tens: Tens) {
         GlobalScope.launch {
-            var examNames: List<String>
+            var topics: List<String>
             withContext(Dispatchers.IO) {
-                val examPatterns = examUseCases.getExamPatternsUseCase.invoke()
+                val examPatterns = commonUseCases.getExamPatternsUseCase.invoke()
                 val sentences = SentencesGenerator(tens, examPatterns).generate()
-                examUseCases.importNotExistedSentencesUseCase.invoke(sentences)
-                examNames = examUseCases.getExamNamesUseCase.invoke(tens)
+                commonUseCases.importNotExistedSentencesUseCase.invoke(sentences)
+                topics = topicsUseCases.getTopicsUseCase.invoke(tens)
             }.also {
                 withContext(Dispatchers.Main) {
                     _state.value = state.value.copy(
-                        exams = examNames,
+                        topics = topics,
                     )
                 }
             }
@@ -89,29 +81,29 @@ class ExamListViewModel @Inject constructor(
     private fun getExams(tens: Tens) {
         GlobalScope.launch {
             withContext(Dispatchers.IO) {
-                val examNames = examUseCases.getExamNamesUseCase.invoke(tens)
+                val examNames = topicsUseCases.getTopicsUseCase.invoke(tens)
                 withContext(Dispatchers.Main) {
                     _state.value = state.value.copy(
-                        exams = examNames,
+                        topics = examNames,
                     )
                 }
             }
         }
     }
 
-    fun getProgress(examName: String): Int {
-        if (state.value.mistakesCounts.containsKey(examName)
-            && state.value.usedCounts.containsKey(examName)) {
-            val mistakesCounts = state.value.mistakesCounts[examName]!!
-            val usedCount = state.value.usedCounts[examName]!!
+    fun getProgress(topic: String): Int {
+        if (state.value.mistakesCounts.containsKey(topic)
+            && state.value.usedCounts.containsKey(topic)) {
+            val mistakesCounts = state.value.mistakesCounts[topic]!!
+            val usedCount = state.value.usedCounts[topic]!!
             return calculateAccuracy(mistakesCounts, usedCount)
         }
         return 0
     }
 
-    fun getLastSentencesCount(examName: String): Int {
-        if (state.value.sentencesCounts.containsKey(examName)) {
-            val sentencesCounts = state.value.sentencesCounts[examName]!!
+    fun getLastSentencesCount(topic: String): Int {
+        if (state.value.sentencesCounts.containsKey(topic)) {
+            val sentencesCounts = state.value.sentencesCounts[topic]!!
             if (sentencesCounts > MIN_COUNT_SENTECES) {
                 return MIN_COUNT_SENTECES
             }
@@ -120,9 +112,9 @@ class ExamListViewModel @Inject constructor(
         return 0
     }
 
-    fun getSentencesCount(examName: String): Int {
-        if (state.value.sentencesCounts.containsKey(examName)) {
-            return state.value.sentencesCounts[examName]!!
+    fun getSentencesCount(topic: String): Int {
+        if (state.value.sentencesCounts.containsKey(topic)) {
+            return state.value.sentencesCounts[topic]!!
         }
         return 0
     }

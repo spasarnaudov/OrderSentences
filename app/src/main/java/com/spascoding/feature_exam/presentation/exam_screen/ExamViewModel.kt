@@ -10,7 +10,8 @@ import androidx.lifecycle.ViewModel
 import com.spascoding.feature_exam.domain.MIN_COUNT_SENTECES
 import com.spascoding.feature_exam.domain.enums.Tens
 import com.spascoding.feature_exam.domain.model.sentence.entity.Sentence
-import com.spascoding.feature_exam.domain.use_case.ExamUseCases
+import com.spascoding.feature_exam.domain.use_case.CommonUseCases
+import com.spascoding.feature_exam.domain.use_case.TopicsUseCases
 import com.spascoding.feature_exam.presentation.utils.scratchWords
 import com.spascoding.feature_exam.presentation.utils.shuffleSentence
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -23,7 +24,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ExamViewModel @Inject constructor(
-    private val examUseCases: ExamUseCases,
+    private val commonUseCases: CommonUseCases,
+    private val topicsUseCases: TopicsUseCases,
     savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
 
@@ -32,15 +34,15 @@ class ExamViewModel @Inject constructor(
 
     init {
         savedStateHandle.get<Int>("tens")?.also { tens ->
-            savedStateHandle.get<String>("examName")?.also { examName ->
+            savedStateHandle.get<String>("topic")?.also { topic ->
                 _state.value = state.value.copy(
                     tens = Tens.fromInt(tens),
-                    examName = examName
+                    topic = topic
                 )
                 GlobalScope.launch {
                     withContext(Dispatchers.IO) {
-                        val newSentence = examUseCases.getSentenceUseCase.invoke(Tens.fromInt(tens), examName)
-                        val history = examUseCases.getUsedSentenceUseCase.invoke(Tens.fromInt(tens), examName, MIN_COUNT_SENTECES)
+                        val newSentence = commonUseCases.getSentenceUseCase.invoke(Tens.fromInt(tens), topic)
+                        val history = topicsUseCases.getUsedSentencesByTensAndTopicUseCase.invoke(Tens.fromInt(tens), topic, MIN_COUNT_SENTECES)
                         withContext(Dispatchers.Main) {
                             _state.value = state.value.copy(
                                 sentences = listOf(newSentence),
@@ -68,13 +70,13 @@ class ExamViewModel @Inject constructor(
                 val originSentence = state.value.sentences[0]
 
                 val tens = state.value.tens
-                val examName = state.value.examName
+                val topic = state.value.topic
 
                 GlobalScope.launch {
                     withContext(Dispatchers.IO) {
                         updateCurrentSentence(originSentence, event.answerText)
-                        val newSentence = examUseCases.getSentenceUseCase.invoke(tens, examName)
-                        val history = examUseCases.getUsedSentenceUseCase.invoke(tens, examName, MIN_COUNT_SENTECES)
+                        val newSentence = commonUseCases.getSentenceUseCase.invoke(tens, topic)
+                        val history = topicsUseCases.getUsedSentencesByTensAndTopicUseCase.invoke(tens, topic, MIN_COUNT_SENTECES)
                         withContext(Dispatchers.Main) {
                             _state.value = state.value.copy(
                                 sentences = listOf(newSentence),
@@ -102,7 +104,7 @@ class ExamViewModel @Inject constructor(
             userValue = answerText,
             userValueTime = Date().time
         )
-        examUseCases.updateSentenceUseCase.invoke(sentence)
+        commonUseCases.updateSentenceUseCase.invoke(sentence)
     }
 
     fun getShuffledText(): AnnotatedString {

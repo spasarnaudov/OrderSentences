@@ -1,4 +1,4 @@
-package com.spascoding.feature_exam.presentation.exam_list.components
+package com.spascoding.feature_exam.presentation.topics_screen.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -14,7 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.spascoding.core.constants.Padding
-import com.spascoding.feature_exam.presentation.exam_list.ExamListViewModel
+import com.spascoding.feature_exam.presentation.topics_screen.TopicsViewModel
 import com.spascoding.feature_exam.presentation.components.AccuracyInfo
 
 @Composable
@@ -22,7 +22,7 @@ fun ExamElement(
     onClickItem: () -> Unit,
     onClickInfo: () -> Unit,
     examName: String,
-    viewModel: ExamListViewModel = hiltViewModel(),
+    viewModel: TopicsViewModel = hiltViewModel(),
 ) {
     Column(modifier = Modifier
         .fillMaxWidth()

@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.spascoding.feature_exam.data.repository.SharedPreferencesRepositoryImpl
 import com.spascoding.feature_exam.domain.MIN_COUNT_SENTECES
 import com.spascoding.feature_exam.domain.enums.Tens
-import com.spascoding.feature_exam.domain.use_case.ExamUseCases
+import com.spascoding.feature_exam.domain.use_case.TensUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TensScreenViewModel @Inject constructor(
-    private val examUseCases: ExamUseCases,
+    private val examUseCases: TensUseCases,
     private val sharedPreferencesRepository: SharedPreferencesRepositoryImpl,
 ) : ViewModel() {
 

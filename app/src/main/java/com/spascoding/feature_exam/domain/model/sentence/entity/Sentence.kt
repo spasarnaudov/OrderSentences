@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 data class Sentence(
     @PrimaryKey val value: String,
     val tens: Int,
-    val examName: String,
+    val topic: String,
     val userValue: String = "",
     val userValueTime: Long = 0,
     val usedCount: Int = 0,

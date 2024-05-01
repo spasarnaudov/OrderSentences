@@ -4,7 +4,7 @@ import com.spascoding.feature_exam.data.repository.EnglishStructureDatabaseRepos
 import com.spascoding.feature_exam.domain.enums.Tens
 import javax.inject.Inject
 
-class GetMistakesCountByTensAndExamNameUseCase @Inject constructor(
+class GetMistakesTopicsCountsByTensUseCase @Inject constructor(
     private val repository: EnglishStructureDatabaseRepositoryImpl
 ) {
 
@@ -12,7 +12,7 @@ class GetMistakesCountByTensAndExamNameUseCase @Inject constructor(
         tens: Tens,
         sentenceCount: Int
     ): Map<String, Int> {
-        return repository.getMistakesCountsByTensAndExamName(tens, sentenceCount)
+        return repository.getMistakesTopicsCountsByTens(tens, sentenceCount)
     }
 
 }

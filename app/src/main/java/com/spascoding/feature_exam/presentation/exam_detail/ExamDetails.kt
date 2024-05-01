@@ -21,7 +21,7 @@ import com.spascoding.feature_exam.domain.model.sentence.entity.Sentence
 
 @Composable
 fun ExamDetails(
-    viewModel: ExamDetailViewModel = hiltViewModel()
+    viewModel: TopicDetailViewModel = hiltViewModel()
 ) {
     Column {
         Text(

@@ -6,7 +6,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.spascoding.feature_exam.data.repository.SharedPreferencesRepositoryImpl
 import com.spascoding.feature_exam.domain.enums.Tens
-import com.spascoding.feature_exam.domain.use_case.ExamUseCases
+import com.spascoding.feature_exam.domain.use_case.TopicsUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -15,8 +15,8 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
-class ExamDetailViewModel @Inject constructor(
-    private val examUseCases: ExamUseCases,
+class TopicDetailViewModel @Inject constructor(
+    private val topicsUseCases: TopicsUseCases,
     sharedPreferencesRepositoryImpl: SharedPreferencesRepositoryImpl,
     savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
@@ -26,14 +26,14 @@ class ExamDetailViewModel @Inject constructor(
 
     init {
         savedStateHandle.get<Int>("tens")?.also { tens ->
-            savedStateHandle.get<String>("examName")?.also { examName ->
+            savedStateHandle.get<String>("topic")?.also { topic ->
                 GlobalScope.launch {
                     withContext(Dispatchers.IO) {
-                        examUseCases.getSentencesUseCase.invoke(Tens.fromInt(tens), examName).also { sentences ->
+                        topicsUseCases.getSentencesUseCase.invoke(Tens.fromInt(tens), topic).also { sentences ->
                             withContext(Dispatchers.Main) {
                                 _state.value = state.value.copy(
                                     tens = sharedPreferencesRepositoryImpl.getSelectedTens(),
-                                    examName = examName,
+                                    examName = topic,
                                     sentences = sentences,
                                 )
                             }
