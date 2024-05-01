@@ -38,7 +38,7 @@ fun TensScreen(
     val cellsInfo = listOf(
         TensButtonObject(Tens.PAST_SIMPLE, Colors.Blue, "simple", "worked"),
         TensButtonObject(Tens.PRESENT_SIMPLE, Colors.Yellow, "simple", "work"),
-        TensButtonObject(Tens.FUTURE_PERFECT, Colors.Red, "simple", "will work"),
+        TensButtonObject(Tens.FUTURE_SIMPLE, Colors.Red, "simple", "will work"),
 
         TensButtonObject(Tens.PAST_PERFECT, Colors.Blue, "perfect", "had worked"),
         TensButtonObject(Tens.PRESENT_PERFECT, Colors.Yellow, "perfect", "have worked"),

@@ -8,6 +8,7 @@ import com.spascoding.feature_exam.domain.MIN_COUNT_SENTECES
 import com.spascoding.feature_exam.domain.enums.Tens
 import com.spascoding.feature_exam.domain.model.getElementByTens
 import com.spascoding.feature_exam.domain.use_case.TensUseCases
+import com.spascoding.feature_exam.domain.utils.TensLocker
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -50,11 +51,7 @@ class TensScreenViewModel @Inject constructor(
     }
 
     fun getProgress(tens: Tens): Int {
-        val tensAccuracyInfo = state.value.tensesAccuracyInfo.getElementByTens(tens)
-        if (tensAccuracyInfo != null) {
-            return calculateAccuracy(tensAccuracyInfo.mistakesCount, tensAccuracyInfo.usedCount)
-        }
-        return 0
+        return TensLocker.getProgress(tens, state.value.tensesAccuracyInfo)
     }
 
     fun getLastSentencesCount(tens: Tens): Int {
@@ -75,6 +72,10 @@ class TensScreenViewModel @Inject constructor(
             return tensAccuracyInfo.sentencesCount
         }
         return 0
+    }
+
+    fun isTensUnlocked(tens: Tens): Boolean {
+        return TensLocker.isTensUnlocked(tens, state.value.tensesAccuracyInfo)
     }
 
 }

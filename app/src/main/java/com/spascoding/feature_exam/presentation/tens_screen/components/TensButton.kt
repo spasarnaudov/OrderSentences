@@ -1,5 +1,6 @@
 package com.spascoding.feature_exam.presentation.tens_screen.components
 
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
@@ -7,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -16,8 +18,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.spascoding.core.constants.FontSize
 import com.spascoding.core.constants.Padding
 import com.spascoding.feature_exam.domain.enums.Tens
 import com.spascoding.feature_exam.presentation.Screen
@@ -42,7 +46,7 @@ fun TensButton(
     Column(
         modifier = modifier
             .clickable(
-                enabled = true,
+                enabled = viewModel.isTensUnlocked(tensButtonObject.tens),
                 onClick = {
                     viewModel.onEvent(TensScreenEventEvent.SelectTens(tens = tensButtonObject.tens))
                     navController.navigate(Screen.ExamList.route)
@@ -74,11 +78,29 @@ fun TensButton(
             color = Color.Black,
             textAlign = TextAlign.Center,
         )
-        AccuracyInfo(
-            progress = viewModel.getProgress(tensButtonObject.tens),
-            lastSentenceCount = viewModel.getLastSentencesCount(tensButtonObject.tens),
-            sentenceCount = viewModel.getSentencesCount(tensButtonObject.tens),
-            textColor = Color.Black
-        )
+        if (viewModel.isTensUnlocked(tensButtonObject.tens)) {
+            AccuracyInfo(
+                progress = viewModel.getProgress(tensButtonObject.tens),
+                lastSentenceCount = viewModel.getLastSentencesCount(tensButtonObject.tens),
+                sentenceCount = viewModel.getSentencesCount(tensButtonObject.tens),
+                textColor = Color.Black
+            )
+        } else {
+            Text(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(
+                        bottom = Padding.MEDIUM,
+                        start = Padding.SMALL,
+                        end = Padding.SMALL,
+                    )
+                    .border(1.dp, Color.Black,shape = RoundedCornerShape(8.dp)),
+                text = "Locked",
+                color = Color.Black,
+                fontWeight = FontWeight.Bold,
+                fontSize = FontSize.LARGE,
+                textAlign = TextAlign.Center,
+            )
+        }
     }
 }

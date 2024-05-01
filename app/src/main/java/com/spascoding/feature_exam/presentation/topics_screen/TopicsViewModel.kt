@@ -9,7 +9,7 @@ import com.spascoding.feature_exam.domain.enums.Tens
 import com.spascoding.feature_exam.domain.use_case.CommonUseCases
 import com.spascoding.feature_exam.domain.use_case.TopicsUseCases
 import com.spascoding.feature_exam.domain.utils.SentencesGenerator
-import com.spascoding.feature_exam.presentation.tens_screen.calculateAccuracy
+import com.spascoding.feature_exam.domain.utils.TensLocker
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
 import javax.inject.Inject
@@ -96,7 +96,7 @@ class TopicsViewModel @Inject constructor(
             && state.value.usedCounts.containsKey(topic)) {
             val mistakesCounts = state.value.mistakesCounts[topic]!!
             val usedCount = state.value.usedCounts[topic]!!
-            return calculateAccuracy(mistakesCounts, usedCount)
+            return TensLocker.calculateAccuracy(mistakesCounts, usedCount)
         }
         return 0
     }
