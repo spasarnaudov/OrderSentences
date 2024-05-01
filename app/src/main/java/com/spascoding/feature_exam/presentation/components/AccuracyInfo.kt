@@ -18,6 +18,7 @@ import com.spascoding.core.constants.Padding
 @Composable
 fun AccuracyInfo(
     progress: Int,
+    lastSentenceCount: Int,
     sentenceCount: Int,
 ) {
     Column {
@@ -43,10 +44,15 @@ fun AccuracyInfo(
                     end = Padding.SMALL,
                 ),
             text = buildAnnotatedString {
-                append("accuracy of\n")
-                append("last ")
+                append("accuracy of last\n")
                 withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
-                    append("$sentenceCount")
+                    append("$lastSentenceCount")
+                }
+                if (lastSentenceCount < sentenceCount) {
+                    append(" from ")
+                    withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
+                        append("$sentenceCount")
+                    }
                 }
                 append(" sentences")
             },

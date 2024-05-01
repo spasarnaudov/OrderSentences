@@ -62,13 +62,20 @@ class TensScreenViewModel @Inject constructor(
         return 0
     }
 
-    fun getSentencesCount(tens: Tens): Int {
+    fun getLastSentencesCount(tens: Tens): Int {
         if (state.value.sentencesCounts.containsKey(tens.int)) {
             val sentencesCounts = state.value.sentencesCounts[tens.int]!!
             if (sentencesCounts > MIN_COUNT_SENTECES) {
                 return MIN_COUNT_SENTECES
             }
             return sentencesCounts
+        }
+        return 0
+    }
+
+    fun getSentencesCount(tens: Tens): Int {
+        if (state.value.sentencesCounts.containsKey(tens.int)) {
+            return state.value.sentencesCounts[tens.int]!!
         }
         return 0
     }

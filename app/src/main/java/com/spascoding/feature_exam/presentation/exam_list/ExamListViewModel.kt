@@ -109,13 +109,20 @@ class ExamListViewModel @Inject constructor(
         return 0
     }
 
-    fun getSentencesCount(examName: String): Int {
+    fun getLastSentencesCount(examName: String): Int {
         if (state.value.sentencesCounts.containsKey(examName)) {
             val sentencesCounts = state.value.sentencesCounts[examName]!!
             if (sentencesCounts > MIN_COUNT_SENTECES) {
                 return MIN_COUNT_SENTECES
             }
             return sentencesCounts
+        }
+        return 0
+    }
+
+    fun getSentencesCount(examName: String): Int {
+        if (state.value.sentencesCounts.containsKey(examName)) {
+            return state.value.sentencesCounts[examName]!!
         }
         return 0
     }

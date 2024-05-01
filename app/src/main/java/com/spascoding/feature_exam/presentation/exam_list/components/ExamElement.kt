@@ -42,6 +42,7 @@ fun ExamElement(
         }
         AccuracyInfo(
             progress = viewModel.getProgress(examName),
+            lastSentenceCount = viewModel.getLastSentencesCount(examName),
             sentenceCount = viewModel.getSentencesCount(examName),
         )
     }

@@ -70,7 +70,8 @@ fun TensButton(
         )
         AccuracyInfo(
             progress = viewModel.getProgress(tensButtonObject.tens),
-            sentenceCount = viewModel.getSentencesCount(tensButtonObject.tens)
+            lastSentenceCount = viewModel.getLastSentencesCount(tensButtonObject.tens),
+            sentenceCount = viewModel.getSentencesCount(tensButtonObject.tens),
         )
     }
 }
