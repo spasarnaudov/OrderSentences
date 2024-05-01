@@ -6,6 +6,8 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Update
+import com.spascoding.feature_exam.domain.enums.Tens
+import com.spascoding.feature_exam.domain.model.TensAccuracyInfo
 import com.spascoding.feature_exam.domain.model.sentence.entity.Sentence
 
 @Dao
@@ -35,39 +37,33 @@ interface EnglishStructureDao {
 
     @Query("SELECT SUM(mistakeCount) FROM sentences WHERE tens=:tens ORDER BY userValueTime DESC LIMIT :sentenceCount")
     suspend fun getMistakesCountByTens(tens: Int, sentenceCount: Int): Int
-    @Transaction
-    suspend fun getMistakesCounts(sentenceCount: Int): Map<Int, Int> {
-        val mistakesCounts = mutableMapOf<Int, Int>()
-        val tenses = getTenses()
-        for (tens in tenses) {
-            mistakesCounts[tens] =
-                getMistakesCountByTens(tens, sentenceCount)
-        }
-        return mistakesCounts
-    }
 
     @Query("SELECT SUM(usedCount) FROM sentences WHERE tens=:tens ORDER BY userValueTime DESC LIMIT :sentenceCount")
     suspend fun getUsedCountByTens(tens: Int, sentenceCount: Int): Int
-    @Transaction
-    suspend fun getUsedCounts(sentenceCount: Int): Map<Int, Int> {
-        val usedCounts = mutableMapOf<Int, Int>()
-        val tenses = getTenses()
-        for (tens in tenses) {
-            usedCounts[tens] = getUsedCountByTens(tens, sentenceCount)
-        }
-        return usedCounts;
-    }
 
     @Query("SELECT COUNT(usedCount) FROM sentences WHERE tens=:tens AND usedCount > 0")
     suspend fun getSentencesCountByTens(tens: Int): Int
+
     @Transaction
-    suspend fun getSentencesCounts(): Map<Int, Int> {
-        val sentencesCounts = mutableMapOf<Int, Int>()
+    suspend fun getTensesAccuracyInfo(sentenceCount: Int): List<TensAccuracyInfo> {
+        val data = mutableListOf<TensAccuracyInfo>()
+
         val tenses = getTenses()
         for (tens in tenses) {
-            sentencesCounts[tens] = getSentencesCountByTens(tens)
+            val mistakesCount = getMistakesCountByTens(tens, sentenceCount)
+            val usedCountByTens = getUsedCountByTens(tens, sentenceCount)
+            val sentencesCount = getSentencesCountByTens(tens)
+            data.add(
+                TensAccuracyInfo(
+                    tens = Tens.fromInt(tens),
+                    mistakesCount = mistakesCount,
+                    usedCount = usedCountByTens,
+                    sentencesCount = sentencesCount,
+                )
+            )
         }
-        return sentencesCounts
+
+        return data
     }
 
     // TOPICS QUERIES

@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.spascoding.feature_exam.data.repository.SharedPreferencesRepositoryImpl
 import com.spascoding.feature_exam.domain.MIN_COUNT_SENTECES
 import com.spascoding.feature_exam.domain.enums.Tens
+import com.spascoding.feature_exam.domain.model.getElementByTens
 import com.spascoding.feature_exam.domain.use_case.TensUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -26,14 +27,10 @@ class TensScreenViewModel @Inject constructor(
     init {
         GlobalScope.launch {
             withContext(Dispatchers.IO) {
-                val mistakesCounts = examUseCases.getMistakesCountsUseCase.invoke(MIN_COUNT_SENTECES)
-                val usedCountUseCase = examUseCases.getUsedCountUseCase.invoke(MIN_COUNT_SENTECES)
-                val sentencesCounts = examUseCases.getSentencesCountsUseCase.invoke()
+                val tensesAccuracyInfo = examUseCases.getTensesAccuracyInfoUseCase.invoke(MIN_COUNT_SENTECES)
                 withContext(Dispatchers.Main) {
                     _state.value = state.value.copy(
-                        mistakesCounts = mistakesCounts,
-                        usedCountUseCase = usedCountUseCase,
-                        sentencesCounts = sentencesCounts,
+                        tensesAccuracyInfo = tensesAccuracyInfo,
                         tens = sharedPreferencesRepository.getSelectedTens(),
                     )
                 }
@@ -53,18 +50,17 @@ class TensScreenViewModel @Inject constructor(
     }
 
     fun getProgress(tens: Tens): Int {
-        if (state.value.mistakesCounts.containsKey(tens.int)
-            && state.value.usedCountUseCase.containsKey(tens.int)) {
-            val mistakesCounts = state.value.mistakesCounts[tens.int]!!
-            val usedCount = state.value.usedCountUseCase[tens.int]!!
-            return calculateAccuracy(mistakesCounts, usedCount)
+        val tensAccuracyInfo = state.value.tensesAccuracyInfo.getElementByTens(tens)
+        if (tensAccuracyInfo != null) {
+            return calculateAccuracy(tensAccuracyInfo.mistakesCount, tensAccuracyInfo.usedCount)
         }
         return 0
     }
 
     fun getLastSentencesCount(tens: Tens): Int {
-        if (state.value.sentencesCounts.containsKey(tens.int)) {
-            val sentencesCounts = state.value.sentencesCounts[tens.int]!!
+        val tensAccuracyInfo = state.value.tensesAccuracyInfo.getElementByTens(tens)
+        if (tensAccuracyInfo != null) {
+            val sentencesCounts = tensAccuracyInfo.sentencesCount
             if (sentencesCounts > MIN_COUNT_SENTECES) {
                 return MIN_COUNT_SENTECES
             }
@@ -74,8 +70,9 @@ class TensScreenViewModel @Inject constructor(
     }
 
     fun getSentencesCount(tens: Tens): Int {
-        if (state.value.sentencesCounts.containsKey(tens.int)) {
-            return state.value.sentencesCounts[tens.int]!!
+        val tensAccuracyInfo = state.value.tensesAccuracyInfo.getElementByTens(tens)
+        if (tensAccuracyInfo != null) {
+            return tensAccuracyInfo.sentencesCount
         }
         return 0
     }

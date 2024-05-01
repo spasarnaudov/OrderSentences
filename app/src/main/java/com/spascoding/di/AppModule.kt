@@ -16,13 +16,11 @@ import com.spascoding.feature_exam.domain.use_case.database.GetTopicsUseCase
 import com.spascoding.feature_exam.domain.use_case.database.GetMistakesTopicsCountsByTensUseCase
 import com.spascoding.feature_exam.domain.use_case.database.GetSentenceUseCase
 import com.spascoding.feature_exam.domain.use_case.database.GetSentencesUseCase
-import com.spascoding.feature_exam.domain.use_case.database.GetMistakesCountsUseCase
 import com.spascoding.feature_exam.domain.use_case.database.GetSentencesTopicsCountsByTensUseCase
-import com.spascoding.feature_exam.domain.use_case.database.GetSentencesCountUseCase
+import com.spascoding.feature_exam.domain.use_case.database.GetTensesAccuracyInfoUseCase
 import com.spascoding.feature_exam.domain.use_case.database.GetUsedTopicsCountsByTensUseCase
 import com.spascoding.feature_exam.domain.use_case.database.ImportNotExistedSentencesUseCase
 import com.spascoding.feature_exam.domain.use_case.database.UpdateSentenceUseCase
-import com.spascoding.feature_exam.domain.use_case.database.GetUsedCountUseCase
 import com.spascoding.feature_exam.domain.use_case.database.GetUsedSentencesByTensAndTopicUseCase
 import dagger.Module
 import dagger.Provides
@@ -60,14 +58,10 @@ object AppModule {
     @Provides
     @Singleton
     fun provideTensUseCases(
-        getMistakesCountsUseCase: GetMistakesCountsUseCase,
-        getUsedCountUseCase: GetUsedCountUseCase,
-        getSentencesCountsUseCase: GetSentencesCountUseCase,
+        getTensesAccuracyInfoUseCase: GetTensesAccuracyInfoUseCase,
     ): TensUseCases {
         return TensUseCases(
-            getMistakesCountsUseCase,
-            getUsedCountUseCase,
-            getSentencesCountsUseCase,
+            getTensesAccuracyInfoUseCase,
         )
     }
 

@@ -2,6 +2,7 @@ package com.spascoding.feature_exam.data.repository
 
 import com.spascoding.feature_exam.data.local.EnglishStructureDao
 import com.spascoding.feature_exam.domain.enums.Tens
+import com.spascoding.feature_exam.domain.model.TensAccuracyInfo
 import com.spascoding.feature_exam.domain.model.sentence.entity.Sentence
 import com.spascoding.feature_exam.domain.repository.EnglishStructureDatabaseRepository
 import javax.inject.Inject
@@ -23,16 +24,8 @@ class EnglishStructureDatabaseRepositoryImpl @Inject constructor(
 
     // TENSES
 
-    override suspend fun getMistakesCounts(sentenceCount: Int): Map<Int, Int> {
-        return dao.getMistakesCounts(sentenceCount)
-    }
-
-    override suspend fun getUsedCounts(sentenceCount: Int): Map<Int, Int> {
-        return dao.getUsedCounts(sentenceCount)
-    }
-
-    override suspend fun getSentencesCounts(): Map<Int, Int> {
-        return dao.getSentencesCounts()
+    override suspend fun getTensesAccuracyInfo(sentenceCount: Int): List<TensAccuracyInfo> {
+        return dao.getTensesAccuracyInfo(sentenceCount)
     }
 
     // TOPICS

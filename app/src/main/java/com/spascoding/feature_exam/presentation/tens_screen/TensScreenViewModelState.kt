@@ -1,10 +1,9 @@
 package com.spascoding.feature_exam.presentation.tens_screen
 
 import com.spascoding.feature_exam.domain.enums.Tens
+import com.spascoding.feature_exam.domain.model.TensAccuracyInfo
 
 data class TensScreenViewModelState(
     val tens: Tens = Tens.PRESENT_SIMPLE,
-    val mistakesCounts: Map<Int, Int> = mutableMapOf(),
-    val usedCountUseCase: Map<Int, Int> = mutableMapOf(),
-    val sentencesCounts: Map<Int, Int> = mutableMapOf(),
+    val tensesAccuracyInfo: List<TensAccuracyInfo> = listOf(),
 )
