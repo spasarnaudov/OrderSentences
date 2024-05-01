@@ -3,6 +3,7 @@ package com.spascoding.feature_exam.presentation.components
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -20,6 +21,7 @@ fun AccuracyInfo(
     progress: Int,
     lastSentenceCount: Int,
     sentenceCount: Int,
+    textColor: Color = MaterialTheme.colorScheme.onBackground,
 ) {
     Column {
         Text(
@@ -30,7 +32,7 @@ fun AccuracyInfo(
                     end = Padding.SMALL,
                 ),
             text = "${progress}%",
-            color = Color.Black,
+            color = textColor,
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Center,
             fontSize = FontSize.LARGE,
@@ -56,7 +58,7 @@ fun AccuracyInfo(
                 }
                 append(" sentences")
             },
-            color = Color.Black,
+            color = textColor,
             textAlign = TextAlign.Center,
             fontSize = FontSize.SMALL,
             lineHeight = FontSize.SMALL,

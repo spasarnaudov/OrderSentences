@@ -63,6 +63,7 @@ fun TensScreen(
                         .padding(vertical = Padding.SMALL),
                     text = title.text,
                     textAlign = TextAlign.Center,
+                    color = Color.Black,
                     fontSize = FontSize.LARGE,
                     fontWeight = FontWeight.Bold,
                 )

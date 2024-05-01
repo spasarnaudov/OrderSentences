@@ -19,7 +19,7 @@ import androidx.navigation.NavController
 import com.spascoding.core.constants.FontSize
 import com.spascoding.core.constants.Padding
 import com.spascoding.feature_exam.presentation.Screen
-import com.spascoding.feature_exam.presentation.topics_screen.components.ExamElement
+import com.spascoding.feature_exam.presentation.topics_screen.components.TopicElement
 
 @Composable
 fun TopicsScreen(
@@ -46,7 +46,7 @@ fun TopicsScreen(
             columns = StaggeredGridCells.Fixed(3),
         ) {
             items(viewModel.state.value.topics) { topic ->
-                ExamElement(
+                TopicElement(
                     onClickItem = {
 //                                viewModel.onEvent(ExamListEvent.SelectExam(examName))
                         navController.navigate(Screen.ExamScreen.route + "?tens=${viewModel.state.value.tens.int}&topic=$topic")
@@ -55,7 +55,7 @@ fun TopicsScreen(
 //                                viewModel.onEvent(ExamListEvent.SelectExam(examName))
                         navController.navigate(Screen.ExamDetail.route + "?tens=${viewModel.state.value.tens.int}&topic=$topic")
                     },
-                    examName = topic,
+                    topic = topic,
                 )
             }
         }
