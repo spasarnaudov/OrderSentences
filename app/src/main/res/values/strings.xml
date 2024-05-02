@@ -1,7 +1,7 @@
 <resources>
 	<string name="app_name">English Structure</string>
 
-	<!--	feature_exam	-->
+	<!--	exam_screen	-->
 	<string name="put_the_sentence_in_the_correct_order">Put the sentence in the correct order</string>
 	<string name="check">Check</string>
 
@@ -10,5 +10,8 @@
 	<string name="use_mistake_ratio_pattern_description">Use count / mistake count</string>
 	<string name="use_mistake_ratio_pattern">%1$s / %2$s</string>
 	<string name="tenses">Tenses</string>
+
+	<!--	tens screen	-->
+	<string name="locked">Locked</string>
 
 </resources>

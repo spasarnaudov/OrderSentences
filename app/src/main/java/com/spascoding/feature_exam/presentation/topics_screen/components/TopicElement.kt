@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.spascoding.core.constants.FontSize
 import com.spascoding.core.constants.Padding
+import com.spascoding.core.constants.RoundCorner
 import com.spascoding.feature_exam.presentation.topics_screen.TopicsViewModel
 import com.spascoding.feature_exam.presentation.components.AccuracyInfo
 import com.spascoding.feature_exam.presentation.utils.upperFirstLetter
@@ -35,8 +36,8 @@ fun TopicElement(
     Column(modifier = Modifier
         .fillMaxWidth()
         .padding(Padding.SMALL)
-        .background(MaterialTheme.colorScheme.background, shape = RoundedCornerShape(8.dp))
-        .border(1.dp, MaterialTheme.colorScheme.onBackground,shape = RoundedCornerShape(8.dp))
+        .background(MaterialTheme.colorScheme.background, RoundedCornerShape(RoundCorner.SMALL))
+        .border(1.dp, MaterialTheme.colorScheme.onBackground, RoundedCornerShape(RoundCorner.SMALL))
         .clickable(
             enabled = true,
             onClick = {

@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material3.Button
@@ -134,7 +134,7 @@ fun ExamScreenRow(sentence: Sentence) {
             Image(
                 imageVector = Icons.Rounded.Close,
                 modifier = Modifier.padding(Padding.SMALL)
-                    .background(color = Color.Red, shape = RoundedCornerShape(50)),
+                    .background(Color.Red, CircleShape),
                 contentDescription = "",
                 colorFilter = ColorFilter.tint(Color.White),
             )

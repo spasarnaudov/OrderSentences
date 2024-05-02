@@ -1,5 +1,6 @@
 package com.spascoding.feature_exam.presentation.tens_screen.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -16,17 +17,17 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
 import com.spascoding.core.constants.FontSize
 import com.spascoding.core.constants.Padding
+import com.spascoding.core.constants.RoundCorner
+import com.spascoding.feature_exam.R
 import com.spascoding.feature_exam.domain.enums.Tens
-import com.spascoding.feature_exam.presentation.Screen
 import com.spascoding.feature_exam.presentation.components.AccuracyInfo
-import com.spascoding.feature_exam.presentation.tens_screen.TensScreenEventEvent
 import com.spascoding.feature_exam.presentation.tens_screen.TensScreenViewModel
 
 data class TensButtonObject(
@@ -91,8 +92,9 @@ fun TensButton(
                         start = Padding.SMALL,
                         end = Padding.SMALL,
                     )
-                    .border(1.dp, Color.Black,shape = RoundedCornerShape(8.dp)),
-                text = "Locked",
+                    .background(Color.Black.copy(alpha = 0.1f), RoundedCornerShape(RoundCorner.SMALL))
+                    .border(1.dp, Color.Black, RoundedCornerShape(RoundCorner.SMALL)),
+                text = stringResource(R.string.locked),
                 color = Color.Black,
                 fontWeight = FontWeight.Bold,
                 fontSize = FontSize.LARGE,
