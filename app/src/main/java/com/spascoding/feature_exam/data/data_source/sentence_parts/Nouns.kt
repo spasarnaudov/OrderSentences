@@ -6,6 +6,8 @@ import com.spascoding.feature_exam.domain.model.noun.Pronoun
 
 object Nouns {
 
+    val name = CommonNoun(value = "name", countable = true, Plurality.SINGULAR)
+
     val australia = CommonNoun(value = "Australia", countable = false, Plurality.SINGULAR)
     val brazil = CommonNoun(value = "Brazil", countable = false, Plurality.SINGULAR)
     val bulgaria = CommonNoun(value = "Bulgaria", countable = false, Plurality.SINGULAR)

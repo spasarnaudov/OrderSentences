@@ -5,18 +5,26 @@ import com.spascoding.feature_exam.domain.model.Adjective
 object Adjectives {
 
     object Possessive {
+        val MY = Adjective(possessiveDeterminer = "my")
+        val YOUR = Adjective(possessiveDeterminer = "your")
+        val HIS = Adjective(possessiveDeterminer = "his")
+        val HER = Adjective(possessiveDeterminer = "her")
+        val ITS = Adjective(possessiveDeterminer = "its")
+        val OUR = Adjective(possessiveDeterminer = "our")
+        val THEIR = Adjective(possessiveDeterminer = "their")
+
         val singular = listOf(
-            Adjective(possessiveDeterminer = "my"),
-            Adjective(possessiveDeterminer = "your"),
-            Adjective(possessiveDeterminer = "his"),
-            Adjective(possessiveDeterminer = "her"),
-            Adjective(possessiveDeterminer = "its"),
+            MY,
+            YOUR,
+            HIS,
+            HER,
+            ITS,
         )
 
         val plural = listOf(
-            Adjective(possessiveDeterminer = "our"),
-            Adjective(possessiveDeterminer = "your"),
-            Adjective(possessiveDeterminer = "their"),
+            OUR,
+            YOUR,
+            THEIR,
         )
 
         val name = listOf(
