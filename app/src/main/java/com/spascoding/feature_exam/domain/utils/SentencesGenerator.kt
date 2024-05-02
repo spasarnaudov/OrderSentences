@@ -28,14 +28,16 @@ class SentencesGenerator(
         val sentences = mutableListOf<Sentence>()
 
         for (examPattern in examPatterns) {
-            val examName = examPattern.name
-            for (subject in examPattern.subjects) {
-                for (verb in examPattern.verbs) {
-                    for (objectVal in examPattern.objects) {
-                        val structure = getStructure(subject, verb, objectVal)
-                        sentences.add(Sentence(structure.positive().upperFirstLetter(), tens.int, examName))
-                        sentences.add(Sentence(structure.negative().upperFirstLetter(), tens.int, examName))
-                        sentences.add(Sentence(structure.question().upperFirstLetter(), tens.int, examName))
+            if (examPattern.tenses.contains(tens)) {
+                val examName = examPattern.name
+                for (subject in examPattern.subjects) {
+                    for (verb in examPattern.verbs) {
+                        for (objectVal in examPattern.objects) {
+                            val structure = getStructure(subject, verb, objectVal)
+                            sentences.add(Sentence(structure.positive().upperFirstLetter(), tens.int, examName))
+                            sentences.add(Sentence(structure.negative().upperFirstLetter(), tens.int, examName))
+                            sentences.add(Sentence(structure.question().upperFirstLetter(), tens.int, examName))
+                        }
                     }
                 }
             }
