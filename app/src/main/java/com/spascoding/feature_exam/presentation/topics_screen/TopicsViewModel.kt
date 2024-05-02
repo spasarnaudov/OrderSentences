@@ -2,6 +2,7 @@ package com.spascoding.feature_exam.presentation.topics_screen
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.spascoding.feature_exam.data.repository.SharedPreferencesRepositoryImpl
 import com.spascoding.feature_exam.domain.MIN_COUNT_SENTECES
@@ -10,6 +11,7 @@ import com.spascoding.feature_exam.domain.use_case.CommonUseCases
 import com.spascoding.feature_exam.domain.use_case.TopicsUseCases
 import com.spascoding.feature_exam.domain.utils.SentencesGenerator
 import com.spascoding.feature_exam.domain.utils.TensLocker
+import com.spascoding.feature_exam.presentation.utils.shuffleSentence
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
 import javax.inject.Inject
@@ -18,32 +20,36 @@ import javax.inject.Inject
 class TopicsViewModel @Inject constructor(
     private val commonUseCases: CommonUseCases,
     private val topicsUseCases: TopicsUseCases,
-    private val sharedPreferencesRepository: SharedPreferencesRepositoryImpl,
+    savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
 
     private val _state = mutableStateOf(TopicsViewModelState())
     val state: State<TopicsViewModelState> = _state
 
     init {
-        _state.value = state.value.copy(
-            tens = sharedPreferencesRepository.getSelectedTens(),
-        )
-        saveSentencesToDatabase(state.value.tens).also {
-            getExams(state.value.tens)
-        }
+        savedStateHandle.get<Int>("tens")?.also { tensInt ->
+            val tens: Tens = Tens.fromInt(tensInt)
 
-        val tens = state.value.tens
-        GlobalScope.launch {
-            withContext(Dispatchers.IO) {
-                val mistakesCounts = topicsUseCases.getMistakesTopicsCountsByTensUseCase.invoke(tens, MIN_COUNT_SENTECES)
-                val usedCounts = topicsUseCases.getUsedTopicsCountsByTensUseCase.invoke(tens, MIN_COUNT_SENTECES)
-                val sentencesCounts = topicsUseCases.getSentencesTopicsCountsByTensUseCase.invoke(tens, MIN_COUNT_SENTECES)
-                withContext(Dispatchers.Main) {
-                    _state.value = state.value.copy(
-                        mistakesCounts = mistakesCounts,
-                        usedCounts = usedCounts,
-                        sentencesCounts = sentencesCounts,
-                    )
+            _state.value = state.value.copy(
+                tens = tens,
+            )
+
+            saveSentencesToDatabase(tens).also {
+                getExams(tens)
+            }
+
+            GlobalScope.launch {
+                withContext(Dispatchers.IO) {
+                    val mistakesCounts = topicsUseCases.getMistakesTopicsCountsByTensUseCase.invoke(tens, MIN_COUNT_SENTECES)
+                    val usedCounts = topicsUseCases.getUsedTopicsCountsByTensUseCase.invoke(tens, MIN_COUNT_SENTECES)
+                    val sentencesCounts = topicsUseCases.getSentencesTopicsCountsByTensUseCase.invoke(tens, MIN_COUNT_SENTECES)
+                    withContext(Dispatchers.Main) {
+                        _state.value = state.value.copy(
+                            mistakesCounts = mistakesCounts,
+                            usedCounts = usedCounts,
+                            sentencesCounts = sentencesCounts,
+                        )
+                    }
                 }
             }
         }

@@ -17,7 +17,6 @@ import javax.inject.Inject
 @HiltViewModel
 class TopicDetailViewModel @Inject constructor(
     private val topicsUseCases: TopicsUseCases,
-    sharedPreferencesRepositoryImpl: SharedPreferencesRepositoryImpl,
     savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
 
@@ -32,7 +31,7 @@ class TopicDetailViewModel @Inject constructor(
                         topicsUseCases.getSentencesUseCase.invoke(Tens.fromInt(tens), topic).also { sentences ->
                             withContext(Dispatchers.Main) {
                                 _state.value = state.value.copy(
-                                    tens = sharedPreferencesRepositoryImpl.getSelectedTens(),
+                                    tens = Tens.fromInt(tens),
                                     examName = topic,
                                     sentences = sentences,
                                 )

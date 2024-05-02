@@ -12,12 +12,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.spascoding.core.constants.Colors
 import com.spascoding.core.constants.FontSize
 import com.spascoding.core.constants.Padding
 import com.spascoding.core.presentation.Table
 import com.spascoding.feature_exam.domain.enums.Tens
+import com.spascoding.feature_exam.presentation.Screen
 import com.spascoding.feature_exam.presentation.tens_screen.components.TensButton
 import com.spascoding.feature_exam.presentation.tens_screen.components.TensButtonObject
 
@@ -29,6 +31,7 @@ data class TitleObject(
 @Composable
 fun TensScreen(
     navController: NavController,
+    viewModel: TensScreenViewModel = hiltViewModel(),
 ) {
     val titles = listOf(
         TitleObject("Past", Colors.Blue),
@@ -71,15 +74,17 @@ fun TensScreen(
         },
         cells = List(cellsInfo.size) { index ->
             {
-                val cellInfo = cellsInfo[index]
+                val tensButtonObject = cellsInfo[index]
                 Column {
                     Divider()
                     TensButton(
                         modifier = Modifier
-                            .background(cellInfo.tensColor),
-                        cellInfo,
-                        navController = navController,
-                    )
+                            .background(tensButtonObject.tensColor),
+                        tensButtonObject,
+                    ) {
+                        viewModel.onEvent(TensScreenEventEvent.SelectTens(tens = tensButtonObject.tens))
+                        navController.navigate(Screen.TopicsScreen.route + "?tens=${tensButtonObject.tens.int}")
+                    }
                 }
             }
         },

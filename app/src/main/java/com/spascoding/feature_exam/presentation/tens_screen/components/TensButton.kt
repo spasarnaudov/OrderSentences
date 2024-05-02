@@ -40,17 +40,14 @@ data class TensButtonObject(
 fun TensButton(
     modifier: Modifier,
     tensButtonObject: TensButtonObject,
-    navController: NavController,
     viewModel: TensScreenViewModel = hiltViewModel(),
+    onClick: () -> Unit
 ) {
     Column(
         modifier = modifier
             .clickable(
                 enabled = viewModel.isTensUnlocked(tensButtonObject.tens),
-                onClick = {
-                    viewModel.onEvent(TensScreenEventEvent.SelectTens(tens = tensButtonObject.tens))
-                    navController.navigate(Screen.TopicsScreen.route)
-                },
+                onClick = onClick,
                 interactionSource = remember { MutableInteractionSource() },
                 indication = rememberRipple(color = Color.DarkGray)
             )

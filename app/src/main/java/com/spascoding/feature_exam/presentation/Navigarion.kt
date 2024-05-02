@@ -20,7 +20,16 @@ fun Navigation(
         composable(route = Screen.TensScreen.route) {
             TensScreen(navController)
         }
-        composable(route = Screen.TopicsScreen.route) {
+        composable(
+            route = Screen.TopicsScreen.route + "?tens={tens}",
+            arguments = listOf(
+                navArgument(
+                    name = "tens"
+                ) {
+                    type = NavType.IntType
+                },
+            )
+        ) {
             TopicsScreen(navController)
         }
         composable(
