@@ -1,4 +1,4 @@
-package com.spascoding.feature_exam.data.data_source
+package com.spascoding.feature_exam.data.data_source.sentence_parts
 
 import com.spascoding.feature_exam.domain.enums.Plurality
 import com.spascoding.feature_exam.domain.model.noun.CommonNoun
@@ -129,6 +129,8 @@ object Nouns {
     val british = CommonNoun(value = "British", countable = false, Plurality.SINGULAR)
     val american = CommonNoun(value = "American", countable = false, Plurality.SINGULAR)
 
+    val english = CommonNoun(value = "English", countable = false, Plurality.SINGULAR)
+
     val nationals = listOf(
         australian,
         brazilian,
@@ -152,6 +154,26 @@ object Nouns {
         turkish,
         british,
         american,
+    )
+
+    val languages = listOf(
+        bulgarian,
+        chinese,
+        french,
+        german,
+        indian,
+        indonesian,
+        italian,
+        japanese,
+        dutch,
+        russian,
+        saudiArabian,
+        southKorean,
+        spanish,
+        swedish,
+        swiss,
+        turkish,
+        english,
     )
 
     val doctor = CommonNoun(value = "doctor", countable = true, Plurality.SINGULAR)

@@ -1,6 +1,6 @@
 package com.spascoding.feature_exam.domain.model.sentence.future
 
-import com.spascoding.feature_exam.data.data_source.Verbs
+import com.spascoding.feature_exam.data.data_source.sentence_parts.Verbs
 import com.spascoding.feature_exam.domain.model.noun.Noun
 import com.spascoding.feature_exam.domain.model.sentence.Structure
 import com.spascoding.feature_exam.domain.model.verb.Verb

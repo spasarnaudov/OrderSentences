@@ -1,4 +1,4 @@
-package com.spascoding.feature_exam.data.data_source
+package com.spascoding.feature_exam.data.data_source.sentence_parts
 
 object Prepositions {
 

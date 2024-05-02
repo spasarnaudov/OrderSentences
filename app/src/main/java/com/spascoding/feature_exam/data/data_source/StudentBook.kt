@@ -1,16 +1,19 @@
 package com.spascoding.feature_exam.data.data_source
 
+import com.spascoding.feature_exam.data.data_source.sentence_parts.Nouns
+import com.spascoding.feature_exam.data.data_source.sentence_parts.Pronouns
+import com.spascoding.feature_exam.data.data_source.sentence_parts.Verbs
 import com.spascoding.feature_exam.domain.enums.Article
 import com.spascoding.feature_exam.domain.model.ExamPattern
 import com.spascoding.feature_exam.domain.model.noun.addArticle
 import com.spascoding.feature_exam.domain.model.noun.build
 
 object StudentBook {
-    val musicPattern = "music"
-    val gamePattern = "game"
-    val travelPattern = "travel"
-    val kitchenPattern = "kitchen"
-    val schoolPattern = "school"
+    private const val MUSIC = "music"
+    private const val GAME = "game"
+    private const val TRAVEL = "travel"
+    private const val KITCHEN = "kitchen"
+    private const val SCHOOL = "school"
 
     fun examPatterns(): List<ExamPattern> {
         return listOf(
@@ -29,7 +32,7 @@ object StudentBook {
 
     private fun playMusic(): ExamPattern {
         return ExamPattern(
-            name = musicPattern,
+            name = MUSIC,
             subjects = Pronouns.singular.plus(Pronouns.plural).plus(Nouns.names),
             verbs = listOf(Verbs.play),
             objects = Nouns.musicalInstruments.addArticle(Article.DEFINITE).build(),
@@ -38,7 +41,7 @@ object StudentBook {
 
     private fun playGame(): ExamPattern {
         return ExamPattern(
-            name = gamePattern,
+            name = GAME,
             subjects = Pronouns.singular.plus(Pronouns.plural).plus(Nouns.names),
             verbs = listOf(Verbs.play),
             objects = Nouns.games.build(),
@@ -47,7 +50,7 @@ object StudentBook {
 
     private fun visitPlaces(): ExamPattern {
         return ExamPattern(
-            name = travelPattern,
+            name = TRAVEL,
             subjects = Pronouns.singular.plus(Pronouns.plural).plus(Nouns.names),
             verbs = listOf(Verbs.visit),
             objects = Nouns.places.addArticle(Article.DEFINITE).build(),
@@ -56,8 +59,8 @@ object StudentBook {
 
     private fun eat(): ExamPattern {
         return ExamPattern(
-            name = kitchenPattern,
-            subjects = Pronouns.singular.plus(Pronouns.plural).plus(Nouns.names).plus(Nouns.teacher.copy(article = Article.DEFINITE)),
+            name = KITCHEN,
+            subjects = Pronouns.singular.plus(Pronouns.plural).plus(Nouns.names),
             verbs = listOf(Verbs.eat),
             objects = Nouns.fruits.addArticle(Article.INDEFINITE).build(),
         )
@@ -65,7 +68,7 @@ object StudentBook {
 
     private fun cook(): ExamPattern {
         return ExamPattern(
-            name = kitchenPattern,
+            name = KITCHEN,
             subjects = Pronouns.singular.plus(Pronouns.plural).plus(Nouns.names),
             verbs = listOf(Verbs.cook),
             objects = Nouns.vegetablesForCook.addArticle(Article.INDEFINITE).build(),
@@ -74,7 +77,7 @@ object StudentBook {
 
     private fun drink(): ExamPattern {
         return ExamPattern(
-            name = kitchenPattern,
+            name = KITCHEN,
             subjects = Pronouns.singular.plus(Pronouns.plural).plus(Nouns.names),
             verbs = listOf(Verbs.drink),
             objects = Nouns.drinks.addArticle(Article.INDEFINITE).build(),
@@ -83,7 +86,7 @@ object StudentBook {
 
     private fun writeRead(): ExamPattern {
         return ExamPattern(
-            name = schoolPattern,
+            name = SCHOOL,
             subjects = Pronouns.singular.plus(Pronouns.plural).plus(Nouns.names),
             verbs = listOf(Verbs.write, Verbs.read),
             objects = Nouns.writeReadMaterials.addArticle(Article.INDEFINITE).build(),
@@ -92,10 +95,10 @@ object StudentBook {
 
     private fun learn(): ExamPattern {
         return ExamPattern(
-            name = schoolPattern,
+            name = SCHOOL,
             subjects = Pronouns.singular.plus(Pronouns.plural).plus(Nouns.names),
             verbs = listOf(Verbs.learn, Verbs.study, Verbs.teach),
-            objects = Nouns.nationals.plus(Nouns.schoolSubjects).addArticle(Article.INDEFINITE).build(),
+            objects = Nouns.languages.plus(Nouns.schoolSubjects).addArticle(Article.INDEFINITE).build(),
         )
     }
 

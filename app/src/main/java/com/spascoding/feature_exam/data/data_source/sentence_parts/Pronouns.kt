@@ -1,4 +1,4 @@
-package com.spascoding.feature_exam.data.data_source
+package com.spascoding.feature_exam.data.data_source.sentence_parts
 
 import com.spascoding.feature_exam.domain.model.noun.Pronoun
 
