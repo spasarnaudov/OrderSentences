@@ -20,7 +20,7 @@ fun Navigation(
         composable(route = Screen.TensScreen.route) {
             TensScreen(navController)
         }
-        composable(route = Screen.ExamList.route) {
+        composable(route = Screen.TopicsScreen.route) {
             TopicsScreen(navController)
         }
         composable(

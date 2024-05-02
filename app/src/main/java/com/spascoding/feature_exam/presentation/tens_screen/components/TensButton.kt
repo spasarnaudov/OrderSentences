@@ -49,7 +49,7 @@ fun TensButton(
                 enabled = viewModel.isTensUnlocked(tensButtonObject.tens),
                 onClick = {
                     viewModel.onEvent(TensScreenEventEvent.SelectTens(tens = tensButtonObject.tens))
-                    navController.navigate(Screen.ExamList.route)
+                    navController.navigate(Screen.TopicsScreen.route)
                 },
                 interactionSource = remember { MutableInteractionSource() },
                 indication = rememberRipple(color = Color.DarkGray)
