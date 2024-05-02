@@ -18,6 +18,7 @@ import com.spascoding.feature_exam.domain.model.sentence.present.PresentPerfectC
 import com.spascoding.feature_exam.domain.model.sentence.present.PresentPerfectStructure
 import com.spascoding.feature_exam.domain.model.sentence.present.PresentSimpleStructure
 import com.spascoding.feature_exam.domain.model.verb.Verb
+import com.spascoding.feature_exam.presentation.utils.upperFirstLetter
 
 class SentencesGenerator(
     private val tens: Tens,
@@ -32,9 +33,9 @@ class SentencesGenerator(
                 for (verb in examPattern.verbs) {
                     for (objectVal in examPattern.objects) {
                         val structure = getStructure(subject, verb, objectVal)
-                        sentences.add(Sentence(structure.positive(), tens.int, examName))
-                        sentences.add(Sentence(structure.negative(), tens.int, examName))
-                        sentences.add(Sentence(structure.question(), tens.int, examName))
+                        sentences.add(Sentence(structure.positive().upperFirstLetter(), tens.int, examName))
+                        sentences.add(Sentence(structure.negative().upperFirstLetter(), tens.int, examName))
+                        sentences.add(Sentence(structure.question().upperFirstLetter(), tens.int, examName))
                     }
                 }
             }
