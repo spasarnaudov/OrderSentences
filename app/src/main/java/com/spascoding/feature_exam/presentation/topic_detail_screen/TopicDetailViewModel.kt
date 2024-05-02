@@ -1,10 +1,9 @@
-package com.spascoding.feature_exam.presentation.exam_detail
+package com.spascoding.feature_exam.presentation.topic_detail_screen
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import com.spascoding.feature_exam.data.repository.SharedPreferencesRepositoryImpl
 import com.spascoding.feature_exam.domain.enums.Tens
 import com.spascoding.feature_exam.domain.use_case.TopicsUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,8 +19,8 @@ class TopicDetailViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
 
-    private val _state = mutableStateOf(ExamDetailState())
-    val state: State<ExamDetailState> = _state
+    private val _state = mutableStateOf(TopicDetailState())
+    val state: State<TopicDetailState> = _state
 
     init {
         savedStateHandle.get<Int>("tens")?.also { tens ->

@@ -53,7 +53,7 @@ fun TopicsScreen(
                     },
                     onClickInfo = {
 //                                viewModel.onEvent(ExamListEvent.SelectExam(examName))
-                        navController.navigate(Screen.ExamDetail.route + "?tens=${viewModel.state.value.tens.int}&topic=$topic")
+                        navController.navigate(Screen.TopicDetailScreen.route + "?tens=${viewModel.state.value.tens.int}&topic=$topic")
                     },
                     topic = topic,
                 )

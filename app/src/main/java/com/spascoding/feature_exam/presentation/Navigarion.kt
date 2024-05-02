@@ -7,7 +7,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.spascoding.feature_exam.domain.enums.Tens
-import com.spascoding.feature_exam.presentation.exam_detail.ExamDetails
+import com.spascoding.feature_exam.presentation.topic_detail_screen.ExamDetails
 import com.spascoding.feature_exam.presentation.topics_screen.TopicsScreen
 import com.spascoding.feature_exam.presentation.exam_screen.ExamScreen
 import com.spascoding.feature_exam.presentation.tens_screen.TensScreen
@@ -33,7 +33,7 @@ fun Navigation(
             TopicsScreen(navController)
         }
         composable(
-            route = Screen.ExamDetail.route +
+            route = Screen.TopicDetailScreen.route +
                     "?tens={tens}&topic={topic}",
             arguments = listOf(
                 navArgument(

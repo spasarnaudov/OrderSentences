@@ -1,4 +1,4 @@
-package com.spascoding.feature_exam.presentation.exam_detail
+package com.spascoding.feature_exam.presentation.topic_detail_screen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
