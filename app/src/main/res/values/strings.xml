@@ -11,7 +11,4 @@
 	<string name="use_mistake_ratio_pattern">%1$s / %2$s</string>
 	<string name="tenses">Tenses</string>
 
-	<!--	tens screen	-->
-	<string name="locked">Locked</string>
-
 </resources>
