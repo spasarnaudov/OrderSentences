@@ -44,8 +44,12 @@ class TensScreenViewModel @Inject constructor(
         }
     }
 
-    fun getProgress(tens: Tens): Int {
-        return TensLocker.getProgress(tens, state.value.tensesAccuracyInfo)
+    fun getAccuracy(tens: Tens): Int {
+        val tensAccuracyInfo = state.value.tensesAccuracyInfo.getElementByTens(tens)
+        if (tensAccuracyInfo != null) {
+            return tensAccuracyInfo.accuracy()
+        }
+        return 0
     }
 
     fun getLastSentencesCount(tens: Tens): Int {
@@ -68,8 +72,8 @@ class TensScreenViewModel @Inject constructor(
         return 0
     }
 
-    fun isTensUnlocked(tens: Tens): Boolean {
-        return TensLocker.isTensUnlocked(tens, state.value.tensesAccuracyInfo)
+    fun isTensLocked(tens: Tens): Boolean {
+        return TensLocker.isLocked(tens, state.value.tensesAccuracyInfo)
     }
 
 }

@@ -47,7 +47,7 @@ fun TensButton(
     Column(
         modifier = modifier
             .clickable(
-                enabled = viewModel.isTensUnlocked(tensButtonObject.tens),
+                enabled = !viewModel.isTensLocked(tensButtonObject.tens),
                 onClick = onClick,
                 interactionSource = remember { MutableInteractionSource() },
                 indication = rememberRipple(color = Color.DarkGray)
@@ -76,14 +76,7 @@ fun TensButton(
             color = Color.Black,
             textAlign = TextAlign.Center,
         )
-        if (viewModel.isTensUnlocked(tensButtonObject.tens)) {
-            AccuracyInfo(
-                progress = viewModel.getProgress(tensButtonObject.tens),
-                lastSentenceCount = viewModel.getLastSentencesCount(tensButtonObject.tens),
-                sentenceCount = viewModel.getSentencesCount(tensButtonObject.tens),
-                textColor = Color.Black
-            )
-        } else {
+        if (viewModel.isTensLocked(tensButtonObject.tens)) {
             Text(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -99,6 +92,13 @@ fun TensButton(
                 fontWeight = FontWeight.Bold,
                 fontSize = FontSize.LARGE,
                 textAlign = TextAlign.Center,
+            )
+        } else {
+            AccuracyInfo(
+                progress = viewModel.getAccuracy(tensButtonObject.tens),
+                lastSentenceCount = viewModel.getLastSentencesCount(tensButtonObject.tens),
+                sentenceCount = viewModel.getSentencesCount(tensButtonObject.tens),
+                textColor = Color.Black
             )
         }
     }

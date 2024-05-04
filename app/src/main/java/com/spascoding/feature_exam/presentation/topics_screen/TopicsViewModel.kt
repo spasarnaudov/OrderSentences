@@ -9,6 +9,7 @@ import com.spascoding.feature_exam.domain.MIN_COUNT_SENTECES
 import com.spascoding.feature_exam.domain.enums.Tens
 import com.spascoding.feature_exam.domain.use_case.CommonUseCases
 import com.spascoding.feature_exam.domain.use_case.TopicsUseCases
+import com.spascoding.feature_exam.domain.utils.Accuracy
 import com.spascoding.feature_exam.domain.utils.SentencesGenerator
 import com.spascoding.feature_exam.domain.utils.TensLocker
 import com.spascoding.feature_exam.presentation.utils.shuffleSentence
@@ -100,9 +101,9 @@ class TopicsViewModel @Inject constructor(
     fun getProgress(topic: String): Int {
         if (state.value.mistakesCounts.containsKey(topic)
             && state.value.usedCounts.containsKey(topic)) {
-            val mistakesCounts = state.value.mistakesCounts[topic]!!
+            val mistakesCount = state.value.mistakesCounts[topic]!!
             val usedCount = state.value.usedCounts[topic]!!
-            return TensLocker.calculateAccuracy(mistakesCounts, usedCount)
+            return Accuracy(mistakesCount, usedCount).calculate()
         }
         return 0
     }
