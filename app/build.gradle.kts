@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.spascoding.feature_exam"
+    namespace = "com.spascoding.englishstructure"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.spascoding.feature_exam"
+        applicationId = "com.spascoding.englishstructure"
         minSdk = 26
         targetSdk = 34
         versionCode = 1

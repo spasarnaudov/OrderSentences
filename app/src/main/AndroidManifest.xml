@@ -14,7 +14,7 @@
 		android:theme="@style/Theme.EnglishStructure"
 		tools:targetApi="31">
 		<activity
-			android:name="com.spascoding.feature_exam.presentation.MainActivity"
+			android:name="com.spascoding.englishstructure.feature_exam.presentation.MainActivity"
 			android:exported="true"
 			android:theme="@style/Theme.EnglishStructure">
 			<intent-filter>
