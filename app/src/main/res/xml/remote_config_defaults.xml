@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<defaultsMap>
+	<entry>
+		<key>UnlockTensAccuracy</key>
+		<value>75</value>
+	</entry>
+	<entry>
+		<key>UnlockTensSentenceCount</key>
+		<value>15</value>
+	</entry>
+</defaultsMap>

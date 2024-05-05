@@ -3,13 +3,6 @@ package com.spascoding.englishstructure.feature_exam.domain.model
 import com.spascoding.englishstructure.feature_exam.domain.enums.Tens
 import com.spascoding.englishstructure.feature_exam.domain.utils.Accuracy
 
-val SuccessTensAccuracyInfo = TensAccuracyInfo(
-    tens = Tens.PRESENT_SIMPLE,
-    mistakesCount = 20,
-    usedCount = 100,
-    sentencesCount = 5,
-)
-
 data class TensAccuracyInfo(
     val tens: Tens,
     val mistakesCount: Int,

@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.spascoding.englishstructure.feature_exam.domain.MIN_COUNT_SENTECES
 import com.spascoding.englishstructure.feature_exam.domain.enums.Tens
 import com.spascoding.englishstructure.feature_exam.domain.model.getElementByTens
+import com.spascoding.englishstructure.feature_exam.domain.repository.FirebaseRepository
 import com.spascoding.englishstructure.feature_exam.domain.use_case.TensUseCases
 import com.spascoding.englishstructure.feature_exam.domain.utils.TensLocker
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,6 +19,7 @@ import javax.inject.Inject
 @HiltViewModel
 class TensScreenViewModel @Inject constructor(
     private val examUseCases: TensUseCases,
+    private val firebaseRepository: FirebaseRepository,
 ) : ViewModel() {
 
     private val _state = mutableStateOf(TensScreenViewModelState())
@@ -73,7 +75,7 @@ class TensScreenViewModel @Inject constructor(
     }
 
     fun isTensLocked(tens: Tens): Boolean {
-        return TensLocker.isLocked(tens, state.value.tensesAccuracyInfo)
+        return TensLocker(firebaseRepository).isLocked(tens, state.value.tensesAccuracyInfo)
     }
 
 }

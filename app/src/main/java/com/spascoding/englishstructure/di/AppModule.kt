@@ -5,8 +5,10 @@ import androidx.room.Room.databaseBuilder
 import com.spascoding.englishstructure.feature_exam.data.local.EnglishStructureDao
 import com.spascoding.englishstructure.feature_exam.data.local.EnglishStructureDatabase
 import com.spascoding.englishstructure.feature_exam.data.repository.ExamPatternRepositoryImpl
+import com.spascoding.englishstructure.feature_exam.data.repository.FirebaseRepositoryImpl
 import com.spascoding.englishstructure.feature_exam.data.repository.SharedPreferencesRepositoryImpl
 import com.spascoding.englishstructure.feature_exam.domain.repository.ExamPatternRepository
+import com.spascoding.englishstructure.feature_exam.domain.repository.FirebaseRepository
 import com.spascoding.englishstructure.feature_exam.domain.repository.SharedPreferencesRepository
 import com.spascoding.englishstructure.feature_exam.domain.use_case.CommonUseCases
 import com.spascoding.englishstructure.feature_exam.domain.use_case.TensUseCases
@@ -104,6 +106,12 @@ object AppModule {
     @Singleton
     fun provideEnglishStructureDao(database: EnglishStructureDatabase): EnglishStructureDao {
         return database.dao
+    }
+
+    @Provides
+    @Singleton
+    fun provideFirebaseRepository(): FirebaseRepository {
+        return FirebaseRepositoryImpl()
     }
 
 }

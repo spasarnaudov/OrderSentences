@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -94,4 +95,9 @@ dependencies {
 
     //Coroutines
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.1-Beta")
+
+    //Firebase
+    implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
+    implementation("com.google.firebase:firebase-config")
+    implementation("com.google.firebase:firebase-analytics")
 }
