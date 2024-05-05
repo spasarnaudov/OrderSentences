@@ -8,6 +8,7 @@ import androidx.room.Transaction
 import androidx.room.Update
 import com.spascoding.englishstructure.feature_exam.domain.enums.Tens
 import com.spascoding.englishstructure.feature_exam.domain.model.TensAccuracyInfo
+import com.spascoding.englishstructure.feature_exam.domain.model.TopicAccuracyInfo
 import com.spascoding.englishstructure.feature_exam.domain.model.sentence.entity.Sentence
 
 @Dao
@@ -78,42 +79,40 @@ interface EnglishStructureDao {
     suspend fun getTopics(tens: Int): List<String>
 
     @Query("SELECT * FROM sentences WHERE tens=:tens AND topic=:topic AND usedCount > 0 ORDER BY userValueTime DESC LIMIT :sentenceCount")
-    suspend fun getUsedSentencesByTensAndTopic(tens: Int, topic: String, sentenceCount: Int): List<Sentence>
+    suspend fun getUsedSentencesByTensAndTopic(
+        tens: Int,
+        topic: String,
+        sentenceCount: Int
+    ): List<Sentence>
 
     @Query("SELECT SUM(mistakeCount) FROM sentences WHERE tens=:tens AND topic=:topic ORDER BY userValueTime DESC LIMIT :sentenceCount")
     suspend fun getMistakesCountByTens(tens: Int, topic: String, sentenceCount: Int): Int
-    @Transaction
-    suspend fun getMistakesTopicsCountsByTens(tens: Int, sentenceCount: Int): Map<String, Int> {
-        val mistakesCounts = mutableMapOf<String, Int>()
-        val topics = getTopics(tens)
-        for (topic in topics) {
-            mistakesCounts[topic] =
-                getMistakesCountByTens(tens, topic, sentenceCount)
-        }
-        return mistakesCounts
-    }
 
     @Query("SELECT SUM(usedCount) FROM sentences WHERE tens=:tens AND topic=:topic ORDER BY userValueTime DESC LIMIT :sentenceCount")
     suspend fun getUsedCountByTens(tens: Int, topic: String, sentenceCount: Int): Int
-    @Transaction
-    suspend fun getUsedTopicsCountsByTens(tens: Int, sentenceCount: Int): Map<String, Int> {
-        val usedCounts = mutableMapOf<String, Int>()
-        val topics = getTopics(tens)
-        for (topic in topics) {
-            usedCounts[topic] = getUsedCountByTens(tens, topic, sentenceCount)
-        }
-        return usedCounts;
-    }
 
     @Query("SELECT COUNT(usedCount) FROM sentences WHERE tens=:tens AND topic=:topic AND usedCount > 0")
     suspend fun getUsedSentencesCountByTensAndTopic(tens: Int, topic: String): Int
+
     @Transaction
-    suspend fun getSentencesTopicsCountsByTens(tens: Int, sentenceCount: Int): Map<String, Int> {
-        val sentencesCounts = mutableMapOf<String, Int>()
+    suspend fun getTopicsAccuracyInfo(tens: Int, sentenceCount: Int): List<TopicAccuracyInfo> {
+        val data = mutableListOf<TopicAccuracyInfo>()
+
         val topics = getTopics(tens)
         for (topic in topics) {
-            sentencesCounts[topic] = getUsedSentencesCountByTensAndTopic(tens, topic)
+            val mistakesCount = getMistakesCountByTens(tens, topic, sentenceCount)
+            val usedCountByTens = getUsedCountByTens(tens, topic, sentenceCount)
+            val sentencesCount = getUsedSentencesCountByTensAndTopic(tens, topic)
+            data.add(
+                TopicAccuracyInfo(
+                    topic = topic,
+                    mistakesCount = mistakesCount,
+                    usedCount = usedCountByTens,
+                    sentencesCount = sentencesCount,
+                )
+            )
         }
-        return sentencesCounts;
+
+        return data
     }
 }

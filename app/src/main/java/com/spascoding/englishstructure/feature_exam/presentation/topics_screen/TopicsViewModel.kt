@@ -6,9 +6,9 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.spascoding.englishstructure.feature_exam.domain.MIN_COUNT_SENTECES
 import com.spascoding.englishstructure.feature_exam.domain.enums.Tens
+import com.spascoding.englishstructure.feature_exam.domain.model.getElementByTopic
 import com.spascoding.englishstructure.feature_exam.domain.use_case.CommonUseCases
 import com.spascoding.englishstructure.feature_exam.domain.use_case.TopicsUseCases
-import com.spascoding.englishstructure.feature_exam.domain.utils.Accuracy
 import com.spascoding.englishstructure.feature_exam.domain.utils.SentencesGenerator
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
@@ -18,7 +18,7 @@ import javax.inject.Inject
 class TopicsViewModel @Inject constructor(
     private val commonUseCases: CommonUseCases,
     private val topicsUseCases: TopicsUseCases,
-    savedStateHandle: SavedStateHandle,
+    private val savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
 
     private val _state = mutableStateOf(TopicsViewModelState())
@@ -38,14 +38,10 @@ class TopicsViewModel @Inject constructor(
 
             GlobalScope.launch {
                 withContext(Dispatchers.IO) {
-                    val mistakesCounts = topicsUseCases.getMistakesTopicsCountsByTensUseCase.invoke(tens, MIN_COUNT_SENTECES)
-                    val usedCounts = topicsUseCases.getUsedTopicsCountsByTensUseCase.invoke(tens, MIN_COUNT_SENTECES)
-                    val sentencesCounts = topicsUseCases.getSentencesTopicsCountsByTensUseCase.invoke(tens, MIN_COUNT_SENTECES)
+                    val topicsAccuracyInfo = topicsUseCases.getTopicsAccuracyInfoUseCase.invoke(tens, MIN_COUNT_SENTECES)
                     withContext(Dispatchers.Main) {
                         _state.value = state.value.copy(
-                            mistakesCounts = mistakesCounts,
-                            usedCounts = usedCounts,
-                            sentencesCounts = sentencesCounts,
+                            topicsAccuracyInfo = topicsAccuracyInfo,
                         )
                     }
                 }
@@ -95,19 +91,18 @@ class TopicsViewModel @Inject constructor(
         }
     }
 
-    fun getProgress(topic: String): Int {
-        if (state.value.mistakesCounts.containsKey(topic)
-            && state.value.usedCounts.containsKey(topic)) {
-            val mistakesCount = state.value.mistakesCounts[topic]!!
-            val usedCount = state.value.usedCounts[topic]!!
-            return Accuracy(mistakesCount, usedCount).calculate()
+    fun getAccuracy(topic: String): Int {
+        val tensAccuracyInfo = state.value.topicsAccuracyInfo.getElementByTopic(topic)
+        if (tensAccuracyInfo != null) {
+            return tensAccuracyInfo.accuracy()
         }
         return 0
     }
 
     fun getLastSentencesCount(topic: String): Int {
-        if (state.value.sentencesCounts.containsKey(topic)) {
-            val sentencesCounts = state.value.sentencesCounts[topic]!!
+        val tensAccuracyInfo = state.value.topicsAccuracyInfo.getElementByTopic(topic)
+        if (tensAccuracyInfo != null) {
+            val sentencesCounts = tensAccuracyInfo.sentencesCount
             if (sentencesCounts > MIN_COUNT_SENTECES) {
                 return MIN_COUNT_SENTECES
             }
@@ -117,8 +112,9 @@ class TopicsViewModel @Inject constructor(
     }
 
     fun getSentencesCount(topic: String): Int {
-        if (state.value.sentencesCounts.containsKey(topic)) {
-            return state.value.sentencesCounts[topic]!!
+        val tensAccuracyInfo = state.value.topicsAccuracyInfo.getElementByTopic(topic)
+        if (tensAccuracyInfo != null) {
+            return tensAccuracyInfo.sentencesCount
         }
         return 0
     }

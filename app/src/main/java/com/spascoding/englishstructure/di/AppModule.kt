@@ -15,12 +15,10 @@ import com.spascoding.englishstructure.feature_exam.domain.use_case.TensUseCases
 import com.spascoding.englishstructure.feature_exam.domain.use_case.GetExamPatternsUseCase
 import com.spascoding.englishstructure.feature_exam.domain.use_case.TopicsUseCases
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetTopicsUseCase
-import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetMistakesTopicsCountsByTensUseCase
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetSentenceUseCase
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetSentencesUseCase
-import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetSentencesTopicsCountsByTensUseCase
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetTensesAccuracyInfoUseCase
-import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetUsedTopicsCountsByTensUseCase
+import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetTopicsAccuracyInfoUseCase
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.ImportNotExistedSentencesUseCase
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.UpdateSentenceUseCase
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetUsedSentencesByTensAndTopicUseCase
@@ -73,17 +71,13 @@ object AppModule {
         getSentencesUseCase: GetSentencesUseCase,
         getTopicsUseCase: GetTopicsUseCase,
         getUsedSentencesByTensAndTopicUseCase: GetUsedSentencesByTensAndTopicUseCase,
-        getMistakesTopicsCountsByTensUseCase: GetMistakesTopicsCountsByTensUseCase,
-        getUsedTopicsCountsByTensUseCase: GetUsedTopicsCountsByTensUseCase,
-        getSentencesTopicsCountsByTensUseCase: GetSentencesTopicsCountsByTensUseCase,
+        getTopicsAccuracyInfoUseCase: GetTopicsAccuracyInfoUseCase,
     ): TopicsUseCases {
         return TopicsUseCases(
             getSentencesUseCase,
             getTopicsUseCase,
             getUsedSentencesByTensAndTopicUseCase,
-            getMistakesTopicsCountsByTensUseCase,
-            getUsedTopicsCountsByTensUseCase,
-            getSentencesTopicsCountsByTensUseCase,
+            getTopicsAccuracyInfoUseCase,
         )
     }
 

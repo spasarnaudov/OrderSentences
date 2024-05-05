@@ -3,6 +3,7 @@ package com.spascoding.englishstructure.feature_exam.data.repository
 import com.spascoding.englishstructure.feature_exam.data.local.EnglishStructureDao
 import com.spascoding.englishstructure.feature_exam.domain.enums.Tens
 import com.spascoding.englishstructure.feature_exam.domain.model.TensAccuracyInfo
+import com.spascoding.englishstructure.feature_exam.domain.model.TopicAccuracyInfo
 import com.spascoding.englishstructure.feature_exam.domain.model.sentence.entity.Sentence
 import com.spascoding.englishstructure.feature_exam.domain.repository.EnglishStructureDatabaseRepository
 import javax.inject.Inject
@@ -42,21 +43,7 @@ class EnglishStructureDatabaseRepositoryImpl @Inject constructor(
         return dao.getUsedSentencesByTensAndTopic(tens.int, topic, sentenceCount)
     }
 
-    override suspend fun getMistakesTopicsCountsByTens(
-        tens: Tens,
-        sentenceCount: Int
-    ): Map<String, Int> {
-        return dao.getMistakesTopicsCountsByTens(tens.int, sentenceCount)
-    }
-
-    override suspend fun getUsedTopicsCountsByTens(
-        tens: Tens,
-        sentenceCount: Int
-    ): Map<String, Int> {
-        return dao.getUsedTopicsCountsByTens(tens.int, sentenceCount)
-    }
-
-    override suspend fun getSentencesTopicsCountsByTens(tens: Tens, sentenceCount: Int): Map<String, Int> {
-        return dao.getSentencesTopicsCountsByTens(tens.int, sentenceCount)
+    override suspend fun getTopicsAccuracyInfo(tens: Tens, sentenceCount: Int): List<TopicAccuracyInfo> {
+        return dao.getTopicsAccuracyInfo(tens.int, sentenceCount)
     }
 }

@@ -58,7 +58,7 @@ fun TopicElement(
             fontWeight = FontWeight.Bold
         )
         AccuracyInfo(
-            progress = viewModel.getProgress(topic),
+            progress = viewModel.getAccuracy(topic),
             lastSentenceCount = viewModel.getLastSentencesCount(topic),
             sentenceCount = viewModel.getSentencesCount(topic),
         )
