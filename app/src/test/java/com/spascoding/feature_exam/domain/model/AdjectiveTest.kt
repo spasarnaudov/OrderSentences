@@ -1,5 +1,6 @@
 package com.spascoding.feature_exam.domain.model
 
+import com.spascoding.englishstructure.feature_exam.domain.model.Adjective
 import org.junit.Test
 
 class AdjectiveTest {

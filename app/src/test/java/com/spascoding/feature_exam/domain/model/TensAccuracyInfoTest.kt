@@ -1,6 +1,7 @@
 package com.spascoding.feature_exam.domain.model
 
-import com.spascoding.feature_exam.domain.enums.Tens
+import com.spascoding.englishstructure.feature_exam.domain.enums.Tens
+import com.spascoding.englishstructure.feature_exam.domain.model.TensAccuracyInfo
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -16,6 +17,7 @@ class TensAccuracyInfoTest {
 
     @Test
     fun accuracy() {
+
     }
 
     @Test

@@ -1,5 +1,6 @@
 package com.spascoding.feature_exam.domain.model.verb
 
+import com.spascoding.englishstructure.feature_exam.domain.model.verb.Verb
 import org.junit.Test
 
 class RegularVerbTest {
