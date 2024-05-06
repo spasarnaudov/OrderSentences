@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Check
 import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material3.Button
 import androidx.compose.material3.HorizontalDivider
@@ -34,6 +35,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewModelScope
 import com.spascoding.englishstructure.R
+import com.spascoding.englishstructure.core.constants.Colors
 import com.spascoding.englishstructure.core.constants.FontSize
 import com.spascoding.englishstructure.core.constants.Padding
 import com.spascoding.englishstructure.feature_exam.domain.model.sentence.entity.Sentence
@@ -135,6 +137,14 @@ fun ExamScreenRow(sentence: Sentence) {
                 imageVector = Icons.Rounded.Close,
                 modifier = Modifier.padding(Padding.SMALL)
                     .background(Color.Red, CircleShape),
+                contentDescription = "",
+                colorFilter = ColorFilter.tint(Color.White),
+            )
+        } else {
+            Image(
+                imageVector = Icons.Rounded.Check,
+                modifier = Modifier.padding(Padding.SMALL)
+                    .background(Colors.GREEN, CircleShape),
                 contentDescription = "",
                 colorFilter = ColorFilter.tint(Color.White),
             )

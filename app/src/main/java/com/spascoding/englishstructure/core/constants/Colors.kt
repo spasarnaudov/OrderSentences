@@ -6,4 +6,5 @@ object Colors {
     val Blue = Color(0xFF97CAFF)
     val Yellow = Color(0xFFFFFF93)
     val Red = Color(0xFFFF9897)
+    val GREEN = Color(0xFF00ba69)
 }
