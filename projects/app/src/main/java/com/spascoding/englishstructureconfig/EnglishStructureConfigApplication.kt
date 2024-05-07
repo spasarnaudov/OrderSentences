@@ -1,20 +1,15 @@
-package com.spascoding
+package com.spascoding.englishstructureconfig
 
 import android.app.Application
 import android.util.Log
-import android.widget.Toast
 import com.google.firebase.Firebase
-import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigValue
 import com.google.firebase.remoteconfig.remoteConfig
 import com.google.firebase.remoteconfig.remoteConfigSettings
-import com.spascoding.englishstructure.R
-import dagger.hilt.android.HiltAndroidApp
 
-@HiltAndroidApp
-class EnglishStructureApplication: Application() {
+class EnglishStructureConfigApplication: Application() {
 
-    val TAG = "EnglishStructureApplication"
+    val TAG = "EnglishStructureConfigApplication"
 
     override fun onCreate() {
         super.onCreate()
