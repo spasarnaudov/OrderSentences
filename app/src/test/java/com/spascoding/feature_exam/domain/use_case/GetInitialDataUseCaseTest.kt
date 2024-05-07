@@ -1,7 +1,8 @@
 package com.spascoding.feature_exam.domain.use_case
 
-import com.spascoding.feature_exam.data.repository.ExamPatternRepositoryImpl
-import com.spascoding.feature_exam.domain.repository.ExamPatternRepository
+import com.spascoding.englishstructure.feature_exam.data.repository.ExamPatternRepositoryImpl
+import com.spascoding.englishstructure.feature_exam.domain.repository.ExamPatternRepository
+import com.spascoding.englishstructure.feature_exam.domain.use_case.GetExamPatternsUseCase
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
