@@ -15,4 +15,12 @@ class FirebaseRepositoryImpl: FirebaseRepository {
     override fun getUnlockTensSentenceCount(): Int {
         return firebaseRemoteConfig.getLong("UnlockTensSentenceCount").toInt()
     }
+
+    override fun getUnlockTopicAccuracy(): Int {
+        return firebaseRemoteConfig.getLong("UnlockTopicAccuracy").toInt()
+    }
+
+    override fun getUnlockTopicSentenceCount(): Int {
+        return firebaseRemoteConfig.getLong("UnlockTopicSentenceCount").toInt()
+    }
 }

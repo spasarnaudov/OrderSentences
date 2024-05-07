@@ -39,6 +39,7 @@ import com.spascoding.englishstructure.core.constants.Colors
 import com.spascoding.englishstructure.core.constants.FontSize
 import com.spascoding.englishstructure.core.constants.Padding
 import com.spascoding.englishstructure.feature_exam.domain.model.sentence.entity.Sentence
+import com.spascoding.englishstructure.feature_exam.presentation.components.SuccessInfo
 import kotlinx.coroutines.launch
 
 @Composable
@@ -132,23 +133,7 @@ fun ExamScreenRow(sentence: Sentence) {
     Row(
         verticalAlignment = Alignment.CenterVertically
     ) {
-        if (sentence.value != sentence.userValue) {
-            Image(
-                imageVector = Icons.Rounded.Close,
-                modifier = Modifier.padding(Padding.SMALL)
-                    .background(Color.Red, CircleShape),
-                contentDescription = "",
-                colorFilter = ColorFilter.tint(Color.White),
-            )
-        } else {
-            Image(
-                imageVector = Icons.Rounded.Check,
-                modifier = Modifier.padding(Padding.SMALL)
-                    .background(Colors.GREEN, CircleShape),
-                contentDescription = "",
-                colorFilter = ColorFilter.tint(Color.White),
-            )
-        }
+        SuccessInfo(sentence.value == sentence.userValue)
         Column(
             modifier = Modifier
                 .weight(1f)

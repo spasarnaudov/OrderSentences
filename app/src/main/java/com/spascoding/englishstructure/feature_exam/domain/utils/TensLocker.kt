@@ -31,7 +31,15 @@ class TensLocker(
     }
 
     private fun isSentenceNotSuccess(tensAccuracyInfo: TensAccuracyInfo): Boolean {
-        return tensAccuracyInfo.accuracy() < firebaseRepository.getUnlockTensAccuracy()
-            || tensAccuracyInfo.sentencesCount < firebaseRepository.getUnlockTensSentenceCount()
+        for (topicAccuracyInfo in tensAccuracyInfo.topicsAccuracyInfo) {
+            if (topicAccuracyInfo.accuracy() < firebaseRepository.getUnlockTensAccuracy()
+            || topicAccuracyInfo.sentencesCount < firebaseRepository.getUnlockTensSentenceCount()
+            ) {
+                return true
+            }
+        }
+//        return tensAccuracyInfo.accuracy() < firebaseRepository.getUnlockTensAccuracy()
+//            || tensAccuracyInfo.sentencesCount < firebaseRepository.getUnlockTensSentenceCount()
+        return false
     }
 }

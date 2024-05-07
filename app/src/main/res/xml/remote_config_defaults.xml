@@ -2,10 +2,18 @@
 <defaultsMap>
 	<entry>
 		<key>UnlockTensAccuracy</key>
-		<value>75</value>
+		<value>80</value>
 	</entry>
 	<entry>
 		<key>UnlockTensSentenceCount</key>
-		<value>15</value>
+		<value>20</value>
+	</entry>
+	<entry>
+		<key>UnlockTopicAccuracy</key>
+		<value>80</value>
+	</entry>
+	<entry>
+		<key>UnlockTopicSentenceCount</key>
+		<value>10</value>
 	</entry>
 </defaultsMap>

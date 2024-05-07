@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.spascoding.englishstructure.feature_exam.domain.MIN_COUNT_SENTECES
 import com.spascoding.englishstructure.feature_exam.domain.enums.Tens
 import com.spascoding.englishstructure.feature_exam.domain.model.getElementByTopic
+import com.spascoding.englishstructure.feature_exam.domain.repository.FirebaseRepository
 import com.spascoding.englishstructure.feature_exam.domain.use_case.CommonUseCases
 import com.spascoding.englishstructure.feature_exam.domain.use_case.TopicsUseCases
 import com.spascoding.englishstructure.feature_exam.domain.utils.SentencesGenerator
@@ -19,6 +20,7 @@ class TopicsViewModel @Inject constructor(
     private val commonUseCases: CommonUseCases,
     private val topicsUseCases: TopicsUseCases,
     private val savedStateHandle: SavedStateHandle,
+    private val firebaseRepository: FirebaseRepository,
 ) : ViewModel() {
 
     private val _state = mutableStateOf(TopicsViewModelState())
@@ -89,6 +91,11 @@ class TopicsViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    fun isSuccess(topic: String): Boolean {
+        return getAccuracy(topic) >= firebaseRepository.getUnlockTopicAccuracy()
+                && getSentencesCount(topic) > firebaseRepository.getUnlockTopicSentenceCount()
     }
 
     fun getAccuracy(topic: String): Int {

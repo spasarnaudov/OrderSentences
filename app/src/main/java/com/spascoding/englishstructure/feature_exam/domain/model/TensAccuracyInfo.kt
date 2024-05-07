@@ -8,6 +8,7 @@ data class TensAccuracyInfo(
     val mistakesCount: Int,
     val usedCount: Int,
     val sentencesCount: Int,
+    val topicsAccuracyInfo: List<TopicAccuracyInfo>,
 ) {
     fun accuracy(): Int {
         return Accuracy(mistakesCount, usedCount).calculate()

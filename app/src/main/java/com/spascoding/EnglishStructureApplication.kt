@@ -13,6 +13,8 @@ import dagger.hilt.android.HiltAndroidApp
 @HiltAndroidApp
 class EnglishStructureApplication: Application() {
 
+    val TAG = "EnglishStructureApplication"
+
     override fun onCreate() {
         super.onCreate()
         setupFirebaseRemoteConfig()
@@ -33,14 +35,20 @@ class EnglishStructureApplication: Application() {
             if (task.isSuccessful) {
                 val updated = task.result
                 // Log or handle the successful fetching and activation of remote configs
-                Log.d("Application", "Remote config values were updated: $updated")
+                Log.d(TAG, "Remote config values were updated: $updated")
             } else {
                 // Log or handle the failure to fetch and activate
-                Log.e("Application", "Failed to fetch and activate remote config")
+                Log.e(TAG, "Failed to fetch and activate remote config")
             }
-            Log.d("asdfg", "Config params updated: ${remoteConfig.getLong("UnlockTensAccuracy")}")
-            Log.d("asdfg", "Config params updated: ${remoteConfig.getLong("UnlockTensSentenceCount")}")
+            printParameters(remoteConfig)
         }
+    }
+
+    private fun printParameters(remoteConfig: FirebaseRemoteConfig) {
+        Log.d(TAG, "Config params updated: ${remoteConfig.getLong("UnlockTensAccuracy")}")
+        Log.d(TAG, "Config params updated: ${remoteConfig.getLong("UnlockTensSentenceCount")}")
+        Log.d(TAG, "Config params updated: ${remoteConfig.getLong("UnlockTopicAccuracy")}")
+        Log.d(TAG, "Config params updated: ${remoteConfig.getLong("UnlockTopicSentenceCount")}")
     }
 
 }

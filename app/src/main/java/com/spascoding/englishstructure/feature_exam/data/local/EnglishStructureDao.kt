@@ -54,12 +54,14 @@ interface EnglishStructureDao {
             val mistakesCount = getMistakesCountByTens(tens, sentenceCount)
             val usedCountByTens = getUsedCountByTens(tens, sentenceCount)
             val sentencesCount = getSentencesCountByTens(tens)
+            val topicsAccuracyInfo = getTopicsAccuracyInfo(tens, sentenceCount)
             data.add(
                 TensAccuracyInfo(
                     tens = Tens.fromInt(tens),
                     mistakesCount = mistakesCount,
                     usedCount = usedCountByTens,
                     sentencesCount = sentencesCount,
+                    topicsAccuracyInfo = topicsAccuracyInfo,
                 )
             )
         }
