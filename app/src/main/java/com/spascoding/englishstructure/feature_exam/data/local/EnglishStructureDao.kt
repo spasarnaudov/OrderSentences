@@ -87,11 +87,11 @@ interface EnglishStructureDao {
         sentenceCount: Int
     ): List<Sentence>
 
-    @Query("SELECT SUM(mistakeCount) FROM sentences WHERE tense=:tens AND topic=:topic ORDER BY userValueTime DESC LIMIT :sentenceCount")
-    suspend fun getMistakesCountByTense(tens: Int, topic: String, sentenceCount: Int): Int
+    @Query("SELECT SUM(mistakeCount) FROM (SELECT * FROM sentences WHERE tense=:tense AND topic=:topic ORDER BY userValueTime DESC LIMIT :sentenceCount)")
+    suspend fun getMistakesCountByTense(tense: Int, topic: String, sentenceCount: Int): Int
 
-    @Query("SELECT SUM(usedCount) FROM sentences WHERE tense=:tens AND topic=:topic ORDER BY userValueTime DESC LIMIT :sentenceCount")
-    suspend fun getUsedCountByTense(tens: Int, topic: String, sentenceCount: Int): Int
+    @Query("SELECT SUM(usedCount) FROM (SELECT * FROM sentences WHERE tense=:tense AND topic=:topic ORDER BY userValueTime DESC LIMIT :sentenceCount)")
+    suspend fun getUsedCountByTense(tense: Int, topic: String, sentenceCount: Int): Int
 
     @Query("SELECT COUNT(usedCount) FROM sentences WHERE tense=:tens AND topic=:topic AND usedCount > 0")
     suspend fun getUsedSentencesCountByTensAndTopic(tens: Int, topic: String): Int
