@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools">
 
+	<queries>
+		<package android:name="com.spascoding.englishstructureconfig" />
+		<provider android:authorities="com.spascoding.englishstructureconfig.domain.repository.ConfigProvider" />
+	</queries>
+
 	<application
 		android:name="com.spascoding.EnglishStructureApplication"
 		android:allowBackup="true"

@@ -6,7 +6,9 @@ import com.google.firebase.Firebase
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigValue
 import com.google.firebase.remoteconfig.remoteConfig
 import com.google.firebase.remoteconfig.remoteConfigSettings
+import dagger.hilt.android.HiltAndroidApp
 
+@HiltAndroidApp
 class EnglishStructureConfigApplication: Application() {
 
     val TAG = "EnglishStructureConfigApplication"

@@ -1,10 +1,9 @@
 package com.spascoding
 
 import android.app.Application
+import android.net.Uri
 import android.util.Log
-import android.widget.Toast
 import com.google.firebase.Firebase
-import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigValue
 import com.google.firebase.remoteconfig.remoteConfig
 import com.google.firebase.remoteconfig.remoteConfigSettings
@@ -19,6 +18,15 @@ class EnglishStructureApplication: Application() {
     override fun onCreate() {
         super.onCreate()
         setupFirebaseRemoteConfig()
+
+        val uri = Uri.parse("content://com.spascoding.englishstructureconfig.domain.repository.ConfigProvider")
+        val cursor = contentResolver.query(uri, null, null, null, null)
+
+        cursor?.moveToFirst()
+        val json = cursor?.getString(cursor.run { getColumnIndex("json") })
+        cursor?.close()
+
+        Log.d(TAG, "Received JSON: $json")
     }
 
     private fun setupFirebaseRemoteConfig() {

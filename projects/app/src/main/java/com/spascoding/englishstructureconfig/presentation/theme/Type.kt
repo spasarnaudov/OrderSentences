@@ -1,4 +1,4 @@
-package com.spascoding.englishstructureconfig.ui.theme
+package com.spascoding.englishstructureconfig.presentation.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
