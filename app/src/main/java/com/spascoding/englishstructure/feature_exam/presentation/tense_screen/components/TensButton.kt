@@ -42,7 +42,6 @@ fun TenseButton(
         Column(
             modifier = modifier
                 .clickable(
-                    enabled = !viewModel.isTenseLocked(tenseButtonObject.tense),
                     onClick = onClick,
                     interactionSource = remember { MutableInteractionSource() },
                     indication = rememberRipple(color = Color.DarkGray)

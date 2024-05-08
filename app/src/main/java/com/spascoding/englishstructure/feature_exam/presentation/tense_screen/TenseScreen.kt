@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
@@ -17,8 +19,10 @@ import androidx.navigation.NavController
 import com.spascoding.englishstructure.core.constants.Colors
 import com.spascoding.englishstructure.core.constants.FontSize
 import com.spascoding.englishstructure.core.constants.Padding
+import com.spascoding.englishstructure.core.presentation.MinimalDialog
 import com.spascoding.englishstructure.core.presentation.Table
 import com.spascoding.englishstructure.feature_exam.domain.enums.Tense
+import com.spascoding.englishstructure.feature_exam.domain.enums.getPreviewsTense
 import com.spascoding.englishstructure.feature_exam.presentation.Screen
 import com.spascoding.englishstructure.feature_exam.presentation.tense_screen.components.TenseButton
 import com.spascoding.englishstructure.feature_exam.presentation.tense_screen.components.TenseButtonObject
@@ -55,6 +59,14 @@ fun TenseScreen(
         TenseButtonObject(Tense.PRESENT_PERFECT_CONTINUOUS, Colors.Yellow, "perfect continuous", "have been working"),
         TenseButtonObject(Tense.FUTURE_PERFECT_CONTINUOUS, Colors.Red, "perfect continuous", "will have been working"),
     )
+    val error = remember { mutableStateOf("") }
+    if (error.value.isNotBlank()) {
+        MinimalDialog(
+            error.value
+        ) {
+            error.value = ""
+        }
+    }
     Table(
         titles = List(titles.size) { index ->
             {
@@ -82,8 +94,12 @@ fun TenseScreen(
                             .background(tenseButtonObject.tenseColor),
                         tenseButtonObject,
                     ) {
-                        viewModel.onEvent(TenseScreenEventEvent.SelectTense(tense = tenseButtonObject.tense))
-                        navController.navigate(Screen.TopicsScreen.route + "?tense=${tenseButtonObject.tense.int}")
+                        if (viewModel.isTenseLocked(tenseButtonObject.tense)) {
+                            error.value = "You need to finish all topics in ${tenseButtonObject.tense.getPreviewsTense().value} tense"
+                        } else {
+                            viewModel.onEvent(TenseScreenEventEvent.SelectTense(tense = tenseButtonObject.tense))
+                            navController.navigate(Screen.TopicsScreen.route + "?tense=${tenseButtonObject.tense.int}")
+                        }
                     }
                 }
             }
