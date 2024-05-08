@@ -1,27 +1,30 @@
 package com.spascoding.englishstructure.di
 
 import android.content.Context
+import android.widget.Toast
 import androidx.room.Room.databaseBuilder
 import com.spascoding.englishstructure.feature_exam.data.local.EnglishStructureDao
 import com.spascoding.englishstructure.feature_exam.data.local.EnglishStructureDatabase
+import com.spascoding.englishstructure.feature_exam.data.repository.ConfigAppRepositoryImpl
 import com.spascoding.englishstructure.feature_exam.data.repository.ExamPatternRepositoryImpl
 import com.spascoding.englishstructure.feature_exam.data.repository.FirebaseRepositoryImpl
 import com.spascoding.englishstructure.feature_exam.data.repository.SharedPreferencesRepositoryImpl
+import com.spascoding.englishstructure.feature_exam.data.repository.utils.isConfigAppInstalled
+import com.spascoding.englishstructure.feature_exam.domain.repository.ConfigRepository
 import com.spascoding.englishstructure.feature_exam.domain.repository.ExamPatternRepository
-import com.spascoding.englishstructure.feature_exam.domain.repository.FirebaseRepository
 import com.spascoding.englishstructure.feature_exam.domain.repository.SharedPreferencesRepository
 import com.spascoding.englishstructure.feature_exam.domain.use_case.CommonUseCases
-import com.spascoding.englishstructure.feature_exam.domain.use_case.TenseUseCases
 import com.spascoding.englishstructure.feature_exam.domain.use_case.GetExamPatternsUseCase
+import com.spascoding.englishstructure.feature_exam.domain.use_case.TenseUseCases
 import com.spascoding.englishstructure.feature_exam.domain.use_case.TopicsUseCases
-import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetTopicsUseCase
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetSentenceUseCase
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetSentencesUseCase
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetTensesAccuracyInfoUseCase
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetTopicsAccuracyInfoUseCase
+import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetTopicsUseCase
+import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetUsedSentencesByTenseAndTopicUseCase
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.ImportNotExistedSentencesUseCase
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.UpdateSentenceUseCase
-import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetUsedSentencesByTenseAndTopicUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -104,8 +107,14 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideFirebaseRepository(): FirebaseRepository {
-        return FirebaseRepositoryImpl()
+    fun provideConfigRepository(@ApplicationContext context: Context): ConfigRepository {
+
+        return if (isConfigAppInstalled(context)) {
+            Toast.makeText(context, "Config app is used", Toast.LENGTH_LONG).show()
+            ConfigAppRepositoryImpl(context)
+        } else {
+            FirebaseRepositoryImpl()
+        }
     }
 
 }

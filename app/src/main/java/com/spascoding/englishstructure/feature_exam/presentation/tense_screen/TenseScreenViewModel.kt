@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.spascoding.englishstructure.feature_exam.domain.enums.Tense
 import com.spascoding.englishstructure.feature_exam.domain.model.getElementByTense
-import com.spascoding.englishstructure.feature_exam.domain.repository.FirebaseRepository
+import com.spascoding.englishstructure.feature_exam.domain.repository.ConfigRepository
 import com.spascoding.englishstructure.feature_exam.domain.use_case.TenseUseCases
 import com.spascoding.englishstructure.feature_exam.domain.utils.TenseLocker
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,7 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class TenseScreenViewModel @Inject constructor(
     private val examUseCases: TenseUseCases,
-    private val firebaseRepository: FirebaseRepository,
+    private val configRepository: ConfigRepository,
 ) : ViewModel() {
 
     private val _state = mutableStateOf(TenseScreenViewModelState())
@@ -27,7 +27,7 @@ class TenseScreenViewModel @Inject constructor(
     init {
         GlobalScope.launch {
             withContext(Dispatchers.IO) {
-                val tensesAccuracyInfo = examUseCases.getTensesAccuracyInfoUseCase.invoke(firebaseRepository.getAccuracySentencesCount())
+                val tensesAccuracyInfo = examUseCases.getTensesAccuracyInfoUseCase.invoke(configRepository.getAccuracySentencesCount())
                 withContext(Dispatchers.Main) {
                     _state.value = state.value.copy(
                         tensesAccuracyInfo = tensesAccuracyInfo,
@@ -57,8 +57,8 @@ class TenseScreenViewModel @Inject constructor(
         val tenseAccuracyInfo = state.value.tensesAccuracyInfo.getElementByTense(tense)
         if (tenseAccuracyInfo != null) {
             val sentencesCounts = tenseAccuracyInfo.sentencesCount
-            if (sentencesCounts > firebaseRepository.getAccuracySentencesCount()) {
-                return firebaseRepository.getAccuracySentencesCount()
+            if (sentencesCounts > configRepository.getAccuracySentencesCount()) {
+                return configRepository.getAccuracySentencesCount()
             }
             return sentencesCounts
         }
@@ -74,7 +74,7 @@ class TenseScreenViewModel @Inject constructor(
     }
 
     fun isTenseLocked(tense: Tense): Boolean {
-        return TenseLocker(firebaseRepository).isLocked(tense, state.value.tensesAccuracyInfo)
+        return TenseLocker(configRepository).isLocked(tense, state.value.tensesAccuracyInfo)
     }
 
 }

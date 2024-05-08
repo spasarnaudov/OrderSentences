@@ -1,13 +1,15 @@
 package com.spascoding
 
 import android.app.Application
-import android.net.Uri
 import android.util.Log
+import android.widget.Toast
 import com.google.firebase.Firebase
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigValue
 import com.google.firebase.remoteconfig.remoteConfig
 import com.google.firebase.remoteconfig.remoteConfigSettings
 import com.spascoding.englishstructure.R
+import com.spascoding.englishstructure.feature_exam.data.repository.utils.isConfigAppInstalled
+import com.spascoding.englishstructure.feature_exam.data.repository.utils.readConfigAppData
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
@@ -17,16 +19,13 @@ class EnglishStructureApplication: Application() {
 
     override fun onCreate() {
         super.onCreate()
-        setupFirebaseRemoteConfig()
 
-        val uri = Uri.parse("content://com.spascoding.englishstructureconfig.domain.repository.ConfigProvider")
-        val cursor = contentResolver.query(uri, null, null, null, null)
-
-        cursor?.moveToFirst()
-        val json = cursor?.getString(cursor.run { getColumnIndex("json") })
-        cursor?.close()
-
-        Log.d(TAG, "Received JSON: $json")
+        if (isConfigAppInstalled(this)) {
+            readConfigAppData(this)
+            Toast.makeText(this, "Config app is used", Toast.LENGTH_LONG).show()
+        } else {
+            setupFirebaseRemoteConfig()
+        }
     }
 
     private fun setupFirebaseRemoteConfig() {
@@ -58,5 +57,4 @@ class EnglishStructureApplication: Application() {
             Log.d(TAG, "${entry.key}: ${entry.value.asString()}.")
         }
     }
-
 }

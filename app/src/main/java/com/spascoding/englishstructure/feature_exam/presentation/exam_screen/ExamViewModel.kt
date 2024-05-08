@@ -9,7 +9,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.spascoding.englishstructure.feature_exam.domain.enums.Tense
 import com.spascoding.englishstructure.feature_exam.domain.model.sentence.entity.Sentence
-import com.spascoding.englishstructure.feature_exam.domain.repository.FirebaseRepository
+import com.spascoding.englishstructure.feature_exam.domain.repository.ConfigRepository
 import com.spascoding.englishstructure.feature_exam.domain.use_case.CommonUseCases
 import com.spascoding.englishstructure.feature_exam.domain.use_case.TopicsUseCases
 import com.spascoding.englishstructure.feature_exam.presentation.utils.scratchWords
@@ -27,7 +27,7 @@ class ExamViewModel @Inject constructor(
     private val commonUseCases: CommonUseCases,
     private val topicsUseCases: TopicsUseCases,
     private val savedStateHandle: SavedStateHandle,
-    private val firebaseRepository: FirebaseRepository,
+    private val configRepository: ConfigRepository,
 ) : ViewModel() {
 
     private val _state = mutableStateOf(ExamViewModelState())
@@ -43,7 +43,7 @@ class ExamViewModel @Inject constructor(
                 GlobalScope.launch {
                     withContext(Dispatchers.IO) {
                         val newSentence = commonUseCases.getSentenceUseCase.invoke(Tense.fromInt(tense), topic)
-                        val history = topicsUseCases.getUsedSentencesByTenseAndTopicUseCase.invoke(Tense.fromInt(tense), topic, firebaseRepository.getAccuracySentencesCount())
+                        val history = topicsUseCases.getUsedSentencesByTenseAndTopicUseCase.invoke(Tense.fromInt(tense), topic, configRepository.getAccuracySentencesCount())
                         withContext(Dispatchers.Main) {
                             _state.value = state.value.copy(
                                 sentences = listOf(newSentence),
@@ -77,7 +77,7 @@ class ExamViewModel @Inject constructor(
                     withContext(Dispatchers.IO) {
                         updateCurrentSentence(originSentence, event.answerText)
                         val newSentence = commonUseCases.getSentenceUseCase.invoke(tens, topic)
-                        val history = topicsUseCases.getUsedSentencesByTenseAndTopicUseCase.invoke(tens, topic, firebaseRepository.getAccuracySentencesCount())
+                        val history = topicsUseCases.getUsedSentencesByTenseAndTopicUseCase.invoke(tens, topic, configRepository.getAccuracySentencesCount())
                         withContext(Dispatchers.Main) {
                             _state.value = state.value.copy(
                                 sentences = listOf(newSentence),

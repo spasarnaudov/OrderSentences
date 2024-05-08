@@ -3,10 +3,10 @@ package com.spascoding.englishstructure.feature_exam.domain.utils
 import com.spascoding.englishstructure.feature_exam.domain.enums.Tense
 import com.spascoding.englishstructure.feature_exam.domain.model.TenseAccuracyInfo
 import com.spascoding.englishstructure.feature_exam.domain.model.getElementByTense
-import com.spascoding.englishstructure.feature_exam.domain.repository.FirebaseRepository
+import com.spascoding.englishstructure.feature_exam.domain.repository.ConfigRepository
 
 class TenseLocker(
-    private val firebaseRepository: FirebaseRepository
+    private val configRepository: ConfigRepository
 ) {
     fun isLocked(currentTense: Tense, tenseAccuracyInfos: List<TenseAccuracyInfo>): Boolean {
         if (Tense.PRESENT_SIMPLE == currentTense) {
@@ -32,8 +32,8 @@ class TenseLocker(
 
     private fun isSentenceNotSuccess(tenseAccuracyInfo: TenseAccuracyInfo): Boolean {
         for (topicAccuracyInfo in tenseAccuracyInfo.topicsAccuracyInfo) {
-            if (topicAccuracyInfo.accuracy() < firebaseRepository.getUnlockTopicAccuracy()
-            || topicAccuracyInfo.sentencesCount < firebaseRepository.getUnlockTopicSentenceCount()
+            if (topicAccuracyInfo.accuracy() < configRepository.getUnlockTopicAccuracy()
+            || topicAccuracyInfo.sentencesCount < configRepository.getUnlockTopicSentenceCount()
             ) {
                 return true
             }

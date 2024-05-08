@@ -6,7 +6,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.spascoding.englishstructure.feature_exam.domain.enums.Tense
 import com.spascoding.englishstructure.feature_exam.domain.model.getElementByTopic
-import com.spascoding.englishstructure.feature_exam.domain.repository.FirebaseRepository
+import com.spascoding.englishstructure.feature_exam.domain.repository.ConfigRepository
 import com.spascoding.englishstructure.feature_exam.domain.use_case.CommonUseCases
 import com.spascoding.englishstructure.feature_exam.domain.use_case.TopicsUseCases
 import com.spascoding.englishstructure.feature_exam.domain.utils.SentencesGenerator
@@ -19,7 +19,7 @@ class TopicsViewModel @Inject constructor(
     private val commonUseCases: CommonUseCases,
     private val topicsUseCases: TopicsUseCases,
     private val savedStateHandle: SavedStateHandle,
-    private val firebaseRepository: FirebaseRepository,
+    private val configRepository: ConfigRepository,
 ) : ViewModel() {
 
     private val _state = mutableStateOf(TopicsViewModelState())
@@ -39,7 +39,7 @@ class TopicsViewModel @Inject constructor(
 
             GlobalScope.launch {
                 withContext(Dispatchers.IO) {
-                    val topicsAccuracyInfo = topicsUseCases.getTopicsAccuracyInfoUseCase.invoke(tense, firebaseRepository.getAccuracySentencesCount())
+                    val topicsAccuracyInfo = topicsUseCases.getTopicsAccuracyInfoUseCase.invoke(tense, configRepository.getAccuracySentencesCount())
                     withContext(Dispatchers.Main) {
                         _state.value = state.value.copy(
                             topicsAccuracyInfo = topicsAccuracyInfo,
@@ -93,8 +93,8 @@ class TopicsViewModel @Inject constructor(
     }
 
     fun isSuccess(topic: String): Boolean {
-        return getAccuracy(topic) >= firebaseRepository.getUnlockTopicAccuracy()
-                && getSentencesCount(topic) >= firebaseRepository.getUnlockTopicSentenceCount()
+        return getAccuracy(topic) >= configRepository.getUnlockTopicAccuracy()
+                && getSentencesCount(topic) >= configRepository.getUnlockTopicSentenceCount()
     }
 
     fun getAccuracy(topic: String): Int {
@@ -109,8 +109,8 @@ class TopicsViewModel @Inject constructor(
         val tenseAccuracyInfo = state.value.topicsAccuracyInfo.getElementByTopic(topic)
         if (tenseAccuracyInfo != null) {
             val sentencesCounts = tenseAccuracyInfo.sentencesCount
-            if (sentencesCounts > firebaseRepository.getAccuracySentencesCount()) {
-                return firebaseRepository.getAccuracySentencesCount()
+            if (sentencesCounts > configRepository.getAccuracySentencesCount()) {
+                return configRepository.getAccuracySentencesCount()
             }
             return sentencesCounts
         }

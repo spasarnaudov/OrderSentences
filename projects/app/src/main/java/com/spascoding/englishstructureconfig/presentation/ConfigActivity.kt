@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -99,34 +100,34 @@ fun ConfigList(
                         thickness = 1.dp,
                         color = MaterialTheme.colorScheme.onBackground
                     )
-                    Box(modifier = Modifier
-                        .clickable {
-                            showDialog.value = true
-                            rememberParameter.value = parameter
-                            rememberValue.value = value
-                        }
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable {
+                                showDialog.value = true
+                                rememberParameter.value = parameter
+                                rememberValue.value = value
+                            }
+                            .wrapContentHeight()
+                            .padding(start = 8.dp),
+                            verticalAlignment = Alignment.CenterVertically,
                     ) {
-                        Row(
-                            modifier = Modifier.padding(start = 8.dp),
-                            verticalAlignment = Alignment.CenterVertically
+                        Column(
+                            modifier = Modifier.weight(1f),
                         ) {
                             Text(
-                                modifier = Modifier.weight(1f),
                                 text = parameter,
+                                fontWeight = FontWeight.Bold,
                             )
-                            Row(
-                                modifier = Modifier.background(color = Color(alpha = 100, red = 177, green = 255, blue = 168)),
-                            ) {
-                                Icon(
-                                    modifier = Modifier
-                                        .padding(8.dp),
-                                    imageVector = Icons.Default.Edit, contentDescription = "")
-                                Text(
-                                    modifier = Modifier.padding(8.dp),
-                                    text = value,
-                                )
-                            }
+                            Text(
+                                text = value,
+                            )
                         }
+                        Icon(
+                            modifier = Modifier.padding(16.dp),
+                            imageVector = Icons.Default.Edit,
+                            contentDescription = ""
+                        )
                     }
 
                 }
