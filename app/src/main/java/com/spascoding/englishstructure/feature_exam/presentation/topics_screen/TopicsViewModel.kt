@@ -4,7 +4,6 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import com.spascoding.englishstructure.feature_exam.domain.MIN_COUNT_SENTECES
 import com.spascoding.englishstructure.feature_exam.domain.enums.Tense
 import com.spascoding.englishstructure.feature_exam.domain.model.getElementByTopic
 import com.spascoding.englishstructure.feature_exam.domain.repository.FirebaseRepository
@@ -40,7 +39,7 @@ class TopicsViewModel @Inject constructor(
 
             GlobalScope.launch {
                 withContext(Dispatchers.IO) {
-                    val topicsAccuracyInfo = topicsUseCases.getTopicsAccuracyInfoUseCase.invoke(tense, MIN_COUNT_SENTECES)
+                    val topicsAccuracyInfo = topicsUseCases.getTopicsAccuracyInfoUseCase.invoke(tense, firebaseRepository.getAccuracySentencesCount())
                     withContext(Dispatchers.Main) {
                         _state.value = state.value.copy(
                             topicsAccuracyInfo = topicsAccuracyInfo,
@@ -110,8 +109,8 @@ class TopicsViewModel @Inject constructor(
         val tenseAccuracyInfo = state.value.topicsAccuracyInfo.getElementByTopic(topic)
         if (tenseAccuracyInfo != null) {
             val sentencesCounts = tenseAccuracyInfo.sentencesCount
-            if (sentencesCounts > MIN_COUNT_SENTECES) {
-                return MIN_COUNT_SENTECES
+            if (sentencesCounts > firebaseRepository.getAccuracySentencesCount()) {
+                return firebaseRepository.getAccuracySentencesCount()
             }
             return sentencesCounts
         }

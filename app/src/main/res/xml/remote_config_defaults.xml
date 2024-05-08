@@ -16,4 +16,8 @@
 		<key>UnlockTopicSentenceCount</key>
 		<value>1</value>
 	</entry>
+	<entry>
+		<key>AccuracySentencesCount</key>
+		<value>5</value>
+	</entry>
 </defaultsMap>

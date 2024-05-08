@@ -5,4 +5,5 @@ interface FirebaseRepository {
     fun getUnlockTensSentenceCount(): Int
     fun getUnlockTopicAccuracy(): Int
     fun getUnlockTopicSentenceCount(): Int
+    fun getAccuracySentencesCount(): Int
 }

@@ -3,7 +3,6 @@ package com.spascoding.englishstructure.feature_exam.presentation.tense_screen
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import com.spascoding.englishstructure.feature_exam.domain.MIN_COUNT_SENTECES
 import com.spascoding.englishstructure.feature_exam.domain.enums.Tense
 import com.spascoding.englishstructure.feature_exam.domain.model.getElementByTense
 import com.spascoding.englishstructure.feature_exam.domain.repository.FirebaseRepository
@@ -28,7 +27,7 @@ class TenseScreenViewModel @Inject constructor(
     init {
         GlobalScope.launch {
             withContext(Dispatchers.IO) {
-                val tensesAccuracyInfo = examUseCases.getTensesAccuracyInfoUseCase.invoke(MIN_COUNT_SENTECES)
+                val tensesAccuracyInfo = examUseCases.getTensesAccuracyInfoUseCase.invoke(firebaseRepository.getAccuracySentencesCount())
                 withContext(Dispatchers.Main) {
                     _state.value = state.value.copy(
                         tensesAccuracyInfo = tensesAccuracyInfo,
@@ -58,8 +57,8 @@ class TenseScreenViewModel @Inject constructor(
         val tenseAccuracyInfo = state.value.tensesAccuracyInfo.getElementByTense(tense)
         if (tenseAccuracyInfo != null) {
             val sentencesCounts = tenseAccuracyInfo.sentencesCount
-            if (sentencesCounts > MIN_COUNT_SENTECES) {
-                return MIN_COUNT_SENTECES
+            if (sentencesCounts > firebaseRepository.getAccuracySentencesCount()) {
+                return firebaseRepository.getAccuracySentencesCount()
             }
             return sentencesCounts
         }
