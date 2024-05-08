@@ -32,8 +32,8 @@ class TensLocker(
 
     private fun isSentenceNotSuccess(tensAccuracyInfo: TensAccuracyInfo): Boolean {
         for (topicAccuracyInfo in tensAccuracyInfo.topicsAccuracyInfo) {
-            if (topicAccuracyInfo.accuracy() < firebaseRepository.getUnlockTensAccuracy()
-            || topicAccuracyInfo.sentencesCount < firebaseRepository.getUnlockTensSentenceCount()
+            if (topicAccuracyInfo.accuracy() < firebaseRepository.getUnlockTopicAccuracy()
+            || topicAccuracyInfo.sentencesCount < firebaseRepository.getUnlockTopicSentenceCount()
             ) {
                 return true
             }

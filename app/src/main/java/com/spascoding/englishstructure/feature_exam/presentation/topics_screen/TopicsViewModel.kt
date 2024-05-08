@@ -95,7 +95,7 @@ class TopicsViewModel @Inject constructor(
 
     fun isSuccess(topic: String): Boolean {
         return getAccuracy(topic) >= firebaseRepository.getUnlockTopicAccuracy()
-                && getSentencesCount(topic) > firebaseRepository.getUnlockTopicSentenceCount()
+                && getSentencesCount(topic) >= firebaseRepository.getUnlockTopicSentenceCount()
     }
 
     fun getAccuracy(topic: String): Int {
