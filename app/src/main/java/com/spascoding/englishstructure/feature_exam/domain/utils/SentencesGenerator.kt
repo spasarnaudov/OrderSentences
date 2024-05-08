@@ -1,6 +1,6 @@
 package com.spascoding.englishstructure.feature_exam.domain.utils
 
-import com.spascoding.englishstructure.feature_exam.domain.enums.Tens
+import com.spascoding.englishstructure.feature_exam.domain.enums.Tense
 import com.spascoding.englishstructure.feature_exam.domain.model.ExamPattern
 import com.spascoding.englishstructure.feature_exam.domain.model.noun.Noun
 import com.spascoding.englishstructure.feature_exam.domain.model.sentence.Structure
@@ -21,22 +21,22 @@ import com.spascoding.englishstructure.feature_exam.domain.model.verb.Verb
 import com.spascoding.englishstructure.feature_exam.presentation.utils.upperFirstLetter
 
 class SentencesGenerator(
-    private val tens: Tens,
+    private val tense: Tense,
     private val examPatterns: List<ExamPattern>
 ) {
     fun generate(): List<Sentence> {
         val sentences = mutableListOf<Sentence>()
 
         for (examPattern in examPatterns) {
-            if (examPattern.tenses.contains(tens)) {
+            if (examPattern.tenses.contains(tense)) {
                 val examName = examPattern.name
                 for (subject in examPattern.subjects) {
                     for (verb in examPattern.verbs) {
                         for (objectVal in examPattern.objects) {
                             val structure = getStructure(subject, verb, objectVal)
-                            sentences.add(Sentence(structure.positive().upperFirstLetter(), tens.int, examName))
-                            sentences.add(Sentence(structure.negative().upperFirstLetter(), tens.int, examName))
-                            sentences.add(Sentence(structure.question().upperFirstLetter(), tens.int, examName))
+                            sentences.add(Sentence(structure.positive().upperFirstLetter(), tense.int, examName))
+                            sentences.add(Sentence(structure.negative().upperFirstLetter(), tense.int, examName))
+                            sentences.add(Sentence(structure.question().upperFirstLetter(), tense.int, examName))
                         }
                     }
                 }
@@ -51,25 +51,25 @@ class SentencesGenerator(
         verb: Verb,
         objectVal: String,
     ): Structure {
-        return when (tens) {
-            Tens.PAST_SIMPLE -> PastSimpleStructure(subject, verb, objectVal)
-            Tens.PAST_CONTINUOUS -> PastContinuousStructure(subject, verb, objectVal)
-            Tens.PAST_PERFECT -> PastPerfectStructure(subject, verb, objectVal)
-            Tens.PAST_PERFECT_CONTINUOUS -> PastPerfectContinuousStructure(subject, verb, objectVal)
+        return when (tense) {
+            Tense.PAST_SIMPLE -> PastSimpleStructure(subject, verb, objectVal)
+            Tense.PAST_CONTINUOUS -> PastContinuousStructure(subject, verb, objectVal)
+            Tense.PAST_PERFECT -> PastPerfectStructure(subject, verb, objectVal)
+            Tense.PAST_PERFECT_CONTINUOUS -> PastPerfectContinuousStructure(subject, verb, objectVal)
 
-            Tens.PRESENT_SIMPLE -> PresentSimpleStructure(subject, verb, objectVal)
-            Tens.PRESENT_CONTINUOUS -> PresentContinuousStructure(subject, verb, objectVal)
-            Tens.PRESENT_PERFECT -> PresentPerfectStructure(subject, verb, objectVal)
-            Tens.PRESENT_PERFECT_CONTINUOUS -> PresentPerfectContinuousStructure(
+            Tense.PRESENT_SIMPLE -> PresentSimpleStructure(subject, verb, objectVal)
+            Tense.PRESENT_CONTINUOUS -> PresentContinuousStructure(subject, verb, objectVal)
+            Tense.PRESENT_PERFECT -> PresentPerfectStructure(subject, verb, objectVal)
+            Tense.PRESENT_PERFECT_CONTINUOUS -> PresentPerfectContinuousStructure(
                 subject,
                 verb,
                 objectVal
             )
 
-            Tens.FUTURE_SIMPLE -> FutureSimpleStructure(subject, verb, objectVal)
-            Tens.FUTURE_CONTINUOUS -> FutureContinuousStructure(subject, verb, objectVal)
-            Tens.FUTURE_PERFECT -> FuturePerfectStructure(subject, verb, objectVal)
-            Tens.FUTURE_PERFECT_CONTINUOUS -> FuturePerfectContinuousStructure(
+            Tense.FUTURE_SIMPLE -> FutureSimpleStructure(subject, verb, objectVal)
+            Tense.FUTURE_CONTINUOUS -> FutureContinuousStructure(subject, verb, objectVal)
+            Tense.FUTURE_PERFECT -> FuturePerfectStructure(subject, verb, objectVal)
+            Tense.FUTURE_PERFECT_CONTINUOUS -> FuturePerfectContinuousStructure(
                 subject,
                 verb,
                 objectVal

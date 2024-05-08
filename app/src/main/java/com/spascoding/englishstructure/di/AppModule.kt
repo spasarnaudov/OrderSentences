@@ -11,7 +11,7 @@ import com.spascoding.englishstructure.feature_exam.domain.repository.ExamPatter
 import com.spascoding.englishstructure.feature_exam.domain.repository.FirebaseRepository
 import com.spascoding.englishstructure.feature_exam.domain.repository.SharedPreferencesRepository
 import com.spascoding.englishstructure.feature_exam.domain.use_case.CommonUseCases
-import com.spascoding.englishstructure.feature_exam.domain.use_case.TensUseCases
+import com.spascoding.englishstructure.feature_exam.domain.use_case.TenseUseCases
 import com.spascoding.englishstructure.feature_exam.domain.use_case.GetExamPatternsUseCase
 import com.spascoding.englishstructure.feature_exam.domain.use_case.TopicsUseCases
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetTopicsUseCase
@@ -21,7 +21,7 @@ import com.spascoding.englishstructure.feature_exam.domain.use_case.database.Get
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetTopicsAccuracyInfoUseCase
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.ImportNotExistedSentencesUseCase
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.UpdateSentenceUseCase
-import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetUsedSentencesByTensAndTopicUseCase
+import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetUsedSentencesByTenseAndTopicUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -57,10 +57,10 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideTensUseCases(
+    fun provideTenseUseCases(
         getTensesAccuracyInfoUseCase: GetTensesAccuracyInfoUseCase,
-    ): TensUseCases {
-        return TensUseCases(
+    ): TenseUseCases {
+        return TenseUseCases(
             getTensesAccuracyInfoUseCase,
         )
     }
@@ -70,13 +70,13 @@ object AppModule {
     fun provideTopicsUseCases(
         getSentencesUseCase: GetSentencesUseCase,
         getTopicsUseCase: GetTopicsUseCase,
-        getUsedSentencesByTensAndTopicUseCase: GetUsedSentencesByTensAndTopicUseCase,
+        getUsedSentencesByTenseAndTopicUseCase: GetUsedSentencesByTenseAndTopicUseCase,
         getTopicsAccuracyInfoUseCase: GetTopicsAccuracyInfoUseCase,
     ): TopicsUseCases {
         return TopicsUseCases(
             getSentencesUseCase,
             getTopicsUseCase,
-            getUsedSentencesByTensAndTopicUseCase,
+            getUsedSentencesByTenseAndTopicUseCase,
             getTopicsAccuracyInfoUseCase,
         )
     }

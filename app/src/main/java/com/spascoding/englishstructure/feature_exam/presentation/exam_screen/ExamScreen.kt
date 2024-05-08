@@ -1,6 +1,5 @@
 package com.spascoding.englishstructure.feature_exam.presentation.exam_screen
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -8,10 +7,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Check
-import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material3.Button
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
@@ -27,7 +22,6 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -35,7 +29,6 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewModelScope
 import com.spascoding.englishstructure.R
-import com.spascoding.englishstructure.core.constants.Colors
 import com.spascoding.englishstructure.core.constants.FontSize
 import com.spascoding.englishstructure.core.constants.Padding
 import com.spascoding.englishstructure.feature_exam.domain.model.sentence.entity.Sentence
@@ -54,11 +47,11 @@ fun ExamScreen(
         Text(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(viewModel.state.value.tens.color)
+                .background(viewModel.state.value.tense.color)
                 .padding(
                     vertical = Padding.MEDIUM,
                 ),
-            text = viewModel.state.value.tens.value,
+            text = viewModel.state.value.tense.value,
             fontSize = FontSize.LARGE,
             textAlign = TextAlign.Center,
             color = Color.Black,

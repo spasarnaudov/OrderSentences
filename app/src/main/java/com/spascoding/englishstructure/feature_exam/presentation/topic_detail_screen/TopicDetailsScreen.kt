@@ -27,11 +27,11 @@ fun ExamDetails(
         Text(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(viewModel.state.value.tens.color)
+                .background(viewModel.state.value.tense.color)
                 .padding(
                     vertical = Padding.MEDIUM,
                 ),
-            text = viewModel.state.value.tens.value,
+            text = viewModel.state.value.tense.value,
             fontSize = FontSize.LARGE,
             textAlign = TextAlign.Center,
             color = Color.Black,

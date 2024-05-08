@@ -32,11 +32,11 @@ fun TopicsScreen(
         Text(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(viewModel.state.value.tens.color)
+                .background(viewModel.state.value.tense.color)
                 .padding(
                     vertical = Padding.MEDIUM,
                 ),
-            text = viewModel.state.value.tens.value,
+            text = viewModel.state.value.tense.value,
             fontSize = FontSize.LARGE,
             textAlign = TextAlign.Center,
             color = Color.Black,
@@ -49,11 +49,11 @@ fun TopicsScreen(
                 TopicElement(
                     onClickItem = {
 //                                viewModel.onEvent(ExamListEvent.SelectExam(examName))
-                        navController.navigate(Screen.ExamScreen.route + "?tens=${viewModel.state.value.tens.int}&topic=$topic")
+                        navController.navigate(Screen.ExamScreen.route + "?tense=${viewModel.state.value.tense.int}&topic=$topic")
                     },
                     onClickInfo = {
 //                                viewModel.onEvent(ExamListEvent.SelectExam(examName))
-                        navController.navigate(Screen.TopicDetailScreen.route + "?tens=${viewModel.state.value.tens.int}&topic=$topic")
+                        navController.navigate(Screen.TopicDetailScreen.route + "?tense=${viewModel.state.value.tense.int}&topic=$topic")
                     },
                     topic = topic,
                 )

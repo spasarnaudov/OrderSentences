@@ -8,7 +8,7 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.spascoding.englishstructure.feature_exam.domain.MIN_COUNT_SENTECES
-import com.spascoding.englishstructure.feature_exam.domain.enums.Tens
+import com.spascoding.englishstructure.feature_exam.domain.enums.Tense
 import com.spascoding.englishstructure.feature_exam.domain.model.sentence.entity.Sentence
 import com.spascoding.englishstructure.feature_exam.domain.use_case.CommonUseCases
 import com.spascoding.englishstructure.feature_exam.domain.use_case.TopicsUseCases
@@ -33,16 +33,16 @@ class ExamViewModel @Inject constructor(
     val state: State<ExamViewModelState> = _state
 
     init {
-        savedStateHandle.get<Int>("tens")?.also { tens ->
+        savedStateHandle.get<Int>("tense")?.also { tense ->
             savedStateHandle.get<String>("topic")?.also { topic ->
                 _state.value = state.value.copy(
-                    tens = Tens.fromInt(tens),
+                    tense = Tense.fromInt(tense),
                     topic = topic
                 )
                 GlobalScope.launch {
                     withContext(Dispatchers.IO) {
-                        val newSentence = commonUseCases.getSentenceUseCase.invoke(Tens.fromInt(tens), topic)
-                        val history = topicsUseCases.getUsedSentencesByTensAndTopicUseCase.invoke(Tens.fromInt(tens), topic, MIN_COUNT_SENTECES)
+                        val newSentence = commonUseCases.getSentenceUseCase.invoke(Tense.fromInt(tense), topic)
+                        val history = topicsUseCases.getUsedSentencesByTenseAndTopicUseCase.invoke(Tense.fromInt(tense), topic, MIN_COUNT_SENTECES)
                         withContext(Dispatchers.Main) {
                             _state.value = state.value.copy(
                                 sentences = listOf(newSentence),
@@ -69,14 +69,14 @@ class ExamViewModel @Inject constructor(
             is ExamEvent.CheckExam -> {
                 val originSentence = state.value.sentences[0]
 
-                val tens = state.value.tens
+                val tens = state.value.tense
                 val topic = state.value.topic
 
                 GlobalScope.launch {
                     withContext(Dispatchers.IO) {
                         updateCurrentSentence(originSentence, event.answerText)
                         val newSentence = commonUseCases.getSentenceUseCase.invoke(tens, topic)
-                        val history = topicsUseCases.getUsedSentencesByTensAndTopicUseCase.invoke(tens, topic, MIN_COUNT_SENTECES)
+                        val history = topicsUseCases.getUsedSentencesByTenseAndTopicUseCase.invoke(tens, topic, MIN_COUNT_SENTECES)
                         withContext(Dispatchers.Main) {
                             _state.value = state.value.copy(
                                 sentences = listOf(newSentence),

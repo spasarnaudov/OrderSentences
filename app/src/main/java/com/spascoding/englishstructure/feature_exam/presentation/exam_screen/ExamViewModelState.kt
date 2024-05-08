@@ -4,11 +4,11 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.TextFieldValue
-import com.spascoding.englishstructure.feature_exam.domain.enums.Tens
+import com.spascoding.englishstructure.feature_exam.domain.enums.Tense
 import com.spascoding.englishstructure.feature_exam.domain.model.sentence.entity.Sentence
 
 data class ExamViewModelState(
-    val tens: Tens = Tens.PRESENT_SIMPLE,
+    val tense: Tense = Tense.PRESENT_SIMPLE,
     val topic: String = "",
     val sentence: String = "",
     val shuffledSentence: String = "",

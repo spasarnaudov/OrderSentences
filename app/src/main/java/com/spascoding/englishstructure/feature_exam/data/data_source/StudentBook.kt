@@ -5,7 +5,7 @@ import com.spascoding.englishstructure.feature_exam.data.data_source.sentence_pa
 import com.spascoding.englishstructure.feature_exam.data.data_source.sentence_parts.Pronouns
 import com.spascoding.englishstructure.feature_exam.data.data_source.sentence_parts.Verbs
 import com.spascoding.englishstructure.feature_exam.domain.enums.Article
-import com.spascoding.englishstructure.feature_exam.domain.enums.Tens
+import com.spascoding.englishstructure.feature_exam.domain.enums.Tense
 import com.spascoding.englishstructure.feature_exam.domain.model.ExamPattern
 import com.spascoding.englishstructure.feature_exam.domain.model.Preposition
 import com.spascoding.englishstructure.feature_exam.domain.model.noun.addAdjective
@@ -39,7 +39,7 @@ object StudentBook {
             //My name is
             ExamPattern(
                 name = HELLO,
-                tenses = listOf(Tens.PRESENT_SIMPLE),
+                tenses = listOf(Tense.PRESENT_SIMPLE),
                 subjects = listOf(Nouns.name).addAdjective(Adjectives.Possessive.singular),
                 verbs = listOf(Verbs.toBe),
                 objects = Nouns.names.build(),
@@ -47,7 +47,7 @@ object StudentBook {
             //I am from
             ExamPattern(
                 name = HELLO,
-                tenses = listOf(Tens.PRESENT_SIMPLE),
+                tenses = listOf(Tense.PRESENT_SIMPLE),
                 subjects = Pronouns.singular.plus(Pronouns.plural).plus(Nouns.names),
                 verbs = listOf(Verbs.toBe),
                 objects = Nouns.countries.addPreposition(Preposition.FROM).build(),
@@ -55,7 +55,7 @@ object StudentBook {
             //My job
             ExamPattern(
                 name = HELLO,
-                tenses = listOf(Tens.PRESENT_SIMPLE),
+                tenses = listOf(Tense.PRESENT_SIMPLE),
                 subjects = Pronouns.singular.plus(Pronouns.plural).plus(Nouns.names),
                 verbs = listOf(Verbs.toBe),
                 objects = Nouns.jobs.addArticle(Article.INDEFINITE).build(),

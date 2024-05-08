@@ -1,4 +1,4 @@
-package com.spascoding.englishstructure.feature_exam.presentation.tens_screen.components
+package com.spascoding.englishstructure.feature_exam.presentation.tense_screen.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -20,29 +20,29 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.spascoding.englishstructure.core.constants.Padding
-import com.spascoding.englishstructure.feature_exam.domain.enums.Tens
+import com.spascoding.englishstructure.feature_exam.domain.enums.Tense
 import com.spascoding.englishstructure.feature_exam.presentation.components.AccuracyInfo
-import com.spascoding.englishstructure.feature_exam.presentation.tens_screen.TensScreenViewModel
+import com.spascoding.englishstructure.feature_exam.presentation.tense_screen.TenseScreenViewModel
 
-data class TensButtonObject(
-    val tens: Tens,
-    val tensColor: Color,
-    val tensText: String,
+data class TenseButtonObject(
+    val tense: Tense,
+    val tenseColor: Color,
+    val tenseText: String,
     val exampleText: String,
 )
 
 @Composable
-fun TensButton(
+fun TenseButton(
     modifier: Modifier,
-    tensButtonObject: TensButtonObject,
-    viewModel: TensScreenViewModel = hiltViewModel(),
+    tenseButtonObject: TenseButtonObject,
+    viewModel: TenseScreenViewModel = hiltViewModel(),
     onClick: () -> Unit
 ) {
     Box {
         Column(
             modifier = modifier
                 .clickable(
-                    enabled = !viewModel.isTensLocked(tensButtonObject.tens),
+                    enabled = !viewModel.isTenseLocked(tenseButtonObject.tense),
                     onClick = onClick,
                     interactionSource = remember { MutableInteractionSource() },
                     indication = rememberRipple(color = Color.DarkGray)
@@ -56,7 +56,7 @@ fun TensButton(
                         start = Padding.SMALL,
                         end = Padding.SMALL,
                     ),
-                text = tensButtonObject.tensText,
+                text = tenseButtonObject.tenseText,
                 color = Color.Black,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center,
@@ -67,18 +67,18 @@ fun TensButton(
                     .weight(1f)
                     .wrapContentHeight(align = Alignment.CenterVertically)
                     .padding(horizontal = Padding.SMALL),
-                text = tensButtonObject.exampleText,
+                text = tenseButtonObject.exampleText,
                 color = Color.Black,
                 textAlign = TextAlign.Center,
             )
             AccuracyInfo(
-                progress = viewModel.getAccuracy(tensButtonObject.tens),
-                lastSentenceCount = viewModel.getLastSentencesCount(tensButtonObject.tens),
-                sentenceCount = viewModel.getSentencesCount(tensButtonObject.tens),
+                progress = viewModel.getAccuracy(tenseButtonObject.tense),
+                lastSentenceCount = viewModel.getLastSentencesCount(tenseButtonObject.tense),
+                sentenceCount = viewModel.getSentencesCount(tenseButtonObject.tense),
                 textColor = Color.Black
             )
         }
-        if (viewModel.isTensLocked(tensButtonObject.tens)) {
+        if (viewModel.isTenseLocked(tenseButtonObject.tense)) {
             Box(modifier = Modifier
                 .fillMaxSize()
                 .background(

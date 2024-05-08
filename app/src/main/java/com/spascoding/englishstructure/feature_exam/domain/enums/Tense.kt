@@ -3,7 +3,7 @@ package com.spascoding.englishstructure.feature_exam.domain.enums
 import androidx.compose.ui.graphics.Color
 import com.spascoding.englishstructure.core.constants.Colors
 
-enum class Tens(val value: String, val int: Int, val color: Color) {
+enum class Tense(val value: String, val int: Int, val color: Color) {
     PAST_SIMPLE("Past simple (A1)", 1, Colors.Blue),
     PAST_CONTINUOUS("Past continuous (A2)", 3, Colors.Blue),
     PAST_PERFECT("Past perfect (B2)", 7, Colors.Blue),
@@ -20,7 +20,7 @@ enum class Tens(val value: String, val int: Int, val color: Color) {
     FUTURE_PERFECT_CONTINUOUS("Future perfect continuous (C2)", 11, Colors.Red);
 
     companion object {
-        fun fromString(name: String): Tens {
+        fun fromString(name: String): Tense {
             if (PAST_SIMPLE.value == name) { return PAST_SIMPLE }
             if (PAST_CONTINUOUS.value == name) { return PAST_CONTINUOUS }
             if (PAST_PERFECT.value == name) { return PAST_PERFECT }
@@ -39,7 +39,7 @@ enum class Tens(val value: String, val int: Int, val color: Color) {
             return PRESENT_SIMPLE
         }
 
-        fun fromInt(int: Int): Tens {
+        fun fromInt(int: Int): Tense {
             if (PAST_SIMPLE.int == int) { return PAST_SIMPLE }
             if (PAST_CONTINUOUS.int == int) { return PAST_CONTINUOUS }
             if (PAST_PERFECT.int == int) { return PAST_PERFECT }

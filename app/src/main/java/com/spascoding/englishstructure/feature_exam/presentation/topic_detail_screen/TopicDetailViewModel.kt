@@ -4,7 +4,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import com.spascoding.englishstructure.feature_exam.domain.enums.Tens
+import com.spascoding.englishstructure.feature_exam.domain.enums.Tense
 import com.spascoding.englishstructure.feature_exam.domain.use_case.TopicsUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -23,14 +23,14 @@ class TopicDetailViewModel @Inject constructor(
     val state: State<TopicDetailState> = _state
 
     init {
-        savedStateHandle.get<Int>("tens")?.also { tens ->
+        savedStateHandle.get<Int>("tense")?.also { tense ->
             savedStateHandle.get<String>("topic")?.also { topic ->
                 GlobalScope.launch {
                     withContext(Dispatchers.IO) {
-                        topicsUseCases.getSentencesUseCase.invoke(Tens.fromInt(tens), topic).also { sentences ->
+                        topicsUseCases.getSentencesUseCase.invoke(Tense.fromInt(tense), topic).also { sentences ->
                             withContext(Dispatchers.Main) {
                                 _state.value = state.value.copy(
-                                    tens = Tens.fromInt(tens),
+                                    tense = Tense.fromInt(tense),
                                     examName = topic,
                                     sentences = sentences,
                                 )

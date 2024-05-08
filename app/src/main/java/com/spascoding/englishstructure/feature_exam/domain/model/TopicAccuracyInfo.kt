@@ -12,8 +12,8 @@ data class TopicAccuracyInfo(
         return Accuracy(mistakesCount, usedCount).calculate()
     }
 
-    operator fun compareTo(tensAccuracyInfo: TensAccuracyInfo): Int {
-        return accuracy() - tensAccuracyInfo.accuracy()
+    operator fun compareTo(tenseAccuracyInfo: TenseAccuracyInfo): Int {
+        return accuracy() - tenseAccuracyInfo.accuracy()
     }
 }
 

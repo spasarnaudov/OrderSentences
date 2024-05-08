@@ -1,4 +1,4 @@
-package com.spascoding.englishstructure.feature_exam.presentation.tens_screen
+package com.spascoding.englishstructure.feature_exam.presentation.tense_screen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -18,20 +18,20 @@ import com.spascoding.englishstructure.core.constants.Colors
 import com.spascoding.englishstructure.core.constants.FontSize
 import com.spascoding.englishstructure.core.constants.Padding
 import com.spascoding.englishstructure.core.presentation.Table
-import com.spascoding.englishstructure.feature_exam.domain.enums.Tens
+import com.spascoding.englishstructure.feature_exam.domain.enums.Tense
 import com.spascoding.englishstructure.feature_exam.presentation.Screen
-import com.spascoding.englishstructure.feature_exam.presentation.tens_screen.components.TensButton
-import com.spascoding.englishstructure.feature_exam.presentation.tens_screen.components.TensButtonObject
+import com.spascoding.englishstructure.feature_exam.presentation.tense_screen.components.TenseButton
+import com.spascoding.englishstructure.feature_exam.presentation.tense_screen.components.TenseButtonObject
 
 data class TitleObject(
     val text: String,
-    val tensColor: Color,
+    val tenseColor: Color,
 )
 
 @Composable
-fun TensScreen(
+fun TenseScreen(
     navController: NavController,
-    viewModel: TensScreenViewModel = hiltViewModel(),
+    viewModel: TenseScreenViewModel = hiltViewModel(),
 ) {
     val titles = listOf(
         TitleObject("Past", Colors.Blue),
@@ -39,21 +39,21 @@ fun TensScreen(
         TitleObject("Future", Colors.Red),
     )
     val cellsInfo = listOf(
-        TensButtonObject(Tens.PAST_SIMPLE, Colors.Blue, "simple", "worked"),
-        TensButtonObject(Tens.PRESENT_SIMPLE, Colors.Yellow, "simple", "work"),
-        TensButtonObject(Tens.FUTURE_SIMPLE, Colors.Red, "simple", "will work"),
+        TenseButtonObject(Tense.PAST_SIMPLE, Colors.Blue, "simple", "worked"),
+        TenseButtonObject(Tense.PRESENT_SIMPLE, Colors.Yellow, "simple", "work"),
+        TenseButtonObject(Tense.FUTURE_SIMPLE, Colors.Red, "simple", "will work"),
 
-        TensButtonObject(Tens.PAST_PERFECT, Colors.Blue, "perfect", "had worked"),
-        TensButtonObject(Tens.PRESENT_PERFECT, Colors.Yellow, "perfect", "have worked"),
-        TensButtonObject(Tens.FUTURE_PERFECT, Colors.Red, "perfect", "will have worked"),
+        TenseButtonObject(Tense.PAST_PERFECT, Colors.Blue, "perfect", "had worked"),
+        TenseButtonObject(Tense.PRESENT_PERFECT, Colors.Yellow, "perfect", "have worked"),
+        TenseButtonObject(Tense.FUTURE_PERFECT, Colors.Red, "perfect", "will have worked"),
 
-        TensButtonObject(Tens.PAST_CONTINUOUS, Colors.Blue, "continuous", "was working"),
-        TensButtonObject(Tens.PRESENT_CONTINUOUS, Colors.Yellow, "continuous", "am working"),
-        TensButtonObject(Tens.FUTURE_CONTINUOUS, Colors.Red, "continuous", "will be working"),
+        TenseButtonObject(Tense.PAST_CONTINUOUS, Colors.Blue, "continuous", "was working"),
+        TenseButtonObject(Tense.PRESENT_CONTINUOUS, Colors.Yellow, "continuous", "am working"),
+        TenseButtonObject(Tense.FUTURE_CONTINUOUS, Colors.Red, "continuous", "will be working"),
 
-        TensButtonObject(Tens.PAST_PERFECT_CONTINUOUS, Colors.Blue, "perfect continuous", "has been working"),
-        TensButtonObject(Tens.PRESENT_PERFECT_CONTINUOUS, Colors.Yellow, "perfect continuous", "have been working"),
-        TensButtonObject(Tens.FUTURE_PERFECT_CONTINUOUS, Colors.Red, "perfect continuous", "will have been working"),
+        TenseButtonObject(Tense.PAST_PERFECT_CONTINUOUS, Colors.Blue, "perfect continuous", "has been working"),
+        TenseButtonObject(Tense.PRESENT_PERFECT_CONTINUOUS, Colors.Yellow, "perfect continuous", "have been working"),
+        TenseButtonObject(Tense.FUTURE_PERFECT_CONTINUOUS, Colors.Red, "perfect continuous", "will have been working"),
     )
     Table(
         titles = List(titles.size) { index ->
@@ -62,7 +62,7 @@ fun TensScreen(
                 Text(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .background(title.tensColor)
+                        .background(title.tenseColor)
                         .padding(vertical = Padding.SMALL),
                     text = title.text,
                     textAlign = TextAlign.Center,
@@ -74,16 +74,16 @@ fun TensScreen(
         },
         cells = List(cellsInfo.size) { index ->
             {
-                val tensButtonObject = cellsInfo[index]
+                val tenseButtonObject = cellsInfo[index]
                 Column {
                     Divider()
-                    TensButton(
+                    TenseButton(
                         modifier = Modifier
-                            .background(tensButtonObject.tensColor),
-                        tensButtonObject,
+                            .background(tenseButtonObject.tenseColor),
+                        tenseButtonObject,
                     ) {
-                        viewModel.onEvent(TensScreenEventEvent.SelectTens(tens = tensButtonObject.tens))
-                        navController.navigate(Screen.TopicsScreen.route + "?tens=${tensButtonObject.tens.int}")
+                        viewModel.onEvent(TenseScreenEventEvent.SelectTense(tense = tenseButtonObject.tense))
+                        navController.navigate(Screen.TopicsScreen.route + "?tense=${tenseButtonObject.tense.int}")
                     }
                 }
             }

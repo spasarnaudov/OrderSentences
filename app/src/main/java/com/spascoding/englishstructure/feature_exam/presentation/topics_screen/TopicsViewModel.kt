@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.spascoding.englishstructure.feature_exam.domain.MIN_COUNT_SENTECES
-import com.spascoding.englishstructure.feature_exam.domain.enums.Tens
+import com.spascoding.englishstructure.feature_exam.domain.enums.Tense
 import com.spascoding.englishstructure.feature_exam.domain.model.getElementByTopic
 import com.spascoding.englishstructure.feature_exam.domain.repository.FirebaseRepository
 import com.spascoding.englishstructure.feature_exam.domain.use_case.CommonUseCases
@@ -27,20 +27,20 @@ class TopicsViewModel @Inject constructor(
     val state: State<TopicsViewModelState> = _state
 
     init {
-        savedStateHandle.get<Int>("tens")?.also { tensInt ->
-            val tens: Tens = Tens.fromInt(tensInt)
+        savedStateHandle.get<Int>("tense")?.also { tenseInt ->
+            val tense: Tense = Tense.fromInt(tenseInt)
 
             _state.value = state.value.copy(
-                tens = tens,
+                tense = tense,
             )
 
-            saveSentencesToDatabase(tens).also {
-                getExams(tens)
+            saveSentencesToDatabase(tense).also {
+                getExams(tense)
             }
 
             GlobalScope.launch {
                 withContext(Dispatchers.IO) {
-                    val topicsAccuracyInfo = topicsUseCases.getTopicsAccuracyInfoUseCase.invoke(tens, MIN_COUNT_SENTECES)
+                    val topicsAccuracyInfo = topicsUseCases.getTopicsAccuracyInfoUseCase.invoke(tense, MIN_COUNT_SENTECES)
                     withContext(Dispatchers.Main) {
                         _state.value = state.value.copy(
                             topicsAccuracyInfo = topicsAccuracyInfo,
@@ -62,14 +62,14 @@ class TopicsViewModel @Inject constructor(
         }
     }
 
-    private fun saveSentencesToDatabase(tens: Tens) {
+    private fun saveSentencesToDatabase(tense: Tense) {
         GlobalScope.launch {
             var topics: List<String>
             withContext(Dispatchers.IO) {
                 val examPatterns = commonUseCases.getExamPatternsUseCase.invoke()
-                val sentences = SentencesGenerator(tens, examPatterns).generate()
+                val sentences = SentencesGenerator(tense, examPatterns).generate()
                 commonUseCases.importNotExistedSentencesUseCase.invoke(sentences)
-                topics = topicsUseCases.getTopicsUseCase.invoke(tens)
+                topics = topicsUseCases.getTopicsUseCase.invoke(tense)
             }.also {
                 withContext(Dispatchers.Main) {
                     _state.value = state.value.copy(
@@ -80,10 +80,10 @@ class TopicsViewModel @Inject constructor(
         }
     }
 
-    private fun getExams(tens: Tens) {
+    private fun getExams(tense: Tense) {
         GlobalScope.launch {
             withContext(Dispatchers.IO) {
-                val examNames = topicsUseCases.getTopicsUseCase.invoke(tens)
+                val examNames = topicsUseCases.getTopicsUseCase.invoke(tense)
                 withContext(Dispatchers.Main) {
                     _state.value = state.value.copy(
                         topics = examNames,
@@ -99,17 +99,17 @@ class TopicsViewModel @Inject constructor(
     }
 
     fun getAccuracy(topic: String): Int {
-        val tensAccuracyInfo = state.value.topicsAccuracyInfo.getElementByTopic(topic)
-        if (tensAccuracyInfo != null) {
-            return tensAccuracyInfo.accuracy()
+        val tenseAccuracyInfo = state.value.topicsAccuracyInfo.getElementByTopic(topic)
+        if (tenseAccuracyInfo != null) {
+            return tenseAccuracyInfo.accuracy()
         }
         return 0
     }
 
     fun getLastSentencesCount(topic: String): Int {
-        val tensAccuracyInfo = state.value.topicsAccuracyInfo.getElementByTopic(topic)
-        if (tensAccuracyInfo != null) {
-            val sentencesCounts = tensAccuracyInfo.sentencesCount
+        val tenseAccuracyInfo = state.value.topicsAccuracyInfo.getElementByTopic(topic)
+        if (tenseAccuracyInfo != null) {
+            val sentencesCounts = tenseAccuracyInfo.sentencesCount
             if (sentencesCounts > MIN_COUNT_SENTECES) {
                 return MIN_COUNT_SENTECES
             }
@@ -119,9 +119,9 @@ class TopicsViewModel @Inject constructor(
     }
 
     fun getSentencesCount(topic: String): Int {
-        val tensAccuracyInfo = state.value.topicsAccuracyInfo.getElementByTopic(topic)
-        if (tensAccuracyInfo != null) {
-            return tensAccuracyInfo.sentencesCount
+        val tenseAccuracyInfo = state.value.topicsAccuracyInfo.getElementByTopic(topic)
+        if (tenseAccuracyInfo != null) {
+            return tenseAccuracyInfo.sentencesCount
         }
         return 0
     }

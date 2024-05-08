@@ -6,25 +6,25 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.spascoding.englishstructure.feature_exam.domain.enums.Tens
+import com.spascoding.englishstructure.feature_exam.domain.enums.Tense
 import com.spascoding.englishstructure.feature_exam.presentation.topic_detail_screen.ExamDetails
 import com.spascoding.englishstructure.feature_exam.presentation.topics_screen.TopicsScreen
 import com.spascoding.englishstructure.feature_exam.presentation.exam_screen.ExamScreen
-import com.spascoding.englishstructure.feature_exam.presentation.tens_screen.TensScreen
+import com.spascoding.englishstructure.feature_exam.presentation.tense_screen.TenseScreen
 
 @Composable
 fun Navigation(
 ) {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = Screen.TensScreen.route) {
-        composable(route = Screen.TensScreen.route) {
-            TensScreen(navController)
+    NavHost(navController = navController, startDestination = Screen.TenseScreen.route) {
+        composable(route = Screen.TenseScreen.route) {
+            TenseScreen(navController)
         }
         composable(
-            route = Screen.TopicsScreen.route + "?tens={tens}",
+            route = Screen.TopicsScreen.route + "?tense={tense}",
             arguments = listOf(
                 navArgument(
-                    name = "tens"
+                    name = "tense"
                 ) {
                     type = NavType.IntType
                 },
@@ -34,7 +34,7 @@ fun Navigation(
         }
         composable(
             route = Screen.TopicDetailScreen.route +
-                    "?tens={tens}&topic={topic}",
+                    "?tense={tense}&topic={topic}",
             arguments = listOf(
                 navArgument(
                     name = "topic"
@@ -43,10 +43,10 @@ fun Navigation(
                     defaultValue = ""
                 },
                 navArgument(
-                    name = "tens"
+                    name = "tense"
                 ) {
                     type = NavType.IntType
-                    defaultValue = Tens.PRESENT_SIMPLE.int
+                    defaultValue = Tense.PRESENT_SIMPLE.int
                 },
             )
         ) {
@@ -54,7 +54,7 @@ fun Navigation(
         }
         composable(
             route = Screen.ExamScreen.route +
-                    "?tens={tens}&topic={topic}",
+                    "?tense={tense}&topic={topic}",
             arguments = listOf(
                 navArgument(
                     name = "topic"
@@ -63,10 +63,10 @@ fun Navigation(
                     defaultValue = ""
                 },
                 navArgument(
-                    name = "tens"
+                    name = "tense"
                 ) {
                     type = NavType.IntType
-                    defaultValue = Tens.PRESENT_SIMPLE.int
+                    defaultValue = Tense.PRESENT_SIMPLE.int
                 },
             )
         ) {

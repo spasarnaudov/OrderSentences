@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "sentences")
 data class Sentence(
     @PrimaryKey val value: String,
-    val tens: Int,
+    val tense: Int,
     val topic: String,
     val userValue: String = "",
     val userValueTime: Long = 0,
