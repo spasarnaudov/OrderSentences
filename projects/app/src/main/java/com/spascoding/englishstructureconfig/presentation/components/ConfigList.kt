@@ -72,13 +72,7 @@ fun ConfigList(
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .clickable {
-                                showDialog.value = true
-                                rememberParameter.value = parameter
-                                rememberValue.value = value
-                            }
-                            .wrapContentHeight()
-                            .padding(start = 8.dp),
+                            .wrapContentHeight(),
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
                         Column(
@@ -87,6 +81,7 @@ fun ConfigList(
                             val onBackgroundColor = MaterialTheme.colorScheme.onBackground
                             Text(
                                 modifier = Modifier
+                                    .padding(start = 8.dp)
                                     .drawBehind {
                                         val strokeWidthPx = 1.dp.toPx()
                                         val verticalOffset = size.height - 2.dp.toPx()
@@ -100,15 +95,28 @@ fun ConfigList(
                                 text = parameter,
                                 fontWeight = FontWeight.Bold,
                             )
-                            Text(
-                                text = value,
-                            )
+                            Row(
+                                modifier = Modifier.fillMaxWidth()
+                                    .clickable {
+                                        showDialog.value = true
+                                        rememberParameter.value = parameter
+                                        rememberValue.value = value
+                                    },
+                                verticalAlignment = Alignment.CenterVertically,
+                            ) {
+                                Text(
+                                    modifier = Modifier.weight(1f)
+                                        .padding(start = 8.dp),
+                                    text = value,
+                                )
+                                Icon(
+                                    modifier = Modifier
+                                        .padding(16.dp),
+                                    imageVector = Icons.Default.Edit,
+                                    contentDescription = ""
+                                )
+                            }
                         }
-                        Icon(
-                            modifier = Modifier.padding(16.dp),
-                            imageVector = Icons.Default.Edit,
-                            contentDescription = ""
-                        )
                     }
                 }
             }
