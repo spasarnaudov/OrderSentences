@@ -11,4 +11,8 @@
 	<string name="use_mistake_ratio_pattern">%1$s / %2$s</string>
 	<string name="tenses">Tenses</string>
 
+	<!--	success info	-->
+	<string name="your_answer_is_incorrect">Your answer is incorrect</string>
+	<string name="your_answer_is_correct">Your answer is correct</string>
+
 </resources>
