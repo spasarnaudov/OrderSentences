@@ -28,7 +28,7 @@ interface EnglishStructureDao {
     /**
      * get sentence for exercise
      */
-    @Query("SELECT * FROM sentences WHERE tense=:tense AND topic=:topic ORDER BY usedCount ASC, mistakeCount DESC LIMIT 1")
+    @Query("SELECT * FROM sentences WHERE tense=:tense AND topic=:topic ORDER BY usedCount ASC, mistakeCount DESC, RANDOM() LIMIT 1")
     suspend fun getSentence(tense: Int, topic: String): Sentence
 
     // TENSE QUERIES
