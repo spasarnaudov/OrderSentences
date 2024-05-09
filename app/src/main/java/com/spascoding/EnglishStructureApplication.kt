@@ -22,7 +22,7 @@ class EnglishStructureApplication: Application() {
 
         if (isConfigAppInstalled(this)) {
             readConfigAppData(this)
-            Toast.makeText(this, "Config app is used", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Local configuration app is used", Toast.LENGTH_LONG).show()
         } else {
             setupFirebaseRemoteConfig()
         }

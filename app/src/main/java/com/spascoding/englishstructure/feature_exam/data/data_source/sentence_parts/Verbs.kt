@@ -106,7 +106,9 @@ object Verbs {
     val support = Verb("support")
     val trust = Verb("trust")
     val visit = Verb("visit")
+    val wait = Verb("wait")
     val walk = Verb("walk")
+    val wash = Verb("wash")
     val watch = Verb("watch")
 
     val countriesAndCities: List<Verb> = listOf(

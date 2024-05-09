@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.spascoding.englishstructure.core.constants.FontSize
@@ -52,7 +53,7 @@ fun TopicElement(
         Text(
             modifier = Modifier.padding(bottom = Padding.SMALL),
             text = topic.upperFirstLetter(),
-            fontSize = FontSize.LARGE,
+            textAlign = TextAlign.Center,
             fontWeight = FontWeight.Bold
         )
         AccuracyInfo(

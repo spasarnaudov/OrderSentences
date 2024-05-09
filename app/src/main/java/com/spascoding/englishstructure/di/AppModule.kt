@@ -110,7 +110,6 @@ object AppModule {
     fun provideConfigRepository(@ApplicationContext context: Context): ConfigRepository {
 
         return if (isConfigAppInstalled(context)) {
-            Toast.makeText(context, "Config app is used", Toast.LENGTH_LONG).show()
             ConfigAppRepositoryImpl(context)
         } else {
             FirebaseRepositoryImpl()
