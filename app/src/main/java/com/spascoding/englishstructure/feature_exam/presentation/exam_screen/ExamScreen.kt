@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
@@ -22,8 +24,11 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.key.onKeyEvent
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -39,8 +44,7 @@ import kotlinx.coroutines.launch
 fun ExamScreen(
     viewModel: ExamViewModel = hiltViewModel()
 ) {
-    val focusRequester = remember { FocusRequester() }
-    val onBackgroundColor = MaterialTheme.colorScheme.onBackground
+
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
@@ -56,55 +60,18 @@ fun ExamScreen(
             textAlign = TextAlign.Center,
             color = Color.Black,
         )
-        Text(
-            modifier = Modifier
-                .wrapContentSize()
-                .padding(
-                    start = Padding.SMALL,
-                    top = 64.dp,
-                    end = Padding.SMALL,
-                    bottom = 64.dp,
-                )
-                .drawBehind {
-                    val strokeWidthPx = 2.dp.toPx()
-                    val verticalOffset = size.height
-                    drawLine(
-                        color = onBackgroundColor,
-                        strokeWidth = strokeWidthPx,
-                        start = Offset(0f, verticalOffset),
-                        end = Offset(size.width, verticalOffset)
-                    )
-                },
-            fontWeight = FontWeight.Bold,
-            text = viewModel.getShuffledText(),
-        )
-        OutlinedTextField(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = Padding.SMALL)
-                .focusRequester(focusRequester),
-            value = viewModel.state.value.answerText.value,
-            onValueChange = {
-                viewModel.onEvent(ExamEvent.EnterText(it.text))
-            },
-            label = { Text(stringResource(R.string.put_the_sentence_in_the_correct_order)) },
-        )
+        UnderlinedText(text = viewModel.getShuffledText())
+        InputText()
         Button(
             modifier = Modifier
                 .wrapContentSize()
                 .padding(vertical = Padding.SMALL),
-            enabled = viewModel.state.value.answerText.value.text.isNotBlank(),
             onClick = {
                 viewModel.onEvent(ExamEvent.CheckExam(viewModel.state.value.answerText.value.text))
             },
         ) {
             Text(text = stringResource(R.string.check))
         }
-
-        LaunchedEffect(Unit) {
-            focusRequester.requestFocus()
-        }
-
         LazyColumn(
             modifier = Modifier.fillMaxWidth()
         ) {
@@ -117,6 +84,60 @@ fun ExamScreen(
             }
 
         }
+    }
+}
+
+@Composable
+fun UnderlinedText(text: AnnotatedString) {
+    val onBackgroundColor = MaterialTheme.colorScheme.onBackground
+    Text(
+        modifier = Modifier
+            .wrapContentSize()
+            .padding(
+                start = Padding.SMALL,
+                top = 64.dp,
+                end = Padding.SMALL,
+                bottom = 64.dp,
+            )
+            .drawBehind {
+                val strokeWidthPx = 2.dp.toPx()
+                val verticalOffset = size.height
+                drawLine(
+                    color = onBackgroundColor,
+                    strokeWidth = strokeWidthPx,
+                    start = Offset(0f, verticalOffset),
+                    end = Offset(size.width, verticalOffset)
+                )
+            },
+        fontWeight = FontWeight.Bold,
+        text = text,
+    )
+}
+
+@Composable
+fun InputText(
+    viewModel: ExamViewModel = hiltViewModel()
+) {
+    val focusRequester = remember { FocusRequester() }
+    OutlinedTextField(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = Padding.SMALL)
+            .focusRequester(focusRequester),
+        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Go),
+        keyboardActions = KeyboardActions(
+            onGo = {
+                viewModel.onEvent(ExamEvent.CheckExam(viewModel.state.value.answerText.value.text))
+            }
+        ),
+        value = viewModel.state.value.answerText.value,
+        onValueChange = {
+            viewModel.onEvent(ExamEvent.EnterText(it.text))
+        },
+        label = { Text(stringResource(R.string.put_the_sentence_in_the_correct_order)) },
+    )
+    LaunchedEffect(Unit) {
+        focusRequester.requestFocus()
     }
 }
 
