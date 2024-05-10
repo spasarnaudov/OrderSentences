@@ -25,9 +25,6 @@ class EnglishStructureConfigApplication: Application() {
         }
         remoteConfig.setConfigSettingsAsync(configSettings)
 
-        // Set default values. R.xml.remote_config_defaults should be defined similarly as in the Java example.
-        remoteConfig.setDefaultsAsync(R.xml.remote_config_defaults)
-
         // Fetch and activate the values
         remoteConfig.fetchAndActivate().addOnCompleteListener { task ->
             if (task.isSuccessful) {
