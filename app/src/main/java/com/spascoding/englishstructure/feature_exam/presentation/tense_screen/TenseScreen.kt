@@ -94,12 +94,8 @@ fun TenseScreen(
                             .background(tenseButtonObject.tenseColor),
                         tenseButtonObject,
                     ) {
-                        if (viewModel.isTenseLocked(tenseButtonObject.tense)) {
-                            error.value = "You need to finish all topics in ${tenseButtonObject.tense.getPreviewsTense().value} tense"
-                        } else {
-                            viewModel.onEvent(TenseScreenEventEvent.SelectTense(tense = tenseButtonObject.tense))
-                            navController.navigate(Screen.TopicsScreen.route + "?tense=${tenseButtonObject.tense.int}")
-                        }
+                        viewModel.onEvent(TenseScreenEventEvent.SelectTense(tense = tenseButtonObject.tense))
+                        navController.navigate(Screen.TopicsScreen.route + "?tense=${tenseButtonObject.tense.int}")
                     }
                 }
             }

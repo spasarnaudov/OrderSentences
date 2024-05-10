@@ -7,7 +7,6 @@ import com.spascoding.englishstructure.feature_exam.domain.enums.Tense
 import com.spascoding.englishstructure.feature_exam.domain.model.getElementByTense
 import com.spascoding.englishstructure.feature_exam.domain.repository.ConfigRepository
 import com.spascoding.englishstructure.feature_exam.domain.use_case.TenseUseCases
-import com.spascoding.englishstructure.feature_exam.domain.utils.TenseLocker
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -71,10 +70,6 @@ class TenseScreenViewModel @Inject constructor(
             return tenseAccuracyInfo.sentencesCount
         }
         return 0
-    }
-
-    fun isTenseLocked(tense: Tense): Boolean {
-        return TenseLocker(configRepository).isLocked(tense, state.value.tensesAccuracyInfo)
     }
 
 }

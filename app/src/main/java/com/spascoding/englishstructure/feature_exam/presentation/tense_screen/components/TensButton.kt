@@ -77,13 +77,5 @@ fun TenseButton(
                 textColor = Color.Black
             )
         }
-        if (viewModel.isTenseLocked(tenseButtonObject.tense)) {
-            Box(modifier = Modifier
-                .fillMaxSize()
-                .background(
-                    Color.Black.copy(alpha = 0.25f),
-                )
-            )
-        }
     }
 }

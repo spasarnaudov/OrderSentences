@@ -7,6 +7,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Info
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -44,12 +48,11 @@ fun TopicElement(
         ),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-//        IconButton(
-//            onClick = onClickInfo
-//        ) {
-//            Icon(Icons.Default.Info, contentDescription = null)
-//        }
-        SuccessInfo(viewModel.isSuccess(topic))
+        IconButton(
+            onClick = onClickInfo
+        ) {
+            Icon(Icons.Default.Info, contentDescription = null)
+        }
         Text(
             modifier = Modifier.padding(bottom = Padding.SMALL),
             text = topic.upperFirstLetter(),
