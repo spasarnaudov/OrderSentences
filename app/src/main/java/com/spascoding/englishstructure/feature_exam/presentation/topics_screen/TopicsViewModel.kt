@@ -5,13 +5,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.spascoding.englishstructure.feature_exam.domain.enums.Tense
-import com.spascoding.englishstructure.feature_exam.domain.model.getElementByTopic
+import com.spascoding.englishstructure.feature_exam.domain.model.TopicInfo
 import com.spascoding.englishstructure.feature_exam.domain.repository.ConfigRepository
 import com.spascoding.englishstructure.feature_exam.domain.use_case.CommonUseCases
 import com.spascoding.englishstructure.feature_exam.domain.use_case.TopicsUseCases
 import com.spascoding.englishstructure.feature_exam.domain.utils.SentencesGenerator
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 @HiltViewModel
@@ -35,17 +36,6 @@ class TopicsViewModel @Inject constructor(
 
             saveSentencesToDatabase(tense).also {
                 getExams(tense)
-            }
-
-            GlobalScope.launch {
-                withContext(Dispatchers.IO) {
-                    val topicsAccuracyInfo = topicsUseCases.getTopicsAccuracyInfoUseCase.invoke(tense, configRepository.getAccuracySentencesCount())
-                    withContext(Dispatchers.Main) {
-                        _state.value = state.value.copy(
-                            topicsAccuracyInfo = topicsAccuracyInfo,
-                        )
-                    }
-                }
             }
         }
     }
@@ -92,37 +82,9 @@ class TopicsViewModel @Inject constructor(
         }
     }
 
-    fun isSuccess(topic: String): Boolean {
-        return getAccuracy(topic) >= configRepository.getUnlockTopicAccuracy()
-                && getSentencesCount(topic) >= configRepository.getUnlockTopicSentenceCount()
+    fun getTopicInfoFlow(): Flow<List<TopicInfo>> {
+        return topicsUseCases.getTopicInfoUseCase.invoke(state.value.tense)
     }
 
-    fun getAccuracy(topic: String): Int {
-        val tenseAccuracyInfo = state.value.topicsAccuracyInfo.getElementByTopic(topic)
-        if (tenseAccuracyInfo != null) {
-            return tenseAccuracyInfo.accuracy()
-        }
-        return 0
-    }
-
-    fun getLastSentencesCount(topic: String): Int {
-        val tenseAccuracyInfo = state.value.topicsAccuracyInfo.getElementByTopic(topic)
-        if (tenseAccuracyInfo != null) {
-            val sentencesCounts = tenseAccuracyInfo.sentencesCount
-            if (sentencesCounts > configRepository.getAccuracySentencesCount()) {
-                return configRepository.getAccuracySentencesCount()
-            }
-            return sentencesCounts
-        }
-        return 0
-    }
-
-    fun getSentencesCount(topic: String): Int {
-        val tenseAccuracyInfo = state.value.topicsAccuracyInfo.getElementByTopic(topic)
-        if (tenseAccuracyInfo != null) {
-            return tenseAccuracyInfo.sentencesCount
-        }
-        return 0
-    }
 
 }

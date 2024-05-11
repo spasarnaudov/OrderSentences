@@ -4,6 +4,7 @@ import com.spascoding.englishstructure.feature_exam.data.local.EnglishStructureD
 import com.spascoding.englishstructure.feature_exam.domain.enums.Tense
 import com.spascoding.englishstructure.feature_exam.domain.model.TenseInfo
 import com.spascoding.englishstructure.feature_exam.domain.model.TopicAccuracyInfo
+import com.spascoding.englishstructure.feature_exam.domain.model.TopicInfo
 import com.spascoding.englishstructure.feature_exam.domain.model.sentence.entity.Sentence
 import com.spascoding.englishstructure.feature_exam.domain.repository.DatabaseRepository
 import kotlinx.coroutines.flow.Flow
@@ -30,6 +31,10 @@ class DatabaseRepositoryImpl @Inject constructor(
         return dao.getTenseInfo()
     }
 
+    override fun getTopicInfo(tense: Tense): Flow<List<TopicInfo>> {
+        return dao.getTopicInfo(tense.int)
+    }
+
     // TOPICS
 
     override suspend fun getSentences(tense: Tense, topic: String): List<Sentence> {
@@ -42,9 +47,5 @@ class DatabaseRepositoryImpl @Inject constructor(
 
     override suspend fun getUsedSentencesByTenseAndTopic(tense: Tense, topic: String, sentenceCount: Int): List<Sentence> {
         return dao.getUsedSentencesByTensAndTopic(tense.int, topic, sentenceCount)
-    }
-
-    override suspend fun getTopicsAccuracyInfo(tense: Tense, sentenceCount: Int): List<TopicAccuracyInfo> {
-        return dao.getTopicsAccuracyInfo(tense.int, sentenceCount)
     }
 }

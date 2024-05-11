@@ -19,7 +19,7 @@ import com.spascoding.englishstructure.feature_exam.domain.use_case.TopicsUseCas
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetTenseInfoUseCase
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetSentenceUseCase
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetSentencesUseCase
-import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetTopicsAccuracyInfoUseCase
+import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetTopicInfoUseCase
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetTopicsUseCase
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetUsedSentencesByTenseAndTopicUseCase
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.ImportNotExistedSentencesUseCase
@@ -73,13 +73,13 @@ object AppModule {
         getSentencesUseCase: GetSentencesUseCase,
         getTopicsUseCase: GetTopicsUseCase,
         getUsedSentencesByTenseAndTopicUseCase: GetUsedSentencesByTenseAndTopicUseCase,
-        getTopicsAccuracyInfoUseCase: GetTopicsAccuracyInfoUseCase,
+        getTopicInfoUseCase: GetTopicInfoUseCase,
     ): TopicsUseCases {
         return TopicsUseCases(
             getSentencesUseCase,
             getTopicsUseCase,
             getUsedSentencesByTenseAndTopicUseCase,
-            getTopicsAccuracyInfoUseCase,
+            getTopicInfoUseCase,
         )
     }
 

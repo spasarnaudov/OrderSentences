@@ -4,12 +4,9 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import androidx.room.Transaction
 import androidx.room.Update
-import com.spascoding.englishstructure.feature_exam.domain.enums.Tense
-import com.spascoding.englishstructure.feature_exam.domain.model.TenseAccuracyInfo
 import com.spascoding.englishstructure.feature_exam.domain.model.TenseInfo
-import com.spascoding.englishstructure.feature_exam.domain.model.TopicAccuracyInfo
+import com.spascoding.englishstructure.feature_exam.domain.model.TopicInfo
 import com.spascoding.englishstructure.feature_exam.domain.model.sentence.entity.Sentence
 import kotlinx.coroutines.flow.Flow
 
@@ -46,6 +43,16 @@ interface EnglishStructureDao {
     )
     fun getTenseInfo(): Flow<List<TenseInfo>>
 
+    @Query(
+        "SELECT topic," +
+            " (CAST(SUM(usedCount - mistakeCount) AS FLOAT) * 100 / NULLIF(CAST(SUM(usedCount) AS FLOAT), 0)) AS accuracy," +
+            " COUNT(*) AS sentenceCount" +
+            " FROM sentences" +
+            " WHERE tense =:tense AND usedCount > 0" +
+            " GROUP BY topic"
+    )
+    fun getTopicInfo(tense: Int): Flow<List<TopicInfo>>
+
     // TOPICS QUERIES
 
     /**
@@ -63,35 +70,4 @@ interface EnglishStructureDao {
         topic: String,
         sentenceCount: Int
     ): List<Sentence>
-
-    @Query("SELECT SUM(mistakeCount) FROM (SELECT * FROM sentences WHERE tense=:tense AND topic=:topic ORDER BY userValueTime DESC LIMIT :sentenceCount)")
-    suspend fun getMistakesCountByTense(tense: Int, topic: String, sentenceCount: Int): Int
-
-    @Query("SELECT SUM(usedCount) FROM (SELECT * FROM sentences WHERE tense=:tense AND topic=:topic ORDER BY userValueTime DESC LIMIT :sentenceCount)")
-    suspend fun getUsedCountByTense(tense: Int, topic: String, sentenceCount: Int): Int
-
-    @Query("SELECT COUNT(usedCount) FROM sentences WHERE tense=:tens AND topic=:topic AND usedCount > 0")
-    suspend fun getUsedSentencesCountByTensAndTopic(tens: Int, topic: String): Int
-
-    @Transaction
-    suspend fun getTopicsAccuracyInfo(tens: Int, sentenceCount: Int): List<TopicAccuracyInfo> {
-        val data = mutableListOf<TopicAccuracyInfo>()
-
-        val topics = getTopics(tens)
-        for (topic in topics) {
-            val mistakesCount = getMistakesCountByTense(tens, topic, sentenceCount)
-            val usedCountByTens = getUsedCountByTense(tens, topic, sentenceCount)
-            val sentencesCount = getUsedSentencesCountByTensAndTopic(tens, topic)
-            data.add(
-                TopicAccuracyInfo(
-                    topic = topic,
-                    mistakesCount = mistakesCount,
-                    usedCount = usedCountByTens,
-                    sentencesCount = sentencesCount,
-                )
-            )
-        }
-
-        return data
-    }
 }
