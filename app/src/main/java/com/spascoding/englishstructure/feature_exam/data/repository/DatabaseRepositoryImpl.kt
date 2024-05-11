@@ -2,15 +2,16 @@ package com.spascoding.englishstructure.feature_exam.data.repository
 
 import com.spascoding.englishstructure.feature_exam.data.local.EnglishStructureDao
 import com.spascoding.englishstructure.feature_exam.domain.enums.Tense
-import com.spascoding.englishstructure.feature_exam.domain.model.TenseAccuracyInfo
+import com.spascoding.englishstructure.feature_exam.domain.model.TenseInfo
 import com.spascoding.englishstructure.feature_exam.domain.model.TopicAccuracyInfo
 import com.spascoding.englishstructure.feature_exam.domain.model.sentence.entity.Sentence
-import com.spascoding.englishstructure.feature_exam.domain.repository.EnglishStructureDatabaseRepository
+import com.spascoding.englishstructure.feature_exam.domain.repository.DatabaseRepository
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class EnglishStructureDatabaseRepositoryImpl @Inject constructor(
+class DatabaseRepositoryImpl @Inject constructor(
     private val dao: EnglishStructureDao
-): EnglishStructureDatabaseRepository {
+): DatabaseRepository {
     override suspend fun importNotExistedSentences(sentences: List<Sentence>) {
         dao.importNotExistedSentences(sentences)
     }
@@ -25,8 +26,8 @@ class EnglishStructureDatabaseRepositoryImpl @Inject constructor(
 
     // TENSES
 
-    override suspend fun getTensesAccuracyInfo(sentenceCount: Int): List<TenseAccuracyInfo> {
-        return dao.getTensesAccuracyInfo(sentenceCount)
+    override fun getTenseInfo(): Flow<List<TenseInfo>> {
+        return dao.getTenseInfo()
     }
 
     // TOPICS

@@ -8,8 +8,10 @@ import androidx.room.Transaction
 import androidx.room.Update
 import com.spascoding.englishstructure.feature_exam.domain.enums.Tense
 import com.spascoding.englishstructure.feature_exam.domain.model.TenseAccuracyInfo
+import com.spascoding.englishstructure.feature_exam.domain.model.TenseInfo
 import com.spascoding.englishstructure.feature_exam.domain.model.TopicAccuracyInfo
 import com.spascoding.englishstructure.feature_exam.domain.model.sentence.entity.Sentence
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface EnglishStructureDao {
@@ -33,41 +35,16 @@ interface EnglishStructureDao {
 
     // TENSE QUERIES
 
-    @Query("SELECT DISTINCT tense FROM sentences")
-    suspend fun getTenses(): List<Int>
-
-    @Query("SELECT SUM(mistakeCount) FROM (SELECT * FROM sentences WHERE tense=:tense ORDER BY userValueTime DESC LIMIT :sentenceCount)")
-    suspend fun getMistakesCountByTense(tense: Int, sentenceCount: Int): Int
-
-    @Query("SELECT SUM(usedCount) FROM (SELECT * FROM sentences WHERE tense=:tense ORDER BY userValueTime DESC LIMIT :sentenceCount)")
-    suspend fun getUsedCountByTense(tense: Int, sentenceCount: Int): Int
-
-    @Query("SELECT COUNT(usedCount) FROM sentences WHERE tense=:tense AND usedCount > 0")
-    suspend fun getSentencesCountByTense(tense: Int): Int
-
-    @Transaction
-    suspend fun getTensesAccuracyInfo(sentenceCount: Int): List<TenseAccuracyInfo> {
-        val data = mutableListOf<TenseAccuracyInfo>()
-
-        val tenses = getTenses()
-        for (tense in tenses) {
-            val mistakesCount = getMistakesCountByTense(tense, sentenceCount)
-            val usedCountByTense = getUsedCountByTense(tense, sentenceCount)
-            val sentencesCount = getSentencesCountByTense(tense)
-            val topicsAccuracyInfo = getTopicsAccuracyInfo(tense, sentenceCount)
-            data.add(
-                TenseAccuracyInfo(
-                    tense = Tense.fromInt(tense),
-                    mistakesCount = mistakesCount,
-                    usedCount = usedCountByTense,
-                    sentencesCount = sentencesCount,
-                    topicsAccuracyInfo = topicsAccuracyInfo,
-                )
-            )
-        }
-
-        return data
-    }
+    @Query(
+        "SELECT " +
+                "tense, " +
+                "CAST(SUM(usedCount - mistakeCount) AS FLOAT) * 100 / SUM(usedCount) AS accuracy," +
+                "COUNT(*) AS sentenceCount " +
+                "FROM sentences " +
+                "WHERE usedCount > 0 " +
+                "GROUP BY tense"
+    )
+    fun getTenseInfo(): Flow<List<TenseInfo>>
 
     // TOPICS QUERIES
 

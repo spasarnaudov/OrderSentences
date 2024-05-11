@@ -1,16 +1,17 @@
 package com.spascoding.englishstructure.feature_exam.domain.repository
 
 import com.spascoding.englishstructure.feature_exam.domain.enums.Tense
-import com.spascoding.englishstructure.feature_exam.domain.model.TenseAccuracyInfo
+import com.spascoding.englishstructure.feature_exam.domain.model.TenseInfo
 import com.spascoding.englishstructure.feature_exam.domain.model.TopicAccuracyInfo
 import com.spascoding.englishstructure.feature_exam.domain.model.sentence.entity.Sentence
+import kotlinx.coroutines.flow.Flow
 
-interface EnglishStructureDatabaseRepository {
+interface DatabaseRepository {
     suspend fun importNotExistedSentences(sentences: List<Sentence>)
     suspend fun updateSentence(sentence: Sentence)
     suspend fun getSentence(tense: Tense, examName: String): Sentence
     // TENSES
-    suspend fun getTensesAccuracyInfo(sentenceCount: Int): List<TenseAccuracyInfo>
+    fun getTenseInfo(): Flow<List<TenseInfo>>
     // TOPICS
     suspend fun getSentences(tense: Tense, examName: String): List<Sentence>
     suspend fun getTopics(tense: Tense): List<String>

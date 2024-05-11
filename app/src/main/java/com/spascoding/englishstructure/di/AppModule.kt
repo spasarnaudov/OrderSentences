@@ -1,7 +1,6 @@
 package com.spascoding.englishstructure.di
 
 import android.content.Context
-import android.widget.Toast
 import androidx.room.Room.databaseBuilder
 import com.spascoding.englishstructure.feature_exam.data.local.EnglishStructureDao
 import com.spascoding.englishstructure.feature_exam.data.local.EnglishStructureDatabase
@@ -17,9 +16,9 @@ import com.spascoding.englishstructure.feature_exam.domain.use_case.CommonUseCas
 import com.spascoding.englishstructure.feature_exam.domain.use_case.GetExamPatternsUseCase
 import com.spascoding.englishstructure.feature_exam.domain.use_case.TenseUseCases
 import com.spascoding.englishstructure.feature_exam.domain.use_case.TopicsUseCases
+import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetTenseInfoUseCase
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetSentenceUseCase
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetSentencesUseCase
-import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetTensesAccuracyInfoUseCase
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetTopicsAccuracyInfoUseCase
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetTopicsUseCase
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetUsedSentencesByTenseAndTopicUseCase
@@ -61,10 +60,10 @@ object AppModule {
     @Provides
     @Singleton
     fun provideTenseUseCases(
-        getTensesAccuracyInfoUseCase: GetTensesAccuracyInfoUseCase,
+        getTenseInfoUseCase: GetTenseInfoUseCase,
     ): TenseUseCases {
         return TenseUseCases(
-            getTensesAccuracyInfoUseCase,
+            getTenseInfoUseCase,
         )
     }
 

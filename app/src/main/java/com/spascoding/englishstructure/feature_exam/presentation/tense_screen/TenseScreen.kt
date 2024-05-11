@@ -94,7 +94,6 @@ fun TenseScreen(
                             .background(tenseButtonObject.tenseColor),
                         tenseButtonObject,
                     ) {
-                        viewModel.onEvent(TenseScreenEventEvent.SelectTense(tense = tenseButtonObject.tense))
                         navController.navigate(Screen.TopicsScreen.route + "?tense=${tenseButtonObject.tense.int}")
                     }
                 }
