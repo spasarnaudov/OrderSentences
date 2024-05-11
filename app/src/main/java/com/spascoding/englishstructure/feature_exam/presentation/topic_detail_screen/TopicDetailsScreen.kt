@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
@@ -37,12 +39,13 @@ fun ExamDetails(
             color = Color.Black,
         )
         DetailsRowDescription()
+        val sentences by viewModel.getSentences().collectAsState(initial = emptyList())
         LazyColumn(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = Padding.SMALL)
         ) {
-            viewModel.state.value.sentences.forEachIndexed() { index, sentence ->
+            sentences.forEachIndexed() { index, sentence ->
                 item {
                     DetailsRow(index = index, sentence = sentence)
                 }

@@ -3,7 +3,6 @@ package com.spascoding.englishstructure.feature_exam.data.repository
 import com.spascoding.englishstructure.feature_exam.data.local.EnglishStructureDao
 import com.spascoding.englishstructure.feature_exam.domain.enums.Tense
 import com.spascoding.englishstructure.feature_exam.domain.model.TenseInfo
-import com.spascoding.englishstructure.feature_exam.domain.model.TopicAccuracyInfo
 import com.spascoding.englishstructure.feature_exam.domain.model.TopicInfo
 import com.spascoding.englishstructure.feature_exam.domain.model.sentence.entity.Sentence
 import com.spascoding.englishstructure.feature_exam.domain.repository.DatabaseRepository
@@ -37,7 +36,7 @@ class DatabaseRepositoryImpl @Inject constructor(
 
     // TOPICS
 
-    override suspend fun getSentences(tense: Tense, topic: String): List<Sentence> {
+    override fun getSentences(tense: Tense, topic: String): Flow<List<Sentence>> {
         return dao.getSentences(tense.int, topic)
     }
 

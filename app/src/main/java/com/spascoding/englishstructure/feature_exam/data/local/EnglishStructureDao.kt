@@ -59,7 +59,7 @@ interface EnglishStructureDao {
      * Get all sentences for specific tens and topic
      */
     @Query("SELECT * FROM sentences WHERE tense=:tens AND topic=:topic ORDER BY usedCount ASC, mistakeCount DESC")
-    suspend fun getSentences(tens: Int, topic: String): List<Sentence>
+    fun getSentences(tens: Int, topic: String): Flow<List<Sentence>>
 
     @Query("SELECT DISTINCT topic FROM sentences WHERE tense=:tens")
     fun getTopics(tens: Int): Flow<List<String>>
