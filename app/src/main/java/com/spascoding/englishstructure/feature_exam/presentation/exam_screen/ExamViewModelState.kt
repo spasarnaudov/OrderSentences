@@ -15,5 +15,4 @@ data class ExamViewModelState(
     val enteredSentence: String = "",
     var answerText: MutableState<TextFieldValue> = mutableStateOf(TextFieldValue(text = "", selection = TextRange(0))),
     val sentences: List<Sentence> = listOf(),
-    val history: List<Sentence> = listOf(),
 )

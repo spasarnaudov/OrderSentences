@@ -21,7 +21,7 @@ import com.spascoding.englishstructure.feature_exam.domain.use_case.database.Get
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetSentencesUseCase
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetTopicInfoUseCase
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetTopicsUseCase
-import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetUsedSentencesByTenseAndTopicUseCase
+import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetHistoryUseCase
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.ImportNotExistedSentencesUseCase
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.UpdateSentenceUseCase
 import dagger.Module
@@ -72,7 +72,7 @@ object AppModule {
     fun provideTopicsUseCases(
         getSentencesUseCase: GetSentencesUseCase,
         getTopicsUseCase: GetTopicsUseCase,
-        getUsedSentencesByTenseAndTopicUseCase: GetUsedSentencesByTenseAndTopicUseCase,
+        getUsedSentencesByTenseAndTopicUseCase: GetHistoryUseCase,
         getTopicInfoUseCase: GetTopicInfoUseCase,
     ): TopicsUseCases {
         return TopicsUseCases(

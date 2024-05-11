@@ -17,6 +17,7 @@ import com.spascoding.englishstructure.feature_exam.presentation.utils.shuffleSe
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.Date
@@ -43,13 +44,11 @@ class ExamViewModel @Inject constructor(
                 GlobalScope.launch {
                     withContext(Dispatchers.IO) {
                         val newSentence = commonUseCases.getSentenceUseCase.invoke(Tense.fromInt(tense), topic)
-                        val history = topicsUseCases.getUsedSentencesByTenseAndTopicUseCase.invoke(Tense.fromInt(tense), topic, configRepository.getAccuracySentencesCount())
                         withContext(Dispatchers.Main) {
                             _state.value = state.value.copy(
                                 sentences = listOf(newSentence),
                                 sentence = newSentence.value,
                                 shuffledSentence = newSentence.value.shuffleSentence(" / "),
-                                history = history,
                             )
                         }
                     }
@@ -77,7 +76,6 @@ class ExamViewModel @Inject constructor(
                     withContext(Dispatchers.IO) {
                         updateCurrentSentence(originSentence, event.answerText)
                         val newSentence = commonUseCases.getSentenceUseCase.invoke(tens, topic)
-                        val history = topicsUseCases.getUsedSentencesByTenseAndTopicUseCase.invoke(tens, topic, configRepository.getAccuracySentencesCount())
                         withContext(Dispatchers.Main) {
                             _state.value = state.value.copy(
                                 sentences = listOf(newSentence),
@@ -85,7 +83,6 @@ class ExamViewModel @Inject constructor(
                                 shuffledSentence = newSentence.value.shuffleSentence(" / "),
                                 enteredSentence = "",
                                 answerText = mutableStateOf(TextFieldValue(text = "", selection = TextRange(0))),
-                                history = history,
                             )
                         }
                     }
@@ -117,6 +114,10 @@ class ExamViewModel @Inject constructor(
 
     private fun isCorrectAnswer(): Boolean {
         return state.value.enteredSentence == state.value.sentence
+    }
+
+    fun getHistory(): Flow<List<Sentence>> {
+        return topicsUseCases.getHistoryUseCase.invoke(state.value.tense, state.value.topic, configRepository.getAccuracySentencesCount())
     }
 
 }
