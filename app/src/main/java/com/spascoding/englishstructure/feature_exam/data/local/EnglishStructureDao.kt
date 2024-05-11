@@ -62,7 +62,7 @@ interface EnglishStructureDao {
     suspend fun getSentences(tens: Int, topic: String): List<Sentence>
 
     @Query("SELECT DISTINCT topic FROM sentences WHERE tense=:tens")
-    suspend fun getTopics(tens: Int): List<String>
+    fun getTopics(tens: Int): Flow<List<String>>
 
     @Query("SELECT * FROM sentences WHERE tense=:tens AND topic=:topic AND usedCount > 0 ORDER BY userValueTime DESC LIMIT :sentenceCount")
     suspend fun getUsedSentencesByTensAndTopic(

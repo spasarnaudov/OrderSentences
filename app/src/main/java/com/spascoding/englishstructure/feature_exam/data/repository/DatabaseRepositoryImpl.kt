@@ -41,7 +41,7 @@ class DatabaseRepositoryImpl @Inject constructor(
         return dao.getSentences(tense.int, topic)
     }
 
-    override suspend fun getTopics(tense: Tense): List<String> {
+    override fun getTopics(tense: Tense): Flow<List<String>> {
         return dao.getTopics(tense.int)
     }
 

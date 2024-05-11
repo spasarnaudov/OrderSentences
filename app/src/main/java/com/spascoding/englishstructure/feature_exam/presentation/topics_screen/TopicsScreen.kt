@@ -10,6 +10,8 @@ import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -41,18 +43,17 @@ fun TopicsScreen(
             textAlign = TextAlign.Center,
             color = Color.Black,
         )
+        val topicInfoList by viewModel.getTopics().collectAsState(initial = emptyList())
         LazyVerticalStaggeredGrid(
             modifier = Modifier.fillMaxSize(),
             columns = StaggeredGridCells.Fixed(3),
         ) {
-            items(viewModel.state.value.topics) { topic ->
+            items(topicInfoList) { topic ->
                 TopicElement(
                     onClickItem = {
-//                                viewModel.onEvent(ExamListEvent.SelectExam(examName))
                         navController.navigate(Screen.ExamScreen.route + "?tense=${viewModel.state.value.tense.int}&topic=$topic")
                     },
                     onClickInfo = {
-//                                viewModel.onEvent(ExamListEvent.SelectExam(examName))
                         navController.navigate(Screen.TopicDetailScreen.route + "?tense=${viewModel.state.value.tense.int}&topic=$topic")
                     },
                     topic = topic,

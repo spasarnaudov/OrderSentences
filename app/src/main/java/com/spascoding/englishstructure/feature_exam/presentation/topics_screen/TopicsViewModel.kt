@@ -20,7 +20,6 @@ class TopicsViewModel @Inject constructor(
     private val commonUseCases: CommonUseCases,
     private val topicsUseCases: TopicsUseCases,
     private val savedStateHandle: SavedStateHandle,
-    private val configRepository: ConfigRepository,
 ) : ViewModel() {
 
     private val _state = mutableStateOf(TopicsViewModelState())
@@ -34,57 +33,25 @@ class TopicsViewModel @Inject constructor(
                 tense = tense,
             )
 
-            saveSentencesToDatabase(tense).also {
-                getExams(tense)
-            }
-        }
-    }
-
-    fun onEvent(event: TopicsScreenEvent) {
-        when (event) {
-            is TopicsScreenEvent.SelectTopic -> {
-
-            }
-            is TopicsScreenEvent.SelectTopicInfo -> {
-
-            }
+            saveSentencesToDatabase(tense)
         }
     }
 
     private fun saveSentencesToDatabase(tense: Tense) {
         GlobalScope.launch {
-            var topics: List<String>
             withContext(Dispatchers.IO) {
                 val examPatterns = commonUseCases.getExamPatternsUseCase.invoke()
                 val sentences = SentencesGenerator(tense, examPatterns).generate()
                 commonUseCases.importNotExistedSentencesUseCase.invoke(sentences)
-                topics = topicsUseCases.getTopicsUseCase.invoke(tense)
-            }.also {
-                withContext(Dispatchers.Main) {
-                    _state.value = state.value.copy(
-                        topics = topics,
-                    )
-                }
             }
         }
     }
 
-    private fun getExams(tense: Tense) {
-        GlobalScope.launch {
-            withContext(Dispatchers.IO) {
-                val examNames = topicsUseCases.getTopicsUseCase.invoke(tense)
-                withContext(Dispatchers.Main) {
-                    _state.value = state.value.copy(
-                        topics = examNames,
-                    )
-                }
-            }
-        }
+    fun getTopics(): Flow<List<String>> {
+        return topicsUseCases.getTopicsUseCase.invoke(state.value.tense)
     }
 
     fun getTopicInfoFlow(): Flow<List<TopicInfo>> {
         return topicsUseCases.getTopicInfoUseCase.invoke(state.value.tense)
     }
-
-
 }
