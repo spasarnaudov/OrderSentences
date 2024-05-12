@@ -75,8 +75,7 @@ fun TenseButton(
 
             val tenseInfoList by viewModel.getTenseInfoFlow().collectAsState(initial = emptyList())
             AccuracyInfo(
-                progress = tenseInfoList.getTenseInfo(tenseButtonObject.tense).accuracy,
-                lastSentenceCount = tenseInfoList.getTenseInfo(tenseButtonObject.tense).sentenceCount,
+                accuracy = tenseInfoList.getTenseInfo(tenseButtonObject.tense).accuracy,
                 sentenceCount = tenseInfoList.getTenseInfo(tenseButtonObject.tense).sentenceCount,
                 textColor = Color.Black
             )

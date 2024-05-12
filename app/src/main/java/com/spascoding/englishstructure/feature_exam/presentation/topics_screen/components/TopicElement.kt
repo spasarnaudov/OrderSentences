@@ -62,8 +62,7 @@ fun TopicElement(
         )
         val tenseInfoList by viewModel.getTopicInfoFlow().collectAsState(initial = emptyList())
         AccuracyInfo(
-            progress = tenseInfoList.getTenseInfo(topic).accuracy,
-            lastSentenceCount = tenseInfoList.getTenseInfo(topic).sentenceCount,
+            accuracy = tenseInfoList.getTenseInfo(topic).accuracy,
             sentenceCount = tenseInfoList.getTenseInfo(topic).sentenceCount,
         )
     }
