@@ -62,7 +62,7 @@ class ExamViewModel @Inject constructor(
             is ExamEvent.EnterText -> {
                 _state.value = state.value.copy(
                     enteredSentence = event.answerText,
-                    answerText = mutableStateOf(TextFieldValue(text = event.answerText, selection = TextRange(event.answerText.length))),
+                    answerText = event.answerText,
                 )
             }
 
@@ -82,7 +82,7 @@ class ExamViewModel @Inject constructor(
                                 sentence = newSentence.value,
                                 shuffledSentence = newSentence.value.shuffleSentence(" / "),
                                 enteredSentence = "",
-                                answerText = mutableStateOf(TextFieldValue(text = "", selection = TextRange(0))),
+                                answerText = "",
                             )
                         }
                     }

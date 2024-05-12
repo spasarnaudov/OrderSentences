@@ -13,6 +13,6 @@ data class ExamViewModelState(
     val sentence: String = "",
     val shuffledSentence: String = "",
     val enteredSentence: String = "",
-    var answerText: MutableState<TextFieldValue> = mutableStateOf(TextFieldValue(text = "", selection = TextRange(0))),
+    var answerText: String = "",
     val sentences: List<Sentence> = listOf(),
 )

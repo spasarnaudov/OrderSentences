@@ -30,6 +30,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -68,7 +69,7 @@ fun ExamScreen(
                 .wrapContentSize()
                 .padding(vertical = Padding.SMALL),
             onClick = {
-                viewModel.onEvent(ExamEvent.CheckExam(viewModel.state.value.answerText.value.text))
+                viewModel.onEvent(ExamEvent.CheckExam(viewModel.state.value.answerText))
             },
         ) {
             Text(text = stringResource(R.string.check))
@@ -126,15 +127,18 @@ fun InputText(
             .fillMaxWidth()
             .padding(horizontal = Padding.SMALL)
             .focusRequester(focusRequester),
-        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Go),
+        keyboardOptions = KeyboardOptions(
+            imeAction = ImeAction.Go,
+            capitalization = KeyboardCapitalization.Sentences,
+        ),
         keyboardActions = KeyboardActions(
             onGo = {
-                viewModel.onEvent(ExamEvent.CheckExam(viewModel.state.value.answerText.value.text))
+                viewModel.onEvent(ExamEvent.CheckExam(viewModel.state.value.answerText))
             }
         ),
-        value = viewModel.state.value.answerText.value,
+        value = viewModel.state.value.answerText,
         onValueChange = {
-            viewModel.onEvent(ExamEvent.EnterText(it.text))
+            viewModel.onEvent(ExamEvent.EnterText(it))
         },
         label = { Text(stringResource(R.string.put_the_sentence_in_the_correct_order)) },
     )
