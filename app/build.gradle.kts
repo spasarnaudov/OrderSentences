@@ -14,7 +14,7 @@ android {
         applicationId = "com.spascoding.englishstructure"
         minSdk = 26
         targetSdk = 34
-        versionCode = 1
+        versionCode = 2
         val versionType = "-debug"
         versionName = "0.1.${versionCode}${versionType}"
 
