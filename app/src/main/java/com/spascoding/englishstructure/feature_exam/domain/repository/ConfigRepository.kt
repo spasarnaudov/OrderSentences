@@ -6,4 +6,5 @@ interface ConfigRepository {
     fun getUnlockTopicAccuracy(value: String = "UnlockTopicAccuracy"): Int
     fun getUnlockTopicSentenceCount(value: String = "UnlockTopicSentenceCount"): Int
     fun getAccuracySentencesCount(value: String = "AccuracySentencesCount"): Int
+    fun getHistorySentenceCount(value: String = "HistorySentenceCount"): Int
 }

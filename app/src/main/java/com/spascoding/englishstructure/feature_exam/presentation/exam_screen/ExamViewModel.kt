@@ -117,7 +117,7 @@ class ExamViewModel @Inject constructor(
     }
 
     fun getHistory(): Flow<List<Sentence>> {
-        return topicsUseCases.getHistoryUseCase.invoke(state.value.tense, state.value.topic, configRepository.getAccuracySentencesCount())
+        return topicsUseCases.getHistoryUseCase.invoke(state.value.tense, state.value.topic, configRepository.getHistorySentenceCount())
     }
 
 }

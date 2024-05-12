@@ -20,4 +20,8 @@
 		<key>AccuracySentencesCount</key>
 		<value>5</value>
 	</entry>
+	<entry>
+		<key>HistorySentenceCount</key>
+		<value>10</value>
+	</entry>
 </defaultsMap>

@@ -27,4 +27,8 @@ class FirebaseRepositoryImpl: ConfigRepository {
     override fun getAccuracySentencesCount(value: String): Int {
         return firebaseRemoteConfig.getLong(value).toInt()
     }
+
+    override fun getHistorySentenceCount(value: String): Int {
+        return firebaseRemoteConfig.getLong(value).toInt()
+    }
 }

@@ -27,4 +27,8 @@ class ConfigAppRepositoryImpl(
     override fun getAccuracySentencesCount(value: String): Int {
         return getValue(context, value).toInt()
     }
+
+    override fun getHistorySentenceCount(value: String): Int {
+        return getValue(context, value).toInt()
+    }
 }
