@@ -22,6 +22,7 @@ import com.spascoding.englishstructure.core.constants.FontSize
 import com.spascoding.englishstructure.core.constants.Padding
 import com.spascoding.englishstructure.feature_exam.presentation.Screen
 import com.spascoding.englishstructure.feature_exam.presentation.topics_screen.components.TopicElement
+import com.spascoding.englishstructure.feature_exam.presentation.utils.upperFirstLetter
 
 @Composable
 fun TopicsScreen(
@@ -38,7 +39,7 @@ fun TopicsScreen(
                 .padding(
                     vertical = Padding.MEDIUM,
                 ),
-            text = viewModel.state.value.tense.value,
+            text = viewModel.state.value.tense.value.upperFirstLetter(),
             fontSize = FontSize.LARGE,
             textAlign = TextAlign.Center,
             color = Color.Black,
