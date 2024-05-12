@@ -40,6 +40,7 @@ import com.spascoding.englishstructure.core.constants.FontSize
 import com.spascoding.englishstructure.core.constants.Padding
 import com.spascoding.englishstructure.feature_exam.domain.model.sentence.entity.Sentence
 import com.spascoding.englishstructure.feature_exam.presentation.components.SuccessInfo
+import com.spascoding.englishstructure.feature_exam.presentation.utils.upperFirstLetter
 import kotlinx.coroutines.launch
 
 @Composable
@@ -55,9 +56,9 @@ fun ExamScreen(
                 .fillMaxWidth()
                 .background(viewModel.state.value.tense.color)
                 .padding(
-                    vertical = Padding.MEDIUM,
+                    vertical = Padding.SMALL,
                 ),
-            text = viewModel.state.value.tense.value,
+            text = viewModel.state.value.tense.value.upperFirstLetter(),
             fontSize = FontSize.LARGE,
             textAlign = TextAlign.Center,
             color = Color.Black,
@@ -98,9 +99,9 @@ fun UnderlinedText(text: AnnotatedString) {
             .wrapContentSize()
             .padding(
                 start = Padding.SMALL,
-                top = 64.dp,
+                top = Padding.MEDIUM,
                 end = Padding.SMALL,
-                bottom = 64.dp,
+                bottom = Padding.MEDIUM,
             )
             .drawBehind {
                 val strokeWidthPx = 2.dp.toPx()
