@@ -10,12 +10,13 @@ interface DatabaseRepository {
     suspend fun removeExistedSentences(sentences: List<Sentence>)
     suspend fun importNotExistedSentences(sentences: List<Sentence>)
     suspend fun updateSentence(sentence: Sentence)
-    suspend fun getSentence(tense: Tense, examName: String): Sentence
+    suspend fun getSentence(tense: Tense, topic: String): Sentence
     // TENSES
+    suspend fun getTenseSentences(tense: Tense): List<Sentence>
     fun getTenseInfo(): Flow<List<TenseInfo>>
     // TOPICS
     fun getTopicInfo(tense: Tense): Flow<List<TopicInfo>>
-    fun getSentences(tense: Tense, examName: String): Flow<List<Sentence>>
+    fun getTopicSentences(tense: Tense, topic: String): Flow<List<Sentence>>
     fun getTopics(tense: Tense): Flow<List<String>>
-    fun getHistory(tense: Tense, examName: String, sentenceCount: Int): Flow<List<Sentence>>
+    fun getHistory(tense: Tense, topic: String, sentenceCount: Int): Flow<List<Sentence>>
 }

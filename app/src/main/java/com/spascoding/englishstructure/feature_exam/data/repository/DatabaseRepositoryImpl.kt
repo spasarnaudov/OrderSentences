@@ -30,17 +30,17 @@ class DatabaseRepositoryImpl @Inject constructor(
 
     // TENSES
 
+    override suspend fun getTenseSentences(tense: Tense): List<Sentence> {
+        return dao.getTenseSentences(tense.int)
+    }
+
     override fun getTenseInfo(): Flow<List<TenseInfo>> {
         return dao.getTenseInfo()
     }
 
-    override fun getTopicInfo(tense: Tense): Flow<List<TopicInfo>> {
-        return dao.getTopicInfo(tense.int)
-    }
-
     // TOPICS
 
-    override fun getSentences(tense: Tense, topic: String): Flow<List<Sentence>> {
+    override fun getTopicSentences(tense: Tense, topic: String): Flow<List<Sentence>> {
         return dao.getSentences(tense.int, topic)
     }
 
@@ -50,5 +50,9 @@ class DatabaseRepositoryImpl @Inject constructor(
 
     override fun getHistory(tense: Tense, topic: String, sentenceCount: Int): Flow<List<Sentence>> {
         return dao.getHistory(tense.int, topic, sentenceCount)
+    }
+
+    override fun getTopicInfo(tense: Tense): Flow<List<TopicInfo>> {
+        return dao.getTopicInfo(tense.int)
     }
 }

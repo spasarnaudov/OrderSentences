@@ -6,8 +6,8 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.spascoding.englishstructure.feature_exam.domain.enums.Tense
 import com.spascoding.englishstructure.feature_exam.domain.model.TopicInfo
-import com.spascoding.englishstructure.feature_exam.domain.repository.ConfigRepository
 import com.spascoding.englishstructure.feature_exam.domain.use_case.CommonUseCases
+import com.spascoding.englishstructure.feature_exam.domain.use_case.TenseUseCases
 import com.spascoding.englishstructure.feature_exam.domain.use_case.TopicsUseCases
 import com.spascoding.englishstructure.feature_exam.domain.utils.SentencesGenerator
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,6 +19,7 @@ import javax.inject.Inject
 class TopicsViewModel @Inject constructor(
     private val commonUseCases: CommonUseCases,
     private val topicsUseCases: TopicsUseCases,
+    private val tenseUseCases: TenseUseCases,
     private val savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
 
@@ -41,8 +42,14 @@ class TopicsViewModel @Inject constructor(
         GlobalScope.launch {
             withContext(Dispatchers.IO) {
                 val examPatterns = commonUseCases.getExamPatternsUseCase.invoke()
-                val sentences = SentencesGenerator(tense, examPatterns).generate()
-                commonUseCases.importNotExistedSentencesUseCase.invoke(sentences)
+                val generatedSentences = SentencesGenerator(tense, examPatterns).generate()
+
+                val tenseSentences = tenseUseCases.getTenseSentencesUseCase.invoke(tense)
+                val sentencesForRemove = tenseSentences.toMutableList()
+                sentencesForRemove.removeAll { generatedSentences.contains(it) }
+                commonUseCases.removeExistedSentencesUseCase.invoke(sentencesForRemove)
+
+                commonUseCases.importNotExistedSentencesUseCase.invoke(generatedSentences)
             }
         }
     }

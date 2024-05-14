@@ -39,6 +39,12 @@ interface EnglishStructureDao {
 
     // TENSE QUERIES
 
+    /**
+     * Get all sentences for specific tens and topic
+     */
+    @Query("SELECT * FROM sentences WHERE tense=:tens")
+    suspend fun getTenseSentences(tens: Int): List<Sentence>
+
     @Query(
         "SELECT " +
                 "tense, " +
@@ -49,16 +55,6 @@ interface EnglishStructureDao {
                 "GROUP BY tense"
     )
     fun getTenseInfo(): Flow<List<TenseInfo>>
-
-    @Query(
-        "SELECT topic," +
-            " (CAST(SUM(usedCount - mistakeCount) AS FLOAT) * 100 / NULLIF(CAST(SUM(usedCount) AS FLOAT), 0)) AS accuracy," +
-            " COUNT(*) AS sentenceCount" +
-            " FROM sentences" +
-            " WHERE tense =:tense AND usedCount > 0" +
-            " GROUP BY topic"
-    )
-    fun getTopicInfo(tense: Int): Flow<List<TopicInfo>>
 
     // TOPICS QUERIES
 
@@ -77,4 +73,14 @@ interface EnglishStructureDao {
         topic: String,
         sentenceCount: Int
     ): Flow<List<Sentence>>
+
+    @Query(
+        "SELECT topic," +
+                " (CAST(SUM(usedCount - mistakeCount) AS FLOAT) * 100 / NULLIF(CAST(SUM(usedCount) AS FLOAT), 0)) AS accuracy," +
+                " COUNT(*) AS sentenceCount" +
+                " FROM sentences" +
+                " WHERE tense =:tense AND usedCount > 0" +
+                " GROUP BY topic"
+    )
+    fun getTopicInfo(tense: Int): Flow<List<TopicInfo>>
 }
