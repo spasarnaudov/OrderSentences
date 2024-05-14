@@ -10,102 +10,82 @@ object Nouns {
 
     //Countries
 
-    val australia = CommonNoun(value = "Australia", countable = false, Plurality.SINGULAR)
-    val brazil = CommonNoun(value = "Brazil", countable = false, Plurality.SINGULAR)
-    val bulgaria = CommonNoun(value = "Bulgaria", countable = false, Plurality.SINGULAR)
-    val canada = CommonNoun(value = "Canada", countable = false, Plurality.SINGULAR)
-    val china = CommonNoun(value = "China", countable = false, Plurality.SINGULAR)
-    val france = CommonNoun(value = "France", countable = false, Plurality.SINGULAR)
-    val mexico = CommonNoun(value = "Mexico", countable = false, Plurality.SINGULAR)
-    val netherlands = CommonNoun(value = "Netherlands", countable = false, Plurality.SINGULAR)
-    val india = CommonNoun(value = "India", countable = false, Plurality.SINGULAR)
-    val indonesia = CommonNoun(value = "Indonesia", countable = false, Plurality.SINGULAR)
-    val italy = CommonNoun(value = "Italy", countable = false, Plurality.SINGULAR)
-    val japan = CommonNoun(value = "Japan", countable = false, Plurality.SINGULAR)
-    val saudiArabia = CommonNoun(value = "Saudi Arabia", countable = false, Plurality.SINGULAR)
-    val southKorea = CommonNoun(value = "South Korea", countable = false, Plurality.SINGULAR)
-    val spain = CommonNoun(value = "Spain", countable = false, Plurality.SINGULAR)
-    val sweden = CommonNoun(value = "Sweden", countable = false, Plurality.SINGULAR)
-    val switzerland = CommonNoun(value = "Switzerland", countable = false, Plurality.SINGULAR)
-    val turkey = CommonNoun(value = "Turkey", countable = false, Plurality.SINGULAR)
-    val theUnitedKingdom = CommonNoun(value = "The United Kingdom", countable = false, Plurality.SINGULAR)
-    val theUnitedStates = CommonNoun(value = "The United States", countable = false, Plurality.SINGULAR)
+    val australia = Pronoun(value = "Australia")
+    val brazil = Pronoun(value = "Brazil")
+    val bulgaria = Pronoun(value = "Bulgaria")
+    val canada = Pronoun(value = "Canada")
+    val china = Pronoun(value = "China")
+    val france = Pronoun(value = "France")
+    val mexico = Pronoun(value = "Mexico")
+    val netherlands = Pronoun(value = "Netherlands", Plurality.PLURAL)
+    val india = Pronoun(value = "India")
+    val indonesia = Pronoun(value = "Indonesia")
+    val italy = Pronoun(value = "Italy")
+    val japan = Pronoun(value = "Japan")
+    val saudiArabia = Pronoun(value = "Saudi Arabia")
+    val southKorea = Pronoun(value = "South Korea")
+    val spain = Pronoun(value = "Spain")
+    val sweden = Pronoun(value = "Sweden")
+    val switzerland = Pronoun(value = "Switzerland")
+    val turkey = Pronoun(value = "Turkey")
+    val theUnitedKingdom = Pronoun(value = "The United Kingdom")
+    val theUnitedStates = Pronoun(value = "The United States", Plurality.PLURAL)
 
     //Cities
 
-    val amsterdam = CommonNoun(value = "Amsterdam", countable = false, Plurality.SINGULAR)
-    val bangkok = CommonNoun(value = "Bangkok", countable = false, Plurality.SINGULAR)
-    val cairo = CommonNoun(value = "Cairo", countable = false, Plurality.SINGULAR)
-    val dublin = CommonNoun(value = "Dublin", countable = false, Plurality.SINGULAR)
-    val edinburgh = CommonNoun(value = "Edinburgh", countable = false, Plurality.SINGULAR)
-    val florence = CommonNoun(value = "Florence", countable = false, Plurality.SINGULAR)
-    val geneva = CommonNoun(value = "Geneva", countable = false, Plurality.SINGULAR)
-    val hongKong = CommonNoun(value = "Hong Kong", countable = false, Plurality.SINGULAR)
-    val istanbul = CommonNoun(value = "Istanbul", countable = false, Plurality.SINGULAR)
-    val jakarta = CommonNoun(value = "Jakarta", countable = false, Plurality.SINGULAR)
-    val kyoto = CommonNoun(value = "Kyoto", countable = false, Plurality.SINGULAR)
-    val london = CommonNoun(value = "London", countable = false, Plurality.SINGULAR)
-    val moscow = CommonNoun(value = "Moscow", countable = false, Plurality.SINGULAR)
-    val newYork = CommonNoun(value = "New York", countable = false, Plurality.SINGULAR)
-    val oslo = CommonNoun(value = "Oslo", countable = false, Plurality.SINGULAR)
-    val paris = CommonNoun(value = "Paris", countable = false, Plurality.SINGULAR)
-    val quebecCity = CommonNoun(value = "Quebec City", countable = false, Plurality.SINGULAR)
-    val rome = CommonNoun(value = "Rome", countable = false, Plurality.SINGULAR)
-    val sydney = CommonNoun(value = "Sydney", countable = false, Plurality.SINGULAR)
-    val tokyo = CommonNoun(value = "Tokyo", countable = false, Plurality.SINGULAR)
-    val utrecht = CommonNoun(value = "Utrecht", countable = false, Plurality.SINGULAR)
-    val vienna = CommonNoun(value = "Vienna", countable = false, Plurality.SINGULAR)
-    val warsaw = CommonNoun(value = "Warsaw", countable = false, Plurality.SINGULAR)
-    val xian = CommonNoun(value = "Xian", countable = false, Plurality.SINGULAR)
-    val york = CommonNoun(value = "York", countable = false, Plurality.SINGULAR)
-    val zurich = CommonNoun(value = "Zurich", countable = false, Plurality.SINGULAR)
+    val amsterdam = Pronoun(value = "Amsterdam")
+    val bangkok = Pronoun(value = "Bangkok")
+    val cairo = Pronoun(value = "Cairo")
+    val dublin = Pronoun(value = "Dublin")
+    val edinburgh = Pronoun(value = "Edinburgh")
+    val florence = Pronoun(value = "Florence")
+    val geneva = Pronoun(value = "Geneva")
+    val hongKong = Pronoun(value = "Hong Kong")
+    val istanbul = Pronoun(value = "Istanbul")
+    val jakarta = Pronoun(value = "Jakarta")
+    val kyoto = Pronoun(value = "Kyoto")
+    val london = Pronoun(value = "London")
+    val moscow = Pronoun(value = "Moscow")
+    val newYork = Pronoun(value = "New York")
+    val oslo = Pronoun(value = "Oslo")
+    val paris = Pronoun(value = "Paris")
+    val quebecCity = Pronoun(value = "Quebec City")
+    val rome = Pronoun(value = "Rome")
+    val sydney = Pronoun(value = "Sydney")
+    val tokyo = Pronoun(value = "Tokyo")
+    val utrecht = Pronoun(value = "Utrecht")
+    val vienna = Pronoun(value = "Vienna")
+    val warsaw = Pronoun(value = "Warsaw")
+    val xian = Pronoun(value = "Xian")
+    val york = Pronoun(value = "York")
+    val zurich = Pronoun(value = "Zurich")
 
     //Nationals
 
-    val australian = CommonNoun(value = "Australian", countable = false, Plurality.SINGULAR)
-    val brazilian = CommonNoun(value = "Brazilian", countable = false, Plurality.SINGULAR)
-    val bulgarian = CommonNoun(value = "Bulgarian", countable = false, Plurality.SINGULAR)
-    val canadian = CommonNoun(value = "Canadian", countable = false, Plurality.SINGULAR)
-    val chinese = CommonNoun(value = "Chinese", countable = false, Plurality.SINGULAR)
-    val french = CommonNoun(value = "French", countable = false, Plurality.SINGULAR)
-    val german = CommonNoun(value = "German", countable = false, Plurality.SINGULAR)
-    val indian = CommonNoun(value = "Indian", countable = false, Plurality.SINGULAR)
-    val indonesian = CommonNoun(value = "Indonesian", countable = false, Plurality.SINGULAR)
-    val italian = CommonNoun(value = "Italian", countable = false, Plurality.SINGULAR)
-    val japanese = CommonNoun(value = "Japanese", countable = false, Plurality.SINGULAR)
-    val mexican = CommonNoun(value = "Mexican", countable = false, Plurality.SINGULAR)
-    val dutch = CommonNoun(value = "Dutch", countable = false, Plurality.SINGULAR)
-    val russian = CommonNoun(value = "Russian", countable = false, Plurality.SINGULAR)
-    val saudiArabian = CommonNoun(value = "Saudi Arabian", countable = false, Plurality.SINGULAR)
-    val southKorean = CommonNoun(value = "South Korean", countable = false, Plurality.SINGULAR)
-    val spanish = CommonNoun(value = "Spanish", countable = false, Plurality.SINGULAR)
-    val swedish = CommonNoun(value = "Swedish", countable = false, Plurality.SINGULAR)
-    val swiss = CommonNoun(value = "Swiss", countable = false, Plurality.SINGULAR)
-    val turkish = CommonNoun(value = "Turkish", countable = false, Plurality.SINGULAR)
-    val british = CommonNoun(value = "British", countable = false, Plurality.SINGULAR)
-    val american = CommonNoun(value = "American", countable = false, Plurality.SINGULAR)
+    val australian = Pronoun(value = "Australian")
+    val brazilian = Pronoun(value = "Brazilian")
+    val bulgarian = Pronoun(value = "Bulgarian")
+    val canadian = Pronoun(value = "Canadian")
+    val chinese = Pronoun(value = "Chinese")
+    val french = Pronoun(value = "French")
+    val german = Pronoun(value = "German")
+    val indian = Pronoun(value = "Indian")
+    val indonesian = Pronoun(value = "Indonesian")
+    val italian = Pronoun(value = "Italian")
+    val japanese = Pronoun(value = "Japanese")
+    val mexican = Pronoun(value = "Mexican")
+    val dutch = Pronoun(value = "Dutch")
+    val russian = Pronoun(value = "Russian")
+    val saudiArabian = Pronoun(value = "Saudi Arabian")
+    val southKorean = Pronoun(value = "South Korean")
+    val spanish = Pronoun(value = "Spanish")
+    val swedish = Pronoun(value = "Swedish")
+    val swiss = Pronoun(value = "Swiss")
+    val turkish = Pronoun(value = "Turkish")
+    val british = Pronoun(value = "British")
+    val american = Pronoun(value = "American")
 
-    val english = CommonNoun(value = "English", countable = false, Plurality.SINGULAR)
-
-    val languages = listOf(
-        bulgarian,
-        chinese,
-        french,
-        german,
-        indian,
-        indonesian,
-        italian,
-        japanese,
-        dutch,
-        russian,
-        saudiArabian,
-        southKorean,
-        spanish,
-        swedish,
-        swiss,
-        turkish,
-        english,
-    )
+    val english = Pronoun(value = "English")
 
     //Jobs
 
@@ -218,15 +198,15 @@ object Nouns {
 
     //Drinks
 
-    val beer = CommonNoun(value = "beer", countable = true, Plurality.SINGULAR)
-    val cocktail = CommonNoun(value = "cocktail", countable = true, Plurality.SINGULAR)
-    val coffee = CommonNoun(value = "coffee", countable = true, Plurality.SINGULAR)
-    val fruitJuice = CommonNoun(value = "fruit juice", countable = true, Plurality.SINGULAR)
-    val lemonade = CommonNoun(value = "lemonade", countable = true, Plurality.SINGULAR)
-    val milk = CommonNoun(value = "milk", countable = true, Plurality.SINGULAR)
-    val vegetableJuice = CommonNoun(value = "vegetable juice", countable = true, Plurality.SINGULAR)
-    val water = CommonNoun(value = "water", countable = true, Plurality.SINGULAR)
-    val wine = CommonNoun(value = "wine", countable = true, Plurality.SINGULAR)
+    val beer = CommonNoun(value = "beer", countable = false, Plurality.SINGULAR)
+    val cocktail = CommonNoun(value = "cocktail", countable = false, Plurality.SINGULAR)
+    val coffee = CommonNoun(value = "coffee", countable = false, Plurality.SINGULAR)
+    val fruitJuice = CommonNoun(value = "fruit juice", countable = false, Plurality.SINGULAR)
+    val lemonade = CommonNoun(value = "lemonade", countable = false, Plurality.SINGULAR)
+    val milk = CommonNoun(value = "milk", countable = false, Plurality.SINGULAR)
+    val vegetableJuice = CommonNoun(value = "vegetable juice", countable = false, Plurality.SINGULAR)
+    val water = CommonNoun(value = "water", countable = false, Plurality.SINGULAR)
+    val wine = CommonNoun(value = "wine", countable = false, Plurality.SINGULAR)
 
     val dinner = CommonNoun(value = "dinner", countable = true, Plurality.SINGULAR)
 

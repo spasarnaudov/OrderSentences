@@ -141,7 +141,11 @@ data class CommonNoun(
 fun List<CommonNoun>.addArticle(article: Article): List<CommonNoun> {
     val list = mutableListOf<CommonNoun>()
     for (item in this) {
-        list.add(item.copy(article = article))
+        if (article == Article.DEFINITE || item.countable) {
+            list.add(item.copy(article = article))
+        } else {
+            list.add(item)
+        }
     }
     return list
 }
