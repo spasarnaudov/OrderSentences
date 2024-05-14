@@ -1,6 +1,7 @@
 package com.spascoding.englishstructure.feature_exam.data.local
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -12,6 +13,12 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface EnglishStructureDao {
+    /**
+     * import not existing sentences into database
+     */
+    @Delete
+    suspend fun removeExistedSentences(sentences: List<Sentence>)
+
     /**
      * import not existing sentences into database
      */

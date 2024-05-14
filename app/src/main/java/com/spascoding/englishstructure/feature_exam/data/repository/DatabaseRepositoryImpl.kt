@@ -12,6 +12,10 @@ import javax.inject.Inject
 class DatabaseRepositoryImpl @Inject constructor(
     private val dao: EnglishStructureDao
 ): DatabaseRepository {
+    override suspend fun removeExistedSentences(sentences: List<Sentence>) {
+        dao.removeExistedSentences(sentences)
+    }
+
     override suspend fun importNotExistedSentences(sentences: List<Sentence>) {
         dao.importNotExistedSentences(sentences)
     }

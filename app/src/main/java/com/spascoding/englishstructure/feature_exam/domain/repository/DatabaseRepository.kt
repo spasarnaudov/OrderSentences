@@ -7,6 +7,7 @@ import com.spascoding.englishstructure.feature_exam.domain.model.sentence.entity
 import kotlinx.coroutines.flow.Flow
 
 interface DatabaseRepository {
+    suspend fun removeExistedSentences(sentences: List<Sentence>)
     suspend fun importNotExistedSentences(sentences: List<Sentence>)
     suspend fun updateSentence(sentence: Sentence)
     suspend fun getSentence(tense: Tense, examName: String): Sentence

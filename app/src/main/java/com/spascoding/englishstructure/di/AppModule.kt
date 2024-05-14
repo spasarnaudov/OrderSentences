@@ -23,6 +23,7 @@ import com.spascoding.englishstructure.feature_exam.domain.use_case.database.Get
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetTopicsUseCase
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetHistoryUseCase
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.ImportNotExistedSentencesUseCase
+import com.spascoding.englishstructure.feature_exam.domain.use_case.database.RemoveExistedSentencesUseCase
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.UpdateSentenceUseCase
 import dagger.Module
 import dagger.Provides
@@ -45,12 +46,14 @@ object AppModule {
     @Singleton
     fun provideCommonUseCases(
         getExamPatternsUseCase: GetExamPatternsUseCase,
+        removeExistedSentencesUseCase: RemoveExistedSentencesUseCase,
         importNotExistedSentencesUseCase: ImportNotExistedSentencesUseCase,
         updateSentenceUseCase: UpdateSentenceUseCase,
         getSentenceUseCase: GetSentenceUseCase,
     ): CommonUseCases {
         return CommonUseCases(
             getExamPatternsUseCase,
+            removeExistedSentencesUseCase,
             importNotExistedSentencesUseCase,
             updateSentenceUseCase,
             getSentenceUseCase,
