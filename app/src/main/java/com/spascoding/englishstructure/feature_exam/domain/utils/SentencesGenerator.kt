@@ -21,22 +21,23 @@ import com.spascoding.englishstructure.feature_exam.domain.model.verb.Verb
 import com.spascoding.englishstructure.feature_exam.presentation.utils.upperFirstLetter
 
 class SentencesGenerator(
-    private val tense: Tense,
     private val examPatterns: List<ExamPattern>
 ) {
     fun generate(): List<Sentence> {
         val sentences = mutableListOf<Sentence>()
 
         for (examPattern in examPatterns) {
-            if (examPattern.tenses.contains(tense)) {
-                val examName = examPattern.name
-                for (subject in examPattern.subjects) {
-                    for (verb in examPattern.verbs) {
-                        for (objectVal in examPattern.objects) {
-                            val structure = getStructure(subject, verb, objectVal)
-                            sentences.add(Sentence(structure.positive().upperFirstLetter(), tense.int, examName))
-                            sentences.add(Sentence(structure.negative().upperFirstLetter(), tense.int, examName))
-                            sentences.add(Sentence(structure.question().upperFirstLetter(), tense.int, examName))
+            for (tense in Tense.entries) {
+                if (examPattern.tenses.contains(tense)) {
+                    val examName = examPattern.name
+                    for (subject in examPattern.subjects) {
+                        for (verb in examPattern.verbs) {
+                            for (objectVal in examPattern.objects) {
+                                val structure = getStructure(tense, subject, verb, objectVal)
+                                sentences.add(Sentence(structure.positive().upperFirstLetter(), tense.int, examName))
+                                sentences.add(Sentence(structure.negative().upperFirstLetter(), tense.int, examName))
+                                sentences.add(Sentence(structure.question().upperFirstLetter(), tense.int, examName))
+                            }
                         }
                     }
                 }
@@ -47,6 +48,7 @@ class SentencesGenerator(
     }
 
     private fun getStructure(
+        tense: Tense,
         subject: Noun,
         verb: Verb,
         objectVal: String,

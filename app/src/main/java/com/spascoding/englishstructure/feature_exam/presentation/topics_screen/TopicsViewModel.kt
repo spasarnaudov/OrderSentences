@@ -6,20 +6,14 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.spascoding.englishstructure.feature_exam.domain.enums.Tense
 import com.spascoding.englishstructure.feature_exam.domain.model.TopicInfo
-import com.spascoding.englishstructure.feature_exam.domain.use_case.CommonUseCases
-import com.spascoding.englishstructure.feature_exam.domain.use_case.TenseUseCases
 import com.spascoding.englishstructure.feature_exam.domain.use_case.TopicsUseCases
-import com.spascoding.englishstructure.feature_exam.domain.utils.SentencesGenerator
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 @HiltViewModel
 class TopicsViewModel @Inject constructor(
-    private val commonUseCases: CommonUseCases,
     private val topicsUseCases: TopicsUseCases,
-    private val tenseUseCases: TenseUseCases,
     private val savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
 
@@ -29,28 +23,9 @@ class TopicsViewModel @Inject constructor(
     init {
         savedStateHandle.get<Int>("tense")?.also { tenseInt ->
             val tense: Tense = Tense.fromInt(tenseInt)
-
             _state.value = state.value.copy(
                 tense = tense,
             )
-
-            saveSentencesToDatabase(tense)
-        }
-    }
-
-    private fun saveSentencesToDatabase(tense: Tense) {
-        GlobalScope.launch {
-            withContext(Dispatchers.IO) {
-                val examPatterns = commonUseCases.getExamPatternsUseCase.invoke()
-                val generatedSentences = SentencesGenerator(tense, examPatterns).generate()
-
-                val tenseSentences = tenseUseCases.getTenseSentencesUseCase.invoke(tense)
-                val sentencesForRemove = tenseSentences.toMutableList()
-                sentencesForRemove.removeAll { generatedSentences.contains(it) }
-                commonUseCases.removeExistedSentencesUseCase.invoke(sentencesForRemove)
-
-                commonUseCases.importNotExistedSentencesUseCase.invoke(generatedSentences)
-            }
         }
     }
 

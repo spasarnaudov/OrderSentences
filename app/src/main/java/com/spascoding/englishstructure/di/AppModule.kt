@@ -22,7 +22,6 @@ import com.spascoding.englishstructure.feature_exam.domain.use_case.database.Get
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetTopicInfoUseCase
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetTopicsUseCase
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetHistoryUseCase
-import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetTenseSentencesUseCase
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.ImportNotExistedSentencesUseCase
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.RemoveExistedSentencesUseCase
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.UpdateSentenceUseCase
@@ -64,11 +63,9 @@ object AppModule {
     @Provides
     @Singleton
     fun provideTenseUseCases(
-        getTenseSentencesUseCase: GetTenseSentencesUseCase,
         getTenseInfoUseCase: GetTenseInfoUseCase,
     ): TenseUseCases {
         return TenseUseCases(
-            getTenseSentencesUseCase,
             getTenseInfoUseCase,
         )
     }

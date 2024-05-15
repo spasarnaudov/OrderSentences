@@ -1,6 +1,7 @@
 package com.spascoding
 
 import android.app.Application
+import android.content.Intent
 import android.util.Log
 import android.widget.Toast
 import com.google.firebase.Firebase
@@ -10,6 +11,7 @@ import com.google.firebase.remoteconfig.remoteConfigSettings
 import com.spascoding.englishstructure.R
 import com.spascoding.englishstructure.feature_exam.data.repository.utils.isConfigAppInstalled
 import com.spascoding.englishstructure.feature_exam.data.repository.utils.readConfigAppData
+import com.spascoding.englishstructure.service.SentencesSyncService
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
@@ -26,6 +28,9 @@ class EnglishStructureApplication: Application() {
         } else {
             setupFirebaseRemoteConfig()
         }
+
+        val serviceIntent = Intent(this, SentencesSyncService::class.java)
+        startService(serviceIntent)
     }
 
     private fun setupFirebaseRemoteConfig() {

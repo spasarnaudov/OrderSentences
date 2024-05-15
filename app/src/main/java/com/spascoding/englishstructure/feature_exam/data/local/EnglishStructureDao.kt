@@ -42,8 +42,8 @@ interface EnglishStructureDao {
     /**
      * Get all sentences for specific tens and topic
      */
-    @Query("SELECT * FROM sentences WHERE tense=:tens")
-    suspend fun getTenseSentences(tens: Int): List<Sentence>
+    @Query("SELECT * FROM sentences")
+    suspend fun getAllSentences(): List<Sentence>
 
     @Query(
         "SELECT " +

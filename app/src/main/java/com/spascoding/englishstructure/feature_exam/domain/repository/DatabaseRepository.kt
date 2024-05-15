@@ -12,7 +12,7 @@ interface DatabaseRepository {
     suspend fun updateSentence(sentence: Sentence)
     suspend fun getSentence(tense: Tense, topic: String): Sentence
     // TENSES
-    suspend fun getTenseSentences(tense: Tense): List<Sentence>
+    suspend fun getAllSentences(): List<Sentence>
     fun getTenseInfo(): Flow<List<TenseInfo>>
     // TOPICS
     fun getTopicInfo(tense: Tense): Flow<List<TopicInfo>>
