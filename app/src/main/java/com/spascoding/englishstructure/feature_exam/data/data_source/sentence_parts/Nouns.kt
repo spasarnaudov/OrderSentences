@@ -230,18 +230,18 @@ object Nouns {
 
     //School subjects
 
-    val art = CommonNoun(value = "art", countable = true, Plurality.SINGULAR)
-    val biology = CommonNoun(value = "biology", countable = true, Plurality.SINGULAR)
-    val dance = CommonNoun(value = "dance", countable = true, Plurality.SINGULAR)
-    val drama = CommonNoun(value = "drama", countable = true, Plurality.SINGULAR)
-    val economics = CommonNoun(value = "economics", countable = true, Plurality.SINGULAR)
-    val geography = CommonNoun(value = "geography", countable = true, Plurality.SINGULAR)
-    val history = CommonNoun(value = "history", countable = true, Plurality.SINGULAR)
-    val math = CommonNoun(value = "math", countable = true, Plurality.SINGULAR)
-    val music = CommonNoun(value = "music", countable = true, Plurality.SINGULAR)
-    val psychology = CommonNoun(value = "psychology", countable = true, Plurality.SINGULAR)
-    val science = CommonNoun(value = "science", countable = true, Plurality.SINGULAR)
-    val sociology = CommonNoun(value = "sociology", countable = true, Plurality.SINGULAR)
+    val art = Pronoun(value = "art")
+    val biology = Pronoun(value = "biology")
+    val dance = Pronoun(value = "dance")
+    val drama = Pronoun(value = "drama")
+    val economics = Pronoun(value = "economics")
+    val geography = Pronoun(value = "geography")
+    val history = Pronoun(value = "history")
+    val math = Pronoun(value = "math")
+    val music = Pronoun(value = "music")
+    val psychology = Pronoun(value = "psychology")
+    val science = Pronoun(value = "science")
+    val sociology = Pronoun(value = "sociology")
 
 
     val womanNames = listOf(
