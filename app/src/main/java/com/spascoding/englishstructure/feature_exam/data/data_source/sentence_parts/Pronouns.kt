@@ -18,6 +18,16 @@ object Pronouns {
         Pronoun.THEY,
     )
 
+    val singularPlusPlural = listOf(
+        Pronoun.I,
+        Pronoun.YOU,
+        Pronoun.HE,
+        Pronoun.SHE,
+        Pronoun.IT,
+        Pronoun.WE,
+        Pronoun.THEY,
+    )
+
     object Demonstratives {
         val singular = listOf(
             Pronoun.THIS,

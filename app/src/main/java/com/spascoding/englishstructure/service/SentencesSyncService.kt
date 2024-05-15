@@ -41,6 +41,11 @@ class SentencesSyncService : Service() {
         val generatedSentences = SentencesGenerator(examPatterns).generate()
         Log.d(TAG, "${generatedSentences.count()} sentences ware generated")
 
+        val duplicatedSentences = generatedSentences.groupingBy { it }.eachCount().filter { it.value > 1 }
+        for ((sentence, count) in duplicatedSentences) {
+            Log.d(TAG, "${sentence.value} met $count times")
+        }
+
         //Read database sentences
         val allDatabaseSentences = databaseSyncUseCases.getAllSentencesUseCase.invoke()
         Log.d(TAG, "${allDatabaseSentences.count()} were read from database")

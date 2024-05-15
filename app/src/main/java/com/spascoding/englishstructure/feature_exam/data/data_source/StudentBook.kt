@@ -74,7 +74,7 @@ object StudentBook {
             ExamPattern(
                 name = name,
                 tenses = listOf(Tense.PRESENT_SIMPLE),
-                subjects = Pronouns.singular.plus(Pronouns.plural).plus(Nouns.names),
+                subjects = Pronouns.singularPlusPlural.plus(Nouns.names),
                 verbs = listOf(Verbs.toBe),
                 objects = listOf(
                     Nouns.australia,
@@ -141,7 +141,7 @@ object StudentBook {
             ExamPattern(
                 name = name,
                 tenses = listOf(Tense.PRESENT_SIMPLE),
-                subjects = Pronouns.singular.plus(Pronouns.plural).plus(Nouns.names),
+                subjects = Pronouns.singularPlusPlural.plus(Nouns.names),
                 verbs = listOf(Verbs.sing),
                 objects = listOf(Nouns.song).addArticle(Article.INDEFINITE).build(),
             ),
@@ -154,7 +154,7 @@ object StudentBook {
             ExamPattern(
                 name = name,
                 tenses = listOf(Tense.PRESENT_SIMPLE),
-                subjects = Pronouns.singular.plus(Pronouns.plural).plus(Nouns.names),
+                subjects = Pronouns.singularPlusPlural.plus(Nouns.names),
                 verbs = listOf(Verbs.watch),
                 objects = listOf(Nouns.movie).addArticle(Article.INDEFINITE).build(),
             ),
@@ -172,7 +172,7 @@ object StudentBook {
         return listOf(
             ExamPattern(
                 name = name,
-                subjects = Pronouns.singular.plus(Pronouns.plural).plus(Nouns.names),
+                subjects = Pronouns.singularPlusPlural.plus(Nouns.names),
                 verbs = listOf(Verbs.play),
                 objects = sports.build(),
             ),
@@ -197,7 +197,7 @@ object StudentBook {
         return listOf(
             ExamPattern(
                 name = name,
-                subjects = Pronouns.singular.plus(Pronouns.plural).plus(Nouns.names),
+                subjects = Pronouns.singularPlusPlural.plus(Nouns.names),
                 verbs = listOf(Verbs.visit),
                 objects = placesTravel.addArticle(Article.INDEFINITE).build(),
             ),
@@ -213,7 +213,7 @@ object StudentBook {
         return listOf(
             ExamPattern(
                 name = name,
-                subjects = Pronouns.singular.plus(Pronouns.plural).plus(Nouns.names),
+                subjects = Pronouns.singularPlusPlural.plus(Nouns.names),
                 verbs = listOf(Verbs.wait),
                 objects = transport.addArticle(Article.INDEFINITE).addPreposition(Preposition.FOR).build(),
             )
@@ -274,7 +274,7 @@ object StudentBook {
         return listOf(
             ExamPattern(
                 name = name,
-                subjects = Pronouns.singular.plus(Pronouns.plural).plus(Nouns.names),
+                subjects = Pronouns.singularPlusPlural.plus(Nouns.names),
                 verbs = listOf(Verbs.eat),
                 objects = food.addArticle(Article.INDEFINITE).build(),
             ),
@@ -290,7 +290,7 @@ object StudentBook {
         return listOf(
             ExamPattern(
                 name = name,
-                subjects = Pronouns.singular.plus(Pronouns.plural).plus(Nouns.names),
+                subjects = Pronouns.singularPlusPlural.plus(Nouns.names),
                 verbs = listOf(Verbs.drink),
                 objects = drinks.addArticle(Article.INDEFINITE).build(),
             ),
