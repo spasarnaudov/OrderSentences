@@ -35,21 +35,20 @@ fun TopicsScreen(
         Text(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(viewModel.state.value.tense.color)
                 .padding(
                     vertical = Padding.MEDIUM,
                 ),
             text = viewModel.state.value.tense.value.upperFirstLetter(),
             fontSize = FontSize.LARGE,
             textAlign = TextAlign.Center,
-            color = Color.Black,
         )
         val topicInfoList by viewModel.getTopics().collectAsState(initial = emptyList())
         LazyVerticalStaggeredGrid(
             modifier = Modifier.fillMaxSize(),
-            columns = StaggeredGridCells.Fixed(3),
+            columns = StaggeredGridCells.Fixed(1),
         ) {
-            items(topicInfoList) { topic ->
+            items(topicInfoList
+            ) { topic ->
                 TopicElement(
                     onClickItem = {
                         navController.navigate(Screen.ExamScreen.route + "?tense=${viewModel.state.value.tense.int}&topic=$topic")

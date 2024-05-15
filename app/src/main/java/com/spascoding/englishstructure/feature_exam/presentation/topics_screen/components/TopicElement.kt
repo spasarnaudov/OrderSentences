@@ -3,7 +3,7 @@ package com.spascoding.englishstructure.feature_exam.presentation.topics_screen.
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -19,14 +19,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.spascoding.englishstructure.core.constants.Padding
 import com.spascoding.englishstructure.core.constants.RoundCorner
 import com.spascoding.englishstructure.feature_exam.domain.model.getTenseInfo
 import com.spascoding.englishstructure.feature_exam.presentation.topics_screen.TopicsViewModel
-import com.spascoding.englishstructure.feature_exam.presentation.components.AccuracyInfo
+import com.spascoding.englishstructure.feature_exam.presentation.components.CircularProgressBar
 import com.spascoding.englishstructure.feature_exam.presentation.utils.upperFirstLetter
 
 @Composable
@@ -36,18 +35,26 @@ fun TopicElement(
     topic: String,
     viewModel: TopicsViewModel = hiltViewModel(),
 ) {
-    Column(modifier = Modifier
+    Row(modifier = Modifier
         .fillMaxWidth()
-        .padding(Padding.SMALL)
+        .padding(
+            start = Padding.MEDIUM,
+            bottom = Padding.MEDIUM,
+            end = Padding.MEDIUM,
+        )
         .background(MaterialTheme.colorScheme.background, RoundedCornerShape(RoundCorner.SMALL))
-        .border(1.dp, MaterialTheme.colorScheme.onBackground, RoundedCornerShape(RoundCorner.SMALL))
+        .border(
+            1.dp,
+            MaterialTheme.colorScheme.onBackground,
+            RoundedCornerShape(RoundCorner.SMALL)
+        )
         .clickable(
             enabled = true,
             onClick = {
                 onClickItem.invoke()
             }
         ),
-        horizontalAlignment = Alignment.CenterHorizontally
+        verticalAlignment = Alignment.CenterVertically
     ) {
         IconButton(
             onClick = onClickInfo
@@ -55,15 +62,16 @@ fun TopicElement(
             Icon(Icons.Default.Info, contentDescription = null)
         }
         Text(
-            modifier = Modifier.padding(bottom = Padding.SMALL),
+            modifier = Modifier
+                .weight(1f)
+                .padding(vertical = Padding.SMALL),
             text = topic.upperFirstLetter(),
-            textAlign = TextAlign.Center,
             fontWeight = FontWeight.Bold
         )
         val tenseInfoList by viewModel.getTopicInfoFlow().collectAsState(initial = emptyList())
-        AccuracyInfo(
-            accuracy = tenseInfoList.getTenseInfo(topic).accuracy,
-            sentenceCount = tenseInfoList.getTenseInfo(topic).sentenceCount,
+        CircularProgressBar(
+            percentage = tenseInfoList.getTenseInfo(topic).accuracy.toFloat() / 100f,
+            number = 100,
         )
     }
 }
