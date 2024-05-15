@@ -317,7 +317,7 @@ object StudentBook {
                 name = name,
                 subjects = Pronouns.singular.plus(Nouns.names),
                 verbs = listOf(Verbs.study),
-                objects = schoolSubjects.addArticle(Article.INDEFINITE).build(),
+                objects = schoolSubjects.build(),
             ),
         )
     }
