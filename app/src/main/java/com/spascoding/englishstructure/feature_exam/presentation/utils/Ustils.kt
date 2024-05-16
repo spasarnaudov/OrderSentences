@@ -1,5 +1,7 @@
 package com.spascoding.englishstructure.feature_exam.presentation.utils
 
+import android.content.Context
+import android.content.pm.PackageManager
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
@@ -58,5 +60,15 @@ fun scratchWords(
                 append(word.replace("/", " / "))
             }
         }
+    }
+}
+
+fun getAppVersion(context: Context): String {
+    return try {
+        val packageInfo = context.packageManager.getPackageInfo(context.packageName, 0)
+        packageInfo.versionName
+    } catch (e: PackageManager.NameNotFoundException) {
+        e.printStackTrace()
+        ""
     }
 }

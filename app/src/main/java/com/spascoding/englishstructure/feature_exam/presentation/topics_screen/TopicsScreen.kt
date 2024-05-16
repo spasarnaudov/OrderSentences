@@ -1,6 +1,5 @@
 package com.spascoding.englishstructure.feature_exam.presentation.topics_screen
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -14,14 +13,14 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.spascoding.englishstructure.core.constants.FontSize
 import com.spascoding.englishstructure.core.constants.Padding
+import com.spascoding.englishstructure.feature_exam.domain.model.getTenseInfo
 import com.spascoding.englishstructure.feature_exam.presentation.Screen
-import com.spascoding.englishstructure.feature_exam.presentation.topics_screen.components.TopicElement
+import com.spascoding.englishstructure.feature_exam.presentation.components.ListElement
 import com.spascoding.englishstructure.feature_exam.presentation.utils.upperFirstLetter
 
 @Composable
@@ -29,6 +28,7 @@ fun TopicsScreen(
     navController: NavController,
     viewModel: TopicsViewModel = hiltViewModel(),
 ) {
+    val tenseInfoList by viewModel.getTopicInfoFlow().collectAsState(initial = emptyList())
     Column(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -47,17 +47,17 @@ fun TopicsScreen(
             modifier = Modifier.fillMaxSize(),
             columns = StaggeredGridCells.Fixed(1),
         ) {
-            items(topicInfoList
-            ) { topic ->
-                TopicElement(
-                    onClickItem = {
-                        navController.navigate(Screen.ExamScreen.route + "?tense=${viewModel.state.value.tense.int}&topic=$topic")
-                    },
+            items(topicInfoList) { topic ->
+                ListElement(
+                    cellText = topic,
+                    progressPercentage = tenseInfoList.getTenseInfo(topic).accuracy.toFloat() / 100f,
+                    progressColor = viewModel.state.value.tense.color,
                     onClickInfo = {
                         navController.navigate(Screen.TopicDetailScreen.route + "?tense=${viewModel.state.value.tense.int}&topic=$topic")
                     },
-                    topic = topic,
-                )
+                ) {
+                    navController.navigate(Screen.ExamScreen.route + "?tense=${viewModel.state.value.tense.int}&topic=$topic")
+                }
             }
         }
     }

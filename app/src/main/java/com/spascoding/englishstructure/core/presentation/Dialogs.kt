@@ -1,6 +1,6 @@
 package com.spascoding.englishstructure.core.presentation
 
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -21,25 +21,18 @@ fun MinimalDialog(
 ) {
     Dialog(onDismissRequest = { onDismissRequest() }) {
         Card(
-            shape = RoundedCornerShape(Padding.SMALL),
+            shape = RoundedCornerShape(Padding.MEDIUM),
         ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically
+            Column(
+                modifier = Modifier.padding(Padding.MEDIUM),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Icon(
-                    modifier = Modifier
-                        .padding(
-                            start = Padding.MEDIUM,
-                            top = Padding.MEDIUM,
-                            bottom = Padding.MEDIUM,
-                        ),
+                    modifier = Modifier.padding(bottom = Padding.MEDIUM),
                     imageVector = Icons.Default.Info,
-                    contentDescription = ""
+                    contentDescription = null
                 )
-                Text(
-                    text = text,
-                    modifier = Modifier.padding(Padding.MEDIUM),
-                )
+                Text(text)
             }
         }
     }

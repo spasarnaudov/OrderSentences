@@ -61,7 +61,7 @@ fun CircularProgressBar(
         ) {
             Canvas(modifier = Modifier.fillMaxSize()) {
                 drawArc(
-                    color = Color.LightGray,
+                    color = Color.LightGray.copy(alpha = 0.3f),
                     startAngle = -90f,
                     sweepAngle = 360 * 1f,
                     useCenter = false,

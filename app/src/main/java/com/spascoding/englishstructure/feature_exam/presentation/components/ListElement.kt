@@ -1,4 +1,4 @@
-package com.spascoding.englishstructure.feature_exam.presentation.topics_screen.components
+package com.spascoding.englishstructure.feature_exam.presentation.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -14,26 +14,21 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.spascoding.englishstructure.core.constants.Padding
 import com.spascoding.englishstructure.core.constants.RoundCorner
-import com.spascoding.englishstructure.feature_exam.domain.model.getTenseInfo
-import com.spascoding.englishstructure.feature_exam.presentation.topics_screen.TopicsViewModel
-import com.spascoding.englishstructure.feature_exam.presentation.components.CircularProgressBar
-import com.spascoding.englishstructure.feature_exam.presentation.utils.upperFirstLetter
 
 @Composable
-fun TopicElement(
-    onClickItem: () -> Unit,
+fun ListElement(
+    cellText: String,
+    progressPercentage: Float,
+    progressColor: Color = Color.Gray,
     onClickInfo: () -> Unit,
-    topic: String,
-    viewModel: TopicsViewModel = hiltViewModel(),
+    onClickItem: () -> Unit,
 ) {
     Row(modifier = Modifier
         .fillMaxWidth()
@@ -42,11 +37,11 @@ fun TopicElement(
             bottom = Padding.MEDIUM,
             end = Padding.MEDIUM,
         )
-        .background(MaterialTheme.colorScheme.background, RoundedCornerShape(RoundCorner.SMALL))
+        .background(MaterialTheme.colorScheme.background, RoundedCornerShape(RoundCorner.MEDIUM))
         .border(
             1.dp,
             MaterialTheme.colorScheme.onBackground,
-            RoundedCornerShape(RoundCorner.SMALL)
+            RoundedCornerShape(RoundCorner.MEDIUM)
         )
         .clickable(
             enabled = true,
@@ -65,12 +60,12 @@ fun TopicElement(
             modifier = Modifier
                 .weight(1f)
                 .padding(vertical = Padding.SMALL),
-            text = topic.upperFirstLetter(),
+            text = cellText,
             fontWeight = FontWeight.Bold
         )
-        val tenseInfoList by viewModel.getTopicInfoFlow().collectAsState(initial = emptyList())
         CircularProgressBar(
-            percentage = tenseInfoList.getTenseInfo(topic).accuracy.toFloat() / 100f,
+            percentage = progressPercentage,
+            color = progressColor,
             number = 100,
         )
     }

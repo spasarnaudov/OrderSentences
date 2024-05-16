@@ -1,112 +1,105 @@
 package com.spascoding.englishstructure.feature_exam.presentation.tense_screen
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.HorizontalDivider
+import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
+import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
+import androidx.compose.foundation.lazy.staggeredgrid.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Info
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.spascoding.englishstructure.core.constants.Colors
-import com.spascoding.englishstructure.core.constants.FontSize
-import com.spascoding.englishstructure.core.constants.Padding
+import com.spascoding.englishstructure.R
 import com.spascoding.englishstructure.core.presentation.MinimalDialog
-import com.spascoding.englishstructure.core.presentation.Table
 import com.spascoding.englishstructure.feature_exam.domain.enums.Tense
-import com.spascoding.englishstructure.feature_exam.domain.enums.getPreviewsTense
+import com.spascoding.englishstructure.feature_exam.domain.model.getTenseInfo
 import com.spascoding.englishstructure.feature_exam.presentation.Screen
-import com.spascoding.englishstructure.feature_exam.presentation.tense_screen.components.TenseButton
-import com.spascoding.englishstructure.feature_exam.presentation.tense_screen.components.TenseButtonObject
+import com.spascoding.englishstructure.feature_exam.presentation.components.ListElement
+import com.spascoding.englishstructure.feature_exam.presentation.utils.getAppVersion
+import com.spascoding.englishstructure.feature_exam.presentation.utils.upperFirstLetter
 
-data class TitleObject(
-    val text: String,
-    val tenseColor: Color,
-)
-
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TenseScreen(
     navController: NavController,
     viewModel: TenseScreenViewModel = hiltViewModel(),
 ) {
-    val titles = listOf(
-        TitleObject("Past", Colors.Blue),
-        TitleObject("Present", Colors.Yellow),
-        TitleObject("Future", Colors.Red),
-    )
-    val cellsInfo = listOf(
-        TenseButtonObject(Tense.PAST_SIMPLE, Colors.Blue, "simple", "worked"),
-        TenseButtonObject(Tense.PRESENT_SIMPLE, Colors.Yellow, "simple", "work"),
-        TenseButtonObject(Tense.FUTURE_SIMPLE, Colors.Red, "simple", "will work"),
+    val tenseInfoList by viewModel.getTenseInfoFlow().collectAsState(initial = emptyList())
 
-        TenseButtonObject(Tense.PAST_PERFECT, Colors.Blue, "perfect", "had worked"),
-        TenseButtonObject(Tense.PRESENT_PERFECT, Colors.Yellow, "perfect", "have worked"),
-        TenseButtonObject(Tense.FUTURE_PERFECT, Colors.Red, "perfect", "will have worked"),
+    val appVersion = stringResource(R.string.app_version, getAppVersion(LocalContext.current))
+    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
 
-        TenseButtonObject(Tense.PAST_CONTINUOUS, Colors.Blue, "continuous", "was working"),
-        TenseButtonObject(Tense.PRESENT_CONTINUOUS, Colors.Yellow, "continuous", "am working"),
-        TenseButtonObject(Tense.FUTURE_CONTINUOUS, Colors.Red, "continuous", "will be working"),
-
-        TenseButtonObject(Tense.PAST_PERFECT_CONTINUOUS, Colors.Blue, "perfect continuous", "has been working"),
-        TenseButtonObject(Tense.PRESENT_PERFECT_CONTINUOUS, Colors.Yellow, "perfect continuous", "have been working"),
-        TenseButtonObject(Tense.FUTURE_PERFECT_CONTINUOUS, Colors.Red, "perfect continuous", "will have been working"),
-    )
-    val error = remember { mutableStateOf("") }
-    if (error.value.isNotBlank()) {
+    val dialogMassage = remember { mutableStateOf("") }
+    if (dialogMassage.value.isNotBlank()) {
         MinimalDialog(
-            error.value
+            dialogMassage.value
         ) {
-            error.value = ""
+            dialogMassage.value = ""
         }
     }
-    Table(
-        titles = List(titles.size) { index ->
-            {
-                val title = titles[index]
-                Text(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .background(title.tenseColor)
-                        .padding(vertical = Padding.SMALL),
-                    text = title.text,
-                    textAlign = TextAlign.Center,
-                    color = Color.Black,
-                    fontSize = FontSize.LARGE,
-                    fontWeight = FontWeight.Bold,
-                )
-            }
-        },
-        cells = List(cellsInfo.size) { index ->
-            {
-                val tenseButtonObject = cellsInfo[index]
-                Column {
-                    Divider()
-                    TenseButton(
-                        modifier = Modifier
-                            .background(tenseButtonObject.tenseColor),
-                        tenseButtonObject,
-                    ) {
-                        navController.navigate(Screen.TopicsScreen.route + "?tense=${tenseButtonObject.tense.int}")
+
+    Scaffold(
+        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+        topBar = {
+            TopAppBar(
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = Color.Transparent,
+                    titleContentColor = MaterialTheme.colorScheme.onBackground,
+                ),
+                title = {
+                    Text(
+                        stringResource(R.string.tenses),
+                    )
+                },
+                actions = {
+                    IconButton(onClick = { dialogMassage.value = appVersion }) {
+                        Icon(
+                            imageVector = Icons.Filled.Info,
+                            contentDescription = stringResource(R.string.app_description)
+                        )
                     }
+                },
+                scrollBehavior = scrollBehavior,
+            )
+        },
+    ) { innerPadding ->
+        LazyVerticalStaggeredGrid(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding),
+            columns = StaggeredGridCells.Fixed(1),
+        ) {
+            items(Tense.entries) { tense ->
+                ListElement(
+                    cellText = tense.value.upperFirstLetter(),
+                    progressPercentage = tenseInfoList.getTenseInfo(tense).accuracy.toFloat() / 100f,
+                    progressColor = tense.color,
+                    onClickInfo = {
+                        dialogMassage.value = tense.value.upperFirstLetter()
+                    },
+                ) {
+                    navController.navigate(Screen.TopicsScreen.route + "?tense=${tense.int}")
                 }
             }
-        },
-    )
-}
-
-@Composable
-fun Divider() {
-    HorizontalDivider(
-        modifier = Modifier.fillMaxWidth(),
-        thickness = 1.dp,
-        color = Color.Black
-    )
+        }
+    }
 }

@@ -9,10 +9,14 @@
 	<string name="lessen_row_info_pattern">%1$s. %2$s</string>
 	<string name="use_mistake_ratio_pattern_description">Use count / mistake count</string>
 	<string name="use_mistake_ratio_pattern">%1$s / %2$s</string>
-	<string name="tenses">Tenses</string>
 
 	<!--	success info	-->
 	<string name="your_answer_is_incorrect">Your answer is incorrect</string>
 	<string name="your_answer_is_correct">Your answer is correct</string>
+
+	<!--	tense_screen	-->
+	<string name="app_version">Version: %1$s</string>
+	<string name="tenses">Tenses</string>
+	<string name="app_description">App description</string>
 
 </resources>
