@@ -26,14 +26,14 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import com.spascoding.englishstructure.core.constants.FontSize
-import com.spascoding.englishstructure.core.constants.Padding
 
 @Composable
 fun CircularProgressBar(
+    modifier: Modifier = Modifier,
     percentage: Float,
-    number: Int,
-    additionalInfo: String = "",
     fontSize: TextUnit = FontSize.MEDIUM,
+    description: String = "",
+    fontSizeDescription: TextUnit = FontSize.MEDIUM,
     radius: Dp = 24.dp,
     color: Color = MaterialTheme.colorScheme.primary,
     strokeWidth: Dp = 4.dp,
@@ -41,7 +41,7 @@ fun CircularProgressBar(
     animDelay: Int = 0,
 ) {
     Box(
-        modifier = Modifier.padding(Padding.MEDIUM)
+        modifier = modifier
     ) {
         var animationPlayed by remember {
             mutableStateOf(false)
@@ -58,7 +58,7 @@ fun CircularProgressBar(
             animationPlayed = true
         }
         Box(
-            modifier = Modifier.size(radius * 2f),
+            modifier = Modifier.size(radius * 1.7f),
             contentAlignment = Alignment.Center,
         ) {
             Canvas(modifier = Modifier.fillMaxSize()) {
@@ -83,12 +83,15 @@ fun CircularProgressBar(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = "${(curPercentage.value * number).toInt()}%",
+                    text = "${(curPercentage.value * 100).toInt()}%",
                     fontSize = fontSize,
                     fontWeight = FontWeight.Bold
                 )
-                if (additionalInfo.isNotBlank()) {
-                    Text(text = additionalInfo)
+                if (description.isNotBlank()) {
+                    Text(
+                        text = description,
+                        fontSize = fontSizeDescription,
+                    )
                 }
             }
         }

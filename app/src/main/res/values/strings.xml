@@ -4,6 +4,7 @@
 	<!--	exam_screen	-->
 	<string name="put_the_sentence_in_the_correct_order">Put the sentence in the correct order</string>
 	<string name="check">Check</string>
+	<string name="recent">Recent</string>
 
 	<!--	feature_exam_list	-->
 	<string name="lessen_row_info_pattern">%1$s. %2$s</string>

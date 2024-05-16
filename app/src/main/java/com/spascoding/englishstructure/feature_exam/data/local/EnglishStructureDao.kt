@@ -48,7 +48,7 @@ interface EnglishStructureDao {
     @Query(
         "SELECT " +
                 "tense, " +
-                "CAST(SUM(usedCount - mistakeCount) AS FLOAT) * 100 / SUM(usedCount) AS accuracy," +
+                "CAST(SUM(usedCount - mistakeCount) AS FLOAT) / SUM(usedCount) AS accuracy," +
                 "COUNT(*) AS sentenceCount " +
                 "FROM sentences " +
                 "WHERE usedCount > 0 " +
@@ -76,7 +76,7 @@ interface EnglishStructureDao {
 
     @Query(
         "SELECT topic," +
-                " (CAST(SUM(usedCount - mistakeCount) AS FLOAT) * 100 / NULLIF(CAST(SUM(usedCount) AS FLOAT), 0)) AS accuracy," +
+                " (CAST(SUM(usedCount - mistakeCount) AS FLOAT) / NULLIF(CAST(SUM(usedCount) AS FLOAT), 0)) AS accuracy," +
                 " COUNT(*) AS sentenceCount" +
                 " FROM sentences" +
                 " WHERE tense =:tense AND usedCount > 0" +

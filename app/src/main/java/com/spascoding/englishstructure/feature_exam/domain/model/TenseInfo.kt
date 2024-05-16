@@ -4,7 +4,7 @@ import com.spascoding.englishstructure.feature_exam.domain.enums.Tense
 
 data class TenseInfo(
     val tense: Int = 0,
-    val accuracy: Int = 0,
+    val accuracy: Float = 0f,
     val sentenceCount: Int = 0,
 )
 

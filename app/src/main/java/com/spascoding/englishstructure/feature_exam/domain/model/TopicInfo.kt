@@ -2,7 +2,7 @@ package com.spascoding.englishstructure.feature_exam.domain.model
 
 data class TopicInfo(
     val topic: String = "",
-    val accuracy: Int = 0,
+    val accuracy: Float = 0f,
     val sentenceCount: Int = 0,
 )
 

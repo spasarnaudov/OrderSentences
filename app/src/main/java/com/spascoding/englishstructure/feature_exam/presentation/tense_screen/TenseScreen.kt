@@ -53,10 +53,19 @@ fun TenseScreen(
     val tenseInfoList by viewModel.getTenseInfoFlow().collectAsState(initial = emptyList())
 
     var accuracySum = 0f
+    var usedSentenceCount = 0;
     var sentenceCountSum = 0
     Tense.entries.forEach { tense ->
-        accuracySum += tenseInfoList.getTenseInfo(tense).accuracy.toFloat() / 100f
-        sentenceCountSum += tenseInfoList.getTenseInfo(tense).sentenceCount
+        val tenseInfo = tenseInfoList.getTenseInfo(tense)
+        val accuracy = tenseInfo.accuracy
+        accuracySum += accuracy
+        if (accuracy > 0) {
+            usedSentenceCount+=1
+        }
+        sentenceCountSum += tenseInfo.sentenceCount
+    }
+    if (usedSentenceCount > 0) {
+        accuracySum /= usedSentenceCount
     }
 
     val appVersion = stringResource(R.string.app_version, getAppVersion(LocalContext.current))
@@ -110,25 +119,21 @@ fun TenseScreen(
                     horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
                     CircularProgressBar(
-                        percentage = accuracySum / Tense.entries.size,
-                        number = 100,
+                        modifier = Modifier.padding(bottom = Padding.SMALL),
+                        percentage = accuracySum,
                         fontSize = FontSize.EXTRA_LARGE,
                         radius = 72.dp,
-                        color = Color.Green,
                         strokeWidth = 8.dp,
-                        additionalInfo = "$sentenceCountSum"
+                        description = "Accuracy"
                     )
-                    Text(text = "Accuracy")
+                    Text(text = "Sentences: $sentenceCountSum")
                 }
             }
             items(Tense.entries) { tense ->
                 ListElement(
-                    cellText = tense.value.upperFirstLetter(),
-                    progressPercentage = tenseInfoList.getTenseInfo(tense).accuracy.toFloat() / 100f,
-                    progressColor = tense.color,
-                    onClickInfo = {
-                        dialogMassage.value = tense.value.upperFirstLetter()
-                    },
+                    mainText = tense.value.upperFirstLetter(),
+                    progressPercentage = tenseInfoList.getTenseInfo(tense).accuracy,
+                    sentenceCount = tenseInfoList.getTenseInfo(tense).sentenceCount,
                 ) {
                     navController.navigate(Screen.TopicsScreen.route + "?tense=${tense.int}")
                 }

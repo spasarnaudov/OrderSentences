@@ -70,7 +70,7 @@ fun Navigation(
                 },
             )
         ) {
-            ExamScreen()
+            ExamScreen(navController)
         }
     }
 }

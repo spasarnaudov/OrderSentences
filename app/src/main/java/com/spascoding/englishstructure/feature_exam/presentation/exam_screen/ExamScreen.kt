@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
-import androidx.compose.foundation.lazy.staggeredgrid.items
+import androidx.compose.foundation.lazy.staggeredgrid.itemsIndexed
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
@@ -39,14 +39,17 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.spascoding.englishstructure.R
 import com.spascoding.englishstructure.core.constants.Padding
-import com.spascoding.englishstructure.feature_exam.presentation.components.RecentElement
+import com.spascoding.englishstructure.feature_exam.presentation.Screen
+import com.spascoding.englishstructure.feature_exam.presentation.components.ListElement
 import com.spascoding.englishstructure.feature_exam.presentation.utils.upperFirstLetter
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ExamScreen(
+    navController: NavController,
     viewModel: ExamViewModel = hiltViewModel()
 ) {
     val recentSentences by viewModel.getRecentSentences().collectAsState(initial = emptyList())
@@ -59,7 +62,7 @@ fun ExamScreen(
                     containerColor = Color.Transparent,
                     titleContentColor = MaterialTheme.colorScheme.onBackground,
                 ),
-                title = { Text(viewModel.state.value.tense.value.upperFirstLetter()) },
+                title = { Text("${viewModel.state.value.topic.upperFirstLetter()} (${viewModel.state.value.tense.value.upperFirstLetter()})") },
                 scrollBehavior = scrollBehavior,
             )
         },
@@ -86,13 +89,24 @@ fun ExamScreen(
                     ) {
                         Text(text = stringResource(R.string.check))
                     }
+                    Text(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(Padding.MEDIUM),
+                        text = stringResource(R.string.recent),
+                        fontWeight = FontWeight.Bold,
+                    )
                 }
             }
-            items(recentSentences) { recentSentence ->
-                RecentElement(
-                    sentence = recentSentence.value,
-                    userSentence = recentSentence.userValue,
-                )
+            itemsIndexed(recentSentences) { i, recentSentence ->
+                ListElement(
+                    mainText = recentSentence.value,
+                    additionalText = recentSentence.userValue,
+                    progressPercentage = if (recentSentence.usedCount == 0) 0f else (recentSentence.usedCount.toFloat() - recentSentence.mistakeCount.toFloat()) / recentSentence.usedCount.toFloat(),
+                    sentenceCount = recentSentence.usedCount,
+                ) {
+                    navController.navigate(Screen.TopicDetailScreen.route + "?tense=${viewModel.state.value.tense.int}&topic=${viewModel.state.value.topic}")
+                }
             }
         }
     }
