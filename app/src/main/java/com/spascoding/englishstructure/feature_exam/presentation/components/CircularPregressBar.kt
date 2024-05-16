@@ -4,6 +4,7 @@ import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -31,6 +32,7 @@ import com.spascoding.englishstructure.core.constants.Padding
 fun CircularProgressBar(
     percentage: Float,
     number: Int,
+    additionalInfo: String = "",
     fontSize: TextUnit = FontSize.MEDIUM,
     radius: Dp = 24.dp,
     color: Color = MaterialTheme.colorScheme.primary,
@@ -61,7 +63,7 @@ fun CircularProgressBar(
         ) {
             Canvas(modifier = Modifier.fillMaxSize()) {
                 drawArc(
-                    color = Color.LightGray.copy(alpha = 0.3f),
+                    color = color.copy(alpha = 0.2f),
                     startAngle = -90f,
                     sweepAngle = 360 * 1f,
                     useCenter = false,
@@ -77,11 +79,18 @@ fun CircularProgressBar(
                     style = Stroke(strokeWidth.toPx(), cap = StrokeCap.Round)
                 )
             }
-            Text(
-                text = "${(curPercentage.value * number).toInt()}%",
-                fontSize = fontSize,
-                fontWeight = FontWeight.Bold
-            )
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    text = "${(curPercentage.value * number).toInt()}%",
+                    fontSize = fontSize,
+                    fontWeight = FontWeight.Bold
+                )
+                if (additionalInfo.isNotBlank()) {
+                    Text(text = additionalInfo)
+                }
+            }
         }
     }
 }
