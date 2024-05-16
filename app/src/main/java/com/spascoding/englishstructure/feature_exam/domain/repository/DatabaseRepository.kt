@@ -18,5 +18,5 @@ interface DatabaseRepository {
     fun getTopicInfo(tense: Tense): Flow<List<TopicInfo>>
     fun getTopicSentences(tense: Tense, topic: String): Flow<List<Sentence>>
     fun getTopics(tense: Tense): Flow<List<String>>
-    fun getHistory(tense: Tense, topic: String, sentenceCount: Int): Flow<List<Sentence>>
+    fun getRecentSentences(tense: Tense, topic: String, sentenceCount: Int): Flow<List<Sentence>>
 }

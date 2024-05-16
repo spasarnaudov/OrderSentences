@@ -48,8 +48,8 @@ class DatabaseRepositoryImpl @Inject constructor(
         return dao.getTopics(tense.int)
     }
 
-    override fun getHistory(tense: Tense, topic: String, sentenceCount: Int): Flow<List<Sentence>> {
-        return dao.getHistory(tense.int, topic, sentenceCount)
+    override fun getRecentSentences(tense: Tense, topic: String, sentenceCount: Int): Flow<List<Sentence>> {
+        return dao.getRecentSentences(tense.int, topic, sentenceCount)
     }
 
     override fun getTopicInfo(tense: Tense): Flow<List<TopicInfo>> {

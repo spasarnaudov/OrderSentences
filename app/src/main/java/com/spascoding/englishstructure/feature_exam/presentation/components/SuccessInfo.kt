@@ -22,7 +22,7 @@ fun SuccessInfo(success: Boolean) {
         Image(
             imageVector = Icons.Rounded.Check,
             modifier = Modifier
-                .padding(Padding.SMALL)
+                .padding(Padding.MEDIUM)
                 .background(Colors.GREEN, CircleShape),
             contentDescription = stringResource(R.string.your_answer_is_correct),
             colorFilter = ColorFilter.tint(Color.White),
@@ -31,7 +31,7 @@ fun SuccessInfo(success: Boolean) {
         Image(
             imageVector = Icons.Rounded.Close,
             modifier = Modifier
-                .padding(Padding.SMALL)
+                .padding(Padding.MEDIUM)
                 .background(Color.Red, CircleShape),
             contentDescription = stringResource(R.string.your_answer_is_incorrect),
             colorFilter = ColorFilter.tint(Color.White),

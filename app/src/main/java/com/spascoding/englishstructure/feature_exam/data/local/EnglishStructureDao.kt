@@ -68,7 +68,7 @@ interface EnglishStructureDao {
     fun getTopics(tens: Int): Flow<List<String>>
 
     @Query("SELECT * FROM sentences WHERE tense=:tens AND topic=:topic AND usedCount > 0 ORDER BY userValueTime DESC LIMIT :sentenceCount")
-    fun getHistory(
+    fun getRecentSentences(
         tens: Int,
         topic: String,
         sentenceCount: Int

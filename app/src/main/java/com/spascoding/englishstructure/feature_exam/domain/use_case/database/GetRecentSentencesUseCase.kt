@@ -6,12 +6,12 @@ import com.spascoding.englishstructure.feature_exam.domain.model.sentence.entity
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class GetHistoryUseCase @Inject constructor(
+class GetRecentSentencesUseCase @Inject constructor(
     private val repository: DatabaseRepositoryImpl
 ) {
 
     operator fun invoke(tense: Tense, topic: String, sentenceCount: Int): Flow<List<Sentence>> {
-        return repository.getHistory(tense, topic, sentenceCount)
+        return repository.getRecentSentences(tense, topic, sentenceCount)
     }
 
 }

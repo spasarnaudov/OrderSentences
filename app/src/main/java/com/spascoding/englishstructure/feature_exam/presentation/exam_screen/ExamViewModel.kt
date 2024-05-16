@@ -3,8 +3,6 @@ package com.spascoding.englishstructure.feature_exam.presentation.exam_screen
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.TextRange
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.spascoding.englishstructure.feature_exam.domain.enums.Tense
@@ -116,7 +114,7 @@ class ExamViewModel @Inject constructor(
         return state.value.enteredSentence == state.value.sentence
     }
 
-    fun getHistory(): Flow<List<Sentence>> {
+    fun getRecentSentences(): Flow<List<Sentence>> {
         return topicsUseCases.getHistoryUseCase.invoke(state.value.tense, state.value.topic, configRepository.getHistorySentenceCount())
     }
 

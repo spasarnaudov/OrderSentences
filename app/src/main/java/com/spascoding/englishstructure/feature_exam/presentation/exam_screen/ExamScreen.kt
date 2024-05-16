@@ -1,19 +1,24 @@
 package com.spascoding.englishstructure.feature_exam.presentation.exam_screen
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
+import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
+import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
-import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -26,67 +31,69 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewModelScope
 import com.spascoding.englishstructure.R
-import com.spascoding.englishstructure.core.constants.FontSize
 import com.spascoding.englishstructure.core.constants.Padding
-import com.spascoding.englishstructure.feature_exam.domain.model.sentence.entity.Sentence
-import com.spascoding.englishstructure.feature_exam.presentation.components.SuccessInfo
+import com.spascoding.englishstructure.feature_exam.presentation.components.RecentElement
 import com.spascoding.englishstructure.feature_exam.presentation.utils.upperFirstLetter
-import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ExamScreen(
     viewModel: ExamViewModel = hiltViewModel()
 ) {
-
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-    ) {
-        Text(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(viewModel.state.value.tense.color)
-                .padding(
-                    vertical = Padding.SMALL,
+    val recentSentences by viewModel.getRecentSentences().collectAsState(initial = emptyList())
+    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
+    Scaffold(
+        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+        topBar = {
+            TopAppBar(
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = Color.Transparent,
+                    titleContentColor = MaterialTheme.colorScheme.onBackground,
                 ),
-            text = viewModel.state.value.tense.value.upperFirstLetter(),
-            fontSize = FontSize.LARGE,
-            textAlign = TextAlign.Center,
-            color = Color.Black,
-        )
-        UnderlinedText(text = viewModel.getShuffledText())
-        InputText()
-        Button(
+                title = { Text(viewModel.state.value.tense.value.upperFirstLetter()) },
+                scrollBehavior = scrollBehavior,
+            )
+        },
+    ) { innerPadding ->
+        LazyVerticalStaggeredGrid(
             modifier = Modifier
-                .wrapContentSize()
-                .padding(vertical = Padding.SMALL),
-            onClick = {
-                viewModel.onEvent(ExamEvent.CheckExam(viewModel.state.value.answerText))
-            },
+                .fillMaxSize()
+                .padding(innerPadding),
+            columns = StaggeredGridCells.Fixed(1),
         ) {
-            Text(text = stringResource(R.string.check))
-        }
-        val history by viewModel.getHistory().collectAsState(initial = emptyList())
-        LazyColumn(
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            viewModel.viewModelScope.launch {
-                history.forEach() {
-                    item {
-                        ExamScreenRow(it)
+            item {
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                ) {
+                    UnderlinedText(text = viewModel.getShuffledText())
+                    InputText()
+                    Button(
+                        modifier = Modifier
+                            .wrapContentSize()
+                            .padding(vertical = Padding.SMALL),
+                        onClick = {
+                            viewModel.onEvent(ExamEvent.CheckExam(viewModel.state.value.answerText))
+                        },
+                    ) {
+                        Text(text = stringResource(R.string.check))
                     }
                 }
             }
-
+            items(recentSentences) { recentSentence ->
+                RecentElement(
+                    sentence = recentSentence.value,
+                    userSentence = recentSentence.userValue,
+                )
+            }
         }
     }
 }
@@ -97,12 +104,7 @@ fun UnderlinedText(text: AnnotatedString) {
     Text(
         modifier = Modifier
             .wrapContentSize()
-            .padding(
-                start = Padding.SMALL,
-                top = Padding.MEDIUM,
-                end = Padding.SMALL,
-                bottom = Padding.MEDIUM,
-            )
+            .padding(Padding.MEDIUM)
             .drawBehind {
                 val strokeWidthPx = 2.dp.toPx()
                 val verticalOffset = size.height
@@ -126,7 +128,7 @@ fun InputText(
     OutlinedTextField(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = Padding.SMALL)
+            .padding(horizontal = Padding.MEDIUM)
             .focusRequester(focusRequester),
         keyboardOptions = KeyboardOptions(
             imeAction = ImeAction.Go,
@@ -146,32 +148,4 @@ fun InputText(
     LaunchedEffect(Unit) {
         focusRequester.requestFocus()
     }
-}
-
-@Composable
-fun ExamScreenRow(sentence: Sentence) {
-    Divider()
-    Row(
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        SuccessInfo(sentence.value == sentence.userValue)
-        Column(
-            modifier = Modifier
-                .weight(1f)
-                .padding(Padding.SMALL)
-        ) {
-            Text(text = sentence.value, fontWeight = FontWeight.Bold)
-            Text(text = sentence.userValue)
-        }
-    }
-
-}
-
-@Composable
-fun Divider() {
-    HorizontalDivider(
-        modifier = Modifier.fillMaxWidth(),
-        thickness = 1.dp,
-        color = MaterialTheme.colorScheme.onBackground
-    )
 }
