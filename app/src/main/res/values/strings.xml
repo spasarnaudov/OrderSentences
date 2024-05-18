@@ -5,9 +5,11 @@
 	<string name="sentences_count">Sentences: %1$s</string>
 	<string name="accuracy">Accuracy</string>
 	<string name="mistakes_sentences">Mistakes/Sentences: %1$s/%2$s</string>
+	<string name="contacts">Contacts</string>
+	<string name="share">Share</string>
 
 	<!--	tense_screen	-->
-	<string name="app_version">Version: %1$s</string>
+	<string name="app_version">version: %1$s</string>
 	<string name="tenses">Tenses</string>
 	<string name="app_description">App description</string>
 
@@ -24,5 +26,8 @@
 
 	<!--	feature_exam_list	-->
 	<string name="back_to_exam">Back to exam</string>
+
+	<!--	about	-->
+	<string name="i_found_this_amazing_app_you_should_try_it_out">I found this amazing app. You should try it out!</string>
 
 </resources>

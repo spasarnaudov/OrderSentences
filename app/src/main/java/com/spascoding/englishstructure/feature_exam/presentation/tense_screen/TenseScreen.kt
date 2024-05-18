@@ -23,18 +23,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.spascoding.englishstructure.R
-import com.spascoding.englishstructure.core.presentation.MinimalDialog
+import com.spascoding.englishstructure.core.presentation.AboutDialog
 import com.spascoding.englishstructure.feature_exam.domain.enums.Tense
 import com.spascoding.englishstructure.feature_exam.domain.model.getTenseInfo
 import com.spascoding.englishstructure.feature_exam.presentation.Screen
 import com.spascoding.englishstructure.feature_exam.presentation.components.CircularProgressListElement
 import com.spascoding.englishstructure.feature_exam.presentation.components.TopListItem
-import com.spascoding.englishstructure.feature_exam.presentation.utils.getAppVersion
 import com.spascoding.englishstructure.feature_exam.presentation.utils.upperFirstLetter
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -61,15 +59,12 @@ fun TenseScreen(
         accuracySum /= usedSentenceCount
     }
 
-    val appVersion = stringResource(R.string.app_version, getAppVersion(LocalContext.current))
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
 
-    val dialogMassage = remember { mutableStateOf("") }
-    if (dialogMassage.value.isNotBlank()) {
-        MinimalDialog(
-            dialogMassage.value
-        ) {
-            dialogMassage.value = ""
+    val showDialog = remember { mutableStateOf(false) }
+    if (showDialog.value) {
+        AboutDialog {
+            showDialog.value = false
         }
     }
 
@@ -87,7 +82,7 @@ fun TenseScreen(
                     )
                 },
                 actions = {
-                    IconButton(onClick = { dialogMassage.value = appVersion }) {
+                    IconButton(onClick = { showDialog.value = true }) {
                         Icon(
                             imageVector = Icons.Filled.Info,
                             contentDescription = stringResource(R.string.app_description)
