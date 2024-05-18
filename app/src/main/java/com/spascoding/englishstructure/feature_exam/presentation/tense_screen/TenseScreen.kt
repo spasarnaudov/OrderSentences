@@ -1,12 +1,9 @@
 package com.spascoding.englishstructure.feature_exam.presentation.tense_screen
 
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
-import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
-import androidx.compose.foundation.lazy.staggeredgrid.items
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -23,24 +20,20 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.spascoding.englishstructure.R
-import com.spascoding.englishstructure.core.constants.FontSize
-import com.spascoding.englishstructure.core.constants.Padding
 import com.spascoding.englishstructure.core.presentation.MinimalDialog
 import com.spascoding.englishstructure.feature_exam.domain.enums.Tense
 import com.spascoding.englishstructure.feature_exam.domain.model.getTenseInfo
 import com.spascoding.englishstructure.feature_exam.presentation.Screen
-import com.spascoding.englishstructure.feature_exam.presentation.components.CircularProgressBar
-import com.spascoding.englishstructure.feature_exam.presentation.components.ListElement
+import com.spascoding.englishstructure.feature_exam.presentation.components.CircularProgressListElement
+import com.spascoding.englishstructure.feature_exam.presentation.components.TopListItem
 import com.spascoding.englishstructure.feature_exam.presentation.utils.getAppVersion
 import com.spascoding.englishstructure.feature_exam.presentation.utils.upperFirstLetter
 
@@ -60,7 +53,7 @@ fun TenseScreen(
         val accuracy = tenseInfo.accuracy
         accuracySum += accuracy
         if (accuracy > 0) {
-            usedSentenceCount+=1
+            usedSentenceCount += 1
         }
         sentenceCountSum += tenseInfo.sentenceCount
     }
@@ -90,7 +83,7 @@ fun TenseScreen(
                 ),
                 title = {
                     Text(
-                        stringResource(R.string.tenses),
+                        stringResource(R.string.app_name),
                     )
                 },
                 actions = {
@@ -105,35 +98,26 @@ fun TenseScreen(
             )
         },
     ) { innerPadding ->
-        LazyVerticalStaggeredGrid(
+        LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding),
-            columns = StaggeredGridCells.Fixed(1),
+            state = rememberLazyListState(),
         ) {
             item {
-                Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(Padding.MEDIUM),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                ) {
-                    CircularProgressBar(
-                        modifier = Modifier.padding(bottom = Padding.SMALL),
-                        percentage = accuracySum,
-                        fontSize = FontSize.EXTRA_LARGE,
-                        radius = 72.dp,
-                        strokeWidth = 8.dp,
-                        description = "Accuracy"
-                    )
-                    Text(text = "Sentences: $sentenceCountSum")
-                }
+                TopListItem(
+                    stringResource(R.string.tenses),
+                    sentenceCount = sentenceCountSum,
+                    accuracy = accuracySum,
+                )
             }
-            items(Tense.entries) { tense ->
-                ListElement(
+            items(Tense.entries.count()) { i ->
+                val tense = Tense.entries[i]
+                val tenseInfo = tenseInfoList.getTenseInfo(tense)
+                CircularProgressListElement(
                     mainText = tense.value.upperFirstLetter(),
-                    progressPercentage = tenseInfoList.getTenseInfo(tense).accuracy,
-                    sentenceCount = tenseInfoList.getTenseInfo(tense).sentenceCount,
+                    progressPercentage = tenseInfo.accuracy,
+                    additionalText = stringResource(R.string.sentences_count, tenseInfo.sentenceCount)
                 ) {
                     navController.navigate(Screen.TopicsScreen.route + "?tense=${tense.int}")
                 }

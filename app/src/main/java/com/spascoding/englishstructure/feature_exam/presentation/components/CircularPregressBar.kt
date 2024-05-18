@@ -58,7 +58,7 @@ fun CircularProgressBar(
             animationPlayed = true
         }
         Box(
-            modifier = Modifier.size(radius * 1.7f),
+            modifier = Modifier.size(radius * 1.7f), // TODO 1.7 is not good option
             contentAlignment = Alignment.Center,
         ) {
             Canvas(modifier = Modifier.fillMaxSize()) {
@@ -69,8 +69,6 @@ fun CircularProgressBar(
                     useCenter = false,
                     style = Stroke(strokeWidth.toPx(), cap = StrokeCap.Round)
                 )
-            }
-            Canvas(modifier = Modifier.fillMaxSize()) {
                 drawArc(
                     color = color,
                     startAngle = -90f,

@@ -50,7 +50,7 @@ fun Navigation(
                 },
             )
         ) {
-            ExamDetails()
+            ExamDetails(navController)
         }
         composable(
             route = Screen.ExamScreen.route +

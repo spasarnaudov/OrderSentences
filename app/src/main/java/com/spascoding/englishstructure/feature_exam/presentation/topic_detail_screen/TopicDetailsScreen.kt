@@ -2,10 +2,13 @@ package com.spascoding.englishstructure.feature_exam.presentation.topic_detail_s
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
-import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
-import androidx.compose.foundation.lazy.staggeredgrid.itemsIndexed
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -18,13 +21,17 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.spascoding.englishstructure.feature_exam.presentation.components.ListElement
+import androidx.navigation.NavController
+import com.spascoding.englishstructure.R
+import com.spascoding.englishstructure.feature_exam.presentation.components.SentenceListElement
 import com.spascoding.englishstructure.feature_exam.presentation.utils.upperFirstLetter
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ExamDetails(
+    navController: NavController,
     viewModel: TopicDetailViewModel = hiltViewModel()
 ) {
     val sentences by viewModel.getSentences().collectAsState(initial = emptyList())
@@ -39,23 +46,25 @@ fun ExamDetails(
                 ),
                 title = { Text("${viewModel.state.value.topic.upperFirstLetter()} (${viewModel.state.value.tense.value.upperFirstLetter()})") },
                 scrollBehavior = scrollBehavior,
+                navigationIcon = {
+                    IconButton(onClick = { navController.navigateUp() }) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = stringResource(R.string.back_to_exam),
+                        )
+                    }
+                },
             )
         },
     ) { innerPadding ->
-        LazyVerticalStaggeredGrid(
+        LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding),
-            columns = StaggeredGridCells.Fixed(1),
+            state = rememberLazyListState(),
         ) {
-            itemsIndexed(sentences) { i, sentence ->
-                ListElement(
-                    rowNumber = "${i}.",
-                    mainText = sentence.value,
-                    additionalText = sentence.userValue,
-                    progressPercentage = if (sentence.usedCount == 0) 0f else (sentence.usedCount.toFloat() - sentence.mistakeCount.toFloat()) / sentence.usedCount.toFloat(),
-                    sentenceCount = sentence.usedCount,
-                )
+            items(sentences.count()) { i ->
+                SentenceListElement(sentences[i])
             }
         }
     }
