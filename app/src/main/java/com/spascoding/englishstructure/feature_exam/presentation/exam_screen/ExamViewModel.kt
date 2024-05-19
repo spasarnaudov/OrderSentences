@@ -13,6 +13,7 @@ import com.spascoding.englishstructure.feature_exam.domain.use_case.TopicsUseCas
 import com.spascoding.englishstructure.feature_exam.presentation.utils.scratchWords
 import com.spascoding.englishstructure.feature_exam.presentation.utils.shuffleSentence
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.Flow
@@ -39,83 +40,78 @@ class ExamViewModel @Inject constructor(
                     tense = Tense.fromInt(tense),
                     topic = topic
                 )
-                GlobalScope.launch {
-                    withContext(Dispatchers.IO) {
-                        val newSentence = commonUseCases.getSentenceUseCase.invoke(Tense.fromInt(tense), topic)
-                        withContext(Dispatchers.Main) {
-                            _state.value = state.value.copy(
-                                sentences = listOf(newSentence),
-                                sentence = newSentence.value,
-                                shuffledSentence = newSentence.value.shuffleSentence(" / "),
-                            )
-                        }
-                    }
-                }
+                loadSentenceFromDatabase(state.value.tense, state.value.topic)
             }
         }
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     fun onEvent(event: ExamEvent) {
         when (event) {
             is ExamEvent.EnterText -> {
                 _state.value = state.value.copy(
-                    enteredSentence = event.answerText,
-                    answerText = event.answerText,
+                    userSentence = event.answerText,
                 )
             }
 
             is ExamEvent.CheckExam -> {
-                val originSentence = state.value.sentences[0]
-
-                val tens = state.value.tense
-                val topic = state.value.topic
-
+                val originSentence = state.value.sentence ?: return
                 GlobalScope.launch {
+                    loadSentenceFromDatabase(state.value.tense, state.value.topic)
                     withContext(Dispatchers.IO) {
                         updateCurrentSentence(originSentence, event.answerText)
-                        val newSentence = commonUseCases.getSentenceUseCase.invoke(tens, topic)
-                        withContext(Dispatchers.Main) {
-                            _state.value = state.value.copy(
-                                sentences = listOf(newSentence),
-                                sentence = newSentence.value,
-                                shuffledSentence = newSentence.value.shuffleSentence(" / "),
-                                enteredSentence = "",
-                                answerText = "",
-                            )
-                        }
                     }
                 }
             }
         }
     }
 
-    private suspend fun updateCurrentSentence(originSentence: Sentence, answerText: String) {
-        var mistakeCount = originSentence.mistakeCount
+    @OptIn(DelicateCoroutinesApi::class)
+    private fun loadSentenceFromDatabase(tense: Tense, topic: String) {
+        GlobalScope.launch(Dispatchers.IO) {
+            val newSentence = commonUseCases.getSentenceUseCase.invoke(tense, topic)
+            withContext(Dispatchers.Main) {
+                _state.value = state.value.copy(
+                    sentence = newSentence,
+                    originalSentence = newSentence.value,
+                    shuffledSentence = newSentence.value.shuffleSentence(" / "),
+                    userSentence = "",
+                )
+            }
+        }
+    }
+
+    private suspend fun updateCurrentSentence(sentence: Sentence, newUserValue: String) {
+        var mistakeCount = sentence.mistakeCount
         if (!isCorrectAnswer()) {
             mistakeCount++
         }
-        val sentence = originSentence.copy(
-            usedCount = state.value.sentences[0].usedCount + 1,
+        val newSentence = sentence.copy(
+            usedCount = sentence.usedCount + 1,
             mistakeCount = mistakeCount,
-            userValue = answerText,
+            userValue = newUserValue,
             userValueTime = Date().time
         )
-        commonUseCases.updateSentenceUseCase.invoke(sentence)
+        commonUseCases.updateSentenceUseCase.invoke(newSentence)
     }
 
     fun getShuffledText(): AnnotatedString {
         return scratchWords(
-            textToScratch = state.value.enteredSentence,
-            shuffledSentence = state.value.shuffledSentence
+            textToScratch = state.value.userSentence,
+            text = state.value.shuffledSentence
         )
     }
 
     private fun isCorrectAnswer(): Boolean {
-        return state.value.enteredSentence == state.value.sentence
+        return state.value.userSentence == state.value.originalSentence
     }
 
     fun getRecentSentences(): Flow<List<Sentence>> {
-        return topicsUseCases.getHistoryUseCase.invoke(state.value.tense, state.value.topic, configRepository.getHistorySentenceCount())
+        return topicsUseCases.getHistoryUseCase.invoke(
+            state.value.tense,
+            state.value.topic,
+            configRepository.getHistorySentenceCount()
+        )
     }
 
 }

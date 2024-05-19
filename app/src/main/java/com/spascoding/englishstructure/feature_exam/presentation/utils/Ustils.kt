@@ -1,7 +1,5 @@
 package com.spascoding.englishstructure.feature_exam.presentation.utils
 
-import android.content.Context
-import android.content.pm.PackageManager
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
@@ -44,10 +42,10 @@ fun String.separateMarks(): String {
 
 fun scratchWords(
     textToScratch: String,
-    shuffledSentence: String
+    text: String
 ): AnnotatedString {
     val wordsToScratch = textToScratch.separateMarks().split(" ")
-    val allWords = shuffledSentence.separateMarks().split(" ")
+    val allWords = text.separateMarks().split(" ")
 
     return buildAnnotatedString {
 

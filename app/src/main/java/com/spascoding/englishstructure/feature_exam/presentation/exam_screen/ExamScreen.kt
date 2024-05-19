@@ -141,10 +141,10 @@ fun InputText(
         ),
         keyboardActions = KeyboardActions(
             onGo = {
-                viewModel.onEvent(ExamEvent.CheckExam(viewModel.state.value.answerText))
+                viewModel.onEvent(ExamEvent.CheckExam(viewModel.state.value.userSentence))
             }
         ),
-        value = viewModel.state.value.answerText,
+        value = viewModel.state.value.userSentence,
         onValueChange = {
             viewModel.onEvent(ExamEvent.EnterText(it))
         },
@@ -178,7 +178,7 @@ fun ButtonsLayout(
         ) {
             Button(
                 onClick = {
-                    viewModel.onEvent(ExamEvent.CheckExam(viewModel.state.value.answerText))
+                    viewModel.onEvent(ExamEvent.CheckExam(viewModel.state.value.userSentence))
                 },
             ) {
                 Text(text = stringResource(R.string.check))
