@@ -8,6 +8,7 @@ import androidx.room.Query
 import androidx.room.Update
 import com.spascoding.englishstructure.feature_exam.domain.model.TenseInfo
 import com.spascoding.englishstructure.feature_exam.domain.model.TopicInfo
+import com.spascoding.englishstructure.feature_exam.domain.model.UserInfo
 import com.spascoding.englishstructure.feature_exam.domain.model.sentence.entity.Sentence
 import kotlinx.coroutines.flow.Flow
 
@@ -44,6 +45,16 @@ interface EnglishStructureDao {
      */
     @Query("SELECT * FROM sentences")
     suspend fun getAllSentences(): List<Sentence>
+
+    @Query(
+        "SELECT " +
+                "tense, " +
+                "CAST(SUM(usedCount - mistakeCount) AS FLOAT) / SUM(usedCount) AS accuracy," +
+                "COUNT(*) AS sentenceCount " +
+                "FROM sentences " +
+                "WHERE usedCount > 0 "
+    )
+    fun getUserAccuracy(): Flow<UserInfo>
 
     @Query(
         "SELECT " +

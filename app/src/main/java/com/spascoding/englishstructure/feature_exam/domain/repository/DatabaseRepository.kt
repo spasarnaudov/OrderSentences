@@ -3,6 +3,7 @@ package com.spascoding.englishstructure.feature_exam.domain.repository
 import com.spascoding.englishstructure.feature_exam.domain.enums.Tense
 import com.spascoding.englishstructure.feature_exam.domain.model.TenseInfo
 import com.spascoding.englishstructure.feature_exam.domain.model.TopicInfo
+import com.spascoding.englishstructure.feature_exam.domain.model.UserInfo
 import com.spascoding.englishstructure.feature_exam.domain.model.sentence.entity.Sentence
 import kotlinx.coroutines.flow.Flow
 
@@ -11,6 +12,7 @@ interface DatabaseRepository {
     suspend fun importNotExistedSentences(sentences: List<Sentence>)
     suspend fun updateSentence(sentence: Sentence)
     suspend fun getSentence(tense: Tense, topic: String): Sentence
+    fun getUserInfo(): Flow<UserInfo>
     // TENSES
     suspend fun getAllSentences(): List<Sentence>
     fun getTenseInfo(): Flow<List<TenseInfo>>

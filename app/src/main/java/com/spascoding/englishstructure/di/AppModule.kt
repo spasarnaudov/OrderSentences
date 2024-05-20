@@ -26,6 +26,7 @@ import com.spascoding.englishstructure.feature_exam.domain.use_case.database.Get
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetTopicInfoUseCase
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetTopicsUseCase
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetRecentSentencesUseCase
+import com.spascoding.englishstructure.feature_exam.domain.use_case.database.GetUserInfoUseCase
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.ImportNotExistedSentencesUseCase
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.RemoveExistedSentencesUseCase
 import com.spascoding.englishstructure.feature_exam.domain.use_case.database.UpdateSentenceUseCase
@@ -68,8 +69,10 @@ object AppModule {
     @Singleton
     fun provideTenseUseCases(
         getTenseInfoUseCase: GetTenseInfoUseCase,
+        getUserInfoUseCase: GetUserInfoUseCase,
     ): TenseUseCases {
         return TenseUseCases(
+            getUserInfoUseCase,
             getTenseInfoUseCase,
         )
     }
@@ -77,12 +80,14 @@ object AppModule {
     @Provides
     @Singleton
     fun provideTopicsUseCases(
+        getTenseInfoUseCase: GetTenseInfoUseCase,
         getTopicSentencesUseCase: GetTopicSentencesUseCase,
         getTopicsUseCase: GetTopicsUseCase,
         getUsedSentencesByTenseAndTopicUseCase: GetRecentSentencesUseCase,
         getTopicInfoUseCase: GetTopicInfoUseCase,
     ): TopicsUseCases {
         return TopicsUseCases(
+            getTenseInfoUseCase,
             getTopicSentencesUseCase,
             getTopicsUseCase,
             getUsedSentencesByTenseAndTopicUseCase,

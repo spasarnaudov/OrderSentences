@@ -37,25 +37,11 @@ fun TopicsScreen(
     navController: NavController,
     viewModel: TopicsViewModel = hiltViewModel(),
 ) {
+    val tenseInfoList by viewModel.getTenseInfoFlow().collectAsState(initial = emptyList())
+    val tenseInfo = tenseInfoList.getTenseInfo(viewModel.state.value.tense)
     val topicInfoList by viewModel.getTopicInfoFlow().collectAsState(initial = emptyList())
     val topics by viewModel.getTopics().collectAsState(initial = emptyList())
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
-
-    var accuracySum = 0f
-    var usedSentenceCount = 0;
-    var sentenceCountSum = 0
-    topics.forEach { topic ->
-        val tenseInfo = topicInfoList.getTenseInfo(topic)
-        val accuracy = tenseInfo.accuracy
-        accuracySum += accuracy
-        if (accuracy > 0) {
-            usedSentenceCount+=1
-        }
-        sentenceCountSum += tenseInfo.sentenceCount
-    }
-    if (usedSentenceCount > 0) {
-        accuracySum /= usedSentenceCount
-    }
 
     Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
@@ -87,8 +73,8 @@ fun TopicsScreen(
             item {
                 TopListItem(
                     stringResource(R.string.topics),
-                    sentenceCount = sentenceCountSum,
-                    accuracy = accuracySum,
+                    sentenceCount = tenseInfo.sentenceCount,
+                    accuracy = tenseInfo.accuracy,
                 )
             }
             items(topics.count()) { i ->

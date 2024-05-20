@@ -29,6 +29,7 @@ import androidx.navigation.NavController
 import com.spascoding.englishstructure.R
 import com.spascoding.englishstructure.core.presentation.AboutDialog
 import com.spascoding.englishstructure.feature_exam.domain.enums.Tense
+import com.spascoding.englishstructure.feature_exam.domain.model.UserInfo
 import com.spascoding.englishstructure.feature_exam.domain.model.getTenseInfo
 import com.spascoding.englishstructure.feature_exam.presentation.Screen
 import com.spascoding.englishstructure.feature_exam.presentation.components.CircularProgressListElement
@@ -41,23 +42,8 @@ fun TenseScreen(
     navController: NavController,
     viewModel: TenseScreenViewModel = hiltViewModel(),
 ) {
+    val getUserInfoUseCase by viewModel.getUserInfoFlow().collectAsState(initial = UserInfo())
     val tenseInfoList by viewModel.getTenseInfoFlow().collectAsState(initial = emptyList())
-
-    var accuracySum = 0f
-    var usedSentenceCount = 0;
-    var sentenceCountSum = 0
-    Tense.entries.forEach { tense ->
-        val tenseInfo = tenseInfoList.getTenseInfo(tense)
-        val accuracy = tenseInfo.accuracy
-        accuracySum += accuracy
-        if (accuracy > 0) {
-            usedSentenceCount += 1
-        }
-        sentenceCountSum += tenseInfo.sentenceCount
-    }
-    if (usedSentenceCount > 0) {
-        accuracySum /= usedSentenceCount
-    }
 
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
 
@@ -102,8 +88,8 @@ fun TenseScreen(
             item {
                 TopListItem(
                     stringResource(R.string.tenses),
-                    sentenceCount = sentenceCountSum,
-                    accuracy = accuracySum,
+                    sentenceCount = getUserInfoUseCase.sentenceCount,
+                    accuracy = getUserInfoUseCase.accuracy,
                 )
             }
             items(Tense.entries.count()) { i ->

@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.spascoding.englishstructure.feature_exam.domain.enums.Tense
+import com.spascoding.englishstructure.feature_exam.domain.model.TenseInfo
 import com.spascoding.englishstructure.feature_exam.domain.model.TopicInfo
 import com.spascoding.englishstructure.feature_exam.domain.use_case.TopicsUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -29,11 +30,15 @@ class TopicsViewModel @Inject constructor(
         }
     }
 
-    fun getTopics(): Flow<List<String>> {
-        return topicsUseCases.getTopicsUseCase.invoke(state.value.tense)
+    fun getTenseInfoFlow(): Flow<List<TenseInfo>> {
+        return topicsUseCases.getTenseInfoUseCase.invoke()
     }
 
     fun getTopicInfoFlow(): Flow<List<TopicInfo>> {
         return topicsUseCases.getTopicInfoUseCase.invoke(state.value.tense)
+    }
+
+    fun getTopics(): Flow<List<String>> {
+        return topicsUseCases.getTopicsUseCase.invoke(state.value.tense)
     }
 }

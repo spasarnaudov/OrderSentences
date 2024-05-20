@@ -4,6 +4,7 @@ import com.spascoding.englishstructure.feature_exam.data.local.EnglishStructureD
 import com.spascoding.englishstructure.feature_exam.domain.enums.Tense
 import com.spascoding.englishstructure.feature_exam.domain.model.TenseInfo
 import com.spascoding.englishstructure.feature_exam.domain.model.TopicInfo
+import com.spascoding.englishstructure.feature_exam.domain.model.UserInfo
 import com.spascoding.englishstructure.feature_exam.domain.model.sentence.entity.Sentence
 import com.spascoding.englishstructure.feature_exam.domain.repository.DatabaseRepository
 import kotlinx.coroutines.flow.Flow
@@ -26,6 +27,10 @@ class DatabaseRepositoryImpl @Inject constructor(
 
     override suspend fun getSentence(tense: Tense, topic: String): Sentence {
         return dao.getSentence(tense.int, topic)
+    }
+
+    override fun getUserInfo(): Flow<UserInfo> {
+        return dao.getUserAccuracy()
     }
 
     // TENSES
