@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room.databaseBuilder
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.spascoding.englishstructure.core.presentation.getAppVersion
 import com.spascoding.englishstructure.feature_exam.data.local.EnglishStructureDao
 import com.spascoding.englishstructure.feature_exam.data.local.EnglishStructureDatabase
 import com.spascoding.englishstructure.feature_exam.data.repository.ConfigAppRepositoryImpl
@@ -97,7 +98,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideEnglishStructureDatabase(@ApplicationContext context: Context): EnglishStructureDatabase {
+    fun provideEnglishStructureDatabase(@ApplicationContext context: Context, prefs: SharedPreferencesRepositoryImpl): EnglishStructureDatabase {
         return databaseBuilder(
             context,
             EnglishStructureDatabase::class.java, "english-structure-db"
@@ -105,7 +106,9 @@ object AppModule {
             .addCallback(object : RoomDatabase.Callback() {
                 override fun onOpen(db: SupportSQLiteDatabase) {
                     super.onOpen(db)
-                    SentenceSyncWorker.sync(context)
+                    if (prefs.getAppVersion() != getAppVersion(context)) {
+                        SentenceSyncWorker.sync(context)
+                    }
                 }
             })
             .build()

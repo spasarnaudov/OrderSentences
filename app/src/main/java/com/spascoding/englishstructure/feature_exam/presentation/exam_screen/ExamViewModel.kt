@@ -110,7 +110,7 @@ class ExamViewModel @Inject constructor(
         return topicsUseCases.getHistoryUseCase.invoke(
             state.value.tense,
             state.value.topic,
-            configRepository.getHistorySentenceCount()
+            configRepository.getRecentSentenceCount()
         )
     }
 

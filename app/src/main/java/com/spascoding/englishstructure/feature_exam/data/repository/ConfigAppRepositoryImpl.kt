@@ -8,27 +8,7 @@ class ConfigAppRepositoryImpl(
     private val context: Context
 ): ConfigRepository {
 
-    override fun getUnlockTensAccuracy(value: String): Int {
-        return getValue(context, value).toInt()
-    }
-
-    override fun getUnlockTensSentenceCount(value: String): Int {
-        return getValue(context, value).toInt()
-    }
-
-    override fun getUnlockTopicAccuracy(value: String): Int {
-        return getValue(context, value).toInt()
-    }
-
-    override fun getUnlockTopicSentenceCount(value: String): Int {
-        return getValue(context, value).toInt()
-    }
-
-    override fun getAccuracySentencesCount(value: String): Int {
-        return getValue(context, value).toInt()
-    }
-
-    override fun getHistorySentenceCount(value: String): Int {
+    override fun getRecentSentenceCount(value: String): Int {
         return getValue(context, value).toInt()
     }
 }

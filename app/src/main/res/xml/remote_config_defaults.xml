@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <defaultsMap>
 	<entry>
+		<key>RecentSentenceCount</key>
+		<value>10</value>
+	</entry>
+<!--	Deprecated	-->
+	<entry>
 		<key>UnlockTenseAccuracy</key>
 		<value>80</value>
 	</entry>

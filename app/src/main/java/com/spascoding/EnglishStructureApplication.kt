@@ -13,6 +13,7 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfigValue
 import com.google.firebase.remoteconfig.remoteConfig
 import com.google.firebase.remoteconfig.remoteConfigSettings
 import com.spascoding.englishstructure.R
+import com.spascoding.englishstructure.feature_exam.data.repository.SharedPreferencesRepositoryImpl
 import com.spascoding.englishstructure.feature_exam.data.repository.utils.SentenceSyncWorker
 import com.spascoding.englishstructure.feature_exam.data.repository.utils.isConfigAppInstalled
 import com.spascoding.englishstructure.feature_exam.data.repository.utils.readConfigAppData
@@ -75,7 +76,10 @@ class EnglishStructureApplication: Application(), Configuration.Provider {
     }
 }
 
-class SentenceSyncWorkerFactory @Inject constructor(private val databaseSyncUseCases: DatabaseSyncUseCases): WorkerFactory() {
+class SentenceSyncWorkerFactory @Inject constructor(
+    private val databaseSyncUseCases: DatabaseSyncUseCases,
+    private val prefs: SharedPreferencesRepositoryImpl,
+): WorkerFactory() {
     override fun createWorker(
         appContext: Context,
         workerClassName: String,
@@ -83,7 +87,8 @@ class SentenceSyncWorkerFactory @Inject constructor(private val databaseSyncUseC
     ): ListenableWorker = SentenceSyncWorker(
         context = appContext,
         workerParams = workerParameters,
-        databaseSyncUseCases = databaseSyncUseCases
+        databaseSyncUseCases = databaseSyncUseCases,
+        prefs = prefs,
     )
 
 }

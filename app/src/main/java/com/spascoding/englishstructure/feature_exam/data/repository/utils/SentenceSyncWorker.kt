@@ -7,6 +7,8 @@ import androidx.work.CoroutineWorker
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
+import com.spascoding.englishstructure.core.presentation.getAppVersion
+import com.spascoding.englishstructure.feature_exam.data.repository.SharedPreferencesRepositoryImpl
 import com.spascoding.englishstructure.feature_exam.domain.use_case.DatabaseSyncUseCases
 import com.spascoding.englishstructure.feature_exam.domain.utils.SentencesGenerator
 import dagger.assisted.Assisted
@@ -16,9 +18,10 @@ import kotlinx.coroutines.withContext
 
 @HiltWorker
 class SentenceSyncWorker @AssistedInject constructor(
-    @Assisted context: Context,
+    @Assisted val context: Context,
     @Assisted workerParams: WorkerParameters,
     private val databaseSyncUseCases: DatabaseSyncUseCases,
+    private val prefs: SharedPreferencesRepositoryImpl,
 ) : CoroutineWorker(context, workerParams) {
 
     private val TAG = "SentenceSyncWorker"
@@ -70,5 +73,7 @@ class SentenceSyncWorker @AssistedInject constructor(
         //Read database sentences
         val allUpdatedDatabaseSentences = databaseSyncUseCases.getAllSentencesUseCase.invoke()
         Log.d(TAG, "${allUpdatedDatabaseSentences.count()} were read from database")
+
+        prefs.setAppVersion(getAppVersion(context))
     }
 }

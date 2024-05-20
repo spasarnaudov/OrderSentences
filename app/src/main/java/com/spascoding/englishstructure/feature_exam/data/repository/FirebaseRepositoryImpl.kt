@@ -8,27 +8,7 @@ class FirebaseRepositoryImpl: ConfigRepository {
 
     private val firebaseRemoteConfig = Firebase.remoteConfig
 
-    override fun getUnlockTensAccuracy(value: String): Int {
-        return firebaseRemoteConfig.getLong(value).toInt()
-    }
-
-    override fun getUnlockTensSentenceCount(value: String): Int {
-        return firebaseRemoteConfig.getLong(value).toInt()
-    }
-
-    override fun getUnlockTopicAccuracy(value: String): Int {
-        return firebaseRemoteConfig.getLong(value).toInt()
-    }
-
-    override fun getUnlockTopicSentenceCount(value: String): Int {
-        return firebaseRemoteConfig.getLong(value).toInt()
-    }
-
-    override fun getAccuracySentencesCount(value: String): Int {
-        return firebaseRemoteConfig.getLong(value).toInt()
-    }
-
-    override fun getHistorySentenceCount(value: String): Int {
+    override fun getRecentSentenceCount(value: String): Int {
         return firebaseRemoteConfig.getLong(value).toInt()
     }
 }
