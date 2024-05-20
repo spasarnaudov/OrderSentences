@@ -2,12 +2,15 @@ package com.spascoding.englishstructure.di
 
 import android.content.Context
 import androidx.room.Room.databaseBuilder
+import androidx.room.RoomDatabase
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.spascoding.englishstructure.feature_exam.data.local.EnglishStructureDao
 import com.spascoding.englishstructure.feature_exam.data.local.EnglishStructureDatabase
 import com.spascoding.englishstructure.feature_exam.data.repository.ConfigAppRepositoryImpl
 import com.spascoding.englishstructure.feature_exam.data.repository.ExamPatternRepositoryImpl
 import com.spascoding.englishstructure.feature_exam.data.repository.FirebaseRepositoryImpl
 import com.spascoding.englishstructure.feature_exam.data.repository.SharedPreferencesRepositoryImpl
+import com.spascoding.englishstructure.feature_exam.data.repository.utils.SentenceSyncWorker
 import com.spascoding.englishstructure.feature_exam.data.repository.utils.isConfigAppInstalled
 import com.spascoding.englishstructure.feature_exam.domain.repository.ConfigRepository
 import com.spascoding.englishstructure.feature_exam.domain.repository.ExamPatternRepository
@@ -98,7 +101,14 @@ object AppModule {
         return databaseBuilder(
             context,
             EnglishStructureDatabase::class.java, "english-structure-db"
-        ).build()
+        )
+            .addCallback(object : RoomDatabase.Callback() {
+                override fun onOpen(db: SupportSQLiteDatabase) {
+                    super.onOpen(db)
+                    SentenceSyncWorker.sync(context)
+                }
+            })
+            .build()
     }
 
     @Provides

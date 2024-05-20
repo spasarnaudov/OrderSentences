@@ -1,23 +1,37 @@
 package com.spascoding
 
 import android.app.Application
-import android.content.Intent
+import android.content.Context
 import android.util.Log
 import android.widget.Toast
+import androidx.work.Configuration
+import androidx.work.ListenableWorker
+import androidx.work.WorkerFactory
+import androidx.work.WorkerParameters
 import com.google.firebase.Firebase
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigValue
 import com.google.firebase.remoteconfig.remoteConfig
 import com.google.firebase.remoteconfig.remoteConfigSettings
 import com.spascoding.englishstructure.R
+import com.spascoding.englishstructure.feature_exam.data.repository.utils.SentenceSyncWorker
 import com.spascoding.englishstructure.feature_exam.data.repository.utils.isConfigAppInstalled
 import com.spascoding.englishstructure.feature_exam.data.repository.utils.readConfigAppData
-import com.spascoding.englishstructure.service.SentencesSyncService
+import com.spascoding.englishstructure.feature_exam.domain.use_case.DatabaseSyncUseCases
 import dagger.hilt.android.HiltAndroidApp
+import javax.inject.Inject
+
 
 @HiltAndroidApp
-class EnglishStructureApplication: Application() {
+class EnglishStructureApplication: Application(), Configuration.Provider {
 
     val TAG = "EnglishStructureApplication"
+
+    @Inject
+    lateinit var workerFactory: SentenceSyncWorkerFactory
+    override val workManagerConfiguration: Configuration
+        get() = Configuration.Builder()
+            .setWorkerFactory(workerFactory)
+            .build()
 
     override fun onCreate() {
         super.onCreate()
@@ -28,9 +42,6 @@ class EnglishStructureApplication: Application() {
         } else {
             setupFirebaseRemoteConfig()
         }
-
-        val serviceIntent = Intent(this, SentencesSyncService::class.java)
-        startService(serviceIntent)
     }
 
     private fun setupFirebaseRemoteConfig() {
@@ -62,4 +73,17 @@ class EnglishStructureApplication: Application() {
             Log.d(TAG, "${entry.key}: ${entry.value.asString()}.")
         }
     }
+}
+
+class SentenceSyncWorkerFactory @Inject constructor(private val databaseSyncUseCases: DatabaseSyncUseCases): WorkerFactory() {
+    override fun createWorker(
+        appContext: Context,
+        workerClassName: String,
+        workerParameters: WorkerParameters
+    ): ListenableWorker = SentenceSyncWorker(
+        context = appContext,
+        workerParams = workerParameters,
+        databaseSyncUseCases = databaseSyncUseCases
+    )
+
 }
