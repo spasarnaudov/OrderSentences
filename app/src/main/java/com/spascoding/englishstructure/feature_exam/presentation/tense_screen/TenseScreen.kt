@@ -32,7 +32,8 @@ import com.spascoding.englishstructure.feature_exam.domain.enums.Tense
 import com.spascoding.englishstructure.feature_exam.domain.model.UserInfo
 import com.spascoding.englishstructure.feature_exam.domain.model.getTenseInfo
 import com.spascoding.englishstructure.feature_exam.presentation.Screen
-import com.spascoding.englishstructure.feature_exam.presentation.components.CircularProgressListElement
+import com.spascoding.englishstructure.feature_exam.presentation.components.BorderedListElement
+import com.spascoding.englishstructure.feature_exam.presentation.components.ProgressInfoElement
 import com.spascoding.englishstructure.feature_exam.presentation.components.TopListItem
 import com.spascoding.englishstructure.feature_exam.presentation.utils.upperFirstLetter
 
@@ -95,12 +96,14 @@ fun TenseScreen(
             items(Tense.entries.count()) { i ->
                 val tense = Tense.entries[i]
                 val tenseInfo = tenseInfoList.getTenseInfo(tense)
-                CircularProgressListElement(
-                    mainText = tense.value.upperFirstLetter(),
-                    progressPercentage = tenseInfo.accuracy,
-                    additionalText = stringResource(R.string.sentences_count, tenseInfo.sentenceCount)
+                BorderedListElement(
+                    onClickItem = { navController.navigate(Screen.TopicsScreen.route + "?tense=${tense.int}") }
                 ) {
-                    navController.navigate(Screen.TopicsScreen.route + "?tense=${tense.int}")
+                    ProgressInfoElement(
+                        title = tense.value.upperFirstLetter(),
+                        sentenceCount = stringResource(R.string.sentences_count, tenseInfo.sentenceCount),
+                        accuracy = tenseInfo.accuracy
+                    )
                 }
             }
         }

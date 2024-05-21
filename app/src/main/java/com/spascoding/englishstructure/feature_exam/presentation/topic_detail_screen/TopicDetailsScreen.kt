@@ -25,7 +25,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.spascoding.englishstructure.R
-import com.spascoding.englishstructure.feature_exam.presentation.components.SentenceListElement
+import com.spascoding.englishstructure.feature_exam.presentation.components.BorderedListElement
+import com.spascoding.englishstructure.feature_exam.presentation.components.SentenceInfoElement
 import com.spascoding.englishstructure.feature_exam.presentation.utils.upperFirstLetter
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -64,7 +65,10 @@ fun ExamDetails(
             state = rememberLazyListState(),
         ) {
             items(sentences.count()) { i ->
-                SentenceListElement(sentences[i])
+                val sentence = sentences[i]
+                BorderedListElement {
+                    SentenceInfoElement(sentence)
+                }
             }
         }
     }

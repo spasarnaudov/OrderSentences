@@ -27,7 +27,8 @@ import androidx.navigation.NavController
 import com.spascoding.englishstructure.R
 import com.spascoding.englishstructure.feature_exam.domain.model.getTenseInfo
 import com.spascoding.englishstructure.feature_exam.presentation.Screen
-import com.spascoding.englishstructure.feature_exam.presentation.components.CircularProgressListElement
+import com.spascoding.englishstructure.feature_exam.presentation.components.BorderedListElement
+import com.spascoding.englishstructure.feature_exam.presentation.components.ProgressInfoElement
 import com.spascoding.englishstructure.feature_exam.presentation.components.TopListItem
 import com.spascoding.englishstructure.feature_exam.presentation.utils.upperFirstLetter
 
@@ -80,12 +81,14 @@ fun TopicsScreen(
             items(topics.count()) { i ->
                 val topic = topics[i]
                 val topicInfo = topicInfoList.getTenseInfo(topic)
-                CircularProgressListElement(
-                    mainText = topic.upperFirstLetter(),
-                    progressPercentage = topicInfo.accuracy,
-                    additionalText = stringResource(R.string.sentences_count, topicInfo.sentenceCount)
+                BorderedListElement(
+                    onClickItem = { navController.navigate(Screen.ExamScreen.route + "?tense=${viewModel.state.value.tense.int}&topic=$topic") }
                 ) {
-                    navController.navigate(Screen.ExamScreen.route + "?tense=${viewModel.state.value.tense.int}&topic=$topic")
+                    ProgressInfoElement(
+                        title = topic.upperFirstLetter(),
+                        sentenceCount = stringResource(R.string.sentences_count, topicInfo.sentenceCount),
+                        accuracy = topicInfo.accuracy
+                    )
                 }
             }
         }

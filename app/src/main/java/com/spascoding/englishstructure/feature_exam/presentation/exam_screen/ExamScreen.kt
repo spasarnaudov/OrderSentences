@@ -49,7 +49,8 @@ import com.spascoding.englishstructure.R
 import com.spascoding.englishstructure.core.constants.FontSize
 import com.spascoding.englishstructure.core.constants.Padding
 import com.spascoding.englishstructure.feature_exam.presentation.Screen
-import com.spascoding.englishstructure.feature_exam.presentation.components.SentenceListElement
+import com.spascoding.englishstructure.feature_exam.presentation.components.BorderedListElement
+import com.spascoding.englishstructure.feature_exam.presentation.components.SentenceInfoElement
 import com.spascoding.englishstructure.feature_exam.presentation.utils.upperFirstLetter
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -97,7 +98,10 @@ fun ExamScreen(
                 }
             }
             items(recentSentences.count()) { i ->
-                SentenceListElement(recentSentences[i])
+                val sentence = recentSentences[i]
+                BorderedListElement {
+                    SentenceInfoElement(sentence)
+                }
             }
         }
     }
