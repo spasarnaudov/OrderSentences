@@ -70,7 +70,7 @@ fun ExamScreen(
                     containerColor = Color.Transparent,
                     titleContentColor = MaterialTheme.colorScheme.onBackground,
                 ),
-                title = { Text("${viewModel.state.value.topic.upperFirstLetter()} (${viewModel.state.value.tense.value.upperFirstLetter()})") },
+                title = { Text("${viewModel.state.value.tense.value.upperFirstLetter()} (${viewModel.state.value.topic.upperFirstLetter()})") },
                 scrollBehavior = scrollBehavior,
                 navigationIcon = {
                     IconButton(onClick = { navController.navigateUp() }) {
