@@ -14,11 +14,13 @@ import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.window.Dialog
@@ -42,13 +44,14 @@ fun AboutDialog(
                     fontWeight = FontWeight.Bold,
                 )
 
-                Row {
+                Row(
+                    modifier = Modifier.padding(vertical = Padding.SMALL)
+                ) {
                     val context = LocalContext.current
-                    IconButton(onClick = { shareApp(context) }) {
-                        Icon(
-                            imageVector = Icons.Filled.Share,
-                            contentDescription = stringResource(R.string.share)
-                        )
+
+                    val uriHandler = LocalUriHandler.current
+                    OutlinedButton(onClick = { uriHandler.openUri("https://github.com/spasarnaudov/English-structure") }) {
+                        Text(text = "Github")
                     }
 
                     IconButton(onClick = { startMailClient(context, "spasarnaudov@gmail.com") }) {
@@ -57,9 +60,21 @@ fun AboutDialog(
                             contentDescription = stringResource(R.string.contacts)
                         )
                     }
+
+                    IconButton(onClick = { shareApp(context) }) {
+                        Icon(
+                            imageVector = Icons.Filled.Share,
+                            contentDescription = stringResource(R.string.share)
+                        )
+                    }
                 }
 
-                Text(text = stringResource(R.string.app_version, getAppVersion(LocalContext.current)))
+                Text(
+                    text = stringResource(
+                        R.string.app_version,
+                        getAppVersion(LocalContext.current)
+                    )
+                )
             }
         }
     }
@@ -88,9 +103,14 @@ fun shareApp(context: Context) {
     val shareIntent = Intent().apply {
         action = Intent.ACTION_SEND
         type = "text/plain"
-        putExtra(Intent.EXTRA_SUBJECT,
-            context.getString(R.string.i_found_this_amazing_app_you_should_try_it_out))
-        putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=com.spascoding.englishstructure")
+        putExtra(
+            Intent.EXTRA_SUBJECT,
+            context.getString(R.string.i_found_this_amazing_app_you_should_try_it_out)
+        )
+        putExtra(
+            Intent.EXTRA_TEXT,
+            "https://play.google.com/store/apps/details?id=com.spascoding.englishstructure"
+        )
     }
     val shareChooserIntent = Intent.createChooser(shareIntent, "Share via")
     if (shareIntent.resolveActivity(context.packageManager) != null) {
