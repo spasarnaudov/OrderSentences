@@ -46,6 +46,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.spascoding.englishstructure.R
+import com.spascoding.englishstructure.core.constants.Colors
 import com.spascoding.englishstructure.core.constants.FontSize
 import com.spascoding.englishstructure.core.constants.Padding
 import com.spascoding.englishstructure.feature_exam.presentation.Screen
@@ -99,7 +100,9 @@ fun ExamScreen(
             }
             items(recentSentences.count()) { i ->
                 val sentence = recentSentences[i]
-                BorderedListElement {
+                BorderedListElement(
+                    borderColor = if (sentence.value == sentence.userValue) Colors.CORRECT_ANSWER else Colors.WRONG_ANSWER
+                ) {
                     SentenceInfoElement(sentence)
                 }
             }

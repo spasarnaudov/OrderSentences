@@ -97,12 +97,14 @@ fun TenseScreen(
                 val tense = Tense.entries[i]
                 val tenseInfo = tenseInfoList.getTenseInfo(tense)
                 BorderedListElement(
+                    borderColor = tense.color,
                     onClickItem = { navController.navigate(Screen.TopicsScreen.route + "?tense=${tense.int}") }
                 ) {
                     ProgressInfoElement(
                         title = tense.value.upperFirstLetter(),
                         sentenceCount = stringResource(R.string.sentences_count, tenseInfo.sentenceCount),
-                        accuracy = tenseInfo.accuracy
+                        accuracy = tenseInfo.accuracy,
+                        color = tense.color,
                     )
                 }
             }

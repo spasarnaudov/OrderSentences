@@ -1,20 +1,23 @@
 package com.spascoding.englishstructure.feature_exam.domain.enums
 
-enum class Tense(val value: String, val int: Int) {
-    PAST_SIMPLE("past simple", 1),                                  //(A1)
-    PAST_CONTINUOUS("past continuous", 3),                          //(A2)
-    PAST_PERFECT("past perfect", 7),                                //(B2)
-    PAST_PERFECT_CONTINUOUS("Past perfect continuous", 10),         //(C1)
+import androidx.compose.ui.graphics.Color
+import com.spascoding.englishstructure.core.constants.Colors
 
-    PRESENT_SIMPLE("present simple", 0),                            //(A1)
-    PRESENT_CONTINUOUS("present continuous", 2),                    //(A2)
-    PRESENT_PERFECT("present perfect", 5),                          //(B1)
-    PRESENT_PERFECT_CONTINUOUS("present perfect continuous", 9),    //(C1)
+enum class Tense(val value: String, val int: Int, val color: Color) {
+    PAST_SIMPLE("past simple", 1, Colors.PAST),                                     //(A1)
+    PAST_CONTINUOUS("past continuous", 3, Colors.PAST),                             //(A2)
+    PAST_PERFECT("past perfect", 7, Colors.PAST),                                   //(B2)
+    PAST_PERFECT_CONTINUOUS("Past perfect continuous", 10, Colors.PAST),            //(C1)
 
-    FUTURE_SIMPLE("future simple", 4),                              //(A2)
-    FUTURE_CONTINUOUS("future continuous", 6),                      //(B1)
-    FUTURE_PERFECT("future perfect", 8),                            //(B2)
-    FUTURE_PERFECT_CONTINUOUS("future perfect continuous", 11);     //(C2)
+    PRESENT_SIMPLE("present simple", 0, Colors.PRESENT),                            //(A1)
+    PRESENT_CONTINUOUS("present continuous", 2, Colors.PRESENT),                    //(A2)
+    PRESENT_PERFECT("present perfect", 5, Colors.PRESENT),                          //(B1)
+    PRESENT_PERFECT_CONTINUOUS("present perfect continuous", 9, Colors.PRESENT),    //(C1)
+
+    FUTURE_SIMPLE("future simple", 4, Colors.FUTURE),                               //(A2)
+    FUTURE_CONTINUOUS("future continuous", 6, Colors.FUTURE),                       //(B1)
+    FUTURE_PERFECT("future perfect", 8, Colors.FUTURE),                             //(B2)
+    FUTURE_PERFECT_CONTINUOUS("future perfect continuous", 11, Colors.FUTURE);      //(C2)
 
     companion object {
         fun fromString(name: String): Tense {

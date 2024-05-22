@@ -82,12 +82,14 @@ fun TopicsScreen(
                 val topic = topics[i]
                 val topicInfo = topicInfoList.getTenseInfo(topic)
                 BorderedListElement(
+                    borderColor = viewModel.state.value.tense.color,
                     onClickItem = { navController.navigate(Screen.ExamScreen.route + "?tense=${viewModel.state.value.tense.int}&topic=$topic") }
                 ) {
                     ProgressInfoElement(
                         title = topic.upperFirstLetter(),
                         sentenceCount = stringResource(R.string.sentences_count, topicInfo.sentenceCount),
-                        accuracy = topicInfo.accuracy
+                        accuracy = topicInfo.accuracy,
+                        color = viewModel.state.value.tense.color,
                     )
                 }
             }

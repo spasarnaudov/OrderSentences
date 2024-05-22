@@ -66,7 +66,9 @@ fun ExamDetails(
         ) {
             items(sentences.count()) { i ->
                 val sentence = sentences[i]
-                BorderedListElement {
+                BorderedListElement(
+                    borderColor = viewModel.state.value.tense.color
+                ) {
                     SentenceInfoElement(sentence)
                 }
             }

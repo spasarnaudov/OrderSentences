@@ -20,6 +20,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
@@ -28,6 +29,7 @@ import com.spascoding.englishstructure.core.constants.RoundCorner
 
 @Composable
 fun BorderedListElement(
+    borderColor: Color = MaterialTheme.colorScheme.primary,
     onClickItem: (() -> Unit)? = null,
     content: @Composable RowScope.() -> Unit,
 ) {
@@ -44,12 +46,12 @@ fun BorderedListElement(
                 end = Padding.MEDIUM,
             )
             .background(
-                MaterialTheme.colorScheme.primary.copy(alpha = 0.05f),
+                borderColor.copy(alpha = 0.05f),
                 RoundedCornerShape(RoundCorner.MEDIUM)
             )
             .border(
                 1.dp,
-                MaterialTheme.colorScheme.primary,
+                borderColor,
                 RoundedCornerShape(RoundCorner.MEDIUM)
             )
             .clip(RoundedCornerShape(RoundCorner.MEDIUM))
@@ -69,7 +71,7 @@ fun BorderedListElement(
                 .height(heightIs)
                 .width(Padding.SMALL)
                 .background(
-                    MaterialTheme.colorScheme.primary,
+                    borderColor,
                 )
         )
         content.invoke(this)
