@@ -10,7 +10,7 @@ private const val TAG = "ConfigApp"
 private const val CONFIG_APP_PACKAGE = "com.spascoding.englishstructureconfig"
 
 fun readConfigAppData(context: Context): String? {
-    val uri = Uri.parse("content://com.spascoding.englishstructureconfig.domain.repository.ConfigProvider")
+    val uri = Uri.parse("content://com.spascoding.englishstructureconfig.data.providers.ConfigProvider")
     val cursor = context.contentResolver.query(uri, null, null, null, null)
 
     cursor?.moveToFirst()
