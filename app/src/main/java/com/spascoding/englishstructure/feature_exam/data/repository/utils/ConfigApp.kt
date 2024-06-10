@@ -7,7 +7,7 @@ import android.util.Log
 import org.json.JSONObject
 
 private const val TAG = "ConfigApp"
-private const val CONFIG_APP_PACKAGE = "com.spascoding.localconfig"
+private const val CONFIG_APP_PACKAGE = "com.spascoding.englishstructureconfig"
 
 fun readConfigAppData(context: Context): String? {
     val uri = Uri.parse("content://com.spascoding.englishstructureconfig.data.providers.ConfigProvider")
